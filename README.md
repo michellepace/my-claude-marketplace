@@ -60,3 +60,41 @@ A plugin can contain any number of the following components:
 You can't switch skills on and off, only plugins. I find selected skills that I want in marketplaces that are otherwise bloated with skills I will never need. I like to have only those skills I want, and so I package them into my own marketplace. Also, it means I can build on these plugins and have my own source control around it. The downside is that when the author publishes an update, I have to update the plugins manually in this marketplace.
 
 Sometimes the plugin will contain exactly what I want, like this [Playwright skill](https://github.com/lackeyjb/playwright-skill). In this case, I just install it as another marketplace.
+
+## Configuring Plugins at Project Level
+
+I like my configuration to be in source control.
+
+Manually adding "extraKnownMarketplaces" will mean when anyone opens Claude Code in this project, the marketplaces will automatically be available.
+
+Running `/plugin` and opting to install marketplaces at project level will modify your project `.claude/settings.json` as "EnabledPlugins".  If you want to disable plugins, you can set them to false directly or disable via `/plugin` that will remove the line.
+
+In my Next.js project file `.claude/settings.json` I have this configured and checked into source control:
+
+```json
+{
+  "extraKnownMarketplaces": {
+    "playwright-skill": {
+      "source": {
+        "source": "github",
+        "repo": "lackeyjb/playwright-skill"
+      }
+    },
+    "my-claude-plugins": {
+      "source": {
+        "source": "github",
+        "repo": "michellepace/my-claude-plugins"
+      }
+    }
+  },
+
+  "enabledPlugins": {
+    "playwright-skill@playwright-skill": true,
+    "frontend-design@my-claude-plugins": true,
+    "shadcn-ui@my-claude-plugins": true,
+    "tailwindcss@my-claude-plugins": false
+  }
+}
+```
+
+Which pertains to <https://github.com/lackeyjb/playwright-skill> (1 plugin enabled) and <https://github.com/michellepace/my-claude-plugins> (2 plugins enabled, 1 disabled).
