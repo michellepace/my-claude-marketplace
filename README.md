@@ -1,4 +1,4 @@
-# My Claude Plugins
+# My Claude Plugins (Collected in a Marketplace)
 
 Personal Claude Code marketplace: plugins and skills curated and packaged for individual install/uninstall control.
 
