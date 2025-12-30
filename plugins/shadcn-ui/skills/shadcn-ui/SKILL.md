@@ -1,6 +1,7 @@
 ---
 name: shadcn-ui
-description: Adds and configures shadcn/ui components. Use when building UI with React/Next.js, adding or updating shadcn components, working with Tailwind CSS styling, or using Radix UI primitives.
+description: Best practices for building UIs with shadcn/ui components (Radix UI + Tailwind CSS). Use when adding and customising components, or architecting component structures in Next.js. Covers modifying components/ui/ primitives, CVA variants, reusable compositions, and a customisation decision framework.
+
 ---
 
 # shadcn/ui Skill
@@ -85,7 +86,7 @@ const buttonVariants = cva("inline-flex items-center justify-center ...", {
 
 ### Composition Pattern
 
-Use compound components (Radix style). Compose primitives, don't wrap them:
+Use compound components (Radix style). Build UI by composing primitives together:
 
 ```tsx
 <DropdownMenu>
@@ -130,20 +131,96 @@ Use `<Field />` component + TanStack Form + Zod for validation
 
 ## Component Architecture
 
+shadcn/ui uses a two-layer model. Understanding this prevents common mistakes.
+
 ```text
 components/
-├── ui/                  # Design system primitives (from shadcn)
-│   ├── button.tsx       # Modify for: variants, default styles, global behaviour
-│   └── sheet.tsx
-├── auth/                # Domain components (compose ui/ primitives)
-│   └── login-form.tsx
-└── nav/
-    └── mobile-menu.tsx
+  ui/                      ← Primitives (shadcn installs here)
+    button.tsx                 Add variants, props, default styles
+    sidebar.tsx                Expose internal config (e.g., width prop)
+    card.tsx                   Adjust spacing, borders, semantic tokens
+
+  navigation/              ← Compositions (you create these)
+    left-sidebar.tsx           Uses Sidebar with width="13rem", app menu items
+    mobile-nav.tsx             Uses Sheet + NavigationMenu
+
+  auth/                    ← Compositions (you create these)
+    login-form.tsx             Uses Button, Input, Card with app logic
 ```
 
-- **Use composition** over customisation
-- **Modify `ui/` directly** for global styling, new variants, behaviour changes
-- **Create domain components** outside `ui/` for business logic and composition
+### Primitives (`components/ui/`)
+
+Installed by shadcn CLI. **Modify directly** for general-purpose improvements.
+
+**✅ Modify when:**
+
+- Adding props that ANY usage would benefit from
+- Adding reusable variants via CVA
+- Exposing internal CSS variables as typed props
+- Adapting to the project's design system
+
+**❌ Don't modify for:**
+
+- App-specific content (menu items, labels, icons)
+- Hardcoded values only one component needs
+- Business logic or data fetching
+
+### Compositions (`components/{feature}/`)
+
+YOUR components that USE primitives. App-specific content and configuration lives here.
+
+**✅ Create when:**
+
+- Combining primitives with app-specific content
+- Configuring primitives for a specific use case (passing specific prop values)
+- Adding business logic around UI
+
+**❌ Don't create thin wrappers** that just pass props through — modify the primitive instead.
+
+```tsx
+// ❌ Thin wrapper — just adds indirection
+function AppSidebar(props) {
+  return <Sidebar {...props} />
+}
+
+// ✅ Either modify the primitive, or create a meaningful composition
+function LeftSidebar() {
+  return (
+    <Sidebar width="13rem" collapsible="icon">
+      <SidebarHeader>...</SidebarHeader>
+      <NavLinks />
+    </Sidebar>
+  )
+}
+```
+
+### Customisation Hierarchy
+
+When customising shadcn components, prefer approaches higher in this list:
+
+1. **className** — One-off layout/spacing; check `globals.css` for existing variables first
+2. **Existing props/variants** — Use what the primitive already offers
+3. **New props on primitive** — When exposing internal configuration (e.g., CSS variables) cleanly
+4. **New variants (CVA)** — When you need reusable predefined options
+5. **CSS variables in globals.css** — Only for values used across multiple components
+
+### Key Principle
+
+**Props define mechanisms** (in primitives). **Values live at point of use** (in compositions).
+
+```tsx
+// Primitive: defines the mechanism
+function Sidebar({ width, ...props }: { width?: string }) {
+  return <div style={{ "--sidebar-width": width }} ... />
+}
+
+// Composition: provides the value
+function LeftSidebar() {
+  return <Sidebar width="13rem">...</Sidebar>
+}
+```
+
+This separation keeps primitives reusable and compositions focused.
 
 ## Theming
 
