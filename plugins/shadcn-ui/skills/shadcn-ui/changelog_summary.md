@@ -36,6 +36,12 @@ Seven new components (library-agnostic):
 - `orientation="responsive"` for responsive layouts
 - Wrap in `FieldLabel` for choice card pattern
 
+## September 2025: Registry Index
+
+- Index of open-source community registries at `https://ui.shadcn.com/r/registries.json`
+- Zero-config install: `npx shadcn add @ai-elements/prompt-input`
+- Auto-added to `components.json` — no manual registry configuration needed
+
 ## August 2025: CLI 3.0 + MCP Server
 
 **Namespaced registries:**
