@@ -7,10 +7,10 @@ Personal Claude Code marketplace: plugins and skills curated and packaged for in
 Add this marketplace to your Claude Code:
 
 ```shell
-/plugin marketplace add michellepace/my-claude-plugins
+/plugin marketplace add michellepace/my-claude-marketplace
 ```
 
-Then run the command `/plugin` to enable, disable, update, or uninstall a specific plugin in this marketplace. Now **restart** Claude Code for changes to take effect.
+Then run the command `/plugin` to enable, disable, update, or uninstall a specific plugin in this marketplace.
 
 Enabled plugins will become available to ALL projects. They sometimes trigger automatically depending on your instruction, but I prefer to be explicit:
 
@@ -86,10 +86,10 @@ In my Next.js project `.claude/settings.json`:
         "repo": "lackeyjb/playwright-skill"
       }
     },
-    "my-claude-plugins": {
+    "my-claude-marketplace": {
       "source": {
         "source": "github",
-        "repo": "michellepace/my-claude-plugins"
+        "repo": "michellepace/my-claude-marketplace"
       }
     }
   },
@@ -97,11 +97,11 @@ In my Next.js project `.claude/settings.json`:
   "enabledPlugins": {
     "playwright-skill@playwright-skill": true,
 
-    "shadcn-ui@my-claude-plugins": true,
-    "skill-creator@my-claude-plugins": true,
-    "tailwindcss@my-claude-plugins": false
+    "shadcn-ui@my-claude-marketplace": true,
+    "skill-creator@my-claude-marketplace": true,
+    "tailwindcss@my-claude-marketplace": false
   }
 }
 ```
 
-This configures two marketplaces: [playwright-skill](https://github.com/lackeyjb/playwright-skill) (1 plugin enabled) and [my-claude-plugins](https://github.com/michellepace/my-claude-plugins) (2 enabled, 1 disabled).
+This configures two marketplaces: [playwright-skill](https://github.com/lackeyjb/playwright-skill) (1 plugin enabled) and [my-claude-marketplace](https://github.com/michellepace/my-claude-marketplace) (2 enabled, 1 disabled).

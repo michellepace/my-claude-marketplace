@@ -1,28 +1,23 @@
 {
-  "name": "my-claude-plugins",
+  "name": "my-claude-marketplace",
   "owner": {
     "name": "Michelle Pace"
   },
   "plugins": [
-    {
-      "name": "tailwindcss",
-      "source": "./plugins/tailwindcss",
-      "description": "Guide for implementing Tailwind CSS - a utility-first CSS framework for rapid UI development."
-    },
     {
       "name": "shadcn-ui",
       "source": "./plugins/shadcn-ui",
       "description": "Guide for implementing shadcn/ui - accessible UI components built with Radix UI and Tailwind CSS."
     },
     {
-      "name": "frontend-design",
-      "source": "./plugins/frontend-design",
-      "description": "Create distinctive, production-grade frontend interfaces with high design quality."
-    },
-    {
       "name": "skill-creator",
       "source": "./plugins/skill-creator",
       "description": "Guide for creating effective skills that extend Claude's capabilities with specialized knowledge, workflows, or tool integrations."
+    },
+    {
+      "name": "tailwindcss",
+      "source": "./plugins/tailwindcss",
+      "description": "Guide for implementing Tailwind CSS - a utility-first CSS framework for rapid UI development."
     }
   ]
 }
