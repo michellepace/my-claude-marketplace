@@ -21,6 +21,11 @@
       "name": "tailwindcss",
       "source": "./plugins/tailwindcss",
       "description": "Guide for implementing Tailwind CSS - a utility-first CSS framework for rapid UI development."
+    },
+    {
+      "name": "cc-whats-new",
+      "source": "./plugins/cc-whats-new",
+      "description": "Explain what's new in Claude Code versions with practical examples"
     }
   ]
 }
