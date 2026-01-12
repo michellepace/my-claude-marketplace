@@ -103,6 +103,7 @@ Extract the changelog section for the determined version:
 ```bash
 VERSION="[VERSION]"  # e.g., "2.1.3" or "2.1"
 CHANGELOG_FILE="/tmp/cc-whats-new-changelog.md"
+VERSION_CHANGELOG_FILE="/tmp/cc-whats-new-version-changelog.md"
 
 if [[ "$VERSION" =~ ^[0-9]+\.[0-9]+$ ]]; then
   # Series (e.g., 2.1) - get all matching versions
@@ -112,16 +113,15 @@ else
   SECTION=$(awk -v ver="$VERSION" '/^## [0-9]/ { if ($2 == ver) { p=1 } else if (p) { exit } } p' "$CHANGELOG_FILE")
 fi
 
-echo "<changelog_extracted version=\"$VERSION\">"
-echo "$SECTION"
-echo "</changelog_extracted>"
+echo "$SECTION" > "$VERSION_CHANGELOG_FILE"
+echo "✅ Version changelog ready: $VERSION_CHANGELOG_FILE"
 ```
 
-Proceed to Step 5 where this output will be provided to the agent.
+Proceed to Step 5 where this changelog will be provided to the agent.
 
 ## Step 5: Explain Changes Practically
 
-Use the Task tool to spawn `claude-code-guide` agent with the extracted changelog from Step 4 above:
+Use the Task tool to spawn `claude-code-guide` agent. Read the version changelog file and include its contents in the prompt:
 
 <agent_prompt>
 
@@ -129,7 +129,9 @@ Use the Task tool to spawn `claude-code-guide` agent with the extracted changelo
 
 Changelog entries:
 
-[INSERT THE <changelog_extracted version="...">...</changelog_extracted> BLOCK FROM ABOVE]
+<changelog_entries>
+{{READ AND INSERT CONTENTS OF `/tmp/cc-whats-new-version-changelog.md` HERE}}
+</changelog_entries>
 
 1. Evaluate which changes highly impact Claude Code user experience.
 
