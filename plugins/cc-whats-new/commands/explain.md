@@ -1,5 +1,5 @@
 ---
-description: What's new in Claude Code (eg 2.1.2 or 2.1 for all 2.1.*)
+description: What's new in Claude Code (eg 2.1.3 or 2.1 for all 2.1.*)
 argument-hint: [version]
 allowed-tools: Task, Read, Bash(claude:*), Bash(curl:*), Bash(awk:*), Bash(echo:*), Bash(npm view:*), Bash(grep:*), Bash(head:*), Bash(tail:*), Bash(tac:*), Bash(sed:*), Bash(tr:*), Bash(cat:*), Bash(paste:*), Bash(column:*)
 ---
@@ -8,9 +8,9 @@ allowed-tools: Task, Read, Bash(claude:*), Bash(curl:*), Bash(awk:*), Bash(echo:
 
 **user_version**: !`claude --version`
 
-## Step 1: Show Latest Versions
+## Step 1: Show Latest Version Summary
 
-Run these commands for changelog data:
+Run these commands to gather changelog and npm data, then display summary:
 
 ```bash
 # Write changelog to temp file (v2.0.0+ only)
@@ -19,59 +19,67 @@ curl -s https://raw.githubusercontent.com/anthropics/claude-code/refs/heads/main
 CHANGELOG=$(cat "$CHANGELOG_FILE")
 echo "✅ Changelog file created (v2.0.0+): $CHANGELOG_FILE"
 
-# Write releases CSV with changelog item counts (v2.0.0+ only)
-RELEASES_FILE="/tmp/cc-whats-new-releases.csv"
+# Write versions CSV with changelog item counts (v2.0.0+ only)
+VERSIONS_FILE="/tmp/cc-whats-new-versions.csv"
 CHANGELOG_COUNTS=$(echo "$CHANGELOG" | awk '/^## /{if(v)print v","c;v=$2;c=0}/^- /{c++}END{print v","c}')
-echo "version,npm_release_date,changelog_items (0=npm-only)" > "$RELEASES_FILE"
+echo "version,npm_release_date,changelog_items (0=npm-only)" > "$VERSIONS_FILE"
 npm view @anthropic-ai/claude-code time | grep -E "^ +'[2-9]\." | tac | sed "s/T.*Z'//" | tr -d "':," | column -t | while read -r ver date; do
   items=$(echo "$CHANGELOG_COUNTS" | grep "^$ver," | cut -d',' -f2)
   echo "$ver,$date,${items:-0}"
-done >> "$RELEASES_FILE"
-echo "✅ Releases file created (v2.0.0+): $RELEASES_FILE"
+done >> "$VERSIONS_FILE"
+echo "✅ Versions file created (v2.0.0+): $VERSIONS_FILE"
 
-# Latest releases (0 changelog items = npm-only)
-echo "<changelog_data>";
-echo "=== Latest Releases ===";
-echo "<latest_release_with_changelog_items>";
-head -7 "$RELEASES_FILE"
-echo "</latest_release_with_changelog_items>";
-
-# What changed?
+# Latest versions (0 changelog items = npm-only)
 echo "";
-echo "=== Latest Changelog ===";
-echo "<latest_changelog>";
-echo "$CHANGELOG" | awk '/^## [0-9]/{count++} count<=6';
-echo "</latest_changelog>";
-echo "</changelog_data>";
+echo "<latest_version_summary>";
+echo "";
+echo "=== Version Stats ===";
+echo "<version_stats>";
+echo "total_versions=$(( $(wc -l < "$VERSIONS_FILE") - 1 ))";
+echo "latest=$(sed -n '2p' "$VERSIONS_FILE" | cut -d',' -f1)";
+echo "earliest=$(tail -1 "$VERSIONS_FILE" | cut -d',' -f1)";
+echo "</version_stats>";
+echo "";
+echo "=== Latest Versions ===";
+echo "<latest_versions>";
+head -8 "$VERSIONS_FILE"
+echo "</latest_versions>";
+
+# Latest changelog entries
+echo "";
+echo "=== Latest Changelog Entries ===";
+echo "<latest_changelog_entries>";
+echo "$CHANGELOG" | awk '/^## [0-9]/{count++} count<=7';
+echo "</latest_changelog_entries>";
+echo "";
+echo "</latest_version_summary>";
 ```
 
-Analyse data in `<changelog_data>` tags and display welcome message using this template (use backticks and "ℹ️"):
+Analyse data in `<latest_version_summary>` tags and display welcome message using this template (use backticks):
 
 <welcome_message_template>
 
-# WELCOME TO THE CLAUDE CODE CHANGELOG
+# KNOW WHAT CHANGED IN CLAUDE CODE
 
-There Claude Code changelog on GitHub details `[total_versions]` versions ranging from version (`[latest]` → `[earliest]`).
+Claude Code has `[total_versions]` versions within (`[latest]` → `[earliest]`). Most have a **changelog entry** — one or more **items** describing what changed. Your Claude Code version is `[user_version]`.
 
-You are running Claude Code version `[user_version]`.
+🎁 Latest `[N]` Versions:
 
-Latest `[N]` changelog entries:
+┌─────────┬────────────┬───────┬────────────────────────────────────────────────────┐
+│ Version │ Released   │ Items │ Changes At A Glance                                │
+├─────────┼────────────┼───────┼────────────────────────────────────────────────────┤
+│ x.x.xxx │ YYYY-MM-DD │    nn │ Most impactful on user experience (40-60 chars)    │
+│ x.x.xxx │ YYYY-MM-DD │     0 │ (no changelog entry)                               │
+│ ...     │ ...        │   ... │                                                    │
+└─────────┴────────────┴───────┴────────────────────────────────────────────────────┘
 
-┌─────────┬───────┬────────────┬────────────────────────────────────────────────────┐
-│ Version │ Items │ Released   │ At A Glance                                        │
-├─────────┼───────┼────────────┼────────────────────────────────────────────────────┤
-│ x.x.xxx │    nn │ YYYY-MM-DD │ Most impactful on user experience (40-60 chars)    │
-│ x.x.xxx │     0 │ YYYY-MM-DD │ (No changelog entry)                               │
-│ ...     │   ... │ ...        │                                                    │
-└─────────┴───────┴────────────┴────────────────────────────────────────────────────┘
-
-*ℹ️ Why Zero Changelog Items? [if a version has zero items provide a simple likely explanation...]*
+*[Short note why version may have zero items (if applicable)]*
 
 </welcome_message_template>
 
 ## Step 2: Determine Provided Version
 
-Check if `$ARGUMENTS` contains a version in `/tmp/cc-whats-new-releases.csv`.
+Check if `$ARGUMENTS` contains a version in `/tmp/cc-whats-new-versions.csv`.
 
 **Valid version with changelog_items > 0?** → Proceed to Step 3
 
@@ -111,13 +119,13 @@ echo "</changelog_extracted>"
 
 Proceed to Step 5 where this output will be provided to the agent.
 
-### Step 5: Explain Changes Practically
+## Step 5: Explain Changes Practically
 
 Use the Task tool to spawn `claude-code-guide` agent with the extracted changelog from Step 4 above:
 
 <agent_prompt>
 
-**GOAL:** Help users use Claude Code more effectively by explaining what's new in version [VERSION].
+**GOAL:** Help users use Claude Code more effectively by explaining what's new in version `[VERSION]`.
 
 Changelog entries:
 
