@@ -124,7 +124,7 @@ To test a plugin you're working on, run Claude Code with `--plugin-dir`:
 
 ```shell
 # Example: testing the cc-whats-new plugin
-claude --plugin-dir /home/mp/projects/my-claude-marketplace/plugins/cc-whats-new
+claude --plugin-dir ~/projects/my-claude-marketplace/plugins/cc-whats-new
 ```
 
 This loads the plugin directly from your local directory without installing it, so you can test changes immediately without publishing to your marketplace first. Edit your files, restart Claude Code, test. No install/uninstall needed.
