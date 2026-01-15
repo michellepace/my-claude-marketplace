@@ -18,11 +18,6 @@
       "description": "Guide for creating effective skills that extend Claude's capabilities with specialized knowledge, workflows, or tool integrations."
     },
     {
-      "name": "tailwindcss",
-      "source": "./plugins/tailwindcss",
-      "description": "Guide for implementing Tailwind CSS - a utility-first CSS framework for rapid UI development."
-    },
-    {
       "name": "cc-whats-new",
       "source": "./plugins/cc-whats-new",
       "description": "Explain what's new in Claude Code versions with practical examples"

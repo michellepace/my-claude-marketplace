@@ -12,7 +12,6 @@ Self-authored plugins and skills repackaged from other sources, collected here f
 | [cc-whats-new](./plugins/cc-whats-new) | This repo | ✅ Self-authored (Claude Code what's new) |
 | [cc-marketplaces-plugins](./plugins/cc-marketplaces-plugins) | This repo | ✅ Self-authored (Show what's enabled) |
 | [skill-creator](./plugins/skill-creator) | [anthropics/skills](https://github.com/anthropics/skills) | ✅ Duplicated (don't want other skills) |
-| [tailwindcss](./plugins/tailwindcss) | [einverne/dotfiles](https://github.com/einverne/dotfiles) | Remove (uses TW v3) |
 
 ## Usage
 
@@ -71,7 +70,7 @@ A plugin can contain any number of the following components:
 ├── agents/   # new context window (.md)
 ├── skills/   # extends capabilities (.md)
 ├── hooks/    # reacts to events (.json)
-├── scripts/  # eg. for hooks to run
+├── scripts/  # custom dir (not auto-discovered, common convention)
 └── .mcp.json # external tools to use
 ```
 
@@ -98,18 +97,17 @@ To share plugin configuration with your team via source control, add this to `.c
   "enabledPlugins": {
     "shadcn-ui@my-claude-marketplace": true,
     "skill-creator@my-claude-marketplace": true,
-    "tailwindcss@my-claude-marketplace": false,
     "cc-whats-new@my-claude-marketplace": true,
     "cc-marketplaces-plugins@my-claude-marketplace": true
   }
 }
 ```
 
-This registers the marketplace and sets 4 plugins enabled, 1 disabled (tailwind).
+This registers the marketplace and enables all 4 plugins.
 
 ## Appendix 1: Plugin Scope
 
-Plugins can be enabled at four scope levels. Higher scopes override lower ones (managed > local > project > user).
+Plugins can be enabled at five scope levels. Higher scopes override lower ones (managed > command line > local > project > user). Command line means session overrides via flags like `--plugin-dir` — see [Appendix 2](#appendix-2-developing-plugins).
 
 | Scope | Settings File | Who it affects | Shared with team? |
 | :---- | :------------ | :------------- | :---------------- |
