@@ -1,7 +1,7 @@
 ---
 description: What's new in Claude Code (eg 2.1.3 or 2.1 for all 2.1.*)
 argument-hint: [version]
-allowed-tools: Task, Read, Bash(claude:*), Bash(curl:*), Bash(awk:*), Bash(echo:*), Bash(npm view:*), Bash(grep:*), Bash(head:*), Bash(tail:*), Bash(tac:*), Bash(sed:*), Bash(tr:*), Bash(cat:*), Bash(paste:*), Bash(column:*)
+allowed-tools: Task, Read, Edit, Bash(claude:*), Bash(curl:*), Bash(awk:*), Bash(echo:*), Bash(npm view:*), Bash(grep:*), Bash(head:*), Bash(tail:*), Bash(tac:*), Bash(sed:*), Bash(tr:*), Bash(cat:*), Bash(paste:*), Bash(column:*)
 ---
 
 **version_provided**: $ARGUMENTS
@@ -114,6 +114,8 @@ fi
 echo "$SECTION" > "$VERSION_CHANGELOG_FILE"
 echo "✅ Version changelog created: $VERSION_CHANGELOG_FILE"
 ```
+
+If the user's request implies a time filter (e.g., "this week"), edit the file to include only versions matching that timeframe using dates from `/tmp/cc-whats-new-versions.csv`.
 
 Proceed to Step 5 where this changelog will be provided to the agent.
 
