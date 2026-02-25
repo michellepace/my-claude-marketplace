@@ -4,7 +4,7 @@
     "name": "Michelle Pace"
   },
   "metadata": {
-    "description": "Personal Claude Code marketplace with self-authored and curated plugins"
+    "description": "Personal Claude Code plugins bundled as a marketplace"
   },
   "plugins": [
     {
@@ -13,18 +13,13 @@
       "description": "Guide for implementing shadcn/ui - accessible UI components built with Radix UI and Tailwind CSS."
     },
     {
-      "name": "skill-creator",
-      "source": "./plugins/skill-creator",
-      "description": "Guide for creating effective skills that extend Claude's capabilities with specialized knowledge, workflows, or tool integrations."
-    },
-    {
       "name": "cc-whats-new",
       "source": "./plugins/cc-whats-new",
       "description": "Explain what's new in Claude Code versions with practical examples"
     },
     {
-      "name": "cc-marketplaces-plugins",
-      "source": "./plugins/cc-marketplaces-plugins",
+      "name": "cc-what-plugins",
+      "source": "./plugins/cc-what-plugins",
       "description": "Show the state of Marketplaces and Plugins across all scopes"
     }
   ]

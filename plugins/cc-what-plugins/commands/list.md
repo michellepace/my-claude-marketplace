@@ -43,29 +43,30 @@ Use this format (example data shown):
 
 <format>
 
-### Marketplaces (3 active)
+[Include emojies for readability]
 
-Sort table by: Marketplace
+### Added Marketplaces (3)
 
-| Active | Marketplace | Source |
-| :----- | :---------- | :----- |
-| ✅ | anthropic-agent-skills | anthropics/skills |
-| ✅ | claude-plugins-official | anthropics/claude-plugins-official |
-| ✅ | my-claude-marketplace | michellepace/my-claude-marketplace |
+Sort table by: Source
 
-### Installed Plugins (7)
+| Source | Marketplace |
+| :----- | :---------- |
+| ✅ anthropics/skills | anthropic-agent-skills |
+| ✅ anthropics/claude-plugins-official | claude-plugins-official |
+| ✅ ~/projects/my-claude-marketplace | my-claude-marketplace |
 
-Sort table by: Marketplace → Plugin → Project → Scope
+### Installed Plugins by Project (6)
 
-| Marketplace | Plugin | Project | Scope | Installed | Enabled |
-| :---------- | :----- | :------ | :---- | :-------- | :------ |
-| anthropic-agent-skills | example-skills | docs-for-ai | local | ✅ | ✅ |
-| claude-plugins-official | code-review | devflow | project | ✅ | ✅ |
-| claude-plugins-official | feature-dev | devflow | project | ✅ | ✅ |
-| claude-plugins-official | pr-review-toolkit | devflow | project | ✅ | ✅ |
-| my-claude-marketplace | shadcn-ui | devflow | project | ✅ | ✅ |
-| my-claude-marketplace | skill-creator | devflow | project | ✅ | ✅ |
-| my-claude-marketplace | tailwindcss | devflow | project | ✅ | ❌ |
+Sort table by: Project → Source → Plugin → Scope
+
+| Project | Source | Plugin | Scope | Installed | Enabled |
+| :------ | :----- | :----- | :---- | :-------- | :------ |
+| *(all)* | ~/projects/my-claude-marketplace | cc-whats-new | user | ✅ | ✅ |
+| devflow | anthropics/claude-plugins-official | code-review | project | ✅ | ✅ |
+| devflow | anthropics/claude-plugins-official | feature-dev | project | ✅ | ✅ |
+| devflow | anthropics/claude-plugins-official | pr-review-toolkit | project | ✅ | ✅ |
+| devflow | ~/projects/my-claude-marketplace | shadcn-ui | project | ✅ | ❌ |
+| docs-for-ai | anthropics/skills | example-skills | user | ✅ | ✅ |
 
 </format>
 
