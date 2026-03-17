@@ -21,6 +21,11 @@
       "name": "cc-what-plugins",
       "source": "./plugins/cc-what-plugins",
       "description": "Show the state of Marketplaces and Plugins across all scopes"
+    },
+    {
+      "name": "pair-my-font",
+      "source": "./plugins/pair-my-font",
+      "description": "Evaluate Google Font pairings using the Kupferschmid font matrix method"
     }
   ]
 }

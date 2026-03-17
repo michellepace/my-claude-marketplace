@@ -11,6 +11,7 @@
 - [shadcn-ui](./plugins/shadcn-ui) — Shadcn best practices
 - [cc-whats-new](./plugins/cc-whats-new) — Claude Code what's new
 - [cc-what-plugins](./plugins/cc-what-plugins) — Show what's enabled
+- [pair-my-font](./plugins/pair-my-font) — Font pairing with the Kupferschmid matrix
 
 ## Usage
 
@@ -50,7 +51,8 @@ Add this to `.claude/settings.json` to share plugin configuration with your team
   "enabledPlugins": {
     "shadcn-ui@my-claude-marketplace": true,
     "cc-whats-new@my-claude-marketplace": true,
-    "cc-what-plugins@my-claude-marketplace": true
+    "cc-what-plugins@my-claude-marketplace": true,
+    "pair-my-font@my-claude-marketplace": true
   }
 }
 ```
