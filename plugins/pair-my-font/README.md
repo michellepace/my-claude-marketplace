@@ -47,8 +47,8 @@ Analysing **Lora** as the primary body font, with three heading font recommendat
 The skill classifies fonts and places them on the [Kupferschmid matrix](https://fonts.google.com/knowledge/choosing_type/pairing_typefaces_based_on_their_construction_using_the_font_matrix). Here's the matrix rendered in claude.ai for a prettier view — Claude Code produces the same analysis as markdown tables:
 
 <div align="center">
-  <a href="../../images/pair-my-font-eg-matrix-rendered.jpg" target="_blank">
-    <img src="../../images/pair-my-font-eg-matrix-rendered.jpg" alt="The font matrix showing Lora (primary, Dynamic Contrast Serif) paired with three recommendations: Source Sans 3, Archivo, and Jost, with arrows showing pairing relationships." width="700">
+  <a href="../../images/pair-my-font-eg-matrix.svg" target="_blank">
+    <img src="../../images/pair-my-font-eg-matrix.svg" alt="The font matrix showing Lora (primary, Dynamic Contrast Serif) paired with three recommendations: Source Sans 3, Archivo, and Jost, with arrows showing pairing relationships." width="700">
   </a>
   <p><em>Font matrix placing Lora with three recommended pairings: Source Sans 3, Archivo, and Jost</em></p>
 </div>
