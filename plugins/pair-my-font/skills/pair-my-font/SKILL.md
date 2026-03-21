@@ -2,7 +2,7 @@
 name: pair-my-font
 description: Evaluate whether two Google Fonts pair well using the Kupferschmid font matrix method, and optionally recommend alternative pairings. Invoke with a primary body font and a candidate pairing font.
 argument-hint: [primary body font + optional candidate pairing font and images]
-disable-model-invocation: true
+disable-model-invocation: false
 allowed-tools: Read, WebSearch, Write, Grep
 ---
 
