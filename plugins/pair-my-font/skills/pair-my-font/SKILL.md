@@ -51,20 +51,6 @@ For each font (primary, candidate, and any recommendations):
 
 Structure your final response with these sections:
 
-### Font Matrix
-
-Present a FULL matrix table with all analysed fonts placed in it. Use intuitive labels:
-
-| Technical term | User-friendly label |
-|---|---|
-| Contrast Sans | Thick-thin strokes (no serifs) |
-| Contrast Serif | Thick-thin strokes (has serifs) |
-| Linear Sans | Uniform strokes (no serifs) |
-| Linear Serif | Uniform strokes (has serifs) |
-
-- Mark the primary font with a "⭐" emoji.
-- Explain the table and positions simply (see pairing guidelines)
-
 ### Recommendation Summary
 
 For the candidate and each recommended font:
@@ -78,8 +64,22 @@ For the candidate and each recommended font:
 | **Relationship** | e.g. Diagonal — contrasting pair |
 | **Why it works** | Brief explanation grounded in the matrix |
 | **Best for** | Suggested use cases |
-| **Headings** | Weight `600` + tight `-0.025em`: why |
+| **Headings** | Weight `600` + tight `-0.025em`: why (8-12 words) |
 | **Emotion** | What is communicated through this pairing (8-12 words) |
+
+### Font Matrix
+
+Present a FULL matrix table with all analysed fonts placed in it. Use intuitive labels:
+
+| Technical term | User-friendly label |
+|---|---|
+| Contrast Sans | Thick-thin strokes (no serifs) |
+| Contrast Serif | Thick-thin strokes (has serifs) |
+| Linear Sans | Uniform strokes (no serifs) |
+| Linear Serif | Uniform strokes (has serifs) |
+
+- Mark the primary font with a "⭐" emoji.
+- State important observations in the table, simply (see pairing guidelines)
 
 ### Choose If
 
