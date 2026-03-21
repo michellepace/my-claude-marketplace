@@ -1,6 +1,6 @@
 {
   "name": "pair-my-font",
   "description": "Evaluate Google Font pairings using the Kupferschmid font matrix method",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "license": "MIT"
 }

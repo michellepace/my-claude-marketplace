@@ -5,7 +5,7 @@ Evaluate Google Font pairings using the [Kupferschmid font matrix](https://fonts
 **What's Inside**
 
 - [pair-my-font](skills/pair-my-font/SKILL.md) — skill (prompt) to run
-- [typography-matrix.md](skills/pair-my-font/typography-matrix.md) — Kupferschmid font matrix skill reference, adapted from Google Fonts
+- [kupferschmid-matrix.md](skills/pair-my-font/kupferschmid-matrix.md) — Kupferschmid font matrix skill reference, adapted from Google Fonts
 
 ## Usage
 

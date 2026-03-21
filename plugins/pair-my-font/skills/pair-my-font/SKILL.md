@@ -24,7 +24,7 @@ Wait for confirmation before proceeding.
 
 ### 2. Load the Methodology
 
-Read `typography-matrix.md` to internalise the three-layer system (skeleton, flesh, skin) and the pairing guidelines before analysing any fonts.
+Read `kupferschmid-matrix.md` to internalise the three-layer system (skeleton, flesh, skin) and the pairing guidelines before analysing any fonts.
 
 ### 3. Analyse
 
