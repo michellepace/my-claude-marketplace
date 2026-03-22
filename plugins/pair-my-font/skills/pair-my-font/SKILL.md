@@ -1,6 +1,6 @@
 ---
 name: pair-my-font
-description: Evaluate whether two Google Fonts pair well using the Kupferschmid font matrix method, and optionally recommend alternative pairings. Invoke with a primary body font and a candidate pairing font.
+description: Evaluate whether two Google Fonts pair well using the Kupferschmid matrix, and optionally recommend alternatives.
 argument-hint: [primary body font + optional candidate pairing font and images]
 disable-model-invocation: false
 allowed-tools: Read, WebSearch, Write, Grep
@@ -34,6 +34,9 @@ For each font (primary, candidate, and any recommendations):
    - Form model (Dynamic / Rational / Geometric)
    - Flesh layer (Contrast or Linear, Sans or Serif)
    - Matrix position
+   - Confidence (High / Medium — see borderline cases below)
+
+   **Borderline cases:** Many fonts sit between form models — Kupferschmid expects this. Use a qualifier ("quite dynamic", "semi-rational") and set confidence to Medium. Classify as best you can; the matrix guidelines still apply to the resulting position.
 
 2. **Evaluate the pairing** — For the candidate (and each recommendation) against the primary:
    - Determine the matrix relationship (same column, diagonal, or same row)
