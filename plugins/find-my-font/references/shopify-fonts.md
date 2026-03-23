@@ -234,7 +234,7 @@ Shopify's font library includes system fonts and a selection of Google Fonts, pr
 | Sono | 7 |
 | Sour Gummy | 18 |
 | Source Code Pro | 16 |
-| Source Sans Pro | 16 |
+| Source Sans Pro (Source Sans 3) | 16 |
 | Source Serif 4 | 16 |
 | Space Grotesk | 5 |
 | Space Mono | 4 |
