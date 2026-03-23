@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 680 560" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<style>
+  .header     { font-family: "Anthropic Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 14px; fill: rgb(100,100,97); text-anchor: middle; }
+  .sub        { font-family: "Anthropic Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 12px; fill: rgb(100,100,97); text-anchor: middle; }
+  .example    { font-family: "Anthropic Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 12px; fill: rgb(61,61,58); text-anchor: middle; opacity: .35; }
+  .card-name  { font-family: "Anthropic Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 14px; font-weight: 500; text-anchor: middle; dominant-baseline: central; }
+  .card-sub   { font-family: "Anthropic Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 12px; text-anchor: middle; dominant-baseline: central; }
+  .grid-line  { stroke: rgba(31,30,29,0.5); stroke-width: .75; opacity: .5; }
+  .legend-text { font-family: "Anthropic Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 12px; fill: rgb(61,61,58); }
+
+  .card-primary rect       { fill: #141413; stroke: #141413; stroke-width: 1.5; }
+  .card-primary .card-name { fill: #fff; }
+  .card-primary .card-sub  { fill: #fff; }
+
+  .card-harmonious rect       { fill: #e1f5ee; stroke: #0f6e56; stroke-width: 1.5; }
+  .card-harmonious .card-name { fill: rgb(8,80,65); }
+  .card-harmonious .card-sub  { fill: rgb(15,110,86); }
+
+  .card-contrasting rect       { fill: #eeedfe; stroke: #534ab7; stroke-width: 1.5; }
+  .card-contrasting .card-name { fill: rgb(60,52,137); }
+  .card-contrasting .card-sub  { fill: rgb(83,74,183); }
+
+  .card-avoid rect       { fill: #fce8e8; stroke: #e24b4a; stroke-width: 1.5; }
+  .card-avoid .card-name { fill: #e24b4a; font-size: 12px; }
+  .card-avoid .card-sub  { fill: #e24b4a; }
+
+  .line-harmonious  { stroke: #1d9e75; stroke-width: 1; opacity: .6; }
+  .line-contrasting { stroke: #7f77dd; stroke-width: 1; opacity: .6; }
+  .line-avoid       { stroke: #e24b4a; stroke-width: 1; opacity: .6; }
+</style>
+
+<marker id="arrow-green" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+  <path d="M0,1 L10,5 L0,9 z" fill="#1d9e75" opacity=".6"/>
+</marker>
+<marker id="arrow-purple" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+  <path d="M0,1 L10,5 L0,9 z" fill="#7f77dd" opacity=".6"/>
+</marker>
+<marker id="arrow-red" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+  <path d="M0,1 L10,5 L0,9 z" fill="#e24b4a" opacity=".6"/>
+</marker>
+</defs>
+
+<!-- Background -->
+<rect width="680" height="560" fill="#fafaf9" rx="4"/>
+
+<!-- Column headers -->
+<text x="220" y="32" class="header">Dynamic</text>
+<text x="220" y="48" class="sub">open, diagonal</text>
+<text x="400" y="32" class="header">Rational</text>
+<text x="400" y="48" class="sub">closed, vertical</text>
+<text x="560" y="32" class="header">Geometric</text>
+<text x="560" y="48" class="sub">circular, constructed</text>
+
+<!-- Row headers -->
+<text x="60" y="100" class="header">Contrast</text>
+<text x="60" y="116" class="header">sans</text>
+<text x="60" y="132" class="sub">thick-thin, no serifs</text>
+
+<text x="60" y="210" class="header">Contrast</text>
+<text x="60" y="226" class="header">serif</text>
+<text x="60" y="242" class="sub">thick-thin, has serifs</text>
+
+<text x="60" y="320" class="header">Linear</text>
+<text x="60" y="336" class="header">sans</text>
+<text x="60" y="352" class="sub">uniform, no serifs</text>
+
+<text x="60" y="420" class="header">Linear</text>
+<text x="60" y="436" class="header">serif</text>
+<text x="60" y="452" class="sub">uniform, has serifs</text>
+
+<!-- Grid lines -->
+<line x1="120" x2="640" y1="60"  y2="60"  class="grid-line"/>
+<line x1="120" x2="640" y1="160" y2="160" class="grid-line"/>
+<line x1="120" x2="640" y1="270" y2="270" class="grid-line"/>
+<line x1="120" x2="640" y1="380" y2="380" class="grid-line"/>
+<line x1="120" x2="640" y1="470" y2="470" class="grid-line"/>
+<line x1="120" x2="120" y1="60"  y2="470" class="grid-line"/>
+<line x1="310" x2="310" y1="60"  y2="470" class="grid-line"/>
+<line x1="480" x2="480" y1="60"  y2="470" class="grid-line"/>
+<line x1="640" x2="640" y1="60"  y2="470" class="grid-line"/>
+
+<!-- Example fonts (grey placeholders — leave in place; font cards overlay them) -->
+<text x="220" y="118" class="example">e.g. Alegreya Sans</text>
+<text x="400" y="118" class="example">e.g. Arya</text>
+<text x="560" y="118" class="example">e.g. Tenor Sans</text>
+<text x="220" y="218" class="example">e.g. Garamond</text>
+<text x="400" y="218" class="example">e.g. Bodoni Moda</text>
+<text x="560" y="218" class="example">e.g. Candida</text>
+<text x="220" y="328" class="example">e.g. Frutiger</text>
+<text x="400" y="328" class="example">e.g. Helvetica</text>
+<text x="560" y="328" class="example">e.g. Futura</text>
+<text x="220" y="440" class="example">e.g. Bitter</text>
+<text x="400" y="440" class="example">e.g. Zilla Slab</text>
+<text x="560" y="440" class="example">e.g. Memphis</text>
+
+<!--
+  ===== EDITABLE SECTION =====
+
+  COORDINATE REFERENCE
+  Cell centers (cx, cy):
+    Row\Col          Dynamic(220)   Rational(400)   Geometric(560)
+    Contrast Sans    (220,110)      (400,110)       (560,110)
+    Contrast Serif   (220,215)      (400,215)       (560,215)
+    Linear Sans      (220,325)      (400,325)       (560,325)
+    Linear Serif     (220,425)      (400,425)       (560,425)
+
+  Card dimensions (from center):
+    Standard:  116x44  ->  rect x="-58" y="-22" width="116" height="44" rx="8"
+    Avoid:     116x26  ->  rect x="-58" y="-13" width="116" height="26" rx="6"
+
+  Card edges (for pairing lines):
+    top=cy-22  bottom=cy+22  left=cx-58  right=cx+58
+    (avoid: top=cy-13  bottom=cy+13)
+
+  Pairing line endpoints (arrows point away from primary):
+    Vertical (same column):  from (cx, primary.bottom) to (cx, target.top)
+    Diagonal (cross column): from (primary.right, primary.bottom) to (target.left, target.top)
+    Horizontal (same row):   from (primary.right, cy) to (target.left, cy)
+
+  Note: Lines are drawn before cards so cards naturally occlude them.
+-->
+
+<!-- ===== EDITABLE: Pairing lines (drawn first so cards occlude them) ===== -->
+<line x1="220" y1="193" x2="220" y2="132" class="line-harmonious" marker-end="url(#arrow-green)"/>
+<line x1="220" y1="237" x2="220" y2="303" class="line-harmonious" marker-end="url(#arrow-green)"/>
+<line x1="278" y1="237" x2="502" y2="303" class="line-contrasting" marker-end="url(#arrow-purple)"/>
+<line x1="278" y1="215" x2="502" y2="215" class="line-avoid" marker-end="url(#arrow-red)"/>
+
+<!-- ===== EDITABLE: Font cards ===== -->
+<g class="card-primary" transform="translate(220,215)">
+  <rect x="-58" y="-22" width="116" height="44" rx="8"/>
+  <text y="-4" class="card-name">Lora</text>
+  <text y="12" class="card-sub">primary</text>
+</g>
+
+<g class="card-harmonious" transform="translate(220,110)">
+  <rect x="-58" y="-22" width="116" height="44" rx="8"/>
+  <text y="-4" class="card-name">Alegreya Sans</text>
+  <text y="12" class="card-sub">harmonious</text>
+</g>
+
+<g class="card-harmonious" transform="translate(220,325)">
+  <rect x="-58" y="-22" width="116" height="44" rx="8"/>
+  <text y="-4" class="card-name">Open Sans</text>
+  <text y="12" class="card-sub">harmonious</text>
+</g>
+
+<g class="card-contrasting" transform="translate(560,325)">
+  <rect x="-58" y="-22" width="116" height="44" rx="8"/>
+  <text y="-4" class="card-name">Raleway</text>
+  <text y="12" class="card-sub">contrasting</text>
+</g>
+
+<g class="card-avoid" transform="translate(560,215)">
+  <rect x="-58" y="-22" width="116" height="44" rx="8"/>
+  <text y="-4" class="card-name">Candida</text>
+  <text y="12" class="card-sub">avoid</text>
+</g>
+
+<g class="card-avoid" transform="translate(220,254)">
+  <rect x="-58" y="-13" width="116" height="26" rx="6"/>
+  <text y="0" class="card-name">Cormorant Gar.</text>
+</g>
+
+<!-- Legend -->
+<circle cx="140" cy="488" r="5" fill="#1d9e75" opacity=".7"/>
+<text x="150" y="492" class="legend-text">Same column  = harmonious: same bones, different clothes. They feel like family.</text>
+<circle cx="140" cy="506" r="5" fill="#7f77dd" opacity=".7"/>
+<text x="150" y="510" class="legend-text">Diagonal = contrasting: different bones and clothes. Clear hierarchy without fighting.</text>
+<circle cx="140" cy="524" r="5" fill="#e24b4a" opacity=".7"/>
+<text x="150" y="528" class="legend-text">Same row = avoid: same clothes, regardless of bones. Feels "off."</text>
+
+</svg>
