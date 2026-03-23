@@ -3,7 +3,7 @@ name: find-my-font
 description: Research, classify, and recommend Google Font pairings using the Kupferschmid matrix and user criteria
 argument-hint: "primary:Lora, candidates: merriweather.jpg and Open Sans. I want quiet luxury."
 disable-model-invocation: false
-allowed-tools: Read, Write, Grep, Glob, ref_read_url, WebSearch, Bash(rsvg-convert *), Bash(cp *)
+allowed-tools: Read, Write, Grep, Glob, ref_read_url, WebFetch, WebSearch, Bash(rsvg-convert *), Bash(cp *)
 ---
 
 # Find My Font
@@ -22,7 +22,7 @@ Parse `$ARGUMENTS` for: primary body font (required), candidate pairing fonts, i
 - If a font isn't on Google Fonts, flag it early — Step 2 sources won't cover it.
 - For each font, resolve a specimen image: use a user-supplied image, else search `references/fonts/images/{fontname}.jpg`. If neither exists, ask the user for one.
 
-Confirm the brief with the user. Ask whether they want alternative recommendations and if so what criteria matter — give 4 examples (e.g. hierarchy, tone/mood, uniqueness/proven, Shopify catalogue). Ask if they would like the matrix as an SVG (it takes longer but is pretty).
+Confirm the brief with the user. Ask whether they want 2 alternative recommendations and if so what criteria matter — give 4 examples (e.g. hierarchy, tone/mood, uniqueness/proven, Shopify catalogue). Ask if they would like the matrix as an SVG (it takes longer but is pretty).
 
 ⏸️ Wait for confirmation before proceeding.
 
@@ -31,7 +31,7 @@ Confirm the brief with the user. Ask whether they want alternative recommendatio
 For each font (primary, candidates, and later any recommendations):
 
 1. **Check first** — if `references/fonts/{fontname}.md` already exists, skip to the next font.
-2. **Fetch sources** via `ref_read_url`:
+2. **Fetch sources** via `ref_read_url` (fallback: `WebFetch`, `WebSearch`):
    - `https://fonts.google.com/specimen/{Font+Name}/about` e.g. `.../specimen/Red+Hat+Display/about`
    - `https://raw.githubusercontent.com/google/fonts/main/ofl/{fontname}/METADATA.pb` e.g. `.../ofl/redhatdisplay/METADATA.pb`
 3. **Create** `references/fonts/{fontname}.md` using `references/fonts/lora.md` and `references/fonts/open-sans.md` as templates.
@@ -45,11 +45,11 @@ Rules:
 
 ### Step 3. 🔬 Matrix Classification
 
-For all `{fontname}.md` files that have `[TO BE COMPLETED]` in `## Kupferschmid Matrix`, then complete the `<matrix_steps>` else continue to Step 4.
+For each font in the current query whose `references/fonts/{fontname}.md` has `[TO BE COMPLETED]` in `## Kupferschmid Matrix`, complete the `<matrix_steps>` below, else continue to Step 4.
 
 <matrix_steps>
 
-Read `references/kupferschmid-matrix.md` to internalise the three-layer system (skeleton, flesh, skin) and pairing guidelines.
+Read `references/kupferschmid-matrix.md` once to internalise the three-layer system (skeleton, flesh, skin) and pairing guidelines.
 
 **For each font:**
 
@@ -66,7 +66,7 @@ Read `references/kupferschmid-matrix.md` to internalise the three-layer system (
 
 **Evaluate pairings** — for each candidate against the primary:
 
-- Determine the matrix relationship (same column, diagonal, or same row)
+- Determine the matrix relationship (same column, diagonal, same row or cell)
 - Apply the Kupferschmid pairing guidelines
 - Consider suitability for the intended use and stated criteria
 
