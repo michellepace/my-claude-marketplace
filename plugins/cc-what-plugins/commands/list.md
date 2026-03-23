@@ -22,7 +22,7 @@ Use the Read tool on each file:
 
 **Marketplaces** — only "added" (no install/enable states).
 
-**Active plugins for current project** — primary view:
+**Active plugins for current project:**
 
 Build the merged `enabledPlugins` map by layering: user → project → local (later overrides earlier).
 
@@ -40,7 +40,7 @@ For each active plugin, note the "Why Active" reason:
 - `project-scope install` / `local-scope install` — auto-available because projectPath matches current project
 - `enabled in <file>` — activated via enabledPlugins override (use the highest-precedence file that sets it to `true`)
 
-**All installed plugins** — secondary reference view:
+**All installed plugins:**
 
 - List every entry from `installed_plugins.json` with install scope, projectPath, and version
 - Flag stale entries where projectPath directory doesn't exist on disk
@@ -72,15 +72,6 @@ Sort table by: Source
 | ✅ anthropics/claude-plugins-official | claude-plugins-official |
 | ✅ ~/projects/my-claude-marketplace | my-claude-marketplace |
 
-### 🔌 Active Plugins in This Project (N)
-
-Sort table by: Source → Plugin → Why Active
-
-| Source | Plugin | Why Active |
-| :----- | :----- | :--------- |
-| claude-plugins-official | skill-creator | local-scope install |
-| my-claude-marketplace | cc-whats-new | user-scope install |
-
 ### 📦 All Installed Plugins (N)
 
 Sort table by: Source → Plugin
@@ -93,7 +84,16 @@ Sort table by: Source → Plugin
 
 ⚠️ = install projectPath no longer exists (stale entry)
 
-If there are orphaned enabledPlugins entries, add a note after the tables listing them.
+If there are orphaned enabledPlugins entries, note them here.
+
+### 🔌 Active Plugins (N): `projectname`
+
+Sort table by: Source → Plugin → Why Active
+
+| Source | Plugin | Why Active |
+| :----- | :----- | :--------- |
+| claude-plugins-official | skill-creator | local-scope install |
+| my-claude-marketplace | cc-whats-new | user-scope install |
 
 </format>
 
