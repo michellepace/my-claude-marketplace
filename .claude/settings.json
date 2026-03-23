@@ -12,6 +12,7 @@
         "Bash(git log:*)",
         "Bash(ls:*)",
         "Bash(lsof:*)",
+        "Bash(rsvg-convert *)",
         "Bash(tree:*)",
         "Bash(wc:*)",
         "mcp__ide__getDiagnostics"

@@ -16,6 +16,7 @@ The font matrix is a 3-column by 4-row grid that pairs Layer 1 (skeleton/form mo
 | **Linear Serif** | Bitter | Zilla Slab | Memphis |
 
 **Pairing guidelines:**
+
 - ✅ Same column (vertical) → harmonious pair (same skeleton, different flesh)
 - ✅ Diagonal → contrasting pair (different skeleton AND flesh)
 - ❌ Same row (horizontal) → avoid (same flesh, different skeleton = irritating)
@@ -24,7 +25,7 @@ The font matrix is a 3-column by 4-row grid that pairs Layer 1 (skeleton/form mo
 
 ## The problem with the current models for classifying type
 
-Before we dive into this different way of describing type, let’s see what’s not ideal with the current models. Organizing typefaces is important to make it easier to narrow down our selections. Simple [genre classifications](https://fonts.google.com/knowledge/introducing_type/making_sense_of_typographic_classifications), like [serif](https://fonts.google.com/knowledge/glossary/serif), or [sans serif](https://fonts.google.com/knowledge/glossary/sans_serif), are a good starting point. But they still leave you with a lot of typefaces to choose from.
+Before we dive into this different way of describing type, let’s see what’s not ideal with the current models. Organising typefaces is important to make it easier to narrow down our selections. Simple [genre classifications](https://fonts.google.com/knowledge/introducing_type/making_sense_of_typographic_classifications), like [serif](https://fonts.google.com/knowledge/glossary/serif), or [sans serif](https://fonts.google.com/knowledge/glossary/sans_serif), are a good starting point. But they still leave you with a lot of typefaces to choose from.
 
 ![The word “Ragstone“ shown in three different sans serif typefaces.](https://fonts.gstatic.com/s/img/knowledge/modules/choosing_type/lessons/pairing_typefaces_based_on_their_construction_using_the_font_matrix/images/all-sans-serif_491952163.svg)
 
@@ -136,7 +137,7 @@ Now, when we arrange the first two layers in a grid, with the skeleton for the c
 
 Typefaces used (top to bottom) Dynamic: Minerva Modern, Alegreya, Source Sans Pro, and Bitter; Rational: Arya, Bodoni Moda, Helvetica, Zilla Slab; Geometric: Tenor Sans, Candida, Outfit, Memphis.
 
-Seeing the typefaces arranged in this way makes it obvious where the similarities and differences lie, and opens up three guidelines we can utilize to pair typefaces. Let’s explore each of those in turn.
+Seeing the typefaces arranged in this way makes it obvious where the similarities and differences lie, and opens up three guidelines we can utilise to pair typefaces. Let’s explore each of those in turn.
 
 ### 1. Pair typefaces with similar form models
 

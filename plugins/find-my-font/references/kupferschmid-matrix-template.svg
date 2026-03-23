@@ -123,9 +123,10 @@
 -->
 
 <!-- ===== EDITABLE: Pairing lines (drawn first so cards occlude them) ===== -->
+<line x1="220" y1="193" x2="220" y2="132" class="line-harmonious" marker-end="url(#arrow-green)"/>
 <line x1="220" y1="237" x2="220" y2="303" class="line-harmonious" marker-end="url(#arrow-green)"/>
-<line x1="278" y1="237" x2="342" y2="303" class="line-contrasting" marker-end="url(#arrow-purple)"/>
 <line x1="278" y1="237" x2="502" y2="303" class="line-contrasting" marker-end="url(#arrow-purple)"/>
+<line x1="278" y1="215" x2="502" y2="215" class="line-avoid" marker-end="url(#arrow-red)"/>
 
 <!-- ===== EDITABLE: Font cards ===== -->
 <g class="card-primary" transform="translate(220,215)">
@@ -134,22 +135,33 @@
   <text y="12" class="card-sub">primary</text>
 </g>
 
-<g class="card-harmonious" transform="translate(220,325)">
+<g class="card-harmonious" transform="translate(220,110)">
   <rect x="-58" y="-22" width="116" height="44" rx="8"/>
-  <text y="-4" class="card-name">Source Sans 3</text>
+  <text y="-4" class="card-name">Alegreya Sans</text>
   <text y="12" class="card-sub">harmonious</text>
 </g>
 
-<g class="card-contrasting" transform="translate(400,325)">
+<g class="card-harmonious" transform="translate(220,325)">
   <rect x="-58" y="-22" width="116" height="44" rx="8"/>
-  <text y="-4" class="card-name">Archivo</text>
-  <text y="12" class="card-sub">contrasting</text>
+  <text y="-4" class="card-name">Open Sans</text>
+  <text y="12" class="card-sub">harmonious</text>
 </g>
 
 <g class="card-contrasting" transform="translate(560,325)">
   <rect x="-58" y="-22" width="116" height="44" rx="8"/>
-  <text y="-4" class="card-name">Jost</text>
+  <text y="-4" class="card-name">Raleway</text>
   <text y="12" class="card-sub">contrasting</text>
+</g>
+
+<g class="card-avoid" transform="translate(560,215)">
+  <rect x="-58" y="-22" width="116" height="44" rx="8"/>
+  <text y="-4" class="card-name">Candida</text>
+  <text y="12" class="card-sub">avoid</text>
+</g>
+
+<g class="card-avoid" transform="translate(220,254)">
+  <rect x="-58" y="-13" width="116" height="26" rx="6"/>
+  <text y="0" class="card-name">Cormorant Gar.</text>
 </g>
 
 <!-- Legend -->
