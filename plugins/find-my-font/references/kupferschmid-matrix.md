@@ -12,7 +12,7 @@ The font matrix is a 3-column by 4-row grid that pairs Layer 1 (skeleton/form mo
 |---|---|---|---|
 | **Contrast Sans** (thick-thin, no serifs) | Minerva Modern | Arya | Tenor Sans |
 | **Contrast Serif** (thick-thin, has serifs) | Alegreya | Bodoni Moda | Candida |
-| **Linear Sans** (uniform, no serifs) | Source Sans Pro | Helvetica | Outfit |
+| **Linear Sans** (uniform, no serifs) | Source Sans 3 | Helvetica | Outfit |
 | **Linear Serif** (uniform, has serifs) | Bitter | Zilla Slab | Memphis |
 
 **Pairing guidelines:**
@@ -29,7 +29,7 @@ Before we dive into this different way of describing type, let’s see what’s 
 
 ![The word “Ragstone“ shown in three different sans serif typefaces.](https://fonts.gstatic.com/s/img/knowledge/modules/choosing_type/lessons/pairing_typefaces_based_on_their_construction_using_the_font_matrix/images/all-sans-serif_491952163.svg)
 
-These are all sans serif typefaces (Source Sans Pro, Helvetica, Outfit). Same genre, but they leave a quite different impression.
+These are all sans serif typefaces (Source Sans 3, Helvetica, Outfit). Same genre, but they leave a quite different impression.
 
 ![The word “Ragstone“ shown in three different serif typefaces.](https://fonts.gstatic.com/s/img/knowledge/modules/choosing_type/lessons/pairing_typefaces_based_on_their_construction_using_the_font_matrix/images/all-serif_491952163.svg)
 
@@ -75,7 +75,7 @@ Let’s take a closer look at each form model and make it more obvious by settin
 
 ![A dynamic linear sans serif typeface showing the word “Ragstone”. The open apertures of the lower case a and the diagonal axis in the lower case o are shown.](https://fonts.gstatic.com/s/img/knowledge/modules/choosing_type/lessons/pairing_typefaces_based_on_their_construction_using_the_font_matrix/images/dynamic--linear-sans_491952163.svg)
 
-The dynamic form model comes with open apertures of the “e,” “a,” and “s,” as well as the diagonally angled “o” (hard to see in sans serif, set in Source Sans Pro).
+The dynamic form model comes with open apertures of the “e,” “a,” and “s,” as well as the diagonally angled “o” (hard to see in sans serif, set in Source Sans 3).
 
 Looking at the **dynamic form model,** you can see the open shapes, and a very subtle [diagonal axis](https://fonts.google.com/knowledge/glossary/axis_in_type_design). This all adds to the friendly, open, and approachable feeling that a dynamic typeface creates. [Kupferschmid associated the form models with certain adjectives](http://kupferschrift.de/cms/2012/03/on-classifications/). They can be helpful when picking a typeface that should follow a certain mood. Naturally, this mood might shift when there are serifs or no serifs, or other stylistic features, but it’s a good starting point.
 
@@ -135,7 +135,7 @@ Now, when we arrange the first two layers in a grid, with the skeleton for the c
 
 ![The font matrix arranged in three columns and four rows. The three columns show the dynamic, rational and geometric form models. The rows show contrasting sans, contrasting serif, linear sans, and linear serif typefaces.](https://fonts.gstatic.com/s/img/knowledge/modules/choosing_type/lessons/pairing_typefaces_based_on_their_construction_using_the_font_matrix/images/font-matrix_491952163.svg)
 
-Typefaces used (top to bottom) Dynamic: Minerva Modern, Alegreya, Source Sans Pro, and Bitter; Rational: Arya, Bodoni Moda, Helvetica, Zilla Slab; Geometric: Tenor Sans, Candida, Outfit, Memphis.
+Typefaces used (top to bottom) Dynamic: Minerva Modern, Alegreya, Source Sans 3, and Bitter; Rational: Arya, Bodoni Moda, Helvetica, Zilla Slab; Geometric: Tenor Sans, Candida, Outfit, Memphis.
 
 Seeing the typefaces arranged in this way makes it obvious where the similarities and differences lie, and opens up three guidelines we can utilise to pair typefaces. Let’s explore each of those in turn.
 
