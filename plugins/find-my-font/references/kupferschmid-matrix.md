@@ -10,16 +10,16 @@ The font matrix is a 3-column by 4-row grid that pairs Layer 1 (skeleton/form mo
 
 | Flesh↓/Skeleton→ | Dynamic (open, diagonal) | Rational (closed, vertical) | Geometric (circular, constructed) |
 |---|---|---|---|
-| **Contrast Sans** | Minerva Modern | Arya | Tenor Sans |
-| **Contrast Serif** | Alegreya | Bodoni Moda | Candida |
-| **Linear Sans** | Source Sans Pro | Helvetica | Outfit |
-| **Linear Serif** | Bitter | Zilla Slab | Memphis |
+| **Contrast Sans** (thick-thin, no serifs) | Minerva Modern | Arya | Tenor Sans |
+| **Contrast Serif** (thick-thin, has serifs) | Alegreya | Bodoni Moda | Candida |
+| **Linear Sans** (uniform, no serifs) | Source Sans Pro | Helvetica | Outfit |
+| **Linear Serif** (uniform, has serifs) | Bitter | Zilla Slab | Memphis |
 
 **Pairing guidelines:**
 
-- ✅ Same column (vertical) → harmonious pair (same skeleton, different flesh)
-- ✅ Diagonal → contrasting pair (different skeleton AND flesh)
-- ❌ Same row (horizontal) → avoid (same flesh, different skeleton = irritating)
+- Same column (vertical) = harmonious pair (same skeleton/column, different flesh/row)
+- Diagonal = contrasting pair (different skeleton/column AND flesh/row)
+- Same row (horizontal) = avoid (same flesh/row, different skeleton/column = irritating)
 
 </font_matrix_summary>
 
@@ -218,14 +218,3 @@ When it comes to more striking display typefaces, script, handwritten, or blackl
 When applying it to your design, other factors come into play, depending on how close the combination is, such as a similar [x-height](https://fonts.google.com/knowledge/glossary/x_height), or a similar or different [width](https://fonts.google.com/knowledge/glossary/width). Also, you can improve a less-than-ideal combination by using different [weights](https://fonts.google.com/knowledge/glossary/weight) or [styles](https://fonts.google.com/knowledge/glossary/style).
 
 So see the font matrix as a guideline to make pairing decisions, but don’t drive yourself crazy. Even Indra Kupferschmid says that it is not binding and should not limit your creativity. It is one way—not the only way—and hopefully this will support you in finding *your* way.
-
-## Appendix: Matrix Labelling For Non-Typographers
-
-If tasked to map a matrix, use this intuitive labelling:
-
-- Contrast Sans → Thick-thin strokes (no serifs)
-- Contrast Serif → Thick-thin strokes (has serifs)
-- Linear Sans → Uniform strokes (no serifs)
-- Linear Serif → Uniform strokes (has serifs)
-
-And always explain the matrix pragmatically.

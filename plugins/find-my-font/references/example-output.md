@@ -2,7 +2,7 @@
 
 | | |
 | :-- | :-- |
-| **Relationship** | Diagonal — contrasting pair (Dynamic Serif to Geometric Sans) |
+| **Relationship** | Diagonal — contrasting pair (Dynamic Contrast Serif to Geometric Linear Sans) |
 | **Why it works** | Maximum structural contrast: Lora's calligraphic warmth against Jost's Bauhaus-descended geometry. Different in every layer, so they create effortless hierarchy without competing. |
 | **Best for** | Hero headings, brand statements, section titles |
 | **Headings** | Weight `500`-`600`, tracking `-0.02em` to `-0.03em`. Semi-bold rather than bold — restraint is the point. |
