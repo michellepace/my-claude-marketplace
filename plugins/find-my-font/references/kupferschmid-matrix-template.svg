@@ -54,21 +54,17 @@
 <text x="560" y="48" class="sub">circular, constructed</text>
 
 <!-- Row headers -->
-<text x="60" y="100" class="header">Contrast</text>
-<text x="60" y="116" class="header">sans</text>
-<text x="60" y="132" class="sub">thick-thin, no serifs</text>
+<text x="60" y="100" class="header">Contrast Sans</text>
+<text x="60" y="118" class="sub">contrasting strokes</text>
 
-<text x="60" y="210" class="header">Contrast</text>
-<text x="60" y="226" class="header">serif</text>
-<text x="60" y="242" class="sub">thick-thin, has serifs</text>
+<text x="60" y="210" class="header">Contrast Serif</text>
+<text x="60" y="228" class="sub">contrasting strokes</text>
 
-<text x="60" y="320" class="header">Linear</text>
-<text x="60" y="336" class="header">sans</text>
-<text x="60" y="352" class="sub">uniform, no serifs</text>
+<text x="60" y="320" class="header">Linear Sans</text>
+<text x="60" y="338" class="sub">uniform strokes</text>
 
-<text x="60" y="420" class="header">Linear</text>
-<text x="60" y="436" class="header">serif</text>
-<text x="60" y="452" class="sub">uniform, has serifs</text>
+<text x="60" y="420" class="header">Linear Serif</text>
+<text x="60" y="438" class="sub">uniform strokes</text>
 
 <!-- Grid lines -->
 <line x1="120" x2="640" y1="60"  y2="60"  class="grid-line"/>

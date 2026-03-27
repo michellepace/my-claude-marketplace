@@ -16,7 +16,15 @@ Well-balanced contemporary serif with roots in calligraphy. Moderate contrast ty
 - **Weights:** 400, 500, 600, 700
 - **Styles:** Normal + Italic at each weight
 
-## Kupferschmid Matrix [TO BE COMPLETED]
+## Kupferschmid Matrix
+
+Classified from visual examination of ![Lora 400](images/lora.jpg)
+
+| Layer | Classification | Evidence |
+|:---|:---|:---|
+| 1 Skeleton | Dynamic | Open apertures on a/e/s, diagonal stress on o, calligraphic construction |
+| 2 Flesh | Contrast Serif | Moderate thick-thin stroke variation, bracketed serifs |
+| 3 Skin | Contemporary calligraphic | Brushed curve transitions, driving serifs, distinctive R leg |
 
 ## References
 
@@ -24,3 +32,4 @@ Summarised accurately from the sources below. For more detail, research these so
 
 - <https://fonts.google.com/specimen/Lora/about>
 - <https://raw.githubusercontent.com/google/fonts/main/ofl/lora/METADATA.pb>
+- `references/kupferschmid-matrix.md`

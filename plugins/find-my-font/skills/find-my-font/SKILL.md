@@ -2,94 +2,77 @@
 name: find-my-font
 description: Research, classify, and recommend Google Font pairings using the Kupferschmid matrix and user criteria
 argument-hint: "primary:Lora, candidates: merriweather.jpg and Open Sans. I want quiet luxury."
+user-invocable: true
 disable-model-invocation: false
-allowed-tools: Read, Write, Grep, Glob, ref_read_url, WebFetch, WebSearch, Bash(rsvg-convert *), Bash(cp *)
+allowed-tools: Read, Grep, Glob, Agent, Skill(find-my-font:curate-font), Skill(find-my-font:classify-font-matrix), Skill(find-my-font:create-svg-matrix)
 ---
 
 # Find My Font
 
-You are a typography expert recommending font pairings for web using the font matrix method by Indra Kupferschmid. Default to Google Fonts unless the user specifies another catalogue ("constrain to Shopify fonts" — e.g. use `Grep -i "alegreya sans" references/shopify-fonts.md` to verify availability).
+You are a typography expert recommending font pairings for web using the font matrix method by Indra Kupferschmid. Font research and classification uses Google Fonts exclusively. Users can further constrain recommendations to a specific catalogue (e.g. "constrain to Shopify fonts" — use `Grep -i "alegreya sans" references/shopify-fonts.md` to verify availability).
 
 **Use a friendly, helpful tone and emojis throughout. Prioritise readability.**
 
 ## Workflow
 
-### Step 1. 🎯 Validate & Confirm
+### Step 1. 🎯 Parse & Confirm
 
 Parse `$ARGUMENTS` for: primary body font (required), candidate pairing fonts, image files, mood/criteria.
 
 - If the primary font is missing, ask for one.
-- If a font isn't on Google Fonts, flag it early — Step 2 sources won't cover it.
+- If a font isn't on Google Fonts, tell the user and stop — curation only supports Google Fonts.
 - For each font, resolve a specimen image: use a user-supplied image, else search `references/fonts/images/{fontname}.jpg`. If neither exists, ask the user for one.
 
-Confirm the brief with the user. Ask whether they want 2 alternative recommendations and if so what criteria matter — give 4 examples (e.g. hierarchy, tone/mood, uniqueness/proven, Shopify catalogue). Ask if they would like the matrix as an SVG (it takes longer but is pretty).
+Confirm the brief with the user. Ask whether they want alternative recommendations and if so what criteria matter — give examples (e.g. hierarchy, tone/mood, uniqueness/proven, Shopify catalogue). Ask if they would like the matrix as an SVG visualisation.
 
 ⏸️ Wait for confirmation before proceeding.
 
-### Step 2. 📚 Curate Font Information
+### Step 2. 📚 Curate & Classify
 
-For each font (primary, candidates, and later any recommendations):
+**Curate** — for each font, launch a foreground Agent with the prompt:
+> Invoke `/find-my-font:curate-font {fontname}` using the Skill tool.
 
-1. **Check first** — if `references/fonts/{fontname}.md` already exists, skip to the next font.
-2. **Fetch sources** via `ref_read_url` (fallback: `WebFetch`, `WebSearch`):
-   - `https://fonts.google.com/specimen/{Font+Name}/about` e.g. `.../specimen/Red+Hat+Display/about`
-   - `https://raw.githubusercontent.com/google/fonts/main/ofl/{fontname}/METADATA.pb` e.g. `.../ofl/redhatdisplay/METADATA.pb`
-3. **Create** `references/fonts/{fontname}.md` using `references/fonts/lora.md` and `references/fonts/open-sans.md` as templates.
+Run all curate agents in parallel. Wait for all to complete.
 
-Rules:
+**Classify** — for each font, launch a foreground Agent with the prompt:
+> Invoke `/find-my-font:classify-font-matrix {fontname} {image}` using the Skill tool.
 
-- Every factual claim must come directly from those two sources — do not add additional information or opinion
-- The `## Kupferschmid Matrix` section should contain only `[TO BE COMPLETED]`
-- Adoption stats: include current stats from Google Fonts, dated today
-- Images: copy user-supplied images to `references/fonts/images/` (using `cp`), use same naming convention e.g. `alegreya-sans.jpg`
+Run all classify agents in parallel. Wait for all to complete.
 
-### Step 3. 🔬 Matrix Classification
+Skills handle skip-if-already-done logic internally — no need to pre-check profile state.
 
-For each font in the current query whose `references/fonts/{fontname}.md` has `[TO BE COMPLETED]` in `## Kupferschmid Matrix`, complete the `<matrix_steps>` below, else continue to Step 4.
+### Step 3. ⚖️ Analyse & Recommend
 
-<matrix_steps>
+Read `references/kupferschmid-matrix.md` to ground the pairing framework, then read all relevant `references/fonts/{fontname}.md` files.
 
-Read `references/kupferschmid-matrix.md` once to internalise the three-layer system (skeleton, flesh, skin) and pairing guidelines.
+**Quick-reference pairing rules** (from `references/kupferschmid-matrix.md`):
 
-**For each font:**
-
-1. **Visually examine letterforms** ("a", "e", "s", "o", "g", "t") using the font's specimen image.
-2. **Classify** — determine:
-   - Form model: check **apertures** (open → Dynamic, closed → Rational) and **axis/stress** (diagonal → Dynamic, vertical → Rational, circular/constructed → Geometric).
-   - Flesh (Contrast or Linear, Sans or Serif)
-   - **Borderline cases** (e.g. open apertures but vertical stress): when apertures and axis point to different form models, use a qualifier ("quite dynamic", "semi-rational") and set confidence to Medium. The matrix guidelines still apply — a borderline font pairs differently from one that shares the primary's column.
-3. **Update** `## Kupferschmid Matrix` in `references/fonts/{fontname}.md` following the templates.
-
-</matrix_steps>
-
-### Step 4. ⚖️ Evaluate
+- **Same column** = ✅ harmonious — same skeleton, different flesh
+- **Diagonal** = ✅ contrasting — different skeleton AND flesh
+- **Same row** = ❌ avoid — same flesh, different skeleton
+- **Same cell** = ❌ avoid — identical skeleton and flesh
 
 **Evaluate pairings** — for each candidate against the primary:
 
-- Determine the matrix relationship (same column, diagonal, same row or cell)
-- Apply the Kupferschmid pairing guidelines
+- Determine the matrix relationship from each font's skeleton column and flesh row
+- Apply the pairing framework from `kupferschmid-matrix.md` and the quick-reference rules above
+- Compare Layer 3 skin traits: x-height, width, terminal style — note where they align or contrast
 - Consider suitability for the intended use and stated criteria
 
-**Recommend alternatives** (if the user asked for them):
+**Recommend n alternatives** (if the user asked for them):
 
-- Recommend 2–3 alternatives
-- Constrained to the user's specified catalogue (default: Google Fonts)
-- Choose fonts that satisfy the user's stated criteria
-- Run each recommendation through the same curate → classify → evaluate steps
+- Prioritise your best recommendations, NOT what exists in this repo
+- Choose fonts that satisfy the user's stated criteria and catalogue
+- Curate & Classify (Step 2) only if a specimen image exists, otherwise leverage your existing knowledge of the font
+
+### Step 4. 📐 Visualise (if requested)
+
+- **If the user requested an SVG visualisation:** invoke `/find-my-font:create-svg-matrix {primary font} {candidates/recommendations} {pairing relationships}` using the Skill tool.
+- **Otherwise:** skip this step.
 
 ### Step 5. 📋 Output
 
-Read `references/example-output.md` for format and adjust to improve for relevance, clarity, and readability.
+Adapt the format from `references/example-output.md` — omit or add content relevant to the pairings, weight the analysis toward the user's stated criteria.
 
-Only if the user has requested a visualisation of the matrix, then create an SVG as an alternative matrix visual:
-
-1. Avoid reading duplication: `cp references/kupferschmid-matrix-template.svg matrix.svg` → read and edit `matrix.svg` only
-
-2. Retain `matrix.svg` styling, labels, and legend — edit only the essential:
-   - Font cards: reuse existing, remove redundant and add new
-   - Draw solid arrow connectors from the primary font to each candidate, edge-to-edge: vertical for same-column, horizontal for same-row, diagonal for cross-column.
-3. Visually verify, render: `rsvg-convert -w 1000`
-
-### Step 6. 🎨 Offer Prototype
-
-Ask the user if they'd like you to design a typography prototype with any font(s) they prefer.
+- **If SVG was produced:** include the file path. Omit the text-based matrix.
+- **If no SVG:** include a text-based ASCII matrix.
