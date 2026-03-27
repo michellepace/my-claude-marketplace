@@ -18,11 +18,7 @@ Humanist sans serif with calligraphic rhythm. Part of the Alegreya "super family
 - **Weights:** 100, 300, 400, 500, 700, 800, 900
 - **Styles:** Normal + Italic at each weight
 
-## Kupferschmid Matrix
-
-- **Layer 1 Skeleton:** Dynamic (open apertures, diagonal axis)
-- **Layer 2 Flesh:** Contrast Sans (calligraphic stroke modulation, no serifs)
-- **Confidence:** High — clear calligraphic modulation and open forms
+## Kupferschmid Matrix [TO BE COMPLETED]
 
 ## References
 
@@ -30,4 +26,3 @@ Summarised accurately from the sources below. For more detail, research these so
 
 - <https://fonts.google.com/specimen/Alegreya+Sans/about>
 - <https://raw.githubusercontent.com/google/fonts/main/ofl/alegreyasans/METADATA.pb>
-- `references/kupferschmid-matrix.md`

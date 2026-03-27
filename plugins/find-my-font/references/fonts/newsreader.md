@@ -18,11 +18,7 @@ Original typeface by Production Type, primarily intended for continuous on-scree
 - **Weights:** 200, 300, 400, 500, 600, 700, 800
 - **Styles:** Normal + Italic at each weight
 
-## Kupferschmid Matrix
-
-- **Layer 1 Skeleton:** Quite Rational (vertical stress dominates, but apertures are open — mixed signals, similar to the Roboto Slab precedent in Kupferschmid's own examples)
-- **Layer 2 Flesh:** Contrast Serif (pronounced thick-thin stroke variation, refined serifs)
-- **Confidence:** Medium — borderline Dynamic/Rational; vertical stress and editorial character pull Rational, open apertures pull Dynamic
+## Kupferschmid Matrix [TO BE COMPLETED]
 
 ## References
 
@@ -30,4 +26,3 @@ Summarised accurately from the sources below. For more detail, research these so
 
 - <https://fonts.google.com/specimen/Newsreader/about>
 - <https://raw.githubusercontent.com/google/fonts/main/ofl/newsreader/METADATA.pb>
-- `references/kupferschmid-matrix.md`

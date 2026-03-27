@@ -18,11 +18,7 @@ Low-contrast semi-condensed sans-serif text typeface designed to be pleasant to 
 - **Weights:** 300, 400, 500, 600, 700, 800
 - **Styles:** Normal + Italic at each weight
 
-## Kupferschmid Matrix
-
-- **Layer 1 Skeleton:** Dynamic (open apertures, mild diagonal stress, traditional/humanist construction)
-- **Layer 2 Flesh:** Linear Sans (low stroke contrast, no serifs)
-- **Confidence:** High — designer description confirms diagonal stress and open forms; the warm, traditional feel is unambiguously Dynamic
+## Kupferschmid Matrix [TO BE COMPLETED]
 
 ## References
 
@@ -30,4 +26,3 @@ Summarised accurately from the sources below. For more detail, research these so
 
 - <https://fonts.google.com/specimen/Merriweather+Sans/about>
 - <https://raw.githubusercontent.com/google/fonts/main/ofl/merriweathersans/METADATA.pb>
-- `references/kupferschmid-matrix.md`

@@ -18,11 +18,7 @@ Free display serif inspired by Claude Garamont's legacy. Ultra-high contrast wit
 - **Weights:** 300, 400, 500, 600, 700
 - **Styles:** Normal + Italic at each weight
 
-## Kupferschmid Matrix
-
-- **Layer 1 Skeleton:** Dynamic (open apertures, diagonal stress, calligraphic construction — Garamond lineage)
-- **Layer 2 Flesh:** Contrast Serif (very high thick-thin stroke variation, elegant bracketed serifs)
-- **Confidence:** High — Garamond is the archetype of the Dynamic Contrast Serif position
+## Kupferschmid Matrix [TO BE COMPLETED]
 
 ## References
 
@@ -30,4 +26,3 @@ Summarised accurately from the sources below. For more detail, research these so
 
 - <https://fonts.google.com/specimen/Cormorant+Garamond/about>
 - <https://raw.githubusercontent.com/google/fonts/main/ofl/cormorantgaramond/METADATA.pb>
-- `references/kupferschmid-matrix.md`

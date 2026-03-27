@@ -18,11 +18,7 @@ Elegant sans-serif typeface family. Initially a single thin weight, expanded int
 - **Weights:** 100, 200, 300, 400, 500, 600, 700, 800, 900
 - **Styles:** Normal + Italic at each weight
 
-## Kupferschmid Matrix
-
-- **Layer 1 Skeleton:** Geometric (circular 'o', single-story 'a' and 'g', constructed letterforms, simple cross-shaped 't')
-- **Layer 2 Flesh:** Linear Sans (uniform stroke width, no serifs)
-- **Confidence:** Moderate-high — the single-story 'a', round 'o', and constructed feel are clearly geometric, though the neo-grotesque heritage gives slightly more conventional proportions than a pure geometric like Futura
+## Kupferschmid Matrix [TO BE COMPLETED]
 
 ## References
 
@@ -30,4 +26,3 @@ Summarised accurately from the sources below. For more detail, research these so
 
 - <https://fonts.google.com/specimen/Raleway/about>
 - <https://raw.githubusercontent.com/google/fonts/main/ofl/raleway/METADATA.pb>
-- `references/kupferschmid-matrix.md`

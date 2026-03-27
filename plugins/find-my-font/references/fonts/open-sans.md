@@ -2,8 +2,6 @@
 
 Humanist sans serif typeface designed by Steve Matteson. Upright stress, open forms, and a neutral yet friendly appearance. Optimised for print, web, and mobile interfaces with excellent legibility.
 
-![Open Sans 300](images/open-sans.jpg)
-
 ## Key Characteristics
 
 - **Classification:** Humanist sans serif
@@ -18,11 +16,7 @@ Humanist sans serif typeface designed by Steve Matteson. Upright stress, open fo
 - **Weights:** 300, 400, 500, 600, 700, 800
 - **Styles:** Normal + Italic at each weight
 
-## Kupferschmid Matrix
-
-- **Layer 1 Skeleton:** Quite Dynamic (open apertures and wide proportions dominate, but upright stress is a Rational-leaning note)
-- **Layer 2 Flesh:** Linear Sans (very uniform stroke weight, no serifs)
-- **Confidence:** Medium — borderline Dynamic/Rational; open apertures and humanist construction pull Dynamic, upright stress pulls Rational
+## Kupferschmid Matrix [TO BE COMPLETED]
 
 ## References
 
@@ -30,4 +24,3 @@ Summarised accurately from the sources below. For more detail, research these so
 
 - <https://fonts.google.com/specimen/Open+Sans/about>
 - <https://raw.githubusercontent.com/google/fonts/main/ofl/opensans/METADATA.pb>
-- `references/kupferschmid-matrix.md`
