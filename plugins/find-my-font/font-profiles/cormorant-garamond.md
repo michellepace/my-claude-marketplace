@@ -2,8 +2,6 @@
 
 Free display serif inspired by Claude Garamont's legacy. Ultra-high contrast with elegant, refined letterforms designed for large sizes. Part of the Cormorant super family spanning 9 visual styles.
 
-![Cormorant Garamond 400](images/cormorant-garamond.jpg)
-
 ## Key Characteristics
 
 - **Classification:** Display serif (Garamond-inspired)
@@ -22,7 +20,7 @@ Free display serif inspired by Claude Garamont's legacy. Ultra-high contrast wit
 
 ## References
 
-Summarised accurately from the sources below. For more detail, research these sources.
+Curated from:
 
 - <https://fonts.google.com/specimen/Cormorant+Garamond/about>
 - <https://raw.githubusercontent.com/google/fonts/main/ofl/cormorantgaramond/METADATA.pb>

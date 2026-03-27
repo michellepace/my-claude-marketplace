@@ -18,7 +18,7 @@ Humanist sans serif typeface designed by Steve Matteson. Upright stress, open fo
 
 ## Kupferschmid Matrix
 
-Classified from visual examination of ![Open Sans 300](images/open-sans.jpg)
+Classified from visual examination of ![Open Sans 300](specimens/open-sans.jpg)
 
 | Layer | Classification | Evidence |
 |:---|:---|:---|
@@ -28,8 +28,11 @@ Classified from visual examination of ![Open Sans 300](images/open-sans.jpg)
 
 ## References
 
-Summarised accurately from the sources below. For more detail, research these sources.
+Curated from:
 
 - <https://fonts.google.com/specimen/Open+Sans/about>
 - <https://raw.githubusercontent.com/google/fonts/main/ofl/opensans/METADATA.pb>
-- `references/kupferschmid-matrix.md`
+
+Classified using:
+
+- [kupferschmid-matrix.md](../references/kupferschmid-matrix.md)

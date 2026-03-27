@@ -2,8 +2,6 @@
 
 Elegant sans-serif typeface family. Initially a single thin weight, expanded into a 9-weight family. A display face with a neo-grotesque inspired default character set and a stylistic alternate inspired by more geometric sans-serifs.
 
-![Raleway 400](images/raleway.jpg)
-
 ## Key Characteristics
 
 - **Classification:** Sans-serif (neo-grotesque with geometric alternates)
@@ -22,7 +20,7 @@ Elegant sans-serif typeface family. Initially a single thin weight, expanded int
 
 ## References
 
-Summarised accurately from the sources below. For more detail, research these sources.
+Curated from:
 
 - <https://fonts.google.com/specimen/Raleway/about>
 - <https://raw.githubusercontent.com/google/fonts/main/ofl/raleway/METADATA.pb>

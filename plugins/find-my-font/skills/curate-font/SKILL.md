@@ -25,19 +25,19 @@ Parse `$ARGUMENTS` for: font name (required).
 
 ### Step 2. 📚 Fetch Font Information
 
-1. **Check first** — if `references/fonts/{fontname}.md` already exists, read it. If the Google Fonts sections (Synopsis, Key Characteristics, Technical) are complete, note the date and **stop**.
+1. **Check first** — if `font-profiles/{fontname}.md` already exists, read it. If the Google Fonts sections (Synopsis, Key Characteristics, Technical) are complete, note the date and **stop**.
 2. **Fetch sources** via `ref_read_url`:
    - `https://fonts.google.com/specimen/{Font+Name}/about` e.g. `.../specimen/Red+Hat+Display/about`
    - `https://raw.githubusercontent.com/google/fonts/main/ofl/{fontname}/METADATA.pb` e.g. `.../ofl/redhatdisplay/METADATA.pb`
    - ⚠️ **Validate each response:** must mention the font name — `ref_read_url` can silently return unrelated content. Up to 2 retries. If all fail, give the user the failing URL and ask them to supply the data.
-3. **Create or update** `references/fonts/{fontname}.md` using `references/fonts/lora.md` and `references/fonts/open-sans.md` as templates.
+3. **Create or update** `font-profiles/{fontname}.md` using `font-profiles/lora.md` and `font-profiles/open-sans.md` as templates.
 
 Rules to verify:
 
 - Every factual claim must come directly from those two sources — do not add additional information or opinion
 - Never edit `## Kupferschmid Matrix` if it exists, else add it as `## Kupferschmid Matrix [TO BE COMPLETED]` (no content)
 - Adoption stats: include current stats from Google Fonts, dated today
-- References section: only include those the sources you used for curation
+- References section: use a `Curated from:` subheading, list only the sources you used for curation (no intro blurb)
 
 ### Step 3. ✅ Report
 
@@ -46,3 +46,4 @@ Summarise what was created:
 ```
 File: `file path written`
 Verified: [confirm if all rules were followed]
+```

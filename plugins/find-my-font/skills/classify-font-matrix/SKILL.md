@@ -13,8 +13,8 @@ allowed-tools: Read, Write, Edit, Grep, Glob, Bash(cp *)
 
 You are a typography expert classifying fonts using the Kupferschmid matrix system. This skill owns the `## Kupferschmid Matrix` section of font profile files:
 
-- Read example 1: `references/fonts/lora.md`
-- Read example 2: `references/fonts/open-sans.md`
+- Read example 1: `font-profiles/lora.md`
+- Read example 2: `font-profiles/open-sans.md`
 
 **Use a friendly, helpful tone and emojis throughout.**
 
@@ -22,15 +22,15 @@ You are a typography expert classifying fonts using the Kupferschmid matrix syst
 
 Parse `$ARGUMENTS` for: font name (required), specimen image path (optional).
 
-Read `references/fonts/{fontname}.md`. If the `## Kupferschmid Matrix` classifies three layers → already classified. Report the existing classification and ask the user if they want to reclassify. Stop unless they confirm. Otherwise continue (file may or may not exist).
+Read `font-profiles/{fontname}.md`. If the `## Kupferschmid Matrix` classifies three layers → already classified. Report the existing classification and ask the user if they want to reclassify. Stop unless they confirm. Otherwise continue (file may or may not exist).
 
 ## Step 2. 🖼️ Resolve Specimen
 
-`Glob` for `references/fonts/images/*fontname*`.
+`Glob` for `font-profiles/specimens/*fontname*`.
 
 - **Existing image + user supplied a new one:** ask to confirm before replacing.
 - **Existing image, no new one supplied:** use it.
-- **No existing image + user supplied one:** copy it to `references/fonts/images/` (using `cp`, naming convention e.g. `alegreya-sans.jpg`).
+- **No existing image + user supplied one:** copy it to `font-profiles/specimens/` (using `cp`, naming convention e.g. `alegreya-sans.jpg`).
 - **No image at all:** ask the user for one and stop — classification requires visual examination.
 
 ## Step 3. 🔬 Classify
@@ -72,7 +72,7 @@ Also note any **distinctive features** (width, calligraphic movement, ink traps,
 
 ## Step 4. 📝 Update Profile & Verify
 
-Update `references/fonts/{fontname}.md` — insert or replace the `## Kupferschmid Matrix` section (matching the example format) and add `kupferschmid-matrix.md` to References. Do not alter other sections.
+Update `font-profiles/{fontname}.md` — insert or replace the `## Kupferschmid Matrix` section (matching the example format) and add `kupferschmid-matrix.md` under a `Classified using:` subheading in References. Do not alter other sections.
 
 If the file doesn't exist, create it with: `# Synopsis`, `## Kupferschmid Matrix`, and `## References` only.
 

@@ -18,7 +18,7 @@ Well-balanced contemporary serif with roots in calligraphy. Moderate contrast ty
 
 ## Kupferschmid Matrix
 
-Classified from visual examination of ![Lora 400](images/lora.jpg)
+Classified from visual examination of ![Lora 400](specimens/lora.jpg)
 
 | Layer | Classification | Evidence |
 |:---|:---|:---|
@@ -28,8 +28,11 @@ Classified from visual examination of ![Lora 400](images/lora.jpg)
 
 ## References
 
-Summarised accurately from the sources below. For more detail, research these sources.
+Curated from:
 
 - <https://fonts.google.com/specimen/Lora/about>
 - <https://raw.githubusercontent.com/google/fonts/main/ofl/lora/METADATA.pb>
-- `references/kupferschmid-matrix.md`
+
+Classified using:
+
+- [kupferschmid-matrix.md](../references/kupferschmid-matrix.md)

@@ -2,8 +2,6 @@
 
 Original typeface by Production Type, primarily intended for continuous on-screen reading in content-rich environments.
 
-![Newsreader 300](images/newsreader.jpg)
-
 ## Key Characteristics
 
 - **Classification:** Serif for continuous reading
@@ -22,7 +20,7 @@ Original typeface by Production Type, primarily intended for continuous on-scree
 
 ## References
 
-Summarised accurately from the sources below. For more detail, research these sources.
+Curated from:
 
 - <https://fonts.google.com/specimen/Newsreader/about>
 - <https://raw.githubusercontent.com/google/fonts/main/ofl/newsreader/METADATA.pb>

@@ -21,7 +21,7 @@ Parse `$ARGUMENTS` for: primary body font (required), candidate pairing fonts, i
 
 - If the primary font is missing, ask for one.
 - If a font isn't on Google Fonts, tell the user and stop — curation only supports Google Fonts.
-- For each font, resolve a specimen image: use a user-supplied image, else search `references/fonts/images/{fontname}.jpg`. If neither exists, ask the user for one.
+- For each font, resolve a specimen image: use a user-supplied image, else search `font-profiles/specimens/{fontname}.jpg`. If neither exists, ask the user for one.
 
 Confirm the brief with the user. Ask whether they want alternative recommendations and if so what criteria matter — give examples (e.g. hierarchy, tone/mood, uniqueness/proven, Shopify catalogue). Ask if they would like the matrix as an SVG visualisation.
 
@@ -43,7 +43,7 @@ Skills handle skip-if-already-done logic internally — no need to pre-check pro
 
 ### Step 3. ⚖️ Analyse & Recommend
 
-Read `references/kupferschmid-matrix.md` to ground the pairing framework, then read all relevant `references/fonts/{fontname}.md` files.
+Read `references/kupferschmid-matrix.md` to ground the pairing framework, then read all relevant `font-profiles/{fontname}.md` files.
 
 **Quick-reference pairing rules** (from `references/kupferschmid-matrix.md`):
 

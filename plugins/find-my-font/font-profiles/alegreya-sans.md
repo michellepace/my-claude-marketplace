@@ -2,8 +2,6 @@
 
 Humanist sans serif with calligraphic rhythm. Part of the Alegreya "super family" designed for literature and long-form reading.
 
-![Alegreya Sans 300](images/alegreya-sans.jpg)
-
 ## Key Characteristics
 
 - **Classification:** Humanist sans serif
@@ -22,7 +20,7 @@ Humanist sans serif with calligraphic rhythm. Part of the Alegreya "super family
 
 ## References
 
-Summarised accurately from the sources below. For more detail, research these sources.
+Curated from:
 
 - <https://fonts.google.com/specimen/Alegreya+Sans/about>
 - <https://raw.githubusercontent.com/google/fonts/main/ofl/alegreyasans/METADATA.pb>

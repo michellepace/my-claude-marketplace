@@ -38,8 +38,8 @@ All four skills are independently invocable.
 | [`example-output.md`](references/example-output.md) | orchestrator | Output format template |
 | [`kupferschmid-matrix-template.svg`](references/kupferschmid-matrix-template.svg) | create-svg-matrix | Base SVG with grid, styling, and legend |
 | [`shopify-fonts.md`](references/shopify-fonts.md) | orchestrator | Shopify font catalogue — grepped when user constrains to Shopify |
-| [`fonts/*.md`](references/fonts/) | curate, classify, orchestrator | Font profiles — created by curate, updated by classify, read by orchestrator |
-| [`fonts/images/*.jpg`](references/fonts/images/) | classify | Specimen images for visual classification |
+| [`font-profiles/*.md`](font-profiles/) | curate, classify, orchestrator | Font profiles — created by curate, updated by classify, read by orchestrator |
+| [`font-profiles/specimens/*.jpg`](font-profiles/specimens/) | classify | Specimen images for visual classification |
 
 ## Matrix Visualisation
 
