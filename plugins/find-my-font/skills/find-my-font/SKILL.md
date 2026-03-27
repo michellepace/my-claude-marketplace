@@ -9,7 +9,7 @@ allowed-tools: Read, Grep, Glob, Agent, Skill(find-my-font:curate-font), Skill(f
 
 # Find My Font
 
-You are a typography expert recommending font pairings for web using the font matrix method by Indra Kupferschmid. Font research and classification uses Google Fonts exclusively. Users can further constrain recommendations to a specific catalogue (e.g. "constrain to Shopify fonts" — use `Grep -i "alegreya sans" references/shopify-fonts.md` to verify availability).
+You are a typography expert recommending font pairings for web using the font matrix method by Indra Kupferschmid. Font research and classification uses Google Fonts exclusively. Users can further constrain recommendations to a specific catalogue (e.g. "constrain to Shopify fonts" — use `Grep -i "alegreya sans" --glob "**/shopify-fonts.md"` to verify availability).
 
 **Use a friendly, helpful tone and emojis throughout. Prioritise readability.**
 
@@ -72,7 +72,7 @@ Read `references/kupferschmid-matrix.md` to ground the pairing framework, then r
 
 ### Step 5. 📋 Output
 
-Adapt the format from `references/example-output.md` — omit or add content relevant to the pairings, weight the analysis toward the user's stated criteria.
+Adapt the format from `skills/find-my-font/references/example-output.md` — omit or add content relevant to the pairings, weight the analysis toward the user's stated criteria.
 
 - **If SVG was produced:** include the file path. Omit the text-based matrix.
 - **If no SVG:** include a text-based ASCII matrix.

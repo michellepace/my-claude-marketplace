@@ -32,22 +32,22 @@ All four skills are independently invocable.
 
 ## Reference Files
 
-| File | Used by | Purpose |
+| File | Skills That Reference | Purpose / Explanation |
 |---|---|---|
-| [`kupferschmid-matrix.md`](references/kupferschmid-matrix.md) | orchestrator, classify | Three-layer classification framework and pairing rules |
-| [`example-output.md`](references/example-output.md) | orchestrator | Output format template |
-| [`kupferschmid-matrix-template.svg`](references/kupferschmid-matrix-template.svg) | create-svg-matrix | Base SVG with grid, styling, and legend |
-| [`shopify-fonts.md`](references/shopify-fonts.md) | orchestrator | Shopify font catalogue — grepped when user constrains to Shopify |
-| [`font-profiles/*.md`](font-profiles/) | curate, classify, orchestrator | Font profiles — created by curate, updated by classify, read by orchestrator |
-| [`font-profiles/specimens/*.jpg`](font-profiles/specimens/) | classify | Specimen images for visual classification |
+| [`kupferschmid-matrix.md`](references/kupferschmid-matrix.md) | [find-my-font](skills/find-my-font/SKILL.md), [classify-font-matrix](skills/classify-font-matrix/SKILL.md) | Font classification framework for compatible aesthetic pairing |
+| [`example-output.md`](skills/find-my-font/references/example-output.md) | [find-my-font](skills/find-my-font/SKILL.md) | Sample output — Claude adapts format relative to fonts and use case |
+| [`kupferschmid-matrix-template.svg`](skills/create-svg-matrix/references/kupferschmid-matrix-template.svg) | [create-svg-matrix](skills/create-svg-matrix/SKILL.md) | Clean SVG template Claude copies to visualise font matrix positions |
+| [`shopify-fonts.md`](skills/find-my-font/references/shopify-fonts.md) | [find-my-font](skills/find-my-font/SKILL.md) | Fonts available on Shopify, a subset of Google Fonts. Shopify doesn't support `optical-size`, [requested](https://community.shopify.dev/t/pimp-my-type-please-support-variable-fonts-optical-sizing-axis/32509). |
+| [`font-profiles/*.md`](font-profiles/) | [find-my-font](skills/find-my-font/SKILL.md), [curate-font](skills/curate-font/SKILL.md), [classify-font-matrix](skills/classify-font-matrix/SKILL.md) | Per-font research and matrix classification — created by curate, updated by classify |
+| [`font-profiles/specimens/*.jpg`](font-profiles/specimens) | [classify-font-matrix](skills/classify-font-matrix/SKILL.md) | Font matrix classification requires visual inspection of font image specimens for accuracy |
 
 ## Matrix Visualisation
 
 When requested, the skill copies the SVG template and edits it to place the analysed fonts on the matrix with colour-coded cards and directional arrows showing each pairing relationship.
 
 <div align="center">
-  <a href="references/kupferschmid-matrix-template.svg" target="_blank">
-    <img src="references/kupferschmid-matrix-template.svg" alt="Kupferschmid font matrix showing Lora as primary with Alegreya Sans and Open Sans as harmonious same-column pairings, Raleway as a contrasting diagonal pairing, and Cormorant Garamond marked as avoid." width="700">
+  <a href="skills/create-svg-matrix/references/kupferschmid-matrix-template.svg" target="_blank">
+    <img src="skills/create-svg-matrix/references/kupferschmid-matrix-template.svg" alt="Kupferschmid font matrix showing Lora as primary with Alegreya Sans and Open Sans as harmonious same-column pairings, Raleway as a contrasting diagonal pairing, and Cormorant Garamond marked as avoid." width="700">
   </a>
   <p><em>Example: Lora (primary) with four candidates classified by matrix relationship — green for harmonious (same column), purple for contrasting (diagonal), red for avoid (same row/cell).</em></p>
 </div>
@@ -66,4 +66,5 @@ sudo apt install librsvg2-bin
 
 ## Future Improvements
 
+- **Tighten recommendation output** — its very verbose, adjust [`example-output.md`](skills/find-my-font/references/example-output.md)
 - **Python SVG generator** — a script that takes font card data and plots them onto the SVG template (cards and connectors), replacing manual SVG editing by Claude
