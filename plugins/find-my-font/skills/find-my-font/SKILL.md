@@ -21,7 +21,7 @@ Parse `$ARGUMENTS` for: primary body font (required), candidate pairing fonts, i
 
 - If the primary font is missing, ask for one.
 - If a font isn't on Google Fonts, tell the user and stop — curation only supports Google Fonts.
-- For each font, resolve a specimen image: use a user-supplied image, else search `font-profiles/specimens/{fontname}.jpg`. If neither exists, ask the user for one.
+- For each font, resolve a specimen image: use a user-supplied image, else `Read font-profiles/specimens/{fontname}.jpg` (kebab case) — if that fails, `Glob **/specimens/{fontname}*`. If neither exists, ask the user for one.
 
 Confirm the brief with the user. Ask whether they want alternative recommendations and if so what criteria matter — give examples (e.g. hierarchy, tone/mood, uniqueness/proven, Shopify catalogue). Ask if they would like the matrix as an SVG visualisation.
 

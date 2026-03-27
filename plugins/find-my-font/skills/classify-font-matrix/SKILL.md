@@ -26,7 +26,7 @@ Read `font-profiles/{fontname}.md`. If the `## Kupferschmid Matrix` classifies t
 
 ## Step 2. 🖼️ Resolve Specimen
 
-`Glob` for `font-profiles/specimens/*fontname*`.
+Read `font-profiles/specimens/{fontname}.jpg` directly — specimens follow kebab case. If the Read fails, fall back to `Glob` with `**/specimens/{fontname}*`
 
 - **Existing image + user supplied a new one:** ask to confirm before replacing.
 - **Existing image, no new one supplied:** use it.

@@ -25,7 +25,7 @@ Parse `$ARGUMENTS` for:
 
 ### Step 2. 🎨 Build SVG
 
-1. `Glob` for `kupferschmid-matrix-template.svg`, then `cp` it to `matrix.svg` — then read and edit `matrix.svg` only (avoid reading duplication).
+1. `Glob` for `**/kupferschmid-matrix-template.svg`, then `cp` it to `matrix.svg` — then read and edit `matrix.svg` only (avoid reading duplication).
 
 2. Retain `matrix.svg` styling, labels, and legend — edit only the essential:
    - Font cards: reuse existing card elements, remove redundant ones, and add new cards for each font at its correct matrix position

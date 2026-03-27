@@ -30,7 +30,7 @@ Parse `$ARGUMENTS` for: font name (required).
    - `https://fonts.google.com/specimen/{Font+Name}/about` e.g. `.../specimen/Red+Hat+Display/about`
    - `https://raw.githubusercontent.com/google/fonts/main/ofl/{fontname}/METADATA.pb` e.g. `.../ofl/redhatdisplay/METADATA.pb`
    - ⚠️ **Validate each response:** must mention the font name — `ref_read_url` can silently return unrelated content. Up to 2 retries. If all fail, give the user the failing URL and ask them to supply the data.
-3. **Create or update** `font-profiles/{fontname}.md` using `font-profiles/lora.md` and `font-profiles/open-sans.md` as templates.
+3. **Update (or create)** `font-profiles/{fontname}.md` using `font-profiles/lora.md` and `font-profiles/open-sans.md` as templates. Use **kebab-case** filename (e.g. `source-serif-4.md`, `red-hat-display.md`).
 
 Rules to verify:
 
