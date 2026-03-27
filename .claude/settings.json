@@ -1,21 +1,26 @@
 {
-    "permissions": {
-      "allow": [
-        "Bash(cat:*)",
-        "Bash(claude mcp get:*)",
-        "Bash(claude mcp list)",
-        "Bash(echo:*)",
-        "Bash(find:*)",
-        "Bash(gh run list:*)",
-        "Bash(gh run view:*)",
-        "Bash(git diff:*)",
-        "Bash(git log:*)",
-        "Bash(ls:*)",
-        "Bash(lsof:*)",
-        "Bash(rsvg-convert *)",
-        "Bash(tree:*)",
-        "Bash(wc:*)",
-        "mcp__ide__getDiagnostics"
-      ]
-    }
+  "permissions": {
+    "allow": [
+      "Bash(cat:*)",
+      "Bash(claude mcp get:*)",
+      "Bash(claude mcp list)",
+      "Bash(echo:*)",
+      "Bash(find:*)",
+      "Bash(gh run list:*)",
+      "Bash(gh run view:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(ls:*)",
+      "Bash(lsof:*)",
+      "Bash(rsvg-convert *)",
+      "Bash(tree:*)",
+      "Bash(wc:*)",
+      "mcp__ide__getDiagnostics"
+    ]
+  },
+  "enabledPlugins": {
+    "plugin-dev@claude-plugins-official": false,
+    "skill-creator@claude-plugins-official": false,
+    "find-my-font@my-claude-marketplace": false
   }
+}
