@@ -1,5 +1,5 @@
 ---
-name: create-svg-matrix
+name: create-font-matrix-svg
 description: Create an SVG visualization of the Kupferschmid font matrix showing font positions and pairing relationships with arrow connectors.
 argument-hint: "primary:Lora, candidates: Jost, Source Sans 3 — include matrix positions and relationships"
 context: fork
@@ -25,7 +25,7 @@ Parse `$ARGUMENTS` for:
 
 ### Step 2. 🎨 Build SVG
 
-1. `Glob` for `**/kupferschmid-matrix-template.svg`, then `cp` it to `matrix.svg` — then read and edit `matrix.svg` only (avoid reading duplication).
+1. `Glob` for `**/kupferschmid-template.svg`, then `cp` it to `matrix.svg` — then read and edit `matrix.svg` only (avoid reading duplication).
 
 2. Retain `matrix.svg` styling, labels, and legend — edit only the essential:
    - Font cards: reuse existing card elements, remove redundant ones, and add new cards for each font at its correct matrix position

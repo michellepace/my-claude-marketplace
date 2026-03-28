@@ -4,7 +4,7 @@ description: Research, classify, and recommend Google Font pairings using the Ku
 argument-hint: "primary:Lora, candidates: merriweather.jpg and Open Sans. I want quiet luxury."
 user-invocable: true
 disable-model-invocation: false
-allowed-tools: Read, Grep, Glob, Agent, Skill(find-my-font:curate-font), Skill(find-my-font:classify-font-matrix), Skill(find-my-font:create-svg-matrix)
+allowed-tools: Read, Grep, Glob, Agent, Skill(find-my-font:curate-font), Skill(find-my-font:classify-font-matrix), Skill(find-my-font:create-font-matrix-svg)
 ---
 
 # Find My Font
@@ -67,7 +67,7 @@ Read `references/kupferschmid-matrix.md` to ground the pairing framework, then r
 
 ### Step 4. 📐 Visualise (if requested)
 
-- **If the user requested an SVG visualisation:** invoke `/find-my-font:create-svg-matrix {primary font} {candidates/recommendations} {pairing relationships}` using the Skill tool.
+- **If the user requested an SVG visualisation:** invoke `/find-my-font:create-font-matrix-svg {primary font} {candidates/recommendations} {pairing relationships}` using the Skill tool.
 - **Otherwise:** skip this step.
 
 ### Step 5. 📋 Output
