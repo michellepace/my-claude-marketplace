@@ -10,6 +10,7 @@
       "Bash(gh run view:*)",
       "Bash(git diff:*)",
       "Bash(git log:*)",
+      "Bash(head:*)",
       "Bash(ls:*)",
       "Bash(lsof:*)",
       "Bash(rsvg-convert *)",
