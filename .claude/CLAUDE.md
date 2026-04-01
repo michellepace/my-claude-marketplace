@@ -12,8 +12,7 @@ A Claude Code **marketplace** — a monorepo of plugins.
 |:---|:---|:---|
 | `find-my-font` | skills + MCP | Font pairing (orchestrator pattern) |
 | `shadcn-ui` | 1 skill | shadcn/ui best practices (Radix UI + Tailwind) |
-| `cc-whats-new` | 1 command | Explain Claude Code release changes |
-| `cc-what-plugins` | 1 command | Show enabled plugins across all scopes |
+| `claude-code-care` | 2 skills | Claude Code meta-utilities |
 
 ## Plugin Anatomy
 
