@@ -24,12 +24,10 @@ Additional user instructions: $ARGUMENTS
 [main_prefix]: [brief main summary in imperative mood]
 
 [Section heading]:
-
 - [Significant changes and impact over minor details]
 - [Write for someone reading this git log in 6 months]
 
 [Additional section (for multi-concern commits)]:
-
 - [etc.]
 
 [2-3 terse sentences of why / benefit / impact]
