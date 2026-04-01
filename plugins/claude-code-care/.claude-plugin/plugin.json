@@ -1,0 +1,6 @@
+{
+  "name": "claude-code-care",
+  "description": "Claude Code meta-utilities: release notes, plugin status, and project hygiene",
+  "version": "1.0.0",
+  "license": "MIT"
+}

@@ -13,14 +13,9 @@
       "description": "Guide for implementing shadcn/ui - accessible UI components built with Radix UI and Tailwind CSS."
     },
     {
-      "name": "cc-whats-new",
-      "source": "./plugins/cc-whats-new",
-      "description": "Explain what's new in Claude Code versions with practical examples"
-    },
-    {
-      "name": "cc-what-plugins",
-      "source": "./plugins/cc-what-plugins",
-      "description": "Show the state of Marketplaces and Plugins across all scopes"
+      "name": "claude-code-care",
+      "source": "./plugins/claude-code-care",
+      "description": "Claude Code meta-utilities: release notes, plugin status, and project hygiene (coming soon)"
     },
     {
       "name": "find-my-font",

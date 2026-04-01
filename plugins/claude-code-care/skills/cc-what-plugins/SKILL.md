@@ -1,5 +1,8 @@
 ---
+name: cc-what-plugins
 description: Show the state of Marketplaces and Plugins across all scopes
+user-invocable: true
+disable-model-invocation: true
 allowed-tools: Read(*)
 context: fork
 ---
