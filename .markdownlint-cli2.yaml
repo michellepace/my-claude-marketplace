@@ -11,4 +11,5 @@ config:
   MD028: false  # Allow blank lines between blockquotes (attributed quotes)
   MD041: false  # First line doesn't need to be h1
   MD060: false  # Table column style (compact tables are fine)
+  MD031: false  # Fenced code blocks in templates don't need surrounding blank lines
   MD032: false  # Lists in templates don't need surrounding blank lines

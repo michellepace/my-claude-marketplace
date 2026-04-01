@@ -15,7 +15,7 @@ Additional user instructions: $ARGUMENTS
 - Branch context: `git branch --show-current`
 - Change volume: `git diff --cached --stat`
 - Detailed changes: `git diff --cached`
-- Recent commits: `git log --oneline -4`
+- Recent commits: `git log --oneline -5`
 </commit_context>
 
 <template>
@@ -32,6 +32,7 @@ Additional user instructions: $ARGUMENTS
 </template>
 
 <main_prefix>
+When the commit focuses on files in `plugins/`, use the plugin name as a scope — e.g. `refactor(shadcn-ui):`, `fix(find-my-font):` — combining any standard prefix with `(<plugin-name>)`.
 
 - `rules:` claude configuration e.g. `**/CLAUDE.md`, `.claude/**/*`
 - `test:` adding or updating tests e.g. `tests/**/*`
@@ -42,7 +43,7 @@ Additional user instructions: $ARGUMENTS
 - `refactor:` code changes that neither fix bugs nor add features
 - `style:` code formatting, visual consistency, linting fixes; no functional change
 - `chore:` dev workflow, workspace config, dependency updates, dev tools e.g. `.vscode/**/*`, `pyproject.toml`, `.gitignore`
-- `docs:` documentation changes only e.g. `README.md`, `docs/**/*.md`, `x_docs/**/*.md`
+- `docs:` documentation changes only e.g. `README.md`, `.xdocs/**/*.md`
 - `feat:` new feature for users (adds functionality)
 </main_prefix>
 
