@@ -1,19 +1,21 @@
 ---
 name: shadcn-ui
-description: Best practices for building UIs with shadcn/ui components (Radix UI + Tailwind CSS). Use when adding and customising components, or architecting component structures in Next.js. Covers modifying components/ui/ primitives, CVA variants, reusable compositions, and a customisation decision framework.
-
+description: Best practices for building UIs with shadcn/ui components (Radix UI + Tailwind CSS). Use when adding and customising components, or architecting component structures in Next.js. Covers modifying components/ui/ primitives, CVA variants, reusable compositions, a customisation decision framework, and recent summarised changelog for new functionality.
+user-invocable: true
+disable-model-invocation: false
+allowed-tools: Read, Grep, Glob, ref_read_url, ref_search_documentation
 ---
 
 # shadcn/ui Skill
 
 shadcn/ui is a collection of beautifully-designed, accessible components and a code distribution platform built with TypeScript, Tailwind CSS, and Radix UI primitives.
 
-## Reference
+## References
 
-- Local shadcn documentation, search index `~/projects/python/docs-for-ai/shadcn/INDEX.xml`
-- Latest Components index: `~/projects/python/docs-for-ai/shadcn/llms-txt.md`
-- Changelog summary (year 2025): [changelog_summary.md](changelog_summary.md)
-- Full Changelog (year 2025): `~/projects/python/docs-for-ai/shadcn/changelog.md`
+Read these when you need to look up component names, docs URLs, or recent API changes:
+
+- **Component index** — all available components with docs URLs: `references/llms-txt.md`
+- **Changelog summary** — CLI, registry, and component changes after May 2025 (beyond your training data): `references/changelog-summary.md`
 
 ## Important Changes
 

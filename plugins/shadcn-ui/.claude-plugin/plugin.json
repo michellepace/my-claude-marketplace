@@ -1,6 +1,6 @@
 {
   "name": "shadcn-ui",
   "description": "Guide for implementing shadcn/ui - accessible UI components built with Radix UI and Tailwind CSS.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT"
 }
