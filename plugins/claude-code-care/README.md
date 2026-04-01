@@ -1,6 +1,6 @@
 # claude-code-care
 
-Claude Code meta-utilities: release notes, plugin status, and project hygiene.
+Claude Code meta-utilities: release notes and plugin status.
 
 ## 🟣 What's Inside
 

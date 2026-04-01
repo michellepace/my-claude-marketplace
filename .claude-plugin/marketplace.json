@@ -15,7 +15,7 @@
     {
       "name": "claude-code-care",
       "source": "./plugins/claude-code-care",
-      "description": "Claude Code meta-utilities: release notes, plugin status, and project hygiene (coming soon)"
+      "description": "Claude Code meta-utilities: release notes and plugin status"
     },
     {
       "name": "find-my-font",

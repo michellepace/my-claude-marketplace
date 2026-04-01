@@ -1,6 +1,6 @@
 ---
 name: cc-what-plugins
-description: Show the state of Marketplaces and Plugins across all scopes
+description: Show active plugins for this project plus all installed marketplaces and plugins
 user-invocable: true
 disable-model-invocation: true
 allowed-tools: Read(*)
