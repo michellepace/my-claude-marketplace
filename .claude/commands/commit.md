@@ -12,7 +12,6 @@ Additional user instructions: $ARGUMENTS
 3. Apply commit template `<template>` with appropriate `<main_prefix>`
 
 <commit_context>
-
 - Branch context: `git branch --show-current`
 - Change volume: `git diff --cached --stat`
 - Detailed changes: `git diff --cached`
@@ -20,7 +19,6 @@ Additional user instructions: $ARGUMENTS
 </commit_context>
 
 <template>
-
 [main_prefix]: [brief main summary in imperative mood]
 
 [Section heading]:
