@@ -231,7 +231,7 @@ Works with all registries, zero config. One command to add to any MCP client. Su
 
 ### Deprecations
 
-**Toast** does not exist in current shadcn/ui — use **Sonner** for all toast/notification needs. Do not use `@/components/ui/toast` or `useToast` (they are no longer part of shadcn/ui).
+**Toast** is deprecated in current shadcn/ui — use **Sonner** (`@/components/ui/sonner`) for all toast/notification needs. Do not use `@/components/ui/toast` or `useToast`.
 
 ### Calendar
 

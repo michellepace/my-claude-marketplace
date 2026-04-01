@@ -62,7 +62,7 @@ Source: <https://ui.shadcn.com/llms.txt>, Extracted 2026-03-31.
 ### Feedback & Status
 
 - [Alert](https://ui.shadcn.com/docs/components/alert): Alert component for messages and notifications.
-- [Toast](https://ui.shadcn.com/docs/components/toast): Toast notification component using Sonner.
+- [Sonner](https://ui.shadcn.com/docs/components/radix/sonner): Toast notifications (Toast is deprecated — use Sonner).
 - [Progress](https://ui.shadcn.com/docs/components/progress): Progress bar component.
 - [Spinner](https://ui.shadcn.com/docs/components/spinner): Loading spinner component.
 - [Skeleton](https://ui.shadcn.com/docs/components/skeleton): Skeleton loading placeholder.
