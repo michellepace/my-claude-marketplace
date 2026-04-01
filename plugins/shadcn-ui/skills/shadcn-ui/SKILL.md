@@ -10,29 +10,21 @@ allowed-tools: Read, Grep, Glob, ref_read_url, ref_search_documentation
 
 shadcn/ui is a collection of beautifully-designed, accessible components and a code distribution platform built with TypeScript, Tailwind CSS, and Radix UI primitives.
 
-## References
-
-Read these when you need to look up component names, docs URLs, or recent API changes:
-
-- **Component index** — all available components with docs URLs: `references/llms-txt.md`
-- **Changelog summary** — CLI, registry, and component changes after May 2025 (beyond your training data): `references/changelog-summary.md`
-
-## Important Changes
+## Important Changes (post May 2025)
 
 **Current practices:**
 
 - OKLCH colours (not HSL)
 - `data-slot` attributes on primitives
 - Forms: `<Field />` + TanStack Form + Zod
+- Radix imports: `import { Dialog } from "radix-ui"` (not `@radix-ui/react-dialog`)
 
 **Deprecated:**
 
 - Toast → use **Sonner**
 - `<Form />` → use `<Field />` pattern
 
-## New Utility Components (Oct 2025)
-
-Framework-agnostic primitives (work with Radix, Base UI, React Aria):
+**Added:**
 
 | Component | Purpose |
 | :-------- | :------ |
@@ -60,13 +52,16 @@ npx shadcn@latest diff                    # Check for upstream registry updates
 
 ## Best Practices
 
-### Styling
+### Styling & Theming
 
 Apply Tailwind mobile-first and utility-first design.
 
 - Utility classes for layout (margin, padding, flex, grid, etc)
 - **Variants** for visual styling (colours, borders, shadows)
 - Never hardcode colours — use semantic tokens (`bg-primary`, not `bg-blue-600`)
+- Centralised tokens in `app/globals.css`
+- Minimise custom CSS — prefer Tailwind utilities for maintainability and visual consistency
+- Light/dark mode implemented with `next-themes`
 
 **Good:** `<Button variant="secondary" className="w-full gap-2">`
 **Avoid:** `<Button className="bg-blue-600 text-white">`
@@ -133,9 +128,19 @@ Children passed to client components can still be server-rendered.
 
 Use `<Field />` component + TanStack Form + Zod for validation
 
+## Customisation Hierarchy
+
+When customising shadcn components, prefer approaches higher in this list:
+
+1. **className** — One-off layout/spacing; check `globals.css` for existing variables first
+2. **Existing props/variants** — Use what the primitive already offers
+3. **New props on primitive** — When exposing internal configuration (e.g., CSS variables) cleanly
+4. **New variants (CVA)** — When you need reusable predefined options
+5. **CSS variables in globals.css** — Only for values used across multiple components
+
 ## Component Architecture
 
-shadcn/ui uses a two-layer model. Understanding this prevents common mistakes.
+shadcn/ui uses a two-layer model: **primitives** define mechanisms, **compositions** provide values. Understanding this separation prevents common mistakes.
 
 ```text
 components/
@@ -209,38 +214,9 @@ function LeftSidebar() {
 }
 ```
 
-### Customisation Hierarchy
+## References
 
-When customising shadcn components, prefer approaches higher in this list:
+Read these when you need to look up component names, docs URLs, or recent API changes:
 
-1. **className** — One-off layout/spacing; check `globals.css` for existing variables first
-2. **Existing props/variants** — Use what the primitive already offers
-3. **New props on primitive** — When exposing internal configuration (e.g., CSS variables) cleanly
-4. **New variants (CVA)** — When you need reusable predefined options
-5. **CSS variables in globals.css** — Only for values used across multiple components
-
-### Key Principle
-
-**Props define mechanisms** (in primitives). **Values live at point of use** (in compositions).
-
-```tsx
-// Primitive: defines the mechanism
-function Sidebar({ width, ...props }: { width?: string }) {
-  return <div style={{ "--sidebar-width": width }} ... />
-}
-
-// Composition: provides the value
-function LeftSidebar() {
-  return <Sidebar width="13rem">...</Sidebar>
-}
-```
-
-This separation keeps primitives reusable and compositions focused.
-
-## Theming
-
-**Principles:**
-
-- Centralised tokens in `app/globals.css` — no hard-coded colours
-- Tailwind utilities only — no custom CSS
-- Light/dark mode implemented with `next-themes`
+- **Component index** — all available components with docs URLs: `references/llms-txt.md`
+- **Changelog summary** — CLI, registry, and component changes after May 2025 (beyond your training data): `references/changelog-summary.md`
