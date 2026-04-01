@@ -7,7 +7,7 @@ Best practices for building UIs with shadcn/ui components (Radix UI + Tailwind C
 | File | Description |
 | :--- | :---------- |
 | [SKILL.md](skills/shadcn-ui/SKILL.md) | Guidance on adding, customising, and architecting shadcn/ui components in Next.js |
-| [changelog-summary.md](skills/shadcn-ui/references/changelog-summary.md) | Key shadcn/ui changes from Jun 2025 onwards (beyond Opus 4.1 training data) |
+| [changelog-summary.md](skills/shadcn-ui/references/changelog-summary.md) | Key shadcn/ui changes from Jun 2025 onwards (beyond Opus 4.6 training data) |
 | [llms-txt.md](skills/shadcn-ui/references/llms-txt.md) | Full component index with docs URLs, extracted from ui.shadcn.com/llms.txt |
 | [.mcp.json](.mcp.json) | Ref MCP server config for reading shadcn/ui docs |
 
