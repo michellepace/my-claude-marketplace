@@ -4,7 +4,7 @@ description: What's new in Claude Code (eg 2.1.3 or 2.1 for all 2.1.*)
 user-invocable: true
 disable-model-invocation: true
 argument-hint: [version]
-allowed-tools: Agent(claude-code-guide), Read, Edit, Bash(claude --version), Bash(cat:*), Bash(column:*), Bash(echo:*), Bash(grep:*), Bash(head:*), Bash(npm view:*), Bash(paste:*), Bash(tac:*), Bash(tail:*), Bash(tr:*), Bash(wc:*), Bash(awk:*), Bash(curl:*), Bash(sed:*)
+allowed-tools: Read, Edit, Agent(claude-code-guide), Bash(claude --version), Bash(cat:*), Bash(column:*), Bash(cut:*), Bash(echo:*), Bash(grep:*), Bash(head:*), Bash(npm view:*), Bash(paste:*), Bash(tac:*), Bash(tail:*), Bash(tr:*), Bash(wc:*), Bash(awk:*), Bash(curl:*), Bash(sed:*)
 ---
 
 **version_provided**: $ARGUMENTS
