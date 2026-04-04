@@ -21,6 +21,11 @@
       "name": "find-my-font",
       "source": "./plugins/find-my-font",
       "description": "Research, classify, and recommend Google Font pairings using the Kupferschmid matrix and user criteria"
+    },
+    {
+      "name": "repo-utils",
+      "source": "./plugins/repo-utils",
+      "description": "Repository workflow utilities: commit messages, CodeRabbit reviews, and post-merge cleanup"
     }
   ]
 }

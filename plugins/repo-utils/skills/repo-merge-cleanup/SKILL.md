@@ -1,5 +1,9 @@
 ---
+name: repo-merge-cleanup
 description: Post-merge cleanup: switch to main, pull, delete merged branch, prune
+disable-model-invocation: true
+user-invocable: true
+allowed-tools: Bash(git branch:*), Bash(git checkout:*), Bash(git pull), Bash(git fetch:*), Bash(git branch -d:*), Bash(gh:*)
 ---
 
 ## Context
@@ -10,7 +14,7 @@ description: Post-merge cleanup: switch to main, pull, delete merged branch, pru
 
 ## Task
 
-Michelle has merged her PR and wants to clean up. Please:
+The PR has been merged, you need to cleanup:
 
 1. Switch to main branch
 2. Pull latest changes

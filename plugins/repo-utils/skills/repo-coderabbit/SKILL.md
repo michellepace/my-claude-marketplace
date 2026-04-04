@@ -1,12 +1,17 @@
 ---
+name: repo-coderabbit
 description: Evaluate CodeRabbit comment and recommend whether to action it
-argument-hint: <CodeRabbit comment link (https://github.com/username/repo/pull/3#discussion_r3019655555)>
+argument-hint: <CodeRabbit comment link (e.g https://github.com/username/repo/pull/3#discussion_r3019655555)>
+disable-model-invocation: true
+user-invocable: true
 allowed-tools: Read, Glob, Grep, Bash(gh api *), Bash(rm x_coderabbit_*)
 ---
 
 ## 1. Fetch
 
-Parse `$1` to extract owner, repo, PR number, and comment ID.
+Parse the PR review comment link from `$ARGUMENTS` to extract owner, repo, PR number, and comment ID. **If no link provided, STOP and ask for a CodeRabbit PR review comment link — include an example.**
+
+Then run:
 
 ```bash
 # strips analysis chain, includes diff context
