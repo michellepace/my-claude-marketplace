@@ -4,7 +4,7 @@ description: Evaluate CodeRabbit comment and recommend whether to action it
 argument-hint: <CodeRabbit comment link (e.g https://github.com/username/repo/pull/3#discussion_r3019655555)>
 disable-model-invocation: true
 user-invocable: true
-allowed-tools: Read, Glob, Grep, Bash(gh api *), Bash(rm x_coderabbit_*)
+allowed-tools: Read, Glob, Grep, Bash(gh api *), Bash(rm x_coderabbit_*.md)
 ---
 
 ## 1. Fetch

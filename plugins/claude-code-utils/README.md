@@ -47,9 +47,9 @@ Shows the state of Marketplaces and Plugins across all scopes, with a focus on w
 | :----- | :----- | :------------ | :-------------- | :------ |
 | claude-plugins-official | claude-md-management | project | my-app ⚠️ | unknown |
 | claude-plugins-official | plugin-dev | project | my-claude-marketplace | unknown |
-| my-claude-marketplace | claude-code-utils | user | *(all)* | 1.0.0 |
-| my-claude-marketplace | find-my-font | user | *(all)* | 2.0.3 |
-| my-claude-marketplace | nextjs-utils | project | devflow | 1.0.4 |
+| my-claude-marketplace | claude-code-utils | user | *(all)* | 1.0.1 |
+| my-claude-marketplace | find-my-font | user | *(all)* | 2.0.7 |
+| my-claude-marketplace | nextjs-utils | project | devflow | 1.0.5 |
 
 ⚠️ `claude-md-management` — install path no longer exists (stale entry).
 

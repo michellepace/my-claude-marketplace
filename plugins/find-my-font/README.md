@@ -76,5 +76,5 @@ sudo apt install librsvg2-bin
 
 ## Future Improvements
 
-- **Tighten recommendation output** — its very verbose, adjust [`example-output.md`](skills/fmf-0-pair-my-font/references/example-output.md)
+- **Tighten recommendation output** — it's very verbose, adjust [`example-output.md`](skills/fmf-0-pair-my-font/references/example-output.md)
 - **Python SVG generator** — a script that takes font card data and plots them onto the SVG template (cards and connectors), replacing manual SVG editing by Claude

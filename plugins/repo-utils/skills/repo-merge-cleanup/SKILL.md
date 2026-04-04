@@ -14,7 +14,7 @@ allowed-tools: Bash(git branch:*), Bash(git checkout:*), Bash(git pull), Bash(gi
 
 ## Task
 
-The PR has been merged, you need to cleanup:
+The PR has been merged, you need to clean up:
 
 1. Switch to main branch
 2. Pull latest changes
