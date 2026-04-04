@@ -14,7 +14,7 @@ Copies also live in `~/projects/useful/`.
 
 A Claude Code plugin with an **orchestrator-worker pattern**:
 
-- **4 skills**: `find-my-font` (orchestrator) -> spawns `curate-font`, `classify-font-matrix`, `create-font-matrix-svg` in parallel
+- **4 skills**: `fmf-0-pair-my-font` (orchestrator) -> spawns `fmf-1-curate-font-google`, `fmf-2-classify-font-matrix`, `fmf-3-create-font-matrix-svg` in parallel
 - **Kupferschmid 3-layer classification**: Skeleton (Dynamic/Rational/Geometric) -> Flesh (contrast+serif combos) -> Skin (fine details), organized in a 3x4 matrix
 - **Pairing rules**: same column = harmonious, diagonal = contrasting, same row/cell = avoid
 - **Hard dependency on Ref MCP** (`https://api.ref.tools/mcp`) for fetching Google Fonts data (Google Fonts is a JS SPA that WebFetch can't scrape)
@@ -51,7 +51,7 @@ A Claude Code plugin with an **orchestrator-worker pattern**:
 
 The Agent SDK can **absolutely** replicate your plugin's orchestrator-worker pattern:
 
-- **Subagents** map directly to your worker skills (`curate-font`, `classify-font-matrix`, `create-font-matrix-svg`)
+- **Subagents** map directly to your worker skills (`fmf-1-curate-font-google`, `fmf-2-classify-font-matrix`, `fmf-3-create-font-matrix-svg`)
 - **MCP support** is built in -- your Ref MCP server (`https://api.ref.tools/mcp`) can be passed via `mcpServers`
 - **Custom tools** via `@tool` decorator (Python) or `betaZodTool` (TypeScript)
 - **Hooks** for logging, auditing, or intercepting tool calls

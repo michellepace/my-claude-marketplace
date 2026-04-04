@@ -6,56 +6,32 @@
   </a>
 </div>
 
-## Plugins
+## Plugins In This Marketplace
 
-- [for-nextjs](./plugins/for-nextjs) — Next.js development (shadcn/ui + docs management)
-- [claude-code-care](./plugins/claude-code-care) — Claude Code meta-utilities
+- [nextjs-utils](./plugins/nextjs-utils) — Next.js development (shadcn/ui + docs management)
+- [claude-code-utils](./plugins/claude-code-utils) — Claude Code meta-utilities
 - [find-my-font](./plugins/find-my-font) — Font pairing with the Kupferschmid matrix
+- [repo-utils](./plugins/repo-utils) — Repository workflow utilities (commits, CodeRabbit, merge cleanup)
 
-## Usage
+## Installation
 
-**Add this marketplace:**
+First, add the marketplace:
 
-```shell
+```
 /plugin marketplace add michellepace/my-claude-marketplace
 ```
 
-Then use `/plugin` to enable, disable, update, or uninstall plugins at your preferred [scope](#appendix-1-plugin-scope).
+Then install a plugin:
 
-Mention the plugin by name in your prompt, or run its slash command directly:
-
-```bash
-/claude-code-care:cc-whats-new this week
+```
+/plugin install {plugin-name}@my-claude-marketplace
 ```
 
-*Tip: Claude Code can auto-invoke matching skills, but explicitly naming the plugin is more reliable.*
+Or browse available plugins, run `/plugin` > Marketplace > Select "my-claude-marketplace" > Browse Plugins > Install...
 
-## Configuring Plugins at Project Level
+---
 
-*Learn more: [Plugins and Marketplaces explained](https://ailearnlog.com/claude-code-skills-plugins-marketplaces/).*
-
-Add this to `.claude/settings.json` to share plugin configuration with your team:
-
-```json
-{
-  "extraKnownMarketplaces": {
-    "my-claude-marketplace": {
-      "source": {
-        "source": "github",
-        "repo": "michellepace/my-claude-marketplace"
-      }
-    }
-  },
-
-  "enabledPlugins": {
-    "for-nextjs@my-claude-marketplace": true,
-    "claude-code-care@my-claude-marketplace": true,
-    "find-my-font@my-claude-marketplace": true
-  }
-}
-```
-
-## Appendix 1: Plugin Scope
+## Appendix 1: About Plugin Scope
 
 Plugins can be enabled at four scope levels. Higher scopes override lower ones (managed > local > project > user).
 
@@ -66,14 +42,14 @@ Plugins can be enabled at four scope levels. Higher scopes override lower ones (
 | **project** | `.claude/settings.json` | All collaborators on the repo | Yes (committed to git) |
 | **user** | `~/.claude/settings.json` | You, across all projects | No |
 
-*`--plugin-dir` provides a temporary session override that takes precedence over all scopes except managed.*
-
 ## Appendix 2: Developing Plugins
 
 Test a plugin locally without installing:
 
 ```shell
-claude --plugin-dir ~/projects/my-claude-marketplace/plugins/claude-code-care
+claude --plugin-dir ~/projects/my-claude-marketplace/plugins/claude-code-utils
 ```
+
+`--plugin-dir` provides a temporary session override that takes precedence over all scopes except managed.
 
 Edit your files, restart Claude Code, test. No install/uninstall needed.
