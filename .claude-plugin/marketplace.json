@@ -8,9 +8,9 @@
   },
   "plugins": [
     {
-      "name": "shadcn-ui",
-      "source": "./plugins/shadcn-ui",
-      "description": "Guide for implementing shadcn/ui - accessible UI components built with Radix UI and Tailwind CSS."
+      "name": "for-nextjs",
+      "source": "./plugins/for-nextjs",
+      "description": "Next.js development skills: shadcn/ui best practices and official docs management"
     },
     {
       "name": "claude-code-care",

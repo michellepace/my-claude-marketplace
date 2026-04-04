@@ -8,7 +8,7 @@
 
 ## Plugins
 
-- [shadcn-ui](./plugins/shadcn-ui) — Shadcn best practices
+- [for-nextjs](./plugins/for-nextjs) — Next.js development (shadcn/ui + docs management)
 - [claude-code-care](./plugins/claude-code-care) — Claude Code meta-utilities
 - [find-my-font](./plugins/find-my-font) — Font pairing with the Kupferschmid matrix
 
@@ -48,7 +48,7 @@ Add this to `.claude/settings.json` to share plugin configuration with your team
   },
 
   "enabledPlugins": {
-    "shadcn-ui@my-claude-marketplace": true,
+    "for-nextjs@my-claude-marketplace": true,
     "claude-code-care@my-claude-marketplace": true,
     "find-my-font@my-claude-marketplace": true
   }
