@@ -148,7 +148,7 @@ def verify_index(content: str) -> bool:
         sys.exit(1)
 
     disk_files = {
-        str(p.relative_to(docs_dir))
+        p.relative_to(docs_dir).as_posix()
         for p in docs_dir.rglob("*.mdx")
         if p.name != "index.mdx"
     }
