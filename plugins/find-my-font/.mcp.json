@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "Ref": {
+    "Ref-find-my-font": {
       "type": "http",
       "url": "https://api.ref.tools/mcp",
       "headers": {

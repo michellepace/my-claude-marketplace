@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "Ref": {
+    "Ref-for-nextjs": {
       "type": "http",
       "url": "https://api.ref.tools/mcp",
       "headers": {
