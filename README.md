@@ -8,12 +8,14 @@
 
 ## Plugins In This Marketplace
 
-- [nextjs-utils](./plugins/nextjs-utils) — Next.js development (shadcn/ui + docs management)
-- [claude-code-utils](./plugins/claude-code-utils) — Claude Code meta-utilities
-- [find-my-font](./plugins/find-my-font) — Font pairing with the Kupferschmid matrix
-- [repo-utils](./plugins/repo-utils) — Repository workflow utilities (commits, CodeRabbit, merge cleanup)
+| Plugin | Description |
+| :----- | :---------- |
+| [nextjs-utils](./plugins/nextjs-utils) | Download and index all Nextjs docs. Shadcn best-practices. |
+| [claude-code-utils](./plugins/claude-code-utils) | Show installed plugins. Explain whats new in Claude Code. |
+| [find-my-font](./plugins/find-my-font) | Font pairing with the Kupferschmid matrix |
+| [repo-utils](./plugins/repo-utils) | Basic repo workflows (commits, CodeRabbit, merge cleanup) |
 
-## Installation
+## Installation - User Scope
 
 First, add the marketplace:
 
@@ -29,11 +31,41 @@ Then install a plugin:
 
 Or browse available plugins, run `/plugin` > Marketplace > Select "my-claude-marketplace" > Browse Plugins > Install...
 
+## Installation - Project Scope
+
+When you install a plugin at project scope (via `/plugin` > "Install for all collaborators"), Claude Code adds the plugin to [.claude/settings.json](claude/settings.json) under `enabledPlugins` — but it does **not** record where the marketplace comes from. Collaborators who clone the repo won't be able to resolve the marketplace source.
+
+To fix this, register the marketplace at project scope:
+
+```
+claude plugin marketplace add michellepace/my-claude-marketplace --scope project
+```
+
+This writes an `extraKnownMarketplaces` entry to [.claude/settings.json](claude/settings.json), so collaborators are automatically prompted to install the marketplace when they trust the repo folder:
+
+```json
+{
+  "enabledPlugins": {
+    "repo-utils@my-claude-marketplace": true
+  },
+  "extraKnownMarketplaces": {
+    "my-claude-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "michellepace/my-claude-marketplace"
+      }
+    }
+  }
+}
+```
+
 ---
 
-## Appendix 1: About Plugin Scope
+## Appendix
 
-Plugins can be enabled at four scope levels. Higher scopes override lower ones (managed > local > project > user).
+### 1. About Plugin Scope
+
+Plugins can be enabled at four scope levels. The override order (highest to lowest) is: managed > local > project > user. Command-line arguments like `--plugin-dir` provide temporary session overrides that sit below managed but above all other scopes.
 
 | Scope | Settings File | Who it affects | Shared with team? |
 | :---- | :------------ | :------------- | :---------------- |
@@ -42,7 +74,7 @@ Plugins can be enabled at four scope levels. Higher scopes override lower ones (
 | **project** | `.claude/settings.json` | All collaborators on the repo | Yes (committed to git) |
 | **user** | `~/.claude/settings.json` | You, across all projects | No |
 
-## Appendix 2: Developing Plugins
+### 2. Developing Plugins
 
 Test a plugin locally without installing:
 
@@ -52,4 +84,4 @@ claude --plugin-dir ~/projects/my-claude-marketplace/plugins/claude-code-utils
 
 `--plugin-dir` provides a temporary session override that takes precedence over all scopes except managed.
 
-Edit your files, restart Claude Code, test. No install/uninstall needed.
+Edit your files, run `/reload-plugins` (or restart Claude Code), test. No install/uninstall needed.

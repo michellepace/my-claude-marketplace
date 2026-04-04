@@ -22,6 +22,20 @@
   "enabledPlugins": {
     "plugin-dev@claude-plugins-official": false,
     "skill-creator@claude-plugins-official": false,
-    "find-my-font@my-claude-marketplace": false
+    "repo-utils@my-claude-marketplace": true
+  },
+  "extraKnownMarketplaces": {
+    "claude-plugins-official": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/claude-plugins-official"
+      }
+    },
+    "my-claude-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "michellepace/my-claude-marketplace"
+      }
+    }
   }
 }
