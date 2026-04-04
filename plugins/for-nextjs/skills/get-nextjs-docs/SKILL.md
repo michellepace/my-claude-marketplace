@@ -37,10 +37,13 @@ Move the docs into `.nextjs-docs/` so everything is self-contained, then fix the
 
 ```bash
 mv .next-docs .nextjs-docs/
-grep -q 'root: ./.next-docs' .nextjs-docs/INDEX.md \
-  && sed -i 's|root: ./.next-docs|root: ./.nextjs-docs/.next-docs|' .nextjs-docs/INDEX.md \
-  && echo '✅ Success: INDEX.md root path updated' \
-  || echo '❌ Error: Could not find "root: ./.next-docs" in INDEX.md — Read the file, find the root: segment, and Edit the path to ./.nextjs-docs/.next-docs'
+if grep -q 'root: ./.next-docs' .nextjs-docs/INDEX.md; then
+  sed -i.bak 's|root: ./.next-docs|root: ./.nextjs-docs/.next-docs|' .nextjs-docs/INDEX.md \
+    && rm -f .nextjs-docs/INDEX.md.bak \
+    && echo '✅ Success: INDEX.md root path updated'
+else
+  echo '❌ Error: Could not find "root: ./.next-docs" in INDEX.md — Read the file, find the root: segment, and Edit the path to ./.nextjs-docs/.next-docs'
+fi
 ```
 
 If a `.markdownlint-cli2.yaml` file exists at the project root, ensure `.nextjs-docs/` is listed under `ignores`.
