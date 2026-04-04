@@ -83,12 +83,6 @@ Replace `<dir1>`, `<dir2>`, etc. with the actual directory names (e.g. `02-pages
 
 ## Step 6: Summary report
 
-Report what was done including details of:
-- Whether `.nextjs-docs/` was cleaned and regenerated, or created fresh
-- Consolidation of `.next-docs/` into `.nextjs-docs/`
-- Which directories were removed and why
-- If `INDEX.md` was stripped of entries for removed directories
-- Verification result (index in sync, or discrepancies found)
-- Anything else that is notable to the user
+Report on what was done. Make it easy for the user to understand what you did, why it matters, and the ending state. Use emojis and be clear.
 
-Structure the report for readability and use emojis.
+Thinking points: (🧹Clean slate, 📥Downloaded, 🗑️Trim docs and index, ✅checked, anything else the user would want to know).
