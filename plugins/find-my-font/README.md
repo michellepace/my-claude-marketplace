@@ -60,7 +60,7 @@ All four skills are independently invocable.
 
 ## Matrix Visualisation
 
-When requested, the skill copies the SVG template and edits it to place the analysed fonts on the matrix with colour-coded cards and directional arrows showing each pairing relationship. This is the image shown above. If it is not requested, then a terminal text equivalent is presented such as in [`example-output.md`](skills/fmf-0-pair-my-font/references/example-output.md)
+When requested, the skill copies the SVG template and edits it to place the analysed fonts on the matrix with colour-coded cards and directional arrows showing each pairing relationship. This is the image shown above. If it is not requested, then a terminal text equivalent is presented, as shown in [`example-output.md`](skills/fmf-0-pair-my-font/references/example-output.md)
 
 ## Dependencies
 
