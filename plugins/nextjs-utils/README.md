@@ -2,6 +2,16 @@
 
 Next.js development skills: shadcn/ui component best practices and official documentation management.
 
+To install this plugin:
+
+```
+# 1. Add marketplace if not already
+/plugin marketplace add michellepace/my-claude-marketplace
+
+# 2. Install this plugin
+/plugin install nextjs-utils@my-claude-marketplace
+```
+
 ## What's Inside - Skills
 
 | Command | What it does |

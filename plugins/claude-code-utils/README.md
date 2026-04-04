@@ -1,6 +1,16 @@
-# claude-code-utils
+# Plugin: `claude-code-utils`
 
 Claude Code meta-utilities: release notes and plugin status.
+
+To install this plugin:
+
+```
+# 1. Add marketplace if not already
+/plugin marketplace add michellepace/my-claude-marketplace
+
+# 2. Install this plugin
+/plugin install claude-code-utils@my-claude-marketplace
+```
 
 ## 🟣 What's Inside
 
