@@ -1,10 +1,16 @@
 ---
 name: cc-what-plugins
 description: Show active plugins for this project plus all installed marketplaces and plugins
+context: fork
+agent: general-purpose
 user-invocable: true
 disable-model-invocation: true
-allowed-tools: Read(*)
-context: fork
+allowed-tools:
+  - Bash(ls *)
+  - Bash(test -d *)
+  - Glob
+  - Grep
+  - Read
 ---
 
 # Claude Code Marketplaces and Plugins

@@ -4,9 +4,15 @@ description: Classify a font using the Kupferschmid matrix (skeleton, flesh, ski
 argument-hint: "fontname, e.g. Montserrat — optionally include image path"
 context: fork
 agent: general-purpose
-disable-model-invocation: false
 user-invocable: true
-allowed-tools: Read, Write, Edit, Grep, Glob, Bash(cp *)
+disable-model-invocation: false
+allowed-tools:
+  - Bash(cp *)
+  - Edit
+  - Glob
+  - Grep
+  - Read
+  - Write
 ---
 
 # Classify Font Matrix

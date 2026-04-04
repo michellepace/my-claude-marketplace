@@ -2,9 +2,16 @@
 name: repo-coderabbit
 description: Evaluate CodeRabbit comment and recommend whether to action it
 argument-hint: <CodeRabbit comment link (e.g https://github.com/username/repo/pull/3#discussion_r3019655555)>
-disable-model-invocation: true
 user-invocable: true
-allowed-tools: Read, Glob, Grep, Bash(gh api *), Bash(rm x_coderabbit_*.md)
+disable-model-invocation: true
+allowed-tools:
+  - Bash(gh api graphql *)
+  - Bash(gh api repos/*/pulls/*/comments *)
+  - Bash(gh api repos/*/pulls/comments/*)
+  - Bash(rm x_coderabbit_*.md)
+  - Glob
+  - Grep
+  - Read
 ---
 
 ## 1. Fetch

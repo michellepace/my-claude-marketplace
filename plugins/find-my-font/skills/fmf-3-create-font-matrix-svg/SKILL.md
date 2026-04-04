@@ -4,9 +4,15 @@ description: Create an SVG visualization of the Kupferschmid font matrix showing
 argument-hint: "primary:Lora, candidates: Jost, Source Sans 3 — include matrix positions and relationships"
 context: fork
 agent: general-purpose
-disable-model-invocation: false
 user-invocable: true
-allowed-tools: Read, Write, Edit, Glob, Bash(rsvg-convert *), Bash(cp *)
+disable-model-invocation: false
+allowed-tools:
+  - Bash(cp *)
+  - Bash(rsvg-convert *)
+  - Edit
+  - Glob
+  - Read
+  - Write
 ---
 
 # Create SVG Matrix

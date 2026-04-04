@@ -1,9 +1,21 @@
 ---
 name: nextjs-docs-get
 description: Download and trim official Next.js documentation for Claude Code reference usage.
-disable-model-invocation: true
 user-invocable: true
-allowed-tools: [Read, Edit, Glob, Grep, Bash(rm:*), Bash(mkdir:*), Bash(mv:*), Bash(tree:*), Bash(npx @next/codemod*), Bash(uv:*), Bash(grep:*), Bash(sed:*)]
+disable-model-invocation: true
+allowed-tools:
+  - Bash(grep *)
+  - Bash(mkdir -p .nextjs-docs)
+  - Bash(mv .next-docs .nextjs-docs/)
+  - Bash(npx @next/codemod*)
+  - Bash(rm *)
+  - Bash(sed *)
+  - Bash(tree *)
+  - Bash(uv run *)
+  - Edit
+  - Glob
+  - Grep
+  - Read
 ---
 
 # Get Next.js Docs

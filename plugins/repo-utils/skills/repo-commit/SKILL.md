@@ -2,9 +2,14 @@
 name: repo-commit
 description: Create git commit message following template
 argument-hint: "[additional instructions]"
-disable-model-invocation: true
 user-invocable: true
-allowed-tools: Bash(git branch:*), Bash(git diff:*), Bash(git log:*), Bash(git status)
+disable-model-invocation: true
+allowed-tools:
+  - Bash(git branch *)
+  - Bash(git diff *)
+  - Bash(git log *)
+  - Bash(git status)
+  - Read
 ---
 
 # Create a clear Git commit message for **staged** changes

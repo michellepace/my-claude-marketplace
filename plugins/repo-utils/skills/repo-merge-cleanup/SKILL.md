@@ -1,9 +1,18 @@
 ---
 name: repo-merge-cleanup
 description: Post-merge cleanup: switch to main, pull, delete merged branch, prune
-disable-model-invocation: true
 user-invocable: true
-allowed-tools: Bash(git branch:*), Bash(git checkout:*), Bash(git pull), Bash(git fetch:*), Bash(git branch -d:*), Bash(gh:*)
+disable-model-invocation: true
+allowed-tools:
+  - Bash(gh pr status)
+  - Bash(gh pr view *)
+  - Bash(gh repo view *)
+  - Bash(git branch *)
+  - Bash(git branch)
+  - Bash(git checkout *)
+  - Bash(git fetch *)
+  - Bash(git pull)
+  - Bash(git status)
 ---
 
 ## Context
@@ -14,7 +23,7 @@ allowed-tools: Bash(git branch:*), Bash(git checkout:*), Bash(git pull), Bash(gi
 
 ## Task
 
-The PR has been merged, you need to clean up:
+The PR has been merged on GitHub, you need to clean up:
 
 1. Switch to main branch
 2. Pull latest changes

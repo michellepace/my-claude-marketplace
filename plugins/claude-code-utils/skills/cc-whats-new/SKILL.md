@@ -1,10 +1,28 @@
 ---
 name: cc-whats-new
 description: What's new in Claude Code (eg 2.1.3 or 2.1 for all 2.1.*)
+argument-hint: [version]
 user-invocable: true
 disable-model-invocation: true
-argument-hint: [version]
-allowed-tools: Read, Edit, Agent(claude-code-guide), Bash(claude --version), Bash(cat:*), Bash(column:*), Bash(cut:*), Bash(echo:*), Bash(grep:*), Bash(head:*), Bash(npm view:*), Bash(paste:*), Bash(tac:*), Bash(tail:*), Bash(tr:*), Bash(wc:*), Bash(awk:*), Bash(curl:*), Bash(sed:*)
+allowed-tools:
+  - Agent(claude-code-guide)
+  - Bash(awk *)
+  - Bash(cat *)
+  - Bash(claude --version)
+  - Bash(column *)
+  - Bash(curl *)
+  - Bash(cut *)
+  - Bash(echo *)
+  - Bash(grep *)
+  - Bash(head *)
+  - Bash(npm view *)
+  - Bash(sed *)
+  - Bash(tac *)
+  - Bash(tail *)
+  - Bash(tr *)
+  - Bash(wc *)
+  - Edit
+  - Read
 ---
 
 **version_provided**: $ARGUMENTS

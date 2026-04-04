@@ -4,9 +4,14 @@ description: Research and document a Google Font — creates a structured fontna
 argument-hint: "fontname, e.g. Montserrat"
 context: fork
 agent: general-purpose
-disable-model-invocation: false
 user-invocable: true
-allowed-tools: Read, Write, Edit, Grep, ref_read_url
+disable-model-invocation: false
+allowed-tools:
+  - Edit
+  - Grep
+  - Read
+  - Write
+  - mcp__Ref__read_url
 ---
 
 # Curate Font

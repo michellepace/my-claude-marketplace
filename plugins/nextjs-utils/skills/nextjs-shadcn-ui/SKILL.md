@@ -3,7 +3,12 @@ name: nextjs-shadcn-ui
 description: Best practices for building UIs with shadcn/ui components (Radix UI + Tailwind CSS). Use when adding and customising components, or architecting component structures in Next.js. Covers modifying components/ui/ primitives, CVA variants, reusable compositions, a customisation decision framework, and recent summarised changelog for new functionality.
 user-invocable: true
 disable-model-invocation: false
-allowed-tools: Read, Grep, Glob, ref_read_url, ref_search_documentation
+allowed-tools:
+  - Glob
+  - Grep
+  - Read
+  - mcp__Ref__read_url
+  - mcp__Ref__search_documentation
 ---
 
 # shadcn/ui Skill

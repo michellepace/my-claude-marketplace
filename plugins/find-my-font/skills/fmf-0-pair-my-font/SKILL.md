@@ -4,7 +4,14 @@ description: Research, classify, and recommend Google Font pairings using the Ku
 argument-hint: "primary:Lora, candidates: merriweather.jpg and Open Sans. I want quiet luxury."
 user-invocable: true
 disable-model-invocation: false
-allowed-tools: Read, Grep, Glob, Agent, Skill(find-my-font:fmf-1-curate-font-google), Skill(find-my-font:fmf-2-classify-font-matrix), Skill(find-my-font:fmf-3-create-font-matrix-svg)
+allowed-tools:
+  - Agent
+  - Glob
+  - Grep
+  - Read
+  - Skill(find-my-font:fmf-1-curate-font-google)
+  - Skill(find-my-font:fmf-2-classify-font-matrix)
+  - Skill(find-my-font:fmf-3-create-font-matrix-svg)
 ---
 
 # Find My Font
