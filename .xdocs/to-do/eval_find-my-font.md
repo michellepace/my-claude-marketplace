@@ -46,10 +46,10 @@ The plugin-dev documentation defines the distinction clearly:
 - **Agents** = autonomous subprocesses that Claude spawns automatically when it detects a matching scenario. They run independently with their own model/tools and return a result.
 - **Skills** = knowledge modules loaded into Claude's context. They teach Claude how to do something; Claude does the work itself.
 
-Your workers (`curate-font`, `classify-font-matrix`, `create-font-matrix-svg`) are explicitly orchestrated by `find-my-font` — the orchestrator decides *which* fonts to curate and classify based on user input. Auto-triggering (the defining feature of agents) would be wrong here because:
+Your workers (`fmf-1-curate-font-google`, `fmf-2-classify-font-matrix`, `fmf-3-create-font-matrix-svg`) are explicitly orchestrated by `fmf-0-pair-my-font` — the orchestrator decides *which* fonts to curate and classify based on user input. Auto-triggering (the defining feature of agents) would be wrong here because:
 
-- You don't want `curate-font` firing every time someone mentions a font name
-- You don't want `classify-font-matrix` running without the orchestrator having confirmed the brief
+- You don't want `fmf-1-curate-font-google` firing every time someone mentions a font name
+- You don't want `fmf-2-classify-font-matrix` running without the orchestrator having confirmed the brief
 - The orchestrator needs to control the sequence and parallelism
 
 Additionally, skills can be invoked standalone by the user (e.g., just curate a font without the full pairing workflow), which is a useful bonus.
@@ -62,8 +62,8 @@ Additionally, skills can be invoked standalone by the user (e.g., just curate a 
 |:--|:--|
 | Should any skill be an agent? | No — orchestrated workers shouldn't auto-trigger |
 | Is the orchestrator-worker split logical? | Yes — each worker has a single clear responsibility |
-| Are responsibilities cleanly separated? | Check — `curate-font` and `classify-font-matrix` both write to the same font profile files. Verify they don't conflict. |
-| Is MCP as hard dependency acceptable? | Yes for curate-font (Google Fonts is JS SPA, can't WebFetch). The plugin should degrade gracefully if MCP is unavailable for the other skills. |
+| Are responsibilities cleanly separated? | Check — `fmf-1-curate-font-google` and `fmf-2-classify-font-matrix` both write to the same font profile files. Verify they don't conflict. |
+| Is MCP as hard dependency acceptable? | Yes for fmf-1-curate-font-google (Google Fonts is JS SPA, can't WebFetch). The plugin should degrade gracefully if MCP is unavailable for the other skills. |
 | Is `font-profiles/` at plugin root correct? | Worth checking — plugin-dev conventions suggest data could live inside a skill directory. But shared data used by multiple skills at plugin root is reasonable. |
 
 ---
@@ -97,9 +97,9 @@ Run the skill-reviewer agent on each of the 4 skills. This evaluates:
 
 **How**: Ask Claude to review each skill. Do them one at a time so you can discuss findings:
 
-> *"Review the skill at plugins/find-my-font/skills/curate-font"*
+> *"Review the skill at plugins/find-my-font/skills/fmf-1-curate-font-google"*
 
-Repeat for `classify-font-matrix`, `create-font-matrix-svg`, and `find-my-font`.
+Repeat for `fmf-2-classify-font-matrix`, `fmf-3-create-font-matrix-svg`, and `fmf-0-pair-my-font`.
 
 **Expected output**: A structured review per skill with Pass / Needs Improvement / Needs Major Revision, plus prioritised recommendations.
 
@@ -111,14 +111,14 @@ This is the heaviest step. Use it only for skills where you want to verify *corr
 
 | Skill | Worth functional testing? | Why |
 |:--|:--|:--|
-| **curate-font** | Yes | It fetches live data via MCP and writes structured profiles. You want to verify output completeness and format. |
-| **classify-font-matrix** | Yes | It makes subjective classification judgments. You want to verify the Kupferschmid framework is applied correctly. |
-| **find-my-font** | Maybe | The orchestrator's value depends on its workers. Test the workers first, then test the orchestrator if you want to verify the end-to-end pairing recommendations. |
-| **create-font-matrix-svg** | Low priority | SVG generation is more visual — harder to write assertions for. Manual inspection may be more practical. |
+| **fmf-1-curate-font-google** | Yes | It fetches live data via MCP and writes structured profiles. You want to verify output completeness and format. |
+| **fmf-2-classify-font-matrix** | Yes | It makes subjective classification judgments. You want to verify the Kupferschmid framework is applied correctly. |
+| **fmf-0-pair-my-font** | Maybe | The orchestrator's value depends on its workers. Test the workers first, then test the orchestrator if you want to verify the end-to-end pairing recommendations. |
+| **fmf-3-create-font-matrix-svg** | Low priority | SVG generation is more visual — harder to write assertions for. Manual inspection may be more practical. |
 
 **How**: Invoke the skill-creator workflow:
 
-> *"I have an existing skill at plugins/find-my-font/skills/curate-font that I want to evaluate and improve"*
+> *"I have an existing skill at plugins/find-my-font/skills/fmf-1-curate-font-google that I want to evaluate and improve"*
 
 The skill-creator will guide you through: writing test prompts -> running evals -> grading -> reviewing in the viewer -> iterating.
 

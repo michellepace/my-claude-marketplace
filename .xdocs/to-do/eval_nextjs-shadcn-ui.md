@@ -1,4 +1,6 @@
-# Evaluating Plugin: `plugins/shadcn-ui` Eval Examples
+# Evaluating Plugin Skill: `nextjs-shadcn-ui` Eval Examples
+
+Location: [nextjs-utils](../../plugins/nextjs-utils):[nextjs-shadcn-ui](../../plugins/nextjs-utils/skills/nextjs-shadcn-ui)
 
 ## Use of Anthropic Skills
 
@@ -11,7 +13,7 @@ Outputs a report with Critical / Warning / Pass categories.
 **Instruction to give Claude Code:**
 
 ```markdown
-Validate my plugin at `plugins/shadcn-ui/`. Run the Plugin Validator agent and give me the full report. Fix any Critical issues automatically; list Warnings for me to decide on.
+Validate my plugin at `plugins/nextjs-utils/`. Run the Plugin Validator agent and give me the full report. Fix any Critical issues automatically; list Warnings for me to decide on.
 ```
 
 ---
@@ -29,7 +31,7 @@ Outputs a rating: Pass / Needs Improvement / Needs Major Revision.
 **Instruction to give Claude Code:**
 
 ```markdown
-Review the skill at `plugins/shadcn-ui/skills/shadcn-ui/SKILL.md` using the Skill Reviewer agent. DO NOT optimise description triggers, focus on whether the content is well-organised, clear, and concise - the target audience is Claude Code. Give me the full review with the rating and prioritised recommendations.
+Review the skill at `plugins/nextjs-utils/skills/nextjs-shadcn-ui/SKILL.md` using the Skill Reviewer agent. DO NOT optimise description triggers, focus on whether the content is well-organised, clear, and concise - the target audience is Claude Code. Give me the full review with the rating and prioritised recommendations.
 ```
 
 ### Step 3 (optional): Eval & Optimise Triggering (skill-creator)
@@ -46,7 +48,7 @@ Only do this if Step 2 flagged description or triggering issues.
 **Instruction to give Claude Code:**
 
 ```markdown
-Use the skill-creator to evaluate and optimise the shadcn-ui skill at `plugins/shadcn-ui/skills/shadcn-ui/SKILL.md`. Start by creating test cases, then run the evaluation pipeline. Do not optimise the description.
+Use the skill-creator to evaluate and optimise the nextjs-shadcn-ui skill at `plugins/nextjs-utils/skills/nextjs-shadcn-ui/SKILL.md`. Start by creating test cases, then run the evaluation pipeline. Do not optimise the description.
 ```
 
 ---

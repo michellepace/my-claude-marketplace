@@ -5,8 +5,8 @@ Research, classify, and recommend Google Font pairings using the [Kupferschmid f
 Give it a primary body font, optional candidates, and a mood or criteria. It fetches font data, classifies each font on the matrix, evaluates pairings, and recommends fonts that match your brief.
 
 <div align="center">
-  <a href="skills/create-font-matrix-svg/references/kupferschmid-template.svg" target="_blank">
-    <img src="skills/create-font-matrix-svg/references/kupferschmid-template.svg" alt="Kupferschmid font matrix showing Lora as primary with Alegreya Sans and Open Sans as harmonious same-column pairings, Raleway as a contrasting diagonal pairing, and Cormorant Garamond marked as avoid." width="700">
+  <a href="skills/fmf-3-create-font-matrix-svg/references/kupferschmid-template.svg" target="_blank">
+    <img src="skills/fmf-3-create-font-matrix-svg/references/kupferschmid-template.svg" alt="Kupferschmid font matrix showing Lora as primary with Alegreya Sans and Open Sans as harmonious same-column pairings, Raleway as a contrasting diagonal pairing, and Cormorant Garamond marked as avoid." width="700">
   </a>
   <p><em>Example: Lora (primary) with four candidates classified by matrix relationship — green for harmonious (same column), purple for contrasting (diagonal), red for avoid (same row/cell).</em></p>
 </div>
@@ -15,10 +15,10 @@ Give it a primary body font, optional candidates, and a mood or criteria. It fet
 
 | Command | What it does |
 |---|---|
-| `/find-my-font` | Orchestrator — parses brief, launches workers, evaluates pairings, outputs recommendations |
-| `/find-my-font:curate-font` | Fetches font data from Google Fonts and writes a structured font profile |
-| `/find-my-font:classify-font-matrix` | Examines a specimen image and classifies the font on the Kupferschmid matrix |
-| `/find-my-font:create-font-matrix-svg` | Creates an SVG visualisation with font cards and pairing arrows |
+| `/fmf-0-pair-my-font` | Orchestrator — parses brief, launches workers, evaluates pairings, outputs recommendations |
+| `/fmf-1-curate-font-google` | Fetches font data from Google Fonts and writes a structured font profile |
+| `/fmf-2-classify-font-matrix` | Examines a specimen image and classifies the font on the Kupferschmid matrix |
+| `/fmf-3-create-font-matrix-svg` | Creates an SVG visualisation with font cards and pairing arrows |
 
 All four skills are independently invocable.
 
@@ -26,31 +26,31 @@ All four skills are independently invocable.
 
 **Orchestrator:**
 
-- `/find-my-font` primary: Lora, candidates: Jost, Open Sans. I want quiet luxury.
-- `/find-my-font` primary: Merriweather Sans @merriweather-sans.jpg, constrain to Shopify fonts
-- `/find-my-font` primary: Newsreader (recommend alternatives for editorial blog)
-- `/find-my-font` primary: Lora, candidates: Cormorant Garamond, Jost. Clean luxury. Make an SVG.
+- `/fmf-0-pair-my-font` primary: Lora, candidates: Jost, Open Sans. I want quiet luxury.
+- `/fmf-0-pair-my-font` primary: Merriweather Sans @merriweather-sans.jpg, constrain to Shopify fonts
+- `/fmf-0-pair-my-font` primary: Newsreader (recommend alternatives for editorial blog)
+- `/fmf-0-pair-my-font` primary: Lora, candidates: Cormorant Garamond, Jost. Clean luxury. Make an SVG.
 
 **Individual skills:**
 
-- `/find-my-font:curate-font` Lora
-- `/find-my-font:classify-font-matrix` Raleway
-- `/find-my-font:create-font-matrix-svg` primary: Lora (Dynamic, Contrast Serif). Candidates: Jost (Geometric, Linear Sans) — diagonal contrasting pair; Source Sans 3 (Dynamic, Linear Sans) — same column harmonious pair.
+- `/fmf-1-curate-font-google` Lora
+- `/fmf-2-classify-font-matrix` Raleway
+- `/fmf-3-create-font-matrix-svg` primary: Lora (Dynamic, Contrast Serif). Candidates: Jost (Geometric, Linear Sans) — diagonal contrasting pair; Source Sans 3 (Dynamic, Linear Sans) — same column harmonious pair.
 
 ## Reference Files
 
 | File | Used By Skill(s) | Purpose / Explanation |
 |---|---|---|
-| [`kupferschmid-matrix.md`](references/kupferschmid-matrix.md) | [find-my-font](skills/find-my-font/SKILL.md), [classify-font-matrix](skills/classify-font-matrix/SKILL.md) | ***Foundation.*** Kupferschmid matrix framework for classifying and pairing fonts |
-| [`font-profiles/*.md`](font-profiles/) | [find-my-font](skills/find-my-font/SKILL.md), [curate-font](skills/curate-font/SKILL.md), [classify-font-matrix](skills/classify-font-matrix/SKILL.md) | ***Core Data.*** Per-font research (synopsis, characteristics, technical specs) and matrix classification, created by plugin usage |
-| [`specimens/*.jpg`](font-profiles/specimens) | [find-my-font](skills/find-my-font/SKILL.md), [classify-font-matrix](skills/classify-font-matrix/SKILL.md) | ***Core Data (input to classify).*** User-provided font specimens are copied here, needed for matrix classification |
-| [`shopify-fonts.md`](skills/find-my-font/references/shopify-fonts.md) | [find-my-font](skills/find-my-font/SKILL.md) | ***Optional Constraint.*** Enables Claude to constrain recommendations to Shopify fonts (subset of Google Fonts). |
-| [`example-output.md`](skills/find-my-font/references/example-output.md) | [find-my-font](skills/find-my-font/SKILL.md) | ***Output Formatting.*** Sample recommendation (pairing cards, matrix, comparison table), Claude adapts content to the fonts and stated criteria |
-| [`kupferschmid-template.svg`](skills/create-font-matrix-svg/references/kupferschmid-template.svg) | [create-font-matrix-svg](skills/create-font-matrix-svg/SKILL.md) | ***Output Visualisation.*** Clean SVG template Claude copies and modifies to visualise font matrix positions |
+| [`kupferschmid-matrix.md`](references/kupferschmid-matrix.md) | [fmf-0-pair-my-font](skills/fmf-0-pair-my-font/SKILL.md), [fmf-2-classify-font-matrix](skills/fmf-2-classify-font-matrix/SKILL.md) | ***Foundation.*** Kupferschmid matrix framework for classifying and pairing fonts |
+| [`font-profiles/*.md`](font-profiles/) | [fmf-0-pair-my-font](skills/fmf-0-pair-my-font/SKILL.md), [fmf-1-curate-font-google](skills/fmf-1-curate-font-google/SKILL.md), [fmf-2-classify-font-matrix](skills/fmf-2-classify-font-matrix/SKILL.md) | ***Core Data.*** Per-font research (synopsis, characteristics, technical specs) and matrix classification, created by plugin usage |
+| [`specimens/*.jpg`](font-profiles/specimens) | [fmf-0-pair-my-font](skills/fmf-0-pair-my-font/SKILL.md), [fmf-2-classify-font-matrix](skills/fmf-2-classify-font-matrix/SKILL.md) | ***Core Data (input to classify).*** User-provided font specimens are copied here, needed for matrix classification |
+| [`shopify-fonts.md`](skills/fmf-0-pair-my-font/references/shopify-fonts.md) | [fmf-0-pair-my-font](skills/fmf-0-pair-my-font/SKILL.md) | ***Optional Constraint.*** Enables Claude to constrain recommendations to Shopify fonts (subset of Google Fonts). |
+| [`example-output.md`](skills/fmf-0-pair-my-font/references/example-output.md) | [fmf-0-pair-my-font](skills/fmf-0-pair-my-font/SKILL.md) | ***Output Formatting.*** Sample recommendation (pairing cards, matrix, comparison table), Claude adapts content to the fonts and stated criteria |
+| [`kupferschmid-template.svg`](skills/fmf-3-create-font-matrix-svg/references/kupferschmid-template.svg) | [fmf-3-create-font-matrix-svg](skills/fmf-3-create-font-matrix-svg/SKILL.md) | ***Output Visualisation.*** Clean SVG template Claude copies and modifies to visualise font matrix positions |
 
 ## Matrix Visualisation
 
-When requested, the skill copies the SVG template and edits it to place the analysed fonts on the matrix with colour-coded cards and directional arrows showing each pairing relationship. This is the image shown above. If it is not requested, then a terminal text equivalent is presented such as in [`example-output.md`](skills/find-my-font/references/example-output.md)
+When requested, the skill copies the SVG template and edits it to place the analysed fonts on the matrix with colour-coded cards and directional arrows showing each pairing relationship. This is the image shown above. If it is not requested, then a terminal text equivalent is presented such as in [`example-output.md`](skills/fmf-0-pair-my-font/references/example-output.md)
 
 ## Dependencies
 
@@ -66,5 +66,5 @@ sudo apt install librsvg2-bin
 
 ## Future Improvements
 
-- **Tighten recommendation output** — its very verbose, adjust [`example-output.md`](skills/find-my-font/references/example-output.md)
+- **Tighten recommendation output** — its very verbose, adjust [`example-output.md`](skills/fmf-0-pair-my-font/references/example-output.md)
 - **Python SVG generator** — a script that takes font card data and plots them onto the SVG template (cards and connectors), replacing manual SVG editing by Claude

@@ -1,5 +1,5 @@
 ---
-name: get-nextjs-docs
+name: nextjs-docs-get
 description: Download and trim official Next.js documentation for Claude Code reference usage.
 disable-model-invocation: true
 user-invocable: true

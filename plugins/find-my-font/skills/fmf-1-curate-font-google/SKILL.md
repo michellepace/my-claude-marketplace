@@ -1,5 +1,5 @@
 ---
-name: curate-font
+name: fmf-1-curate-font-google
 description: Research and document a Google Font — creates a structured fontname.md profile with characteristics and technical details.
 argument-hint: "fontname, e.g. Montserrat"
 context: fork

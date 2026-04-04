@@ -1,4 +1,4 @@
-# claude-code-care
+# claude-code-utils
 
 Claude Code meta-utilities: release notes and plugin status.
 
@@ -6,8 +6,8 @@ Claude Code meta-utilities: release notes and plugin status.
 
 | Skill | Description |
 |:------|:------------|
-| `/claude-code-care:cc-what-plugins` | Show all marketplaces and plugins with their status |
-| `/claude-code-care:cc-whats-new` | Analyse changelog and explain features practically |
+| `/cc-what-plugins` | Show all marketplaces and plugins with their status |
+| `/cc-whats-new` | Analyse changelog and explain features practically |
 
 ---
 
@@ -18,7 +18,7 @@ Shows the state of Marketplaces and Plugins across all scopes, with a focus on w
 ### Usage
 
 ```
-/claude-code-care:cc-what-plugins
+/cc-what-plugins
 ```
 
 ### Sample Output
@@ -37,9 +37,9 @@ Shows the state of Marketplaces and Plugins across all scopes, with a focus on w
 | :----- | :----- | :------------ | :-------------- | :------ |
 | claude-plugins-official | claude-md-management | project | my-app ⚠️ | unknown |
 | claude-plugins-official | plugin-dev | project | my-claude-marketplace | unknown |
-| my-claude-marketplace | claude-code-care | user | *(all)* | 1.0.0 |
+| my-claude-marketplace | claude-code-utils | user | *(all)* | 1.0.0 |
 | my-claude-marketplace | find-my-font | user | *(all)* | 2.0.3 |
-| my-claude-marketplace | shadcn-ui | project | devflow | 1.0.1 |
+| my-claude-marketplace | nextjs-utils | project | devflow | 1.0.4 |
 
 ⚠️ `claude-md-management` — install path no longer exists (stale entry).
 
@@ -53,7 +53,7 @@ No orphaned `enabledPlugins` entries found.
 | Source | Plugin | Why Active |
 | :----- | :----- | :--------- |
 | claude-plugins-official | plugin-dev | enabled in `.claude/settings.json` |
-| my-claude-marketplace | claude-code-care | user-scope install |
+| my-claude-marketplace | claude-code-utils | user-scope install |
 
 ---
 
@@ -68,8 +68,8 @@ Explains what's new in Claude Code versions with practical examples you can use 
 ### Usage
 
 ```
-/claude-code-care:cc-whats-new 2.1      # All 2.1.* versions
-/claude-code-care:cc-whats-new 2.1.2    # Exact version only
+/cc-whats-new 2.1      # All 2.1.* versions
+/cc-whats-new 2.1.2    # Exact version only
 ```
 
 ### In Action

@@ -11,8 +11,8 @@ A Claude Code **marketplace** — a monorepo of plugins.
 | Plugin | Type | Purpose |
 |:---|:---|:---|
 | `find-my-font` | skills + MCP | Font pairing (orchestrator pattern) |
-| `shadcn-ui` | 1 skill | shadcn/ui best practices (Radix UI + Tailwind) |
-| `claude-code-care` | 2 skills | Claude Code meta-utilities |
+| `nextjs-utils` | 2 skills + MCP | Next.js development (shadcn/ui + docs management) |
+| `claude-code-utils` | 2 skills | Claude Code meta-utilities |
 
 ## Plugin Anatomy
 

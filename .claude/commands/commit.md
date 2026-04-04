@@ -32,7 +32,7 @@ Additional user instructions: $ARGUMENTS
 </template>
 
 <main_prefix>
-When the commit focuses on files in `plugins/`, use the plugin name as a scope — e.g. `refactor(shadcn-ui):`, `fix(find-my-font):` — combining any standard prefix with `(<plugin-name>)`.
+When the commit focuses on files in `plugins/`, use the plugin name as a scope — e.g. `refactor(<plugin-name>):`, `fix(<plugin-name>):`.
 
 - `rules:` claude configuration e.g. `**/CLAUDE.md`, `.claude/**/*`
 - `test:` adding or updating tests e.g. `tests/**/*`

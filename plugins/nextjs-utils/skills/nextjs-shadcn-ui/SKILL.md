@@ -1,5 +1,5 @@
 ---
-name: shadcn-ui
+name: nextjs-shadcn-ui
 description: Best practices for building UIs with shadcn/ui components (Radix UI + Tailwind CSS). Use when adding and customising components, or architecting component structures in Next.js. Covers modifying components/ui/ primitives, CVA variants, reusable compositions, a customisation decision framework, and recent summarised changelog for new functionality.
 user-invocable: true
 disable-model-invocation: false

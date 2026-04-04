@@ -8,13 +8,13 @@
   },
   "plugins": [
     {
-      "name": "for-nextjs",
-      "source": "./plugins/for-nextjs",
+      "name": "nextjs-utils",
+      "source": "./plugins/nextjs-utils",
       "description": "Next.js development skills: shadcn/ui best practices and official docs management"
     },
     {
-      "name": "claude-code-care",
-      "source": "./plugins/claude-code-care",
+      "name": "claude-code-utils",
+      "source": "./plugins/claude-code-utils",
       "description": "Claude Code meta-utilities: release notes and plugin status"
     },
     {

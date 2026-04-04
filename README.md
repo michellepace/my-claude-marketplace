@@ -8,8 +8,8 @@
 
 ## Plugins
 
-- [for-nextjs](./plugins/for-nextjs) — Next.js development (shadcn/ui + docs management)
-- [claude-code-care](./plugins/claude-code-care) — Claude Code meta-utilities
+- [nextjs-utils](./plugins/nextjs-utils) — Next.js development (shadcn/ui + docs management)
+- [claude-code-utils](./plugins/claude-code-utils) — Claude Code meta-utilities
 - [find-my-font](./plugins/find-my-font) — Font pairing with the Kupferschmid matrix
 
 ## Usage
@@ -25,7 +25,7 @@ Then use `/plugin` to enable, disable, update, or uninstall plugins at your pref
 Mention the plugin by name in your prompt, or run its slash command directly:
 
 ```bash
-/claude-code-care:cc-whats-new this week
+/cc-whats-new this week
 ```
 
 *Tip: Claude Code can auto-invoke matching skills, but explicitly naming the plugin is more reliable.*
@@ -48,8 +48,8 @@ Add this to `.claude/settings.json` to share plugin configuration with your team
   },
 
   "enabledPlugins": {
-    "for-nextjs@my-claude-marketplace": true,
-    "claude-code-care@my-claude-marketplace": true,
+    "nextjs-utils@my-claude-marketplace": true,
+    "claude-code-utils@my-claude-marketplace": true,
     "find-my-font@my-claude-marketplace": true
   }
 }
@@ -73,7 +73,7 @@ Plugins can be enabled at four scope levels. Higher scopes override lower ones (
 Test a plugin locally without installing:
 
 ```shell
-claude --plugin-dir ~/projects/my-claude-marketplace/plugins/claude-code-care
+claude --plugin-dir ~/projects/my-claude-marketplace/plugins/claude-code-utils
 ```
 
 Edit your files, restart Claude Code, test. No install/uninstall needed.

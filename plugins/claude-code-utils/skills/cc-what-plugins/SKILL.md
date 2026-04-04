@@ -83,7 +83,7 @@ Sort table by: Source → Plugin
 | :----- | :----- | :------------ | :-------------- | :------ |
 | claude-plugins-official | claude-md-management | project | dwell-sp ⚠️ | 1.0.0 |
 | my-claude-marketplace | cc-whats-new | user | *(all)* | 0.2.0 |
-| my-claude-marketplace | shadcn-ui | project | devflow | 1.0.0 |
+| my-claude-marketplace | nextjs-utils | project | devflow | 1.0.4 |
 
 ⚠️ = install projectPath no longer exists (stale entry)
 
