@@ -12,14 +12,12 @@ To install this plugin:
 /plugin install nextjs-utils@my-claude-marketplace
 ```
 
-## What's Inside - Skills
+## What's Inside
 
-| Command | What it does |
-|---|---|
-| `/nextjs-shadcn-ui` | Best practices for adding, customising, and architecting shadcn/ui components (Radix UI + Tailwind CSS) in Next.js |
-| `/nextjs-docs-get` | Downloads and trims official Next.js documentation for Claude Code reference usage |
-
-Both skills are independently invocable.
+| Run Skill | What it does |
+| :-------- | :----------- |
+| [`/nextjs-shadcn-ui`](skills/nextjs-shadcn-ui/SKILL.md) | Best practices for adding, customising, and architecting shadcn/ui components (Radix UI + Tailwind CSS) in Next.js |
+| [`/nextjs-docs-get`](skills/nextjs-docs-get/SKILL.md) | Downloads and trims official Next.js documentation for Claude Code reference usage |
 
 ## Usage Examples
 

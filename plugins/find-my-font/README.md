@@ -21,14 +21,14 @@ To install this plugin:
   <p><em>Example: Lora (primary) with four candidates classified by matrix relationship — green for harmonious (same column), purple for contrasting (diagonal), red for avoid (same row/cell).</em></p>
 </div>
 
-## What's Inside - Skills
+## What's Inside
 
-| Command | What it does |
-|---|---|
-| `/fmf-0-pair-my-font` | Orchestrator — parses brief, launches workers, evaluates pairings, outputs recommendations |
-| `/fmf-1-curate-font-google` | Fetches font data from Google Fonts and writes a structured font profile |
-| `/fmf-2-classify-font-matrix` | Examines a specimen image and classifies the font on the Kupferschmid matrix |
-| `/fmf-3-create-font-matrix-svg` | Creates an SVG visualisation with font cards and pairing arrows |
+| Run Skill | What it does |
+| :-------- | :----------- |
+| [`/fmf-0-pair-my-font`](skills/fmf-0-pair-my-font/SKILL.md) | Orchestrator — parses brief, launches workers, evaluates pairings, outputs recommendations |
+| [`/fmf-1-curate-font-google`](skills/fmf-1-curate-font-google/SKILL.md) | Fetches font data from Google Fonts and writes a structured font profile |
+| [`/fmf-2-classify-font-matrix`](skills/fmf-2-classify-font-matrix/SKILL.md) | Examines a specimen image and classifies the font on the Kupferschmid matrix |
+| [`/fmf-3-create-font-matrix-svg`](skills/fmf-3-create-font-matrix-svg/SKILL.md) | Creates an SVG visualisation with font cards and pairing arrows |
 
 All four skills are independently invocable.
 

@@ -14,10 +14,10 @@ To install this plugin:
 
 ## 🟣 What's Inside
 
-| Skill | Description |
+| Run Skill | Description |
 |:------|:------------|
-| `/cc-what-plugins` | Show all marketplaces and plugins with their status |
-| `/cc-whats-new` | Analyse changelog and explain features practically |
+| [`/cc-what-plugins`](skills/cc-what-plugins/SKILL.md) | Show all marketplaces and plugins with their status |
+| [`/cc-whats-new`](skills/cc-whats-new/SKILL.md) | Analyse changelog and explain features practically |
 
 ---
 
