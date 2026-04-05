@@ -1,6 +1,6 @@
 # Plugin: `repo-utils`
 
-Repository workflow utilities: commit messages, CodeRabbit reviews, and post-merge cleanup.
+**Git & GitHub workflows:** Commit messages, CodeRabbit reviews, and post-merge cleanup.
 
 To install this plugin:
 

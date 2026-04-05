@@ -1,6 +1,6 @@
 # Plugin: `nextjs-utils`
 
-Next.js development skills: shadcn/ui component best practices and official documentation management.
+**Next.js docs & dev guidance:** Download Next.js docs, trimmed and re-indexed for project relevancy. Development guidance for shadcn/ui.
 
 To install this plugin:
 

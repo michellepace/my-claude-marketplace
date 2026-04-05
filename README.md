@@ -8,12 +8,12 @@
 
 ## Plugins In This Marketplace
 
-| Plugin | Description |
-| :----- | :---------- |
-| [nextjs-utils](./plugins/nextjs-utils) | Download and index all Nextjs docs. Shadcn best-practices. |
-| [claude-code-utils](./plugins/claude-code-utils) | Show installed plugins. Explain whats new in Claude Code. |
-| [find-my-font](./plugins/find-my-font) | Font pairing with the Kupferschmid matrix |
-| [repo-utils](./plugins/repo-utils) | Basic repo workflows (commits, CodeRabbit, merge cleanup) |
+| Plugin | Type | Purpose |
+| :----- | :--- | :---------- |
+| [claude-code-utils](./plugins/claude-code-utils) | 2 skills | Claude Code visibility & discovery |
+| [find-my-font](./plugins/find-my-font) | 4 skills + MCP | Font pairing (orchestrator pattern) |
+| [nextjs-utils](./plugins/nextjs-utils) | 2 skills + MCP | Next.js docs & dev guidance |
+| [repo-utils](./plugins/repo-utils) | 3 skills | Git & GitHub workflows |
 
 ## Installation - User Scope
 
@@ -35,7 +35,7 @@ Or browse available plugins, run `/plugin` > Marketplace > Select "my-claude-mar
 
 When you install a plugin at project scope (via `/plugin` > "Install for all collaborators"), Claude Code adds the plugin to [.claude/settings.json](claude/settings.json) under `enabledPlugins` — but it does **not** record where the marketplace comes from. Collaborators who clone the repo won't be able to resolve the marketplace source.
 
-To fix this, register the marketplace at project scope:
+To fix this, register the marketplace at project scope. Run this from your shell terminal:
 
 ```
 claude plugin marketplace add michellepace/my-claude-marketplace --scope project

@@ -1,6 +1,6 @@
 # Plugin: `claude-code-utils`
 
-Claude Code meta-utilities: release notes and plugin status.
+**Claude Code visibility & discovery:** Understand what is new in Claude Code from the changelog. Know what plugins you have installed and where.
 
 To install this plugin:
 
