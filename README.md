@@ -33,21 +33,20 @@ Or browse available plugins, run `/plugin` > Marketplace > Select "my-claude-mar
 
 ## Installation - Project Scope
 
-When you install a plugin at project scope (via `/plugin` > "Install for all collaborators"), Claude Code adds the plugin to [.claude/settings.json](claude/settings.json) under `enabledPlugins` — but it does **not** record where the marketplace comes from. Collaborators who clone the repo won't be able to resolve the marketplace source.
+Collaborators who clone the repo need the marketplace source to resolve plugins. Register the marketplace and install plugins at project scope:
 
-To fix this, register the marketplace at project scope. Run this from your shell terminal:
-
-```
+```bash
+# Add marketplace (writes "extraKnownMarketplaces")
 claude plugin marketplace add michellepace/my-claude-marketplace --scope project
+
+# Install plugin (writes "enabledPlugins")
+claude plugin install repo-utils@my-claude-marketplace --scope project
 ```
 
-This writes an `extraKnownMarketplaces` entry to [.claude/settings.json](claude/settings.json), so collaborators are automatically prompted to install the marketplace when they trust the repo folder:
+Both commands write to [.claude/settings.json](claude/settings.json):
 
 ```json
 {
-  "enabledPlugins": {
-    "repo-utils@my-claude-marketplace": true
-  },
   "extraKnownMarketplaces": {
     "my-claude-marketplace": {
       "source": {
@@ -55,9 +54,27 @@ This writes an `extraKnownMarketplaces` entry to [.claude/settings.json](claude/
         "repo": "michellepace/my-claude-marketplace"
       }
     }
+  },
+  "enabledPlugins": {
+    "repo-utils@my-claude-marketplace": true
   }
 }
 ```
+
+To disable, uninstall, or remove at project scope:
+
+```bash
+# Disable a plugin (sets to false in .claude/settings.json)
+claude plugin disable repo-utils@my-claude-marketplace --scope project
+
+# Re-enable it
+claude plugin enable repo-utils@my-claude-marketplace --scope project
+
+# Uninstall a plugin (removes from .claude/settings.json)
+claude plugin uninstall repo-utils@my-claude-marketplace --scope project
+```
+
+> **Note:** `claude plugin marketplace remove` does not support `--scope`. It removes the marketplace globally and uninstalls all its plugins. To remove a marketplace from project scope only, delete its `extraKnownMarketplaces` entry from `.claude/settings.json` manually.
 
 ---
 
@@ -65,7 +82,7 @@ This writes an `extraKnownMarketplaces` entry to [.claude/settings.json](claude/
 
 ### 1. About Plugin Scope
 
-Plugins can be enabled at four scope levels. The override order (highest to lowest) is: managed > local > project > user. Command-line arguments like `--plugin-dir` provide temporary session overrides that sit below managed but above all other scopes.
+Plugins can be enabled at four scope levels. The override order (highest to lowest) is: managed > local > project > user.
 
 | Scope | Settings File | Who it affects | Shared with team? |
 | :---- | :------------ | :------------- | :---------------- |
@@ -82,6 +99,6 @@ Test a plugin locally without installing:
 claude --plugin-dir ~/projects/my-claude-marketplace/plugins/claude-code-utils
 ```
 
-`--plugin-dir` provides a temporary session override that takes precedence over all scopes except managed.
+`--plugin-dir` provides a temporary session override that takes precedence over all scopes (local, project, user) except managed — see table above.
 
 Edit your files, run `/reload-plugins` (or restart Claude Code), test. No install/uninstall needed.
