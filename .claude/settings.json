@@ -25,5 +25,24 @@
       "Read(**/.envrc)"
     ],
     "ask": []
+  },
+  "enabledPlugins": {
+    "git-utils@my-claude-marketplace": true,
+    "skill-creator@claude-plugins-official": false,
+    "plugin-dev@claude-plugins-official": false
+  },
+  "extraKnownMarketplaces": {
+    "my-claude-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "michellepace/my-claude-marketplace"
+      }
+    },
+    "claude-plugins-official": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/claude-plugins-official"
+      }
+    }
   }
 }

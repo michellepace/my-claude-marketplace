@@ -1,14 +1,13 @@
 ---
 name: cc-what-plugins
-description: Show active plugins for this project plus all installed marketplaces and plugins
+description: Show all installed marketplaces and plugins by scope from the central registry
 context: fork
 agent: general-purpose
 user-invocable: true
 disable-model-invocation: true
 allowed-tools:
   - Bash(jq *)
-  - Bash(ls *)
-  - Bash(test -d *)
+  - Bash(test *)
   - Glob
   - Grep
   - Read
@@ -16,117 +15,121 @@ allowed-tools:
 
 # Claude Code Marketplaces and Plugins
 
-## Architecture
-
-Two layers work together:
-
-- **Central registry** (`~/.claude/plugins/`): stores all marketplace and plugin records regardless of scope. Scope is tracked per-entry via `scope` and `projectPath` fields.
-- **Scope settings** (settings.json files): control which plugins are **enabled** at each scope level.
+The central registry (`~/.claude/plugins/`) is the single source of truth for all marketplace and plugin data across all scopes.
 
 Scope precedence (highest wins):
 
 | Precedence | Scope | Settings File |
 | :--------- | :---- | :------------ |
-| 1 | managed | `managed-settings.json` (system) |
-| 2 | local | `.claude/settings.local.json` |
-| 3 | project | `.claude/settings.json` |
-| 4 | user | `~/.claude/settings.json` |
+| 1 | local | Repo file: `.claude/settings.local.json` |
+| 2 | project | Repo file: `.claude/settings.json` |
+| 3 | user | System file: `~/.claude/settings.json` |
 
-When `enabledPlugins` entries conflict, the higher-precedence scope wins. Managed scope is excluded from this skill — its settings file location varies by system.
-
-## Step 1: Read files and extract data
+## Step 1: Read central registry
 
 Read these files with the Read tool:
 
-**Central registry** (stored in `~/.claude/plugins/`, covers all scopes):
-
-1. `~/.claude/plugins/known_marketplaces.json` → central registry of all added marketplaces (all scopes)
+1. `~/.claude/plugins/known_marketplaces.json` → all added marketplaces. Use the `source.repo` field to resolve marketplace names to repo paths (e.g. `claude-plugins-official` → `anthropics/claude-plugins-official`)
 
    ```json
    {
-     "marketplace-name": {
-       "source": { "source": "github", "repo": "owner/repo" }
+     "claude-plugins-official": {
+       "source": { "source": "github", "repo": "anthropics/claude-plugins-official" },
+       "installLocation": "/home/.../.claude/plugins/marketplaces/claude-plugins-official",
+       "lastUpdated": "2026-04-07T09:54:04.843Z"
+     },
+     "knowledge-work-plugins": {
+       "source": { "source": "github", "repo": "anthropics/knowledge-work-plugins" },
+       "installLocation": "/home/.../.claude/plugins/marketplaces/knowledge-work-plugins",
+       "lastUpdated": "2026-04-07T13:01:00.459Z"
      }
    }
    ```
 
-2. `~/.claude/plugins/installed_plugins.json` → central registry of all installed plugins (all scopes). `projectPath` is only present for project/local scopes.
+2. `~/.claude/plugins/installed_plugins.json` → all installed plugins. Each entry has `scope` (`"user"`, `"project"`, or `"local"`). `projectPath` is only present for project/local scopes.
 
    ```json
    {
      "version": 2,
      "plugins": {
-       "name@marketplace": [
-         { "scope": "project", "projectPath": "/path/to/project",
+       "frontend-design@claude-plugins-official": [
+         { "scope": "user",
+           "version": "unknown", "installPath": "/home/.../.claude/plugins/cache/..." },
+         { "scope": "project", "projectPath": "/home/.../projects/my-app",
+           "version": "unknown", "installPath": "/home/.../.claude/plugins/cache/..." }
+       ],
+       "brand-voice@knowledge-work-plugins": [
+         { "scope": "project", "projectPath": "/home/.../projects/nextjs/devflow",
            "version": "1.0.0", "installPath": "/home/.../.claude/plugins/cache/..." }
        ]
      }
    }
    ```
 
-**Scope-level settings** (control which plugins are enabled):
+## Step 2: Health checks
 
-1. `~/.claude/settings.json` → `enabledPlugins` (user scope)
-2. `.claude/settings.json` → `enabledPlugins` and `extraKnownMarketplaces` (project scope)
+For each plugin in `installed_plugins.json`, run `test -d` on:
 
-   ```json
-   {
-     "extraKnownMarketplaces": {
-       "marketplace-name": {
-         "source": { "source": "github", "repo": "owner/repo" }
-       }
-     },
-     "enabledPlugins": {
-       "name@marketplace": true
-     }
-   }
-   ```
-
-3. `.claude/settings.local.json` → `enabledPlugins` (local scope)
-
-## Step 2: Determine active plugins
-
-Merge `enabledPlugins` from user → project → local (higher precedence overrides lower). A plugin is active only if it resolves to `true`. No entry = not active.
-
-For each active plugin, cite the highest-precedence file that sets it to `true`.
+- `projectPath` (if present) — ⚠️ project gone if missing
+- `installPath` — 🔗 cache missing if missing
+- Otherwise ✅
 
 ## Step 3: Present summary
 
+Rules:
+- Ensure accuracy - if unsure, tell the user.
+- Table sort: all tables a-z by leftmost columns, left to right
+- Health key: ✅ = ok, ⚠️ = projectPath missing, 🔗 = installPath missing
+- Empty sections: show the heading, then "(none)" on the next line
+
 <format>
 
-### 🏪 Added Marketplaces (N)
+### 🏪 Added Marketplaces
 
-Sort by: Source
+| Source Repo | Marketplace |
+| :---------- | :---------- |
+| ✅ anthropics/claude-plugins-official | claude-plugins-official |
+| ✅ anthropics/knowledge-work-plugins | knowledge-work-plugins |
 
-| Source | Marketplace |
-| :----- | :---------- |
-| ✅ acme-org/acme-plugins | acme-plugins |
-| ✅ jdoe/my-marketplace | my-marketplace |
+### 📂 Plugins at Local Scope (per-project, not in git)
 
-Flag any `extraKnownMarketplaces` entry (from `.claude/settings.json`) not present in `known_marketplaces.json`:
+Plugins from `installed_plugins.json` where `scope` = `"local"`.
 
-> ⚠️ Declared but not added: `marketplace-id`
+| Project | Source Repo | Plugin | Version | Health |
+| :------ | :---------- | :----- | :------ | :----- |
+| devflow | anthropics/knowledge-work-plugins | design | unknown | ✅ |
 
-### 📦 All Installed Plugins (N)
+### 📂 Plugins at Project Scope (per-project, in git)
 
-Sort by: Source → Plugin
+Plugins from `installed_plugins.json` where `scope` = `"project"`.
 
-| Source | Plugin | Scope | Project | Version | Health |
-| :----- | :----- | :---- | :------ | :------ | :----- |
-| acme-plugins | lint-fix | project | my-project | 1.2.0 | ✅ |
-| my-marketplace | deploy-utils | project | old-app | 3.0.1 | ⚠️ project gone |
-| acme-plugins | api-docs | project | my-project | unknown | 🔗 cache missing |
+| Project | Source Repo | Plugin | Version | Health |
+| :------ | :---------- | :----- | :------ | :----- |
+| my-claude-marketplace | anthropics/claude-plugins-official | skill-creator | unknown | ✅ |
+| devflow | anthropics/knowledge-work-plugins | brand-voice | 1.0.0 | ✅ |
 
-Health: ✅ = ok, ⚠️ = projectPath doesn't exist, 🔗 = installPath doesn't exist.
+### 👤 Plugins at User Scope
 
-### 🔌 Active Plugins (N): `projectname`
+Plugins from `installed_plugins.json` where `scope` = `"user"`.
 
-Sort by: Source → Plugin
+| Source Repo | Plugin | Version | Health |
+| :---------- | :----- | :------ | :----- |
+| anthropics/claude-plugins-official | frontend-design | unknown | ✅ |
 
-| Source | Plugin | Why Active |
-| :----- | :----- | :--------- |
-| acme-plugins | lint-fix | enabled in .claude/settings.json |
+### 🎯 CURRENT PROJECT (EFFECTIVE): `projectname`
+
+Derive the resolved set of plugins that apply to the current project. Scope shows the highest-precedence entry for each plugin:
+
+1. Collect all entries where `projectPath` matches the current project (local + project scope) and all user-scope entries (apply everywhere)
+2. If the same plugin appears at multiple scopes, keep only the highest-precedence entry (local > project > user)
+3. Show one row per effective plugin
+
+| Source Repo | Plugin | Scope | Version | Health |
+| :---------- | :----- | :---- | :------ | :----- |
+| anthropics/knowledge-work-plugins | brand-voice | project | 1.0.0 | ✅ |
+| anthropics/knowledge-work-plugins | design | local | unknown | ✅ |
+| anthropics/claude-plugins-official | frontend-design | user | unknown | ✅ |
 
 </format>
 
-Ensure accuracy. If unsure, tell the user.
+Ensure all rules have been applied.

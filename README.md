@@ -36,11 +36,17 @@ Or browse available plugins, run `/plugin` > Marketplace > Select "my-claude-mar
 Commit plugin configuration to the repo so every collaborator gets the same setup. Register a marketplace and install plugins at project scope:
 
 ```bash
-# Add marketplace (writes "extraKnownMarketplaces")
-claude plugin marketplace add anthropics/claude-plugins-official --scope project
+# 1. Add marketplace (writes "extraKnownMarketplaces")
+claude plugin marketplace add michellepace/my-claude-marketplace --scope project
 
-# Install plugin (writes "enabledPlugins")
-claude plugin install frontend-design@claude-plugins-official --scope project
+# 2. Install plugin (writes "enabledPlugins") or run `/plugin`
+claude plugin install git-utils@my-claude-marketplace --scope project
+
+# 3. Additional marketplace and plugins
+claude plugin marketplace add anthropics/claude-plugins-official --scope project
+claude plugin install skill-creator@claude-plugins-official --scope project
+claude plugin install plugin-dev@claude-plugins-official --scope project
+
 ```
 
 Both commands write to [.claude/settings.json](claude/settings.json):
@@ -48,6 +54,12 @@ Both commands write to [.claude/settings.json](claude/settings.json):
 ```json
 {
   "extraKnownMarketplaces": {
+    "my-claude-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "michellepace/my-claude-marketplace"
+      }
+    },
     "claude-plugins-official": {
       "source": {
         "source": "github",
@@ -56,7 +68,9 @@ Both commands write to [.claude/settings.json](claude/settings.json):
     }
   },
   "enabledPlugins": {
-    "frontend-design@claude-plugins-official": true
+    "git-utils@my-claude-marketplace": true,
+    "skill-creator@claude-plugins-official": true,
+    "plugin-dev@claude-plugins-official": true
   }
 }
 ```
@@ -85,7 +99,7 @@ Plugins can be enabled at four scope levels. The override order (highest to lowe
 Test a plugin locally without installing:
 
 ```shell
-claude --plugin-dir ~/projects/my-claude-marketplace/plugins/find-font
+claude --plugin-dir ~/projects/my-claude-marketplace/plugins/git-utils
 ```
 
 `--plugin-dir` provides a temporary session override that takes precedence over all scopes (local, project, user) except managed — see table above.

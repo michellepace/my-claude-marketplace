@@ -33,7 +33,52 @@ Shows the state of Marketplaces and Plugins across all scopes, with a focus on w
 
 ### Sample Output
 
-[to be completed]
+```text
+● All health checks pass. Here's the summary:
+
+🏪 Added Marketplaces
+  ┌───────────────────────────────────────┬─────────────────────────┐
+  │              Source Repo              │       Marketplace       │
+  ├───────────────────────────────────────┼─────────────────────────┤
+  │ ✅ anthropics/claude-plugins-official │ claude-plugins-official │
+  ├───────────────────────────────────────┼─────────────────────────┤
+  │ ✅ michellepace/my-claude-marketplace │ my-claude-marketplace   │
+  └───────────────────────────────────────┴─────────────────────────┘
+
+📂 Plugins at Local Scope (per-project, not in git)
+  (none)
+
+📂 Plugins at Project Scope (per-project, in git)
+  ┌───────────────────────┬────────────────────────────────────┬───────────────┬─────────┬────────┐
+  │        Project        │            Source Repo             │    Plugin     │ Version │ Health │
+  ├───────────────────────┼────────────────────────────────────┼───────────────┼─────────┼────────┤
+  │ my-claude-marketplace │ anthropics/claude-plugins-official │ plugin-dev    │ unknown │ ✅     │
+  ├───────────────────────┼────────────────────────────────────┼───────────────┼─────────┼────────┤
+  │ my-claude-marketplace │ anthropics/claude-plugins-official │ skill-creator │ unknown │ ✅     │
+  ├───────────────────────┼────────────────────────────────────┼───────────────┼─────────┼────────┤
+  │ my-claude-marketplace │ michellepace/my-claude-marketplace │ git-utils     │ 1.0.0   │ ✅     │
+  └───────────────────────┴────────────────────────────────────┴───────────────┴─────────┴────────┘
+
+👤 Plugins at User Scope
+  ┌────────────────────────────────────┬─────────────────┬─────────┬────────┐
+  │            Source Repo             │     Plugin      │ Version │ Health │
+  ├────────────────────────────────────┼─────────────────┼─────────┼────────┤
+  │ anthropics/claude-plugins-official │ frontend-design │ unknown │ ✅     │
+  └────────────────────────────────────┴─────────────────┴─────────┴────────┘
+
+🎯 CURRENT PROJECT (EFFECTIVE): my-claude-marketplace
+  ┌────────────────────────────────────┬─────────────────┬─────────┬─────────┬────────┐
+  │            Source Repo             │     Plugin      │  Scope  │ Version │ Health │
+  ├────────────────────────────────────┼─────────────────┼─────────┼─────────┼────────┤
+  │ anthropics/claude-plugins-official │ frontend-design │ user    │ unknown │ ✅     │
+  ├────────────────────────────────────┼─────────────────┼─────────┼─────────┼────────┤
+  │ anthropics/claude-plugins-official │ plugin-dev      │ project │ unknown │ ✅     │
+  ├────────────────────────────────────┼─────────────────┼─────────┼─────────┼────────┤
+  │ anthropics/claude-plugins-official │ skill-creator   │ project │ unknown │ ✅     │
+  ├────────────────────────────────────┼─────────────────┼─────────┼─────────┼────────┤
+  │ michellepace/my-claude-marketplace │ git-utils       │ project │ 1.0.0   │ ✅     │
+  └────────────────────────────────────┴─────────────────┴─────────┴─────────┴────────┘                 
+```
 
 ---
 
