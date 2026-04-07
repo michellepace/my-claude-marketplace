@@ -1,5 +1,5 @@
 ---
-name: fmf-3-create-font-matrix-svg
+name: ff-3-create-font-matrix-svg
 description: Create an SVG visualization of the Kupferschmid font matrix showing font positions and pairing relationships with arrow connectors.
 argument-hint: "primary:Lora, candidates: Jost, Source Sans 3 — include matrix positions and relationships"
 context: fork

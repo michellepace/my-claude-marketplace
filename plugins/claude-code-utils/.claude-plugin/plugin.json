@@ -1,5 +1,5 @@
 {
   "name": "claude-code-utils",
-  "description": "Claude Code meta-utilities: release notes and plugin status",
-  "version": "1.0.1"
+  "description": "Whats new in Claude Code. What plugins installed?",
+  "version": "1.0.0"
 }

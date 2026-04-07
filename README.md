@@ -11,9 +11,9 @@
 | Plugin | Type | Purpose |
 | :----- | :--- | :---------- |
 | [claude-code-utils](./plugins/claude-code-utils) | 2 skills | Claude Code visibility & discovery |
-| [find-my-font](./plugins/find-my-font) | 4 skills + MCP | Font pairing (orchestrator pattern) |
+| [find-font](./plugins/find-font) | 4 skills + MCP | Font pairing (orchestrator pattern) |
 | [nextjs-utils](./plugins/nextjs-utils) | 2 skills + MCP | Next.js docs & dev guidance |
-| [repo-utils](./plugins/repo-utils) | 3 skills | Git & GitHub workflows |
+| [git-utils](./plugins/git-utils) | 3 skills | Git & GitHub workflows |
 
 ## Installation - User Scope
 
@@ -33,14 +33,14 @@ Or browse available plugins, run `/plugin` > Marketplace > Select "my-claude-mar
 
 ## Installation - Project Scope
 
-Collaborators who clone the repo need the marketplace source to resolve plugins. Register the marketplace and install plugins at project scope:
+Commit plugin configuration to the repo so every collaborator gets the same setup. Register a marketplace and install plugins at project scope:
 
 ```bash
 # Add marketplace (writes "extraKnownMarketplaces")
-claude plugin marketplace add michellepace/my-claude-marketplace --scope project
+claude plugin marketplace add anthropics/claude-plugins-official --scope project
 
 # Install plugin (writes "enabledPlugins")
-claude plugin install repo-utils@my-claude-marketplace --scope project
+claude plugin install frontend-design@claude-plugins-official --scope project
 ```
 
 Both commands write to [.claude/settings.json](claude/settings.json):
@@ -48,33 +48,22 @@ Both commands write to [.claude/settings.json](claude/settings.json):
 ```json
 {
   "extraKnownMarketplaces": {
-    "my-claude-marketplace": {
+    "claude-plugins-official": {
       "source": {
         "source": "github",
-        "repo": "michellepace/my-claude-marketplace"
+        "repo": "anthropics/claude-plugins-official"
       }
     }
   },
   "enabledPlugins": {
-    "repo-utils@my-claude-marketplace": true
+    "frontend-design@claude-plugins-official": true
   }
 }
 ```
 
-To disable, uninstall, or remove at project scope:
+To disable, uninstall, or remove **plugins** at project scope use: Claude Code terminal > `/plugins` > ...
 
-```bash
-# Disable a plugin (sets to false in .claude/settings.json)
-claude plugin disable repo-utils@my-claude-marketplace --scope project
-
-# Re-enable it
-claude plugin enable repo-utils@my-claude-marketplace --scope project
-
-# Uninstall a plugin (removes from .claude/settings.json)
-claude plugin uninstall repo-utils@my-claude-marketplace --scope project
-```
-
-> **Note:** `claude plugin marketplace remove` does not support `--scope`. It removes the marketplace globally and uninstalls all its plugins. To remove a marketplace from project scope only, delete its `extraKnownMarketplaces` entry from `.claude/settings.json` manually.
+> **Note:** `claude plugin marketplace remove` does not support `--scope`. It removes the marketplace globally and uninstalls all its plugins. To remove a marketplace from project scope only, delete its `extraKnownMarketplaces` entry from `.claude/settings.json` manually. For everything else, stick to `/plugins` interface.
 
 ---
 
@@ -96,7 +85,7 @@ Plugins can be enabled at four scope levels. The override order (highest to lowe
 Test a plugin locally without installing:
 
 ```shell
-claude --plugin-dir ~/projects/my-claude-marketplace/plugins/claude-code-utils
+claude --plugin-dir ~/projects/my-claude-marketplace/plugins/find-font
 ```
 
 `--plugin-dir` provides a temporary session override that takes precedence over all scopes (local, project, user) except managed — see table above.

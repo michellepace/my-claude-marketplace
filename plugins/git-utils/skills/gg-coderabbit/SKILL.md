@@ -1,5 +1,5 @@
 ---
-name: repo-coderabbit
+name: gg-coderabbit
 description: Evaluate CodeRabbit comment and recommend whether to action it
 argument-hint: <CodeRabbit comment link (e.g https://github.com/username/repo/pull/3#discussion_r3019655555)>
 user-invocable: true
