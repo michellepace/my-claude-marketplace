@@ -1,5 +1,0 @@
-{
-  "name": "repo-utils",
-  "description": "Repository workflow utilities: commit messages, CodeRabbit reviews, and post-merge cleanup",
-  "version": "1.0.0"
-}

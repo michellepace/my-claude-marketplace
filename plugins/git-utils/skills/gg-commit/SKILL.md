@@ -1,5 +1,5 @@
 ---
-name: repo-commit
+name: gg-commit
 description: Create git commit message following template
 argument-hint: "[additional instructions]"
 user-invocable: true

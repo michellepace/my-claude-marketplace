@@ -1,5 +1,5 @@
 ---
-name: repo-merge-cleanup
+name: gg-merge-cleanup
 description: Post-merge cleanup: switch to main, pull, delete merged branch, prune
 user-invocable: true
 disable-model-invocation: true

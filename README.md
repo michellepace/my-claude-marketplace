@@ -13,7 +13,7 @@
 | [claude-code-utils](./plugins/claude-code-utils) | 2 skills | Claude Code visibility & discovery |
 | [find-my-font](./plugins/find-my-font) | 4 skills + MCP | Font pairing (orchestrator pattern) |
 | [nextjs-utils](./plugins/nextjs-utils) | 2 skills + MCP | Next.js docs & dev guidance |
-| [repo-utils](./plugins/repo-utils) | 3 skills | Git & GitHub workflows |
+| [git-utils](./plugins/git-utils) | 3 skills | Git & GitHub workflows |
 
 ## Installation - User Scope
 
@@ -40,7 +40,7 @@ Collaborators who clone the repo need the marketplace source to resolve plugins.
 claude plugin marketplace add michellepace/my-claude-marketplace --scope project
 
 # Install plugin (writes "enabledPlugins")
-claude plugin install repo-utils@my-claude-marketplace --scope project
+claude plugin install nextjs-utils@my-claude-marketplace --scope project
 ```
 
 Both commands write to [.claude/settings.json](claude/settings.json):
@@ -56,7 +56,7 @@ Both commands write to [.claude/settings.json](claude/settings.json):
     }
   },
   "enabledPlugins": {
-    "repo-utils@my-claude-marketplace": true
+    "nextjs-utils@my-claude-marketplace": true
   }
 }
 ```
@@ -65,13 +65,13 @@ To disable, uninstall, or remove at project scope:
 
 ```bash
 # Disable a plugin (sets to false in .claude/settings.json)
-claude plugin disable repo-utils@my-claude-marketplace --scope project
+claude plugin disable nextjs-utils@my-claude-marketplace --scope project
 
 # Re-enable it
-claude plugin enable repo-utils@my-claude-marketplace --scope project
+claude plugin enable nextjs-utils@my-claude-marketplace --scope project
 
 # Uninstall a plugin (removes from .claude/settings.json)
-claude plugin uninstall repo-utils@my-claude-marketplace --scope project
+claude plugin uninstall nextjs-utils@my-claude-marketplace --scope project
 ```
 
 > **Note:** `claude plugin marketplace remove` does not support `--scope`. It removes the marketplace globally and uninstalls all its plugins. To remove a marketplace from project scope only, delete its `extraKnownMarketplaces` entry from `.claude/settings.json` manually.
