@@ -6,6 +6,7 @@ agent: general-purpose
 user-invocable: true
 disable-model-invocation: true
 allowed-tools:
+  - Bash(jq *)
   - Bash(ls *)
   - Bash(test -d *)
   - Glob
@@ -15,94 +16,116 @@ allowed-tools:
 
 # Claude Code Marketplaces and Plugins
 
-Show the user the state of Marketplaces and Plugins across all scopes, with a focus on what's active in the current project.
+## Architecture
 
-## Step 1: Read these files
+Two layers work together:
 
-Use the Read tool on each file:
+- **Central registry** (`~/.claude/plugins/`): stores all marketplace and plugin records regardless of scope. Scope is tracked per-entry via `scope` and `projectPath` fields.
+- **Scope settings** (settings.json files): control which plugins are **enabled** at each scope level.
 
-1. `~/.claude/plugins/known_marketplaces.json` — added marketplaces
-2. `~/.claude/plugins/installed_plugins.json` — installed plugins (scope + project)
-3. `~/.claude/settings.json` — user-scope enabledPlugins
-4. `.claude/settings.json` — project-scope enabledPlugins
-5. `.claude/settings.local.json` — local-scope enabledPlugins
+Scope precedence (highest wins):
 
-## Step 2: Interpret the data
+| Precedence | Scope | Settings File |
+| :--------- | :---- | :------------ |
+| 1 | managed | `managed-settings.json` (system) |
+| 2 | local | `.claude/settings.local.json` |
+| 3 | project | `.claude/settings.json` |
+| 4 | user | `~/.claude/settings.json` |
 
-**Marketplaces** — only "added" (no install/enable states).
+When `enabledPlugins` entries conflict, the higher-precedence scope wins. Managed scope is excluded from this skill — its settings file location varies by system.
 
-**Active plugins for current project:**
+## Step 1: Read files and extract data
 
-Build the merged `enabledPlugins` map by layering: user → project → local (later overrides earlier).
+Read these files with the Read tool:
 
-For each plugin in `installed_plugins.json`, determine if it is active in the current project:
+**Central registry** (stored in `~/.claude/plugins/`, covers all scopes):
 
-- If `scope: "user"` → auto-available in all projects (unless `false` in merged enabledPlugins)
-- If `scope: "project"` or `"local"` and `projectPath` matches current project → auto-available (unless `false` in merged enabledPlugins)
-- If plugin key appears as `true` in merged `enabledPlugins` → available (regardless of install scope/project)
-- If plugin key appears as `false` in merged `enabledPlugins` → NOT available (overrides auto-availability)
-- If not mentioned in merged map → available only if scope grants automatic access (per rules above)
+1. `~/.claude/plugins/known_marketplaces.json` → central registry of all added marketplaces (all scopes)
 
-For each active plugin, note the "Why Active" reason:
+   ```json
+   {
+     "marketplace-name": {
+       "source": { "source": "github", "repo": "owner/repo" }
+     }
+   }
+   ```
 
-- `user-scope install` — auto-available because scope is "user"
-- `project-scope install` / `local-scope install` — auto-available because projectPath matches current project
-- `enabled in <file>` — activated via enabledPlugins override (use the highest-precedence file that sets it to `true`)
+2. `~/.claude/plugins/installed_plugins.json` → central registry of all installed plugins (all scopes). `projectPath` is only present for project/local scopes.
 
-**All installed plugins:**
+   ```json
+   {
+     "version": 2,
+     "plugins": {
+       "name@marketplace": [
+         { "scope": "project", "projectPath": "/path/to/project",
+           "version": "1.0.0", "installPath": "/home/.../.claude/plugins/cache/..." }
+       ]
+     }
+   }
+   ```
 
-- List every entry from `installed_plugins.json` with install scope, projectPath, and version
-- Flag stale entries where projectPath directory doesn't exist on disk
+**Scope-level settings** (control which plugins are enabled):
 
-Also flag any orphaned `enabledPlugins` entries (keys not matching any plugin in `installed_plugins.json`).
+1. `~/.claude/settings.json` → `enabledPlugins` (user scope)
+2. `.claude/settings.json` → `enabledPlugins` and `extraKnownMarketplaces` (project scope)
 
-**How plugin activation works:**
+   ```json
+   {
+     "extraKnownMarketplaces": {
+       "marketplace-name": {
+         "source": { "source": "github", "repo": "owner/repo" }
+       }
+     },
+     "enabledPlugins": {
+       "name@marketplace": true
+     }
+   }
+   ```
 
-- `installed_plugins.json` — registry of all cached plugins (install scope + project)
-- `enabledPlugins` in settings — can activate any cached plugin OR disable an auto-available one
-- A user-scope plugin is auto-available in all projects
-- A project/local-scope plugin is auto-available only in its install project
-- Any project can activate any cached plugin by adding `"plugin@marketplace": true` to its enabledPlugins
-- Scope precedence for enabledPlugins: local > project > user (highest wins)
-- Orphaned enabledPlugins entries (no matching install) are flagged but harmless
+3. `.claude/settings.local.json` → `enabledPlugins` (local scope)
+
+## Step 2: Determine active plugins
+
+Merge `enabledPlugins` from user → project → local (higher precedence overrides lower). A plugin is active only if it resolves to `true`. No entry = not active.
+
+For each active plugin, cite the highest-precedence file that sets it to `true`.
 
 ## Step 3: Present summary
-
-Use this format (example data shown):
 
 <format>
 
 ### 🏪 Added Marketplaces (N)
 
-Sort table by: Source
+Sort by: Source
 
 | Source | Marketplace |
 | :----- | :---------- |
-| ✅ anthropics/claude-plugins-official | claude-plugins-official |
-| ✅ ~/projects/my-claude-marketplace | my-claude-marketplace |
+| ✅ acme-org/acme-plugins | acme-plugins |
+| ✅ jdoe/my-marketplace | my-marketplace |
+
+Flag any `extraKnownMarketplaces` entry (from `.claude/settings.json`) not present in `known_marketplaces.json`:
+
+> ⚠️ Declared but not added: `marketplace-id`
 
 ### 📦 All Installed Plugins (N)
 
-Sort table by: Source → Plugin
+Sort by: Source → Plugin
 
-| Source | Plugin | Install Scope | Install Project | Version |
-| :----- | :----- | :------------ | :-------------- | :------ |
-| claude-plugins-official | claude-md-management | project | dwell-sp ⚠️ | 1.0.0 |
-| my-claude-marketplace | cc-whats-new | user | *(all)* | 0.2.0 |
-| my-claude-marketplace | nextjs-utils | project | devflow | 1.0.4 |
+| Source | Plugin | Scope | Project | Version | Health |
+| :----- | :----- | :---- | :------ | :------ | :----- |
+| acme-plugins | lint-fix | project | my-project | 1.2.0 | ✅ |
+| my-marketplace | deploy-utils | project | old-app | 3.0.1 | ⚠️ project gone |
+| acme-plugins | api-docs | project | my-project | unknown | 🔗 cache missing |
 
-⚠️ = install projectPath no longer exists (stale entry)
-
-If there are orphaned enabledPlugins entries, note them here.
+Health: ✅ = ok, ⚠️ = projectPath doesn't exist, 🔗 = installPath doesn't exist.
 
 ### 🔌 Active Plugins (N): `projectname`
 
-Sort table by: Source → Plugin → Why Active
+Sort by: Source → Plugin
 
 | Source | Plugin | Why Active |
 | :----- | :----- | :--------- |
-| claude-plugins-official | skill-creator | local-scope install |
-| my-claude-marketplace | cc-whats-new | user-scope install |
+| acme-plugins | lint-fix | enabled in .claude/settings.json |
 
 </format>
 
