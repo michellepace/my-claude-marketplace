@@ -18,8 +18,8 @@
       "description": "Claude Code meta-utilities: release notes and plugin status"
     },
     {
-      "name": "find-my-font",
-      "source": "./plugins/find-my-font",
+      "name": "find-font",
+      "source": "./plugins/find-font",
       "description": "Research, classify, and recommend Google Font pairings using the Kupferschmid matrix and user criteria"
     },
     {

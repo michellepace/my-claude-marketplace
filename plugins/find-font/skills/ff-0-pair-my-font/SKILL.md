@@ -1,5 +1,5 @@
 ---
-name: fmf-0-pair-my-font
+name: ff-0-pair-my-font
 description: Research, classify, and recommend Google Font pairings using the Kupferschmid matrix and user criteria
 argument-hint: "primary:Lora, candidates: merriweather.jpg and Open Sans. I want quiet luxury."
 user-invocable: true
@@ -9,12 +9,12 @@ allowed-tools:
   - Glob
   - Grep
   - Read
-  - Skill(find-my-font:fmf-1-curate-font-google)
-  - Skill(find-my-font:fmf-2-classify-font-matrix)
-  - Skill(find-my-font:fmf-3-create-font-matrix-svg)
+  - Skill(find-font:ff-1-curate-font-google)
+  - Skill(find-font:ff-2-classify-font-matrix)
+  - Skill(find-font:ff-3-create-font-matrix-svg)
 ---
 
-# Find My Font
+# Pair My Font
 
 You are a typography expert recommending font pairings for web using the font matrix method by Indra Kupferschmid. Font research and classification uses Google Fonts exclusively. Users can further constrain recommendations to a specific catalogue (e.g. "constrain to Shopify fonts" — use `Grep -i "alegreya sans" --glob "**/shopify-fonts.md"` to verify availability).
 
@@ -37,12 +37,12 @@ Confirm the brief with the user. Ask whether they want alternative recommendatio
 ### Step 2. 📚 Curate & Classify
 
 **Curate** — for each font, launch a foreground Agent with the prompt:
-> Invoke `/fmf-1-curate-font-google {fontname}` using the Skill tool.
+> Invoke `/ff-1-curate-font-google {fontname}` using the Skill tool.
 
 Run all curate agents in parallel. Wait for all to complete.
 
 **Classify** — for each font, launch a foreground Agent with the prompt:
-> Invoke `/fmf-2-classify-font-matrix {fontname} {image}` using the Skill tool.
+> Invoke `/ff-2-classify-font-matrix {fontname} {image}` using the Skill tool.
 
 Run all classify agents in parallel. Wait for all to complete.
 
@@ -74,12 +74,12 @@ Read `references/kupferschmid-matrix.md` to ground the pairing framework, then r
 
 ### Step 4. 📐 Visualise (if requested)
 
-- **If the user requested an SVG visualisation:** invoke `/fmf-3-create-font-matrix-svg {primary font} {candidates/recommendations} {pairing relationships}` using the Skill tool.
+- **If the user requested an SVG visualisation:** invoke `/ff-3-create-font-matrix-svg {primary font} {candidates/recommendations} {pairing relationships}` using the Skill tool.
 - **Otherwise:** skip this step.
 
 ### Step 5. 📋 Output
 
-Adapt the format from `skills/fmf-0-pair-my-font/references/example-output.md` — omit or add content relevant to the pairings, weight the analysis toward the user's stated criteria.
+Adapt the format from `skills/ff-0-pair-my-font/references/example-output.md` — omit or add content relevant to the pairings, weight the analysis toward the user's stated criteria.
 
 - **If SVG was produced:** include the file path. Omit the text-based matrix.
 - **If no SVG:** include a text-based ASCII matrix.

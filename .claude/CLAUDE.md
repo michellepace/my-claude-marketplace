@@ -11,7 +11,7 @@ A Claude Code **marketplace** — a monorepo of plugins.
 | Plugin | Type | Purpose |
 |:---|:---|:---|
 | `claude-code-utils` | 2 skills | Claude Code visibility & discovery |
-| `find-my-font` | 4 skills + MCP | Font pairing (orchestrator pattern) |
+| `find-font` | 4 skills + MCP | Font pairing (orchestrator pattern) |
 | `nextjs-utils` | 2 skills + MCP | Next.js docs & dev guidance |
 | `git-utils` | 3 skills | Git & GitHub workflows |
 

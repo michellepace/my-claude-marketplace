@@ -1,5 +1,5 @@
 ---
-name: fmf-2-classify-font-matrix
+name: ff-2-classify-font-matrix
 description: Classify a font using the Kupferschmid matrix (skeleton, flesh, skin layers) and update its fontname.md profile.
 argument-hint: "fontname, e.g. Montserrat — optionally include image path"
 context: fork

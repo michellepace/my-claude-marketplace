@@ -1,4 +1,4 @@
-# Find My Font: As a Next.js App
+# Find Font: As a Next.js App
 
 ## Current State
 
@@ -6,15 +6,15 @@ Three reference documents are staged in git (not yet committed):
 
 - `plugin_plugin-dev.md` — documents the plugin-dev plugin
 - `plugin_skill-creator.md` — documents the skill-creator plugin
-- `plugin_strategy_eval.md` — evaluation strategy for find-my-font
+- `plugin_strategy_eval.md` — evaluation strategy for find-font
 
 Copies also live in `~/projects/useful/`.
 
-## Your find-my-font Plugin
+## Your find-font Plugin
 
 A Claude Code plugin with an **orchestrator-worker pattern**:
 
-- **4 skills**: `fmf-0-pair-my-font` (orchestrator) -> spawns `fmf-1-curate-font-google`, `fmf-2-classify-font-matrix`, `fmf-3-create-font-matrix-svg` in parallel
+- **4 skills**: `ff-0-pair-my-font` (orchestrator) -> spawns `ff-1-curate-font-google`, `ff-2-classify-font-matrix`, `ff-3-create-font-matrix-svg` in parallel
 - **Kupferschmid 3-layer classification**: Skeleton (Dynamic/Rational/Geometric) -> Flesh (contrast+serif combos) -> Skin (fine details), organized in a 3x4 matrix
 - **Pairing rules**: same column = harmonious, diagonal = contrasting, same row/cell = avoid
 - **Hard dependency on Ref MCP** (`https://api.ref.tools/mcp`) for fetching Google Fonts data (Google Fonts is a JS SPA that WebFetch can't scrape)
@@ -43,7 +43,7 @@ A Claude Code plugin with an **orchestrator-worker pattern**:
 
 ## What I Know About Your Project
 
-(Same as before -- find-my-font plugin with 4 skills, Kupferschmid classification, Ref MCP dependency, SVG generation, 46 files.)
+(Same as before -- find-font plugin with 4 skills, Kupferschmid classification, Ref MCP dependency, SVG generation, 46 files.)
 
 ## What I Now Know About the Tools Available
 
@@ -51,7 +51,7 @@ A Claude Code plugin with an **orchestrator-worker pattern**:
 
 The Agent SDK can **absolutely** replicate your plugin's orchestrator-worker pattern:
 
-- **Subagents** map directly to your worker skills (`fmf-1-curate-font-google`, `fmf-2-classify-font-matrix`, `fmf-3-create-font-matrix-svg`)
+- **Subagents** map directly to your worker skills (`ff-1-curate-font-google`, `ff-2-classify-font-matrix`, `ff-3-create-font-matrix-svg`)
 - **MCP support** is built in -- your Ref MCP server (`https://api.ref.tools/mcp`) can be passed via `mcpServers`
 - **Custom tools** via `@tool` decorator (Python) or `betaZodTool` (TypeScript)
 - **Hooks** for logging, auditing, or intercepting tool calls

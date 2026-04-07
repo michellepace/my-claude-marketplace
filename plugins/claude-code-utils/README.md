@@ -33,41 +33,7 @@ Shows the state of Marketplaces and Plugins across all scopes, with a focus on w
 
 ### Sample Output
 
-**🏪 Added Marketplaces (3)**
-
-| Source | Marketplace |
-| :----- | :---------- |
-| ✅ anthropics/claude-plugins-official | claude-plugins-official |
-| ✅ anthropics/skills | anthropic-agent-skills |
-| ✅ ~/projects/my-claude-marketplace | my-claude-marketplace |
-
-**📦 All Installed Plugins (5)**
-
-| Source | Plugin | Install Scope | Install Project | Version |
-| :----- | :----- | :------------ | :-------------- | :------ |
-| claude-plugins-official | claude-md-management | project | my-app ⚠️ | unknown |
-| claude-plugins-official | plugin-dev | project | my-claude-marketplace | unknown |
-| my-claude-marketplace | claude-code-utils | user | *(all)* | 1.0.1 |
-| my-claude-marketplace | find-my-font | user | *(all)* | 2.0.7 |
-| my-claude-marketplace | nextjs-utils | project | devflow | 1.0.5 |
-
-⚠️ `claude-md-management` — install path no longer exists (stale entry).
-
-1 plugin disabled via `.claude/settings.json`:
-- `find-my-font@my-claude-marketplace` → false
-
-No orphaned `enabledPlugins` entries found.
-
-**🔌 Active Plugins (2): `my-claude-marketplace`**
-
-| Source | Plugin | Why Active |
-| :----- | :----- | :--------- |
-| claude-plugins-official | plugin-dev | enabled in `.claude/settings.json` |
-| my-claude-marketplace | claude-code-utils | user-scope install |
-
----
-
-*Output will vary based on your installed marketplaces, plugins, and model.*
+[to be completed]
 
 ---
 
