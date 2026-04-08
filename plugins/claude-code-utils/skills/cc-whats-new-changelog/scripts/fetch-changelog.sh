@@ -5,7 +5,9 @@ set -euo pipefail
 LATEST_N=8
 while [[ $# -gt 0 ]]; do
   case "$1" in
-    --latest-n) LATEST_N="$2"; shift 2 ;;
+    --latest-n)
+      [[ $# -ge 2 && "$2" =~ ^[1-9][0-9]*$ ]] && LATEST_N="$2" && shift
+      shift ;;
     *) echo "Usage: $0 [--latest-n N]" >&2; exit 1 ;;
   esac
 done
