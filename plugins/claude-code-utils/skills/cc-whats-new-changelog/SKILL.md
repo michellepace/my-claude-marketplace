@@ -18,7 +18,6 @@ allowed-tools:
   - Bash(npm view *)
   - Bash(rm x_cc-changelog-*)
   - Bash(sed *)
-  - Bash(tac *)
   - Bash(tail *)
   - Bash(tr *)
   - Bash(wc *)
@@ -45,7 +44,7 @@ echo "✅ Full changelog created (v2.1.0+, 2026+): $CHANGELOG_FULL"
 CHANGELOG_INDEX="x_cc-changelog-index.csv"
 CHANGELOG_COUNTS=$(echo "$CHANGELOG" | awk '/^## /{if(v)print v","c;v=$2;c=0}/^- /{c++}END{print v","c}')
 echo "version,npm_release_date,changelog_items (0=npm-only)" > "$CHANGELOG_INDEX"
-npm view @anthropic-ai/claude-code time | grep -E "^ *'[0-9]+\.[0-9]+\.[0-9]+" | grep -vE "'([01]\.|2\.0\.)" | tac | sed "s/T.*Z'//" | tr -d "':," | column -t | while read -r ver date; do
+npm view @anthropic-ai/claude-code time | grep -E "^ *'[0-9]+\.[0-9]+\.[0-9]+" | grep -vE "'([01]\.|2\.0\.)" | awk '{a[NR]=$0}END{for(i=NR;i>=1;i--)print a[i]}' | sed "s/T.*Z'//" | tr -d "':," | column -t | while read -r ver date; do
   items=$(echo "$CHANGELOG_COUNTS" | grep "^$ver," | cut -d',' -f2)
   echo "$ver,$date,${items:-0}"
 done >> "$CHANGELOG_INDEX"
@@ -63,7 +62,7 @@ echo "<version_stats>";
 echo "total_versions=$(( $(wc -l < "$CHANGELOG_INDEX") - 1 ))";
 echo "latest=$(sed -n '2p' "$CHANGELOG_INDEX" | cut -d',' -f1)";
 echo "earliest=$(tail -1 "$CHANGELOG_INDEX" | cut -d',' -f1)";
-echo "earliest_date=$(tail -1 "$CHANGELOG_INDEX" | cut -d',' -f2 | xargs -I{} date -d {} '+%b %Y')";
+echo "earliest_date=$(tail -1 "$CHANGELOG_INDEX" | cut -d',' -f2 | awk -F- '{split("Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec",m," "); printf "%s %s\n",m[$2+0],$1}')";
 echo "</version_stats>";
 echo "";
 echo "=== Latest Versions ===";
