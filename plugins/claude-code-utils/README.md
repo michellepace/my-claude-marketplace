@@ -98,7 +98,7 @@ Explains what's new in Claude Code versions with practical examples you can use 
 Fetches the Claude Code changelog. Ask Claude to explain any version (earlier than in the table is possible too). The skill then launches the `claude-code-guide` subagent for rich, practical explanations with examples and doc links.
 
 <div align="center">
-  <a href="../../images/cc-whats-new-changelog.jpg" target="_blank">
-    <img src="../../images/cc-whats-new-changelog.jpg" alt="cc-whats-new-changelog skill output: changelog is fetched and parsed into a summary table showing the latest 7 Claude Code versions with release dates, item counts, and at-a-glance change descriptions. Versions with zero items are noted as npm-only releases. A prompt asks which version to explain, e.g. 2.1.94 for a single version or 2.1.* for all." width="832">
+  <a href="images/cc-whats-new-changelog.jpg" target="_blank">
+    <img src="images/cc-whats-new-changelog.jpg" alt="cc-whats-new-changelog skill output: changelog is fetched and parsed into a summary table showing the latest 7 Claude Code versions with release dates, item counts, and at-a-glance change descriptions. Versions with zero items are noted as npm-only releases. A prompt asks which version to explain, e.g. 2.1.94 for a single version or 2.1.* for all." width="780">
   </a>
 </div>
