@@ -8,6 +8,7 @@ disable-model-invocation: true
 allowed-tools:
   - Bash(claude plugin *)
   - Bash(test *)
+  - Bash(echo *)
 ---
 
 # Claude Code Marketplaces and Plugins
@@ -113,11 +114,11 @@ Derive the resolved set of plugins that apply to the current project. Scope show
 2. If the same plugin appears at multiple scopes, keep only the highest-precedence entry (local > project > user)
 3. Show one row per effective plugin
 
-| Source Repo | Plugin | Scope | Version | Health |
-| :---------- | :----- | :---- | :------ | :----- |
-| anthropics/knowledge-work-plugins | brand-voice | project | 1.0.0 | ✅ |
-| anthropics/knowledge-work-plugins | design | local | unknown | ✅ |
-| anthropics/claude-plugins-official | frontend-design | user | unknown | ✅ |
+| Source Repo | Plugin | Scope | Version | Enabled | Health |
+| :---------- | :----- | :---- | :------ | :------ | :----- |
+| anthropics/knowledge-work-plugins | brand-voice | project | 1.0.0 | 🟣 true | ✅ |
+| anthropics/knowledge-work-plugins | design | local | unknown | 🟤 false | ✅ |
+| anthropics/claude-plugins-official | frontend-design | user | unknown | 🟣 true | ✅ |
 
 </format>
 

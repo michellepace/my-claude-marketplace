@@ -28,8 +28,10 @@
   },
   "enabledPlugins": {
     "git-utils@my-claude-marketplace": true,
-    "skill-creator@claude-plugins-official": false,
-    "plugin-dev@claude-plugins-official": false
+    "find-font@my-claude-marketplace": true,
+    "nextjs-utils@my-claude-marketplace": false,
+    "plugin-dev@claude-plugins-official": false,
+    "skill-creator@claude-plugins-official": false
   },
   "extraKnownMarketplaces": {
     "my-claude-marketplace": {
