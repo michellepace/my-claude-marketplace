@@ -1,5 +1,5 @@
 ---
-name: cc-whats-new
+name: cc-whats-new-changelog
 description: What's new in Claude Code (eg 2.1.3 or 2.1 for all 2.1.*)
 argument-hint: [version]
 user-invocable: true
