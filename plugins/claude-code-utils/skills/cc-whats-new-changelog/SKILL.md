@@ -16,6 +16,7 @@ allowed-tools:
   - Bash(grep *)
   - Bash(head *)
   - Bash(npm view *)
+  - Bash(rm x_cc-changelog-*)
   - Bash(sed *)
   - Bash(tac *)
   - Bash(tail *)
@@ -35,13 +36,13 @@ Run these commands to gather changelog and npm data, then display summary:
 
 ```bash
 # Fetch full changelog (v2.1.0+, 2026+)
-CHANGELOG_FULL="/tmp/cc-changelog-full.md"
+CHANGELOG_FULL="x_cc-changelog-full.md"
 curl -s https://raw.githubusercontent.com/anthropics/claude-code/refs/heads/main/CHANGELOG.md | awk '/^## 2\.0\./{exit} /^## [01]\./{exit} {print}' > "$CHANGELOG_FULL"
 CHANGELOG=$(cat "$CHANGELOG_FULL")
 echo "✅ Full changelog created (v2.1.0+, 2026+): $CHANGELOG_FULL"
 
 # Build changelog index with item counts (v2.1.0+, 2026+)
-CHANGELOG_INDEX="/tmp/cc-changelog-index.csv"
+CHANGELOG_INDEX="x_cc-changelog-index.csv"
 CHANGELOG_COUNTS=$(echo "$CHANGELOG" | awk '/^## /{if(v)print v","c;v=$2;c=0}/^- /{c++}END{print v","c}')
 echo "version,npm_release_date,changelog_items (0=npm-only)" > "$CHANGELOG_INDEX"
 npm view @anthropic-ai/claude-code time | grep -E "^ *'[0-9]+\.[0-9]+\.[0-9]+" | grep -vE "'([01]\.|2\.0\.)" | tac | sed "s/T.*Z'//" | tr -d "':," | column -t | while read -r ver date; do
@@ -92,13 +93,13 @@ Claude Code has `[total_versions]` versions within (`[latest]` → `[earliest]`)
 | `x.x.x` | YYYY-MM-DD | 0 | (no changelog entry) |
 | ... | ... | ... | ... |
 
-*[Short note why version may have zero items (if applicable)]*
+*Versions with 0 items are npm-only releases (typically hotfixes)*
 
 </welcome_message_template>
 
 ## Step 2: Determine Provided Version
 
-Check if `$ARGUMENTS` contains a version in `/tmp/cc-changelog-index.csv`.
+Check if `$ARGUMENTS` contains a version in `x_cc-changelog-index.csv`.
 
 **Valid version with changelog_items > 0?** → Proceed to Step 3
 
@@ -121,8 +122,8 @@ Extract the changelog section for the determined version:
 
 ```bash
 VERSION="[VERSION]"  # e.g., "2.1.3" or "2.1"
-CHANGELOG_FULL="/tmp/cc-changelog-full.md"
-CHANGELOG_SELECTED="/tmp/cc-changelog-selected.md"
+CHANGELOG_FULL="x_cc-changelog-full.md"
+CHANGELOG_SELECTED="x_cc-changelog-selected.md"
 
 if [[ "$VERSION" =~ ^[0-9]+\.[0-9]+$ ]]; then
   # Series (e.g., 2.1) - get all matching versions
@@ -136,7 +137,7 @@ echo "$SECTION" > "$CHANGELOG_SELECTED"
 echo "✅ Selected changelog created: $CHANGELOG_SELECTED"
 ```
 
-If the user's request implies a time filter (e.g., "this week"), edit the file to include only versions matching that timeframe using dates from `/tmp/cc-changelog-index.csv`.
+If the user's request implies a time filter (e.g., "this week"), edit the file to include only versions matching that timeframe using dates from `x_cc-changelog-index.csv`.
 
 Proceed to Step 5 where this changelog will be provided to the agent.
 
@@ -150,7 +151,7 @@ Use the Agent tool to spawn the `claude-code-guide` agent (`subagent_type: "clau
 
 Steps:
 
-1. Read and analyse changelog: `/tmp/cc-changelog-selected.md`
+1. Read and analyse changelog: `x_cc-changelog-selected.md`
 
 2. Evaluate which changes most impact Claude Code users.
 
@@ -190,3 +191,11 @@ Steps:
 </agent_prompt>
 
 Present the agent's output directly to the user.
+
+## Step 6: Cleanup
+
+Ask the user if they would like the written files removed. If yes:
+
+```bash
+rm x_cc-changelog-*
+```
