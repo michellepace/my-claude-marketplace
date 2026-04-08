@@ -1,7 +1,7 @@
 ---
 name: cc-whats-new-changelog
-description: What's new in Claude Code (eg 2.1.3 or 2.1 for all 2.1.*)
-argument-hint: [version]
+description: Explain what's new in Claude Code
+argument-hint: [Optional version "v2.1.90", "2.1.90"]
 user-invocable: true
 disable-model-invocation: true
 allowed-tools:
@@ -51,6 +51,9 @@ npm view @anthropic-ai/claude-code time | grep -E "^ *'[0-9]+\.[0-9]+\.[0-9]+" |
 done >> "$CHANGELOG_INDEX"
 echo "✅ Changelog index created (v2.1.0+, 2026+): $CHANGELOG_INDEX"
 
+# How many latest versions to show
+LATEST_N=8
+
 # Latest versions (0 changelog items = npm-only)
 echo "";
 echo "<latest_version_summary>";
@@ -60,18 +63,19 @@ echo "<version_stats>";
 echo "total_versions=$(( $(wc -l < "$CHANGELOG_INDEX") - 1 ))";
 echo "latest=$(sed -n '2p' "$CHANGELOG_INDEX" | cut -d',' -f1)";
 echo "earliest=$(tail -1 "$CHANGELOG_INDEX" | cut -d',' -f1)";
+echo "earliest_date=$(tail -1 "$CHANGELOG_INDEX" | cut -d',' -f2 | xargs -I{} date -d {} '+%b %Y')";
 echo "</version_stats>";
 echo "";
 echo "=== Latest Versions ===";
 echo "<latest_versions>";
-head -8 "$CHANGELOG_INDEX"
+head -$((LATEST_N + 1)) "$CHANGELOG_INDEX"
 echo "</latest_versions>";
 
 # Latest changelog entries
 echo "";
 echo "=== Latest Changelog Entries ===";
 echo "<latest_changelog_entries>";
-echo "$CHANGELOG" | awk '/^## [0-9]/{count++} count<=7';
+echo "$CHANGELOG" | awk -v n="$LATEST_N" '/^## [0-9]/{count++} count<=n';
 echo "</latest_changelog_entries>";
 echo "";
 echo "</latest_version_summary>";
@@ -83,17 +87,15 @@ Analyse data in `<latest_version_summary>` tags to populate template (use backti
 
 # KNOW WHAT CHANGED IN CLAUDE CODE
 
-Claude Code has `[total_versions]` versions within (`[latest]` → `[earliest]`). Most have a **changelog entry** — one or more **items** describing what changed.
+Claude Code has `[total_versions]` versions between `v[latest]` → `v[earliest]` ([earliest_date]).
 
-🙂 Latest `[N]` Versions:
+📋 Latest `[N]` Versions (items are changelog entries):
 
 | Version | Released | Items | Changes At A Glance |
 | ------- | -------- | ----- | ------------------- |
-| `x.x.x` | YYYY-MM-DD | nn | Most impactful change (40-50 chars) |
-| `x.x.x` | YYYY-MM-DD | 0 | (no changelog entry) |
+| `x.x.x` | YYYY-MM-DD | nn | Most impactful change (50-70 chars) |
+| `x.x.x` | YYYY-MM-DD | 0 | *(no changelog entry, an npm-only release)* |
 | ... | ... | ... | ... |
-
-*Versions with 0 items are npm-only releases (typically hotfixes)*
 
 </welcome_message_template>
 
@@ -105,14 +107,14 @@ Check if `$ARGUMENTS` contains a version in `x_cc-changelog-index.csv`.
 
 **Valid version with changelog_items = 0?** → "🤔 Version `X.X.X` has no changelog entries, so I won't be able to explain what changed. It's likely because [...]. What about `[nearest versions with items]`?"
 
-**Invalid or missing version?** → "🤔 Which version? Did you perhaps mean `[suggest version]` or ...?"
+**Invalid or missing version?** → "🤔 Which version would you like me to explain? For example: latest `[version]`, a timeframe ("[eg1]", "[eg2]", "[eg3]"), or an earlier version?"
 
 ## Step 3: Acknowledge & Proceed
 
 | Input Type | Example | Response |
 | ---------- | ------- | -------- |
 | Minor series | `2.1` | "🙂 Analysing all `2.1.*` versions..." |
-| Exact version | `2.1.2` | "🙂 Analysing version `2.1.2`... (tip: use `2.1` for all 2.1.* versions)" |
+| Exact version | `2.1.2` | "🙂 Analysing version `2.1.2`..." |
 
 Then proceed to Step 4.
 
@@ -121,7 +123,7 @@ Then proceed to Step 4.
 Extract the changelog section for the determined version:
 
 ```bash
-VERSION="[VERSION]"  # e.g., "2.1.3" or "2.1"
+VERSION="[VERSION]"  # e.g., "2.1.90" or "2.1"
 CHANGELOG_FULL="x_cc-changelog-full.md"
 CHANGELOG_SELECTED="x_cc-changelog-selected.md"
 
