@@ -17,8 +17,11 @@ CHANGELOG_FULL="x_cc-changelog-full.md"
 CHANGELOG_INDEX="x_cc-changelog-index.csv"
 
 # Fetch full changelog (v2.1.0+, 2026+)
-curl -s https://raw.githubusercontent.com/anthropics/claude-code/refs/heads/main/CHANGELOG.md \
+curl -sfS --max-time 10 https://raw.githubusercontent.com/anthropics/claude-code/refs/heads/main/CHANGELOG.md \
   | awk 'BEGIN{p=1} /^## 2\.0\./{p=0} /^## [01]\./{p=0} p' > "$CHANGELOG_FULL"
+if [[ ! -s "$CHANGELOG_FULL" ]]; then
+  echo "Error: Failed to fetch changelog or file is empty" >&2; exit 1
+fi
 CHANGELOG=$(cat "$CHANGELOG_FULL")
 echo "✅ Full changelog created (v2.1.0+, 2026+): $CHANGELOG_FULL"
 
