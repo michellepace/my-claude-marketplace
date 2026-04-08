@@ -68,11 +68,19 @@ Read these files with the Read tool:
 
 ## Step 2: Health checks
 
-For each plugin in `installed_plugins.json`, run `test -d` on:
+Collect all `projectPath` and `installPath` values from `installed_plugins.json`, then run a single bash `for` loop to check them all at once (use emojis):
 
-- `projectPath` (if present) — ⚠️ project gone if missing
-- `installPath` — 🔗 cache missing if missing
-- Otherwise ✅
+```bash
+echo "🔍 Checking projectPath and installPath directories exist..."
+for d in <path1> <path2> ...; do
+  test -d "$d" && echo "EXISTS $d" || echo "MISSING $d"
+done
+```
+
+Health key per path:
+- `projectPath` missing → ⚠️ project gone
+- `installPath` missing → 🔗 cache missing
+- Both present (or only `installPath` and it exists) → ✅
 
 ## Step 3: Present summary
 
@@ -84,14 +92,14 @@ Rules:
 
 <format>
 
-### 🏪 Added Marketplaces
+## 🏪 Added Marketplaces
 
 | Source Repo | Marketplace |
 | :---------- | :---------- |
 | ✅ anthropics/claude-plugins-official | claude-plugins-official |
 | ✅ anthropics/knowledge-work-plugins | knowledge-work-plugins |
 
-### 📂 Plugins at Local Scope (per-project, not in git)
+## 📂 Plugins at Local Scope (per-project, not in git)
 
 Plugins from `installed_plugins.json` where `scope` = `"local"`.
 
@@ -99,7 +107,7 @@ Plugins from `installed_plugins.json` where `scope` = `"local"`.
 | :------ | :---------- | :----- | :------ | :----- |
 | devflow | anthropics/knowledge-work-plugins | design | unknown | ✅ |
 
-### 📂 Plugins at Project Scope (per-project, in git)
+## 📂 Plugins at Project Scope (per-project, in git)
 
 Plugins from `installed_plugins.json` where `scope` = `"project"`.
 
@@ -108,7 +116,7 @@ Plugins from `installed_plugins.json` where `scope` = `"project"`.
 | my-claude-marketplace | anthropics/claude-plugins-official | skill-creator | unknown | ✅ |
 | devflow | anthropics/knowledge-work-plugins | brand-voice | 1.0.0 | ✅ |
 
-### 👤 Plugins at User Scope
+## 👤 Plugins at User Scope
 
 Plugins from `installed_plugins.json` where `scope` = `"user"`.
 
@@ -116,7 +124,7 @@ Plugins from `installed_plugins.json` where `scope` = `"user"`.
 | :---------- | :----- | :------ | :----- |
 | anthropics/claude-plugins-official | frontend-design | unknown | ✅ |
 
-### 🎯 CURRENT PROJECT (EFFECTIVE): `projectname`
+## 🎯 CURRENT PROJECT (EFFECTIVE): `projectname`
 
 Derive the resolved set of plugins that apply to the current project. Scope shows the highest-precedence entry for each plugin:
 
