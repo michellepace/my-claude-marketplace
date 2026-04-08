@@ -1,7 +1,7 @@
 ---
 name: cc-whats-new-changelog
 description: Explain what's new in Claude Code
-argument-hint: [Optional version "v2.1.90", "2.1.90"]
+argument-hint: [Optional version "2.1.90", "v2.1.90"]
 user-invocable: true
 disable-model-invocation: true
 allowed-tools:
