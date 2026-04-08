@@ -35,7 +35,7 @@ Claude Code has `[total_versions]` versions between `v[latest]` → `v[earliest]
 
 📋 Latest `[N]` Versions (items are changelog entries):
 
-| Version | Released | Items | Changes At A Glance |
+| Version | Released | Items | Changes at a Glance |
 | ------- | -------- | ----- | ------------------- |
 | `x.x.x` | YYYY-MM-DD | nn | Most impactful change (50-70 chars) |
 | `x.x.x` | YYYY-MM-DD | 0 | *(no changelog entry, an npm-only release)* |
