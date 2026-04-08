@@ -1,6 +1,6 @@
 # Plugin: `claude-code-utils`
 
-**Claude Code visibility & discovery:** Understand what is new in Claude Code from the changelog. Know what plugins you have installed and where.
+**Claude Code visibility & discovery:** Understand what is new in Claude Code from the changelog. Know which plugins you have installed and where.
 
 To install this plugin:
 
@@ -16,19 +16,19 @@ To install this plugin:
 
 | Run Skill | Description |
 |:------|:------------|
-| [`/cc-what-plugins`](skills/cc-what-plugins/SKILL.md) | Show all marketplaces and plugins with their status |
-| [`/cc-whats-new`](skills/cc-whats-new/SKILL.md) | Analyse changelog and explain features practically |
+| [`/cc-which-plugins`](skills/cc-which-plugins/SKILL.md) | Show all marketplaces and plugins with their status |
+| [`/cc-whats-new-changelog`](skills/cc-whats-new-changelog/SKILL.md) | Analyse changelog and explain features practically |
 
 ---
 
-## 🟣 Skill: cc-what-plugins
+## 🟣 Skill: cc-which-plugins
 
 Shows the state of Marketplaces and Plugins across all scopes, with a focus on what's active in the current project.
 
 ### Usage
 
 ```
-/cc-what-plugins
+/cc-which-plugins
 ```
 
 ### Sample Output
@@ -82,39 +82,23 @@ Shows the state of Marketplaces and Plugins across all scopes, with a focus on w
 
 ---
 
-## 🟣 Skill: cc-whats-new
+## 🟣 Skill: cc-whats-new-changelog
 
 Explains what's new in Claude Code versions with practical examples you can use immediately.
 
 ### Usage
 
 ```
-/cc-whats-new 2.1      # All 2.1.* versions
-/cc-whats-new 2.1.2    # Exact version only
+/cc-whats-new-changelog 2.1      # All 2.1.* versions
+/cc-whats-new-changelog 2.1.2    # Exact version only
 ```
 
-### In Action
+### Sample Output
 
-(1) Run the skill — Shows version summary table (always latest 7):
-
-<div align="center">
-  <a href="../../images/cc-whats-new_1.jpg" target="_blank">
-    <img src="../../images/cc-whats-new_1.jpg" alt="Version discovery phase: Command invocation shows a summary table of the latest 7 Claude Code versions with release dates, changelog item counts, and one-line descriptions. The requested version is marked with a star. Versions with zero items are explained as npm-only releases. A progress indicator shows analysis beginning." width="832">
-  </a>
-</div>
-
-(2) Impact summary — Features ranked by benefit, fixes listed, then detailed explanations begin:
+Fetches the Claude Code changelog. Ask Claude to explain any version (earlier than in the table is possible too). The skill then launches the `claude-code-guide` subagent for rich, practical explanations with examples and doc links.
 
 <div align="center">
-  <a href="../../images/cc-whats-new_2.jpg" target="_blank">
-    <img src="../../images/cc-whats-new_2.jpg" alt="High-level analysis phase: A claude-code-guide agent analyses the changelog and produces a Summary Table ranking features by impact (Feature | Benefit columns). A Fixes section lists resolved issues in problem to solution format. Detailed explanations begin below, each marked with a star icon, containing a description, practical EXAMPLE, and documentation links." width="832">
-  </a>
-</div>
-
-(3) Detailed feature explanations continue with examples and doc links:
-
-<div align="center">
-  <a href="../../images/cc-whats-new_3.jpg" target="_blank">
-    <img src="../../images/cc-whats-new_3.jpg" alt="Detailed explanations phase: Each significant feature is explained with a star-marked heading, a concise description of what it does and why it matters, a practical EXAMPLE showing real-world usage, and links to official documentation. A closing summary distils the version's theme. Footer shows total execution time." width="832">
+  <a href="images/cc-whats-new-changelog.jpg" target="_blank">
+    <img src="images/cc-whats-new-changelog.jpg" alt="cc-whats-new-changelog skill output: changelog is fetched and parsed into a summary table showing the latest 7 Claude Code versions with release dates, item counts, and at-a-glance change descriptions. Versions with zero items are noted as npm-only releases. A prompt asks which version to explain, e.g. 2.1.94 for a single version or 2.1.* for all." width="780">
   </a>
 </div>
