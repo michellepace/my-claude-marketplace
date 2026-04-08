@@ -41,8 +41,6 @@ Additional user instructions: $ARGUMENTS
 </template>
 
 <main_prefix>
-When the commit focuses on files in `plugins/`, use the plugin name as a scope — e.g. `refactor(<plugin-name>):`, `fix(<plugin-name>):`.
-
 - `rules:` claude configuration e.g. `**/CLAUDE.md`, `.claude/**/*`
 - `test:` adding or updating tests e.g. `tests/**/*`
 - `ci:` CI/CD pipeline changes, automated workflows, deployment automation
@@ -54,6 +52,8 @@ When the commit focuses on files in `plugins/`, use the plugin name as a scope �
 - `chore:` dev workflow, workspace config, dependency updates, dev tools e.g. `.vscode/**/*`, `pyproject.toml`, `.gitignore`
 - `docs:` documentation changes only e.g. `README.md`, `.xdocs/**/*.md`
 - `feat:` new feature for users (adds functionality)
+
+For `plugins/` changes, add `(<scope>)` to main prefix — scope = skill name if one skill, plugin name otherwise
 </main_prefix>
 
 <rules>
