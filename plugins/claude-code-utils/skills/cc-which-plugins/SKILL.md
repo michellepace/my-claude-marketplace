@@ -1,5 +1,5 @@
 ---
-name: cc-what-plugins
+name: cc-which-plugins
 description: Show all installed marketplaces and plugins by scope from the central registry
 context: fork
 agent: general-purpose

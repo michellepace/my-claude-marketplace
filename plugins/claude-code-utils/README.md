@@ -1,6 +1,6 @@
 # Plugin: `claude-code-utils`
 
-**Claude Code visibility & discovery:** Understand what is new in Claude Code from the changelog. Know what plugins you have installed and where.
+**Claude Code visibility & discovery:** Understand what is new in Claude Code from the changelog. Know which plugins you have installed and where.
 
 To install this plugin:
 
@@ -16,19 +16,19 @@ To install this plugin:
 
 | Run Skill | Description |
 |:------|:------------|
-| [`/cc-what-plugins`](skills/cc-what-plugins/SKILL.md) | Show all marketplaces and plugins with their status |
+| [`/cc-which-plugins`](skills/cc-which-plugins/SKILL.md) | Show all marketplaces and plugins with their status |
 | [`/cc-whats-new`](skills/cc-whats-new/SKILL.md) | Analyse changelog and explain features practically |
 
 ---
 
-## 🟣 Skill: cc-what-plugins
+## 🟣 Skill: cc-which-plugins
 
 Shows the state of Marketplaces and Plugins across all scopes, with a focus on what's active in the current project.
 
 ### Usage
 
 ```
-/cc-what-plugins
+/cc-which-plugins
 ```
 
 ### Sample Output
