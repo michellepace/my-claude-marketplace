@@ -6,16 +6,11 @@ agent: general-purpose
 user-invocable: true
 disable-model-invocation: true
 allowed-tools:
-  - Bash(jq *)
+  - Bash(claude plugin *)
   - Bash(test *)
-  - Glob
-  - Grep
-  - Read
 ---
 
 # Claude Code Marketplaces and Plugins
-
-The central registry (`~/.claude/plugins/`) is the single source of truth for all marketplace and plugin data across all scopes.
 
 Scope precedence (highest wins):
 
@@ -25,50 +20,30 @@ Scope precedence (highest wins):
 | 2 | project | Repo file: `.claude/settings.json` |
 | 3 | user | System file: `~/.claude/settings.json` |
 
-## Step 1: Read central registry
+## Step 1: Query CLI
 
-Read these files with the Read tool:
+Run both commands:
 
-1. `~/.claude/plugins/known_marketplaces.json` → all added marketplaces. Use the `source.repo` field to resolve marketplace names to repo paths (e.g. `claude-plugins-official` → `anthropics/claude-plugins-official`)
+1. `claude plugin marketplace list --json` → all marketplaces
 
-   ```json
-   {
-     "claude-plugins-official": {
-       "source": { "source": "github", "repo": "anthropics/claude-plugins-official" },
-       "installLocation": "/home/.../.claude/plugins/marketplaces/claude-plugins-official",
-       "lastUpdated": "2026-04-07T09:54:04.843Z"
-     },
-     "knowledge-work-plugins": {
-       "source": { "source": "github", "repo": "anthropics/knowledge-work-plugins" },
-       "installLocation": "/home/.../.claude/plugins/marketplaces/knowledge-work-plugins",
-       "lastUpdated": "2026-04-07T13:01:00.459Z"
-     }
-   }
-   ```
+2. `claude plugin list --json` → all installed plugins (global, all projects)
 
-2. `~/.claude/plugins/installed_plugins.json` → all installed plugins. Each entry has `scope` (`"user"`, `"project"`, or `"local"`). `projectPath` is only present for project/local scopes.
+   Split each `id` on `@` → plugin name + marketplace name. Use the marketplace list to resolve marketplace name → `repo`.
 
    ```json
-   {
-     "version": 2,
-     "plugins": {
-       "frontend-design@claude-plugins-official": [
-         { "scope": "user",
-           "version": "unknown", "installPath": "/home/.../.claude/plugins/cache/..." },
-         { "scope": "project", "projectPath": "/home/.../projects/my-app",
-           "version": "unknown", "installPath": "/home/.../.claude/plugins/cache/..." }
-       ],
-       "brand-voice@knowledge-work-plugins": [
-         { "scope": "project", "projectPath": "/home/.../projects/nextjs/devflow",
-           "version": "1.0.0", "installPath": "/home/.../.claude/plugins/cache/..." }
-       ]
-     }
-   }
+   [
+     { "id": "plugin-name@marketplace-name", "version": "1.0.0",
+       "scope": "user", "enabled": true,
+       "installPath": "/home/.../.claude/plugins/cache/...",
+       "projectPath": "/home/.../projects/..." }
+   ]
    ```
+
+   `projectPath` is only present for project/local scopes.
 
 ## Step 2: Health checks
 
-Collect all `projectPath` and `installPath` values from `installed_plugins.json`, then run a single bash `for` loop to check them all at once (use emojis):
+Collect all `projectPath` and `installPath` values from the plugin list, then run a single bash `for` loop to check them all at once (use emojis):
 
 ```bash
 echo "🔍 Checking projectPath and installPath directories exist..."
@@ -77,7 +52,7 @@ for d in <path1> <path2> ...; do
 done
 ```
 
-Health key per path:
+Health key per plugin:
 - `projectPath` missing → ⚠️ project gone
 - `installPath` missing → 🔗 cache missing
 - Both present (or only `installPath` and it exists) → ✅
@@ -92,6 +67,12 @@ Rules:
 
 <format>
 
+## About
+
+Marketplaces are global — added once, available to all projects.
+
+Plugins are installed at a scope. Precedence: `local` > `project` > `user`.
+
 ## 🏪 Added Marketplaces
 
 | Source Repo | Marketplace |
@@ -99,26 +80,26 @@ Rules:
 | ✅ anthropics/claude-plugins-official | claude-plugins-official |
 | ✅ anthropics/knowledge-work-plugins | knowledge-work-plugins |
 
-## 📂 Plugins at Local Scope (per-project, not in git)
+## 📂 1. Plugins at Local Scope (per-project, not in git)
 
-Plugins from `installed_plugins.json` where `scope` = `"local"`.
+Plugins where `scope` = `"local"`.
 
 | Project | Source Repo | Plugin | Version | Health |
 | :------ | :---------- | :----- | :------ | :----- |
 | devflow | anthropics/knowledge-work-plugins | design | unknown | ✅ |
 
-## 📂 Plugins at Project Scope (per-project, in git)
+## 📂 2. Plugins at Project Scope (per-project, in git)
 
-Plugins from `installed_plugins.json` where `scope` = `"project"`.
+Plugins where `scope` = `"project"`.
 
 | Project | Source Repo | Plugin | Version | Health |
 | :------ | :---------- | :----- | :------ | :----- |
 | my-claude-marketplace | anthropics/claude-plugins-official | skill-creator | unknown | ✅ |
 | devflow | anthropics/knowledge-work-plugins | brand-voice | 1.0.0 | ✅ |
 
-## 👤 Plugins at User Scope
+## 👤 3. Plugins at User Scope
 
-Plugins from `installed_plugins.json` where `scope` = `"user"`.
+Plugins where `scope` = `"user"`.
 
 | Source Repo | Plugin | Version | Health |
 | :---------- | :----- | :------ | :----- |
