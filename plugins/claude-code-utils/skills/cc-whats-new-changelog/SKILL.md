@@ -34,21 +34,21 @@ allowed-tools:
 Run these commands to gather changelog and npm data, then display summary:
 
 ```bash
-# Write changelog to temp file (v2.0.0+ only)
+# Write changelog to temp file (v2.1.0+, 2026+)
 CHANGELOG_FILE="/tmp/cc-whats-new-changelog.md"
-curl -s https://raw.githubusercontent.com/anthropics/claude-code/refs/heads/main/CHANGELOG.md | awk '/^## [01]\./{exit} {print}' > "$CHANGELOG_FILE"
+curl -s https://raw.githubusercontent.com/anthropics/claude-code/refs/heads/main/CHANGELOG.md | awk '/^## 2\.0\./{exit} /^## [01]\./{exit} {print}' > "$CHANGELOG_FILE"
 CHANGELOG=$(cat "$CHANGELOG_FILE")
-echo "✅ Changelog file created (v2.0.0+): $CHANGELOG_FILE"
+echo "✅ Changelog file created (v2.1.0+, 2026+): $CHANGELOG_FILE"
 
-# Write versions CSV with changelog item counts (v2.0.0+ only)
+# Write versions CSV with changelog item counts (v2.1.0+, 2026+)
 VERSIONS_FILE="/tmp/cc-whats-new-versions.csv"
 CHANGELOG_COUNTS=$(echo "$CHANGELOG" | awk '/^## /{if(v)print v","c;v=$2;c=0}/^- /{c++}END{print v","c}')
 echo "version,npm_release_date,changelog_items (0=npm-only)" > "$VERSIONS_FILE"
-npm view @anthropic-ai/claude-code time | grep -E "^ +'[2-9]\." | tac | sed "s/T.*Z'//" | tr -d "':," | column -t | while read -r ver date; do
+npm view @anthropic-ai/claude-code time | grep -E "^ *'[0-9]+\.[0-9]+\.[0-9]+" | grep -vE "'([01]\.|2\.0\.)" | tac | sed "s/T.*Z'//" | tr -d "':," | column -t | while read -r ver date; do
   items=$(echo "$CHANGELOG_COUNTS" | grep "^$ver," | cut -d',' -f2)
   echo "$ver,$date,${items:-0}"
 done >> "$VERSIONS_FILE"
-echo "✅ Versions file created (v2.0.0+): $VERSIONS_FILE"
+echo "✅ Versions file created (v2.1.0+, 2026+): $VERSIONS_FILE"
 
 # Latest versions (0 changelog items = npm-only)
 echo "";
