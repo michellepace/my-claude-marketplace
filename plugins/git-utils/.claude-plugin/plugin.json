@@ -1,5 +1,5 @@
 {
   "name": "git-utils",
   "description": "commit messages, CodeRabbit reviews, post-merge cleanup",
-  "version": "1.0.0"
+  "version": "1.0.1"
 }

@@ -1,7 +1,7 @@
 ---
 name: gg-coderabbit
 description: Evaluate CodeRabbit comment and recommend whether to action it
-argument-hint: <CodeRabbit comment link (e.g https://github.com/username/repo/pull/3#discussion_r3019655555)>
+argument-hint: [GitHub PR comment link of CodeRabbit]
 user-invocable: true
 disable-model-invocation: true
 allowed-tools:
@@ -16,7 +16,7 @@ allowed-tools:
 
 ## 1. Fetch
 
-Parse the PR review comment link from `$ARGUMENTS` to extract owner, repo, PR number, and comment ID. **If no link provided, STOP and ask for a CodeRabbit PR review comment link — include an example.**
+Parse the PR review comment link from `$ARGUMENTS` to extract owner, repo, PR number, and comment ID. **If no link provided, STOP and ask for a CodeRabbit PR review comment link — give example `https://github.com/username/reponame/pull/3#discussion_r3055555555`.**
 
 Then run:
 

@@ -60,7 +60,7 @@ Health key per plugin:
 ## Step 3: Present summary
 
 Rules:
-- Ensure accuracy - if unsure, tell the user.
+- Ensure accuracy — if unsure, tell the user.
 - Table sort: all tables a-z by leftmost columns, left to right
 - Health key: ✅ = ok, ⚠️ = projectPath missing, 🔗 = installPath missing
 - Empty sections: show the heading, then "(none)" on the next line
