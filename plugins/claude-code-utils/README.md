@@ -25,7 +25,7 @@ To install this plugin:
 
 Shows the state of Marketplaces and Plugins across all scopes, with a focus on what's active in the current project.
 
-### Usage
+Run:
 
 ```
 /cc-which-plugins
@@ -33,52 +33,11 @@ Shows the state of Marketplaces and Plugins across all scopes, with a focus on w
 
 ### Sample Output
 
-```text
-● All health checks pass. Here's the summary:
-
-🏪 Added Marketplaces
-  ┌───────────────────────────────────────┬─────────────────────────┐
-  │              Source Repo              │       Marketplace       │
-  ├───────────────────────────────────────┼─────────────────────────┤
-  │ ✅ anthropics/claude-plugins-official │ claude-plugins-official │
-  ├───────────────────────────────────────┼─────────────────────────┤
-  │ ✅ michellepace/my-claude-marketplace │ my-claude-marketplace   │
-  └───────────────────────────────────────┴─────────────────────────┘
-
-📂 Plugins at Local Scope (per-project, not in git)
-  (none)
-
-📂 Plugins at Project Scope (per-project, in git)
-  ┌───────────────────────┬────────────────────────────────────┬───────────────┬─────────┬────────┐
-  │        Project        │            Source Repo             │    Plugin     │ Version │ Health │
-  ├───────────────────────┼────────────────────────────────────┼───────────────┼─────────┼────────┤
-  │ my-claude-marketplace │ anthropics/claude-plugins-official │ plugin-dev    │ unknown │ ✅     │
-  ├───────────────────────┼────────────────────────────────────┼───────────────┼─────────┼────────┤
-  │ my-claude-marketplace │ anthropics/claude-plugins-official │ skill-creator │ unknown │ ✅     │
-  ├───────────────────────┼────────────────────────────────────┼───────────────┼─────────┼────────┤
-  │ my-claude-marketplace │ michellepace/my-claude-marketplace │ git-utils     │ 1.0.0   │ ✅     │
-  └───────────────────────┴────────────────────────────────────┴───────────────┴─────────┴────────┘
-
-👤 Plugins at User Scope
-  ┌────────────────────────────────────┬─────────────────┬─────────┬────────┐
-  │            Source Repo             │     Plugin      │ Version │ Health │
-  ├────────────────────────────────────┼─────────────────┼─────────┼────────┤
-  │ anthropics/claude-plugins-official │ frontend-design │ unknown │ ✅     │
-  └────────────────────────────────────┴─────────────────┴─────────┴────────┘
-
-🎯 CURRENT PROJECT (EFFECTIVE): my-claude-marketplace
-  ┌────────────────────────────────────┬─────────────────┬─────────┬─────────┬────────┐
-  │            Source Repo             │     Plugin      │  Scope  │ Version │ Health │
-  ├────────────────────────────────────┼─────────────────┼─────────┼─────────┼────────┤
-  │ anthropics/claude-plugins-official │ frontend-design │ user    │ unknown │ ✅     │
-  ├────────────────────────────────────┼─────────────────┼─────────┼─────────┼────────┤
-  │ anthropics/claude-plugins-official │ plugin-dev      │ project │ unknown │ ✅     │
-  ├────────────────────────────────────┼─────────────────┼─────────┼─────────┼────────┤
-  │ anthropics/claude-plugins-official │ skill-creator   │ project │ unknown │ ✅     │
-  ├────────────────────────────────────┼─────────────────┼─────────┼─────────┼────────┤
-  │ michellepace/my-claude-marketplace │ git-utils       │ project │ 1.0.0   │ ✅     │
-  └────────────────────────────────────┴─────────────────┴─────────┴─────────┴────────┘                 
-```
+<div align="center">
+  <a href="images/cc-which-plugins.jpg" target="_blank">
+    <img src="images/cc-which-plugins.jpg" alt="cc-which-plugins skill output: tables showing added marketplaces, plugins installed at local, project, and user scopes with source repo, plugin name, version, and health status, followed by an effective-plugins summary for the current project listing each plugin's scope, version, enabled state, and health." width="756">
+  </a>
+</div>
 
 ---
 
@@ -86,11 +45,12 @@ Shows the state of Marketplaces and Plugins across all scopes, with a focus on w
 
 Explains what's new in Claude Code versions with practical examples you can use immediately.
 
-### Usage
+Run:
 
 ```
-/cc-whats-new-changelog 2.1      # All 2.1.* versions
-/cc-whats-new-changelog 2.1.2    # Exact version only
+/cc-whats-new-changelog         # Summary table first
+/cc-whats-new-changelog 2.1.2   # Exact version only
+/cc-whats-new-changelog 2.1     # All 2.1.* versions
 ```
 
 ### Sample Output
