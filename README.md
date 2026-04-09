@@ -36,17 +36,16 @@ Or browse available plugins, run `/plugin` > Marketplace > Select "my-claude-mar
 Commit plugin configuration to the repo so every collaborator gets the same setup. Register a marketplace and install plugins at project scope:
 
 ```bash
-# 1. Add marketplace (writes "extraKnownMarketplaces")
+# 1. Add Marketplace (writes "extraKnownMarketplaces")
 claude plugin marketplace add michellepace/my-claude-marketplace --scope project
 
-# 2. Install plugin (writes "enabledPlugins") or run `/plugin`
+# 2. Install Plugin (writes "enabledPlugins") or run `/plugin`
 claude plugin install git-utils@my-claude-marketplace --scope project
 
-# 3. Additional marketplace and plugins
+# 3. Additional Marketplace and Two Plugins
 claude plugin marketplace add anthropics/claude-plugins-official --scope project
 claude plugin install skill-creator@claude-plugins-official --scope project
 claude plugin install plugin-dev@claude-plugins-official --scope project
-
 ```
 
 Both commands write to [.claude/settings.json](claude/settings.json):

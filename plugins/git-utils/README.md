@@ -2,14 +2,14 @@
 
 **Git & GitHub workflows:** Commit messages, CodeRabbit reviews, and post-merge cleanup.
 
-To install this plugin:
+Add marketplace and install this plugin (project scope):
 
-```
-# 1. Add marketplace if not already
-/plugin marketplace add michellepace/my-claude-marketplace
+```bash
+# 1. Add Marketplace
+claude plugin marketplace add michellepace/my-claude-marketplace --scope project
 
-# 2. Install this plugin
-/plugin install git-utils@my-claude-marketplace
+# 2. Install Plugin "git-utils"
+claude plugin install git-utils@my-claude-marketplace --scope project
 ```
 
 ## What's Inside

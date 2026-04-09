@@ -2,14 +2,14 @@
 
 **Next.js docs & dev guidance:** Download Next.js docs, trimmed and re-indexed for project relevancy. Development guidance for shadcn/ui.
 
-To install this plugin:
+Add marketplace and install this plugin (project scope):
 
-```
-# 1. Add marketplace if not already
-/plugin marketplace add michellepace/my-claude-marketplace
+```bash
+# 1. Add Marketplace
+claude plugin marketplace add michellepace/my-claude-marketplace --scope project
 
-# 2. Install this plugin
-/plugin install nextjs-utils@my-claude-marketplace
+# 2. Install Plugin "nextjs-utils"
+claude plugin install nextjs-utils@my-claude-marketplace --scope project
 ```
 
 ## What's Inside

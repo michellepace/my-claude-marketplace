@@ -4,14 +4,14 @@
 
 Give it a primary body font, optional candidates, and a mood or criteria. It fetches font data, classifies each font on the matrix, evaluates pairings, and recommends fonts that match your brief.
 
-To install this plugin:
+Add marketplace and install this plugin (project scope):
 
-```
-# 1. Add marketplace if not already
-/plugin marketplace add michellepace/my-claude-marketplace
+```bash
+# 1. Add Marketplace
+claude plugin marketplace add michellepace/my-claude-marketplace --scope project
 
-# 2. Install this plugin
-/plugin install find-font@my-claude-marketplace
+# 2. Install Plugin "find-font"
+claude plugin install find-font@my-claude-marketplace --scope project
 ```
 
 <div align="center">

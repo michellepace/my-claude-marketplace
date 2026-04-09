@@ -2,14 +2,14 @@
 
 **Claude Code visibility & discovery:** Understand what is new in Claude Code from the changelog. Know which plugins you have installed and where.
 
-To install this plugin:
+Add marketplace and install this plugin (project scope):
 
-```
-# 1. Add marketplace if not already
-/plugin marketplace add michellepace/my-claude-marketplace
+```bash
+# 1. Add Marketplace
+claude plugin marketplace add michellepace/my-claude-marketplace --scope project
 
-# 2. Install this plugin
-/plugin install claude-code-utils@my-claude-marketplace
+# 2. Install Plugin "claude-code-utils"
+claude plugin install claude-code-utils@my-claude-marketplace --scope project
 ```
 
 ## 🟣 What's Inside
@@ -35,7 +35,7 @@ Run:
 
 <div align="center">
   <a href="images/cc-which-plugins.jpg" target="_blank">
-    <img src="images/cc-which-plugins.jpg" alt="cc-which-plugins skill output: tables showing added marketplaces, plugins installed at local, project, and user scopes with source repo, plugin name, version, and health status, followed by an effective-plugins summary for the current project listing each plugin's scope, version, enabled state, and health." width="756">
+    <img src="images/cc-which-plugins.jpg" alt="cc-which-plugins skill output: tables showing added marketplaces, plugins installed at local, project, and user scopes with source repo, plugin name, version, and health status, followed by an effective-plugins summary for the current project listing each plugin's scope, version, enabled state, and health.">
   </a>
 </div>
 
@@ -43,7 +43,7 @@ Run:
 
 ## 🟣 Skill: cc-whats-new-changelog
 
-Explains what's new in Claude Code versions with practical examples you can use immediately.
+Explains what's new in Claude Code changelog with practical examples you can use immediately.
 
 Run:
 
@@ -55,10 +55,10 @@ Run:
 
 ### Sample Output
 
-Fetches the Claude Code changelog. Ask Claude to explain any version (earlier than in the table is possible too). The skill then launches the `claude-code-guide` subagent for rich, practical explanations with examples and doc links.
+Specify any version within in range and have it explained. The skill then launches the  `claude-code-guide` subagent for rich, practical explanations with examples and doc links.
 
 <div align="center">
   <a href="images/cc-whats-new-changelog.jpg" target="_blank">
-    <img src="images/cc-whats-new-changelog.jpg" alt="cc-whats-new-changelog skill output: changelog is fetched and parsed into a summary table showing the latest 7 Claude Code versions with release dates, item counts, and at-a-glance change descriptions. Versions with zero items are noted as npm-only releases. A prompt asks which version to explain, e.g. 2.1.94 for a single version or 2.1.* for all." width="780">
+    <img src="images/cc-whats-new-changelog.jpg" alt="Screenshot of the cc-whats-new-changelog skill running in Claude Code. It displays a summary table of the latest 8 Claude Code versions (2.1.88 to 2.1.97) with columns for Version, Released date, Items count, and Changes at a Glance. The skill reports 87 total versions and prompts the user to pick a version, timeframe, or range to explain in detail.">
   </a>
 </div>
