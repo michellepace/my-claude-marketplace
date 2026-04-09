@@ -72,7 +72,7 @@ Rules:
 
 Marketplaces are global — added once, available to all projects.
 
-Plugins are installed at a scope. Precedence: `local` > `project` > `user`.
+Plugins are installed at a scope. Precedence: `local` > `project` > `user` (left wins).
 
 ## 🏪 Added Marketplaces
 
@@ -81,7 +81,7 @@ Plugins are installed at a scope. Precedence: `local` > `project` > `user`.
 | ✅ anthropics/claude-plugins-official | claude-plugins-official |
 | ✅ anthropics/knowledge-work-plugins | knowledge-work-plugins |
 
-## 📂 1. Plugins at Local Scope (per-project, not in git)
+## 📂 1. Local Scope (per-project, not in git)
 
 Plugins where `scope` = `"local"`.
 
@@ -89,7 +89,7 @@ Plugins where `scope` = `"local"`.
 | :------ | :---------- | :----- | :------ | :----- |
 | devflow | anthropics/knowledge-work-plugins | design | unknown | ✅ |
 
-## 📂 2. Plugins at Project Scope (per-project, in git)
+## 📂 2. Project Scope (per-project, in git)
 
 Plugins where `scope` = `"project"`.
 
@@ -98,7 +98,7 @@ Plugins where `scope` = `"project"`.
 | my-claude-marketplace | anthropics/claude-plugins-official | skill-creator | unknown | ✅ |
 | devflow | anthropics/knowledge-work-plugins | brand-voice | 1.0.0 | ✅ |
 
-## 👤 3. Plugins at User Scope
+## 👤 3. User Scope
 
 Plugins where `scope` = `"user"`.
 
