@@ -83,7 +83,7 @@ def parse_args() -> argparse.Namespace:
 
 def matches_prefix(segment: str, prefixes: list[str]) -> bool:
     """Check whether a segment is a directory entry matching any prefix."""
-    candidates = tuple(f"{p}{sep}" for p in prefixes for sep in (":", "/"))
+    candidates = tuple(c for p in prefixes for c in (f"{p}:{{", f"{p}/"))
     return segment.startswith(candidates)
 
 
