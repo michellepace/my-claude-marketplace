@@ -1,0 +1,37 @@
+{
+    // General editor settings
+    "window.commandCenter": true,   // search box at top of window
+    "editor.colorDecorators": true, // show colour pickers in code
+
+
+    // 🐍 Ruff: Python code linting and formatting
+    // HOW IDE behaves (the WHAT to check is in pyproject.toml)
+    // NB: Pyright's WHAT to check is also in pyproject.toml [tool.pyright]
+
+    // Ruff extension settings
+    "ruff.nativeServer": "on",  // Use faster Rust-based server
+
+    // Hide Ruff's cache directory from the file explorer
+    "files.exclude": {
+        "**/.ruff_cache": true
+    },
+
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.fixAll": "explicit",
+            "source.organizeImports": "explicit"
+        }
+    },
+
+    // 📝 Markdownlint: Markdown linting (matches CodeRabbit's checks)
+    "[markdown]": {
+        "editor.codeActionsOnSave": {
+            "source.fixAll.markdownlint": "explicit"
+        }
+    }
+
+    // NB: No python.defaultInterpreterPath — this repo has no root .venv.
+    // PEP 723 scripts are run via `uv run <script>` which auto-provisions their env.
+}

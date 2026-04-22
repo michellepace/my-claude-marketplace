@@ -20,9 +20,9 @@ Analyse what I did please:
 <what_i_did>
 
 ```bash
-~/projects/nextjs/devflow git:(chore/update-deps-and-docs) ✗ 
+~/projects/nextjs/devflow git:(chore/update-deps-and-docs) ✗
 $ echo $SHELL
-/usr/bin/zsh 
+/usr/bin/zsh
 
 $ node --version
 v25.8.2
@@ -31,7 +31,7 @@ $ nvm use --lts # activate v24.14.1 in this shell
 Now using node v24.14.1 (npm v11.11.0)
 
 $ nvm alias default 'lts/*' # new shells default to whatever the current LTS is
-default -> lts/* (-> v24.14.1) 
+default -> lts/* (-> v24.14.1)
 
 $ node --version
 v24.14.1
@@ -47,9 +47,9 @@ The problem is that when I open new terminals, the node version reverts back to:
 <new_shell>
 
 ```bash
-~/projects/nextjs/devflow git:(chore/update-deps-and-docs) ✗ 
+~/projects/nextjs/devflow git:(chore/update-deps-and-docs) ✗
 $ echo $SHELL
-/usr/bin/zsh 
+/usr/bin/zsh
 
 $ node --version
 v25.8.2

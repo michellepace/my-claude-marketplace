@@ -1,0 +1,10 @@
+# Python
+__pycache__/
+*.py[oc]
+
+# Python tool caches
+.ruff_cache/
+.pytest_cache/
+
+# OS
+.DS_Store

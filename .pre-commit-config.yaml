@@ -1,0 +1,23 @@
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.15.11
+    hooks:
+      - id: ruff-format # Run formatter
+      - id: ruff-check  # Run linter
+        args: [--fix, --exit-non-zero-on-fix]
+
+  - repo: https://github.com/RobertCraigie/pyright-python
+    rev: v1.1.408
+    hooks:
+      - id: pyright   # Typecheck ([tool.pyright] in pyproject.toml)
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    # Applies to ALL files in repo excluding binaries
+    hooks:
+      - id: end-of-file-fixer    # Exactly one \n at EOF
+      - id: trailing-whitespace  # Strip trailing spaces per line
+      - id: check-yaml           # Validate syntax
+      - id: check-json           # Validate syntax (plugin.json, settings.json)
+        exclude: ^\.vscode/       # .vscode/*.json is JSONC (comments allowed)
+      - id: check-toml           # Validate syntax (pyproject.toml)

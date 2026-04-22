@@ -1,0 +1,12 @@
+{
+    // VSCode extensions recommended for this repo.
+    // VSCode will prompt to install these on first open; contributors can ignore.
+    "recommendations": [
+        "ms-python.python",                // Base Python: debugging, Test Explorer, venv integration
+        "ms-python.debugpy",               // Python debugger (breakpoints, stepping)
+        "ms-python.vscode-pylance",        // Type checker / language server — reads [tool.pyright]
+        "charliermarsh.ruff",              // Linter & formatter — reads [tool.ruff]
+        "tamasfe.even-better-toml",        // TOML syntax + validation for pyproject.toml
+        "davidanson.vscode-markdownlint"   // Markdown linter (matches CodeRabbit)
+    ]
+}
