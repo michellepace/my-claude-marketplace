@@ -1,0 +1,63 @@
+# =================================
+# Tool Configuration Only
+# =================================
+# This repo is a Claude Code plugin marketplace, not a Python project.
+# Python helper scripts live in plugins/<name>/**/scripts/ and use PEP 723
+# inline metadata (# /// script ... # ///) to declare Python + deps per-file.
+# This file only exists so ruff and pyright can discover shared lint/type config.
+
+
+# =================================
+# Pyright Type Checking (strict)
+# =================================
+[tool.pyright]
+# Type Checker is needed as Ruff is only a linter: https://docs.astral.sh/ruff/faq/S
+
+typeCheckingMode = "strict"
+pythonVersion = "3.14"
+
+# Disable Basedpyright rules that duplicate Ruff
+reportUnusedImport = false      # Ruff F401 handles it
+reportUnusedVariable = false    # Ruff F841 handles it
+reportDuplicateImport = false   # Ruff F811 handles it
+
+
+# =================================
+# Ruff Linter Configuration
+# =================================
+[tool.ruff]
+# Strictest ruff settings
+line-length = 90
+target-version = "py314"
+
+[tool.ruff.lint]
+# Enable all available rules
+select = ["ALL"]
+# Only ignore rules that are incompatible or overly pedantic
+ignore = [
+    "D100",    # Missing docstring in public module
+    "D104",    # Missing docstring in public package
+    "D203",    # 1 blank line required before class docstring (conflicts with D211)
+    "D213",    # Multi-line docstring summary should start at the second line (conflicts with D212)
+    "COM812",  # Trailing comma missing (conflicts with formatter)
+    "ISC001",  # Implicitly concatenated string literals on one line (conflicts with formatter)
+    "T201",    # Print found (allow print statements)
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+# Plugin helper scripts are stand-alone PEP 723 files, not package modules.
+"plugins/**/scripts/*.py" = [
+    "INP001",  # Not part of an implicit namespace package
+]
+
+[tool.ruff.lint.pylint]
+max-args = 5
+max-branches = 12
+max-returns = 6
+max-statements = 50
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10

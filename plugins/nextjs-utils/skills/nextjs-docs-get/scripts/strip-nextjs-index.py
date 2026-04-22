@@ -2,7 +2,10 @@
 # requires-python = ">=3.14"
 # dependencies = []
 # ///
-"""Strip directory sections from a Next.js agents-md INDEX.md. Run with --help for usage."""
+"""Strip directory sections from a Next.js agents-md INDEX.md.
+
+Run with --help for usage.
+"""
 
 import argparse
 import re
@@ -14,11 +17,13 @@ END_MARKER = "<!-- NEXT-AGENTS-MD-END -->"
 
 
 def parse_args() -> argparse.Namespace:
+    """Build the CLI parser and return the parsed arguments."""
     parser = argparse.ArgumentParser(
         prog=sys.argv[0],
         description=(
             "Strip directory sections from a Next.js agents-md INDEX.md and verify that\n"
-            "remaining entries match the docs on disk. Run after `npx @next/codemod agents-md`\n"
+            "remaining entries match the docs on disk. "
+            "Run after `npx @next/codemod agents-md`\n"
             "to remove documentation this project does not use (e.g. Pages Router).\n"
             "\n"
             "The index is a single pipe-delimited line between HTML comment markers.\n"
@@ -36,12 +41,13 @@ def parse_args() -> argparse.Namespace:
             "\n"
             "output:\n"
             "  ✅ Success: ...    Operation completed (exit 0)\n"
-            "  ℹ️  Info: ...       Nothing to do, file unchanged (exit 0)\n"
+            "  💡 Info: ...       Nothing to do, file unchanged (exit 0)\n"
             "  ❌ Error: ...      Something is wrong (exit 1)\n"
             "\n"
             "notes:\n"
             "  --remove always verifies after stripping — no need to add --verify.\n"
-            "  --remove is idempotent — safe to re-run; already-removed prefixes show ℹ️.\n"
+            "  --remove is idempotent — safe to re-run; "
+            "already-removed prefixes show 💡.\n"
             "  index.mdx files are excluded from verification (not tracked in the index)."
         ),
         formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -55,12 +61,19 @@ def parse_args() -> argparse.Namespace:
         "--remove",
         action="append",
         metavar="PREFIX",
-        help="directory prefix to strip — removes PREFIX:{...} and PREFIX/...:{...} entries, then verifies the result (repeatable)",
+        help=(
+            "directory prefix to strip — "
+            "removes PREFIX:{...} and PREFIX/...:{...} entries, "
+            "then verifies the result (repeatable)"
+        ),
     )
     parser.add_argument(
         "--verify",
         action="store_true",
-        help="read-only check — reports files in the index missing from disk and files on disk missing from the index (excludes index.mdx)",
+        help=(
+            "read-only check — reports files in the index missing from disk "
+            "and files on disk missing from the index (excludes index.mdx)"
+        ),
     )
     args = parser.parse_args()
     if not args.remove and not args.verify:
@@ -70,9 +83,8 @@ def parse_args() -> argparse.Namespace:
 
 def matches_prefix(segment: str, prefixes: list[str]) -> bool:
     """Check whether a segment is a directory entry matching any prefix."""
-    return any(
-        segment.startswith(f"{p}:") or segment.startswith(f"{p}/") for p in prefixes
-    )
+    candidates = tuple(f"{p}{sep}" for p in prefixes for sep in (":", "/"))
+    return segment.startswith(candidates)
 
 
 def find_agents_block(content: str) -> re.Match[str]:
@@ -105,14 +117,17 @@ def validate_format(content: str) -> None:
             sys.exit(1)
 
 
-def parse_segments(inner: str) -> tuple[Path | None, set[str]]:
-    """Extract the root path and set of indexed file paths from the inner content."""
-    root = None
+def parse_segments(inner: str) -> tuple[Path, set[str]]:
+    """Extract the root path and set of indexed file paths from the inner content.
+
+    Assumes validate_format has already verified a 'root: ' segment exists.
+    """
+    segments = inner.split("|")
+    root_seg = next(s for s in segments if s.startswith("root: "))
+    root = Path(root_seg.removeprefix("root: "))
     indexed: set[str] = set()
-    for seg in inner.split("|"):
-        if seg.startswith("root: "):
-            root = Path(seg.removeprefix("root: "))
-        elif ":{" in seg:
+    for seg in segments:
+        if ":{" in seg:
             dir_part, files_part = seg.split(":{", 1)
             for f in files_part.rstrip("}").split(","):
                 indexed.add(f"{dir_part}/{f}")
@@ -140,7 +155,6 @@ def verify_index(content: str) -> bool:
     """Check that indexed files match the docs directory. Returns True if valid."""
     match = find_agents_block(content)
     root, indexed_files = parse_segments(match.group(2))
-    assert root is not None  # guaranteed by validate_format
 
     docs_dir = root.resolve()
     if not docs_dir.is_dir():
@@ -168,7 +182,8 @@ def verify_index(content: str) -> bool:
 
     if not in_index_not_disk and not on_disk_not_index:
         print(
-            f"✅ Success: Index is complete and accurate. {len(indexed_files)} files verified."
+            f"✅ Success: Index is complete and accurate. "
+            f"{len(indexed_files)} files verified."
         )
         return True
 
@@ -176,6 +191,7 @@ def verify_index(content: str) -> bool:
 
 
 def main() -> None:
+    """Run the strip/verify workflow based on CLI arguments."""
     args = parse_args()
     index_file: Path = args.index_file
 
@@ -189,11 +205,12 @@ def main() -> None:
     if args.remove:
         result, removed_count = strip_sections(content, args.remove)
         if result == content:
-            print(f"ℹ️ Info: No sections matched prefixes: {', '.join(args.remove)}")
+            print(f"💡 Info: No sections matched prefixes: {', '.join(args.remove)}")
         else:
             index_file.write_text(result)
             print(
-                f"✅ Success: Removed {removed_count} section(s) matching: {', '.join(args.remove)}"
+                f"✅ Success: Removed {removed_count} section(s) "
+                f"matching: {', '.join(args.remove)}"
             )
             content = result
         if not verify_index(content):

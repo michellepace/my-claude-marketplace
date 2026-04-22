@@ -40,3 +40,17 @@ claude --plugin-dir ~/projects/my-claude-marketplace/plugins/<plugin-name>
 ```
 
 No install/uninstall cycle needed — edit files, restart Claude Code, test.
+
+## Python helper scripts
+
+Some plugins include helpers under `plugins/<name>/**/scripts/`. Conventions:
+
+- Each script is **standalone with PEP 723 inline metadata** at the top, run via `uv run script.py`:
+  ```python
+  # /// script
+  # requires-python = ">=3.14"
+  # dependencies = []
+  # ///
+  ```
+- Use `uvx <tool>` e.g. `uvx ruff format script.py`, `uvx pyright script.py`
+- Lint/type config in `pyproject.toml`. Enforced via `.pre-commit-config.yaml`
