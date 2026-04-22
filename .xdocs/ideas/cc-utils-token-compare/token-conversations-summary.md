@@ -25,23 +25,23 @@
 
 ```text
 Opus 4.6 Pricing: Input tokens $5/MTok, Output tokens $25/MTok
- 
+
 prompt_1:
-- input: 48 × $5 = $0.000240 
-- cache_creation: 82,689 × $6.25 = $0.5168 
+- input: 48 × $5 = $0.000240
+- cache_creation: 82,689 × $6.25 = $0.5168
 - cache_read: 934,323 × $0.50 = $0.4672
-- output: 17,820 × $25 = $0.4455 
-- Total: $1.43 
+- output: 17,820 × $25 = $0.4455
+- Total: $1.43
 prompt_2:
-- input: 35 × $5 = $0.000175 
-- cache_creation: 95,751 × $6.25 = $0.5984 
+- input: 35 × $5 = $0.000175
+- cache_creation: 95,751 × $6.25 = $0.5984
 - cache_read: 331,654 × $0.50 = $0.1658
-- output: 27,871 × $25 = $0.6968 
-- Total: $1.46 
+- output: 27,871 × $25 = $0.6968
+- Total: $1.46
 prompt_3:
-- input: 42 × $5 = $0.000210 
+- input: 42 × $5 = $0.000210
 - cache_creation: 119,554 × $6.25 = $0.7472
 - cache_read: 1,034,343 × $0.50 = $0.5172
-- output: 20,865 × $25 = $0.5216 
-- Total: $1.79 
+- output: 20,865 × $25 = $0.5216
+- Total: $1.79
 ```
