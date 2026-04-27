@@ -33,12 +33,12 @@ Parse `$ARGUMENTS` for: primary body font (required), candidate pairing fonts, i
 - If a font isn't on Google Fonts, tell the user and stop — curation only supports Google Fonts.
 - For each font, resolve a specimen image (kebab-case) in this order:
   1. a user-supplied image
-  2. `find ./font-profiles/specimens -maxdepth 1 -name '{fontname}.jpg'`
-  3. **Only if (2) returns nothing:** `find ${CLAUDE_PLUGIN_ROOT}/font-profiles/specimens -maxdepth 1 -name '{fontname}.jpg'` (bundled, read-only)
+  2. **Only if (1) returns nothing:** `find ./font-profiles/specimens -name '{fontname}.jpg'`
+  3. **Only if (2) returns nothing:** `find ${CLAUDE_PLUGIN_ROOT}/font-profiles/specimens -name '{fontname}.jpg'` (bundled, read-only)
 
   If none match, ask the user for one.
 
-Confirm the brief with the user. Ask whether they want alternative recommendations and if so what criteria matter — give examples (e.g. hierarchy, tone/mood, uniqueness/proven, Shopify catalogue). Ask if they would like the matrix as an SVG visualisation.
+Confirm the brief. If only one candidate, ask whether they want an alternative — and on what criteria (e.g. hierarchy, tone/mood, uniqueness/proven). Offer the matrix as an SVG.
 
 ⏸️ Wait for confirmation before proceeding.
 
