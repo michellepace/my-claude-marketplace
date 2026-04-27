@@ -2,7 +2,7 @@
 
 Shopify's font library includes system fonts and a selection of Google Fonts, provided in WOFF and WOFF2 formats. Free to use on all Shopify online stores.
 
-- Source: <https://shopify.dev/docs/storefronts/themes/architecture/settings/fonts>
+- Source: https://shopify.dev/docs/storefronts/themes/architecture/settings/fonts
 - Source Date: 2026-03-23
 
 ## System Fonts

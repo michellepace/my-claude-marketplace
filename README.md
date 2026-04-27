@@ -49,7 +49,7 @@ claude plugin install skill-creator@claude-plugins-official --scope project
 claude plugin install plugin-dev@claude-plugins-official --scope project
 ```
 
-Both commands write to [.claude/settings.json](claude/settings.json):
+Both commands write to [.claude/settings.json](.claude/settings.json):
 
 ```json
 {
