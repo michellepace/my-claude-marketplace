@@ -20,7 +20,7 @@ Specialised version of Inter with tighter spacing, designed by Rasmus Andersson 
 Classified from visual examination of ![Inter Tight](specimens/inter-tight.jpg)
 
 | Layer | Classification | Evidence |
-|:---|:---|:---|
+| :---- | :------------- | :------- |
 | 1 Skeleton | Rational | Closed apertures on a/e/s/c, vertical stress on o/O, rectangular (non-circular) bowls on b/d/p |
 | 2 Flesh | Linear Sans | Very uniform stroke weight with no thick-thin contrast, no serifs |
 | 3 Skin | Tight neutral UI | Tight letter spacing (defining trait vs Inter), large x-height with short ascenders/descenders, double-storey a and g, flat-cut terminals on c, round i dot |

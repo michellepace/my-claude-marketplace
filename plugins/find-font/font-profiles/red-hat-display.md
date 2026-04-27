@@ -21,7 +21,7 @@ A fresh take on the geometric sans genre, drawing inspiration from a range of Am
 Classified from visual examination of ![Red Hat Display 400](specimens/red-hat-display.jpg)
 
 | Layer | Classification | Evidence |
-|:---|:---|:---|
+| :---- | :------------- | :------- |
 | 1 Skeleton | Geometric | Circular bowls on o/b/d/p, vertical axis on O, constructed shapes, simple cross-shaped t |
 | 2 Flesh | Linear Sans | Very uniform stroke weight (low contrast), no serifs |
 | 3 Skin | Tight geometric display | Large x-height with short ascenders/descenders, flat-cut terminals on c/r, double-storey a and g |

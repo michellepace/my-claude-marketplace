@@ -21,7 +21,7 @@ Highly flexible variable sans serif typeface, developed by Font Bureau for Googl
 Classified from visual examination of ![Roboto Flex 400](specimens/roboto-flex.jpg)
 
 | Layer | Classification | Evidence |
-|:---|:---|:---|
+| :---- | :------------- | :------- |
 | 1 Skeleton | Rational | Closed apertures on a/s, vertical stress on o/O, slightly squared bowls on b/d/p |
 | 2 Flesh | Linear Sans | Highly uniform stroke weight across curves, no serifs |
 | 3 Skin | Neutral mechanical humanist | Double-storey a/g with closed loops, flat-cut terminal on c, slight humanist warmth from curled r ear and parametric engineered proportions |

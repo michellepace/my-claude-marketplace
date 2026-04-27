@@ -21,7 +21,7 @@ Transitional serif typeface designed by Frank Grießhammer to complement the Sou
 Classified from visual examination of ![Source Serif 4 400](specimens/source-serif-4.jpg)
 
 | Layer | Classification | Evidence |
-|:---|:---|:---|
+| :---- | :------------- | :------- |
 | 1 Skeleton | Dynamic | Open apertures on a/e/s, subtle diagonal stress on o/O, organic pen-derived construction |
 | 2 Flesh | Contrast Serif | Moderate thick-thin stroke variation, bracketed serifs |
 | 3 Skin | Refined transitional | Smoothly bracketed serifs with fine terminals, double-storey a and g, historical Fournier character in clean digital form |

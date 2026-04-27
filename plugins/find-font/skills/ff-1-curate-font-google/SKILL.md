@@ -48,8 +48,8 @@ If a match is found, read it. When Synopsis, Key Characteristics, and Technical 
 
 **Fetch** both sources via `mcp__Ref__ref_read_url`. For each: verify the response mentions the font name; up to 2 retries. On final failure: report the failing URL, ask the user to supply the data, then STOP.
 
-| # | URL pattern | Example |
-|---|---|---|
+| No. | URL pattern | Example |
+| :-- | :---------- | :------ |
 | 1 | `https://fonts.google.com/specimen/{Font+Name}/about` | `.../specimen/Red+Hat+Display/about` |
 | 2 | `https://raw.githubusercontent.com/google/fonts/main/ofl/{fontname}/METADATA.pb` | `.../ofl/redhatdisplay/METADATA.pb` |
 

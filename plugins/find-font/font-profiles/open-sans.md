@@ -21,7 +21,7 @@ Humanist sans serif typeface designed by Steve Matteson. Upright stress, open fo
 Classified from visual examination of ![Open Sans 300](specimens/open-sans.jpg)
 
 | Layer | Classification | Evidence |
-|:---|:---|:---|
+| :---- | :------------- | :------- |
 | 1 Skeleton | Quite Dynamic | Open apertures on a/e/s, but vertical stress on o — apertures pull Dynamic, stress pulls Rational |
 | 2 Flesh | Linear Sans | Very uniform stroke weight, no serifs |
 | 3 Skin | Wide clean-cut | Wide proportions, double-storey a and g, flat-cut terminals on r/s/c |

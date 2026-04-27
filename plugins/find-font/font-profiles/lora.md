@@ -21,7 +21,7 @@ Well-balanced contemporary serif with roots in calligraphy. Moderate contrast ty
 Classified from visual examination of ![Lora 400](specimens/lora.jpg)
 
 | Layer | Classification | Evidence |
-|:---|:---|:---|
+| :---- | :------------- | :------- |
 | 1 Skeleton | Dynamic | Open apertures on a/e/s, diagonal stress on o, calligraphic construction |
 | 2 Flesh | Contrast Serif | Moderate thick-thin stroke variation, bracketed serifs |
 | 3 Skin | Contemporary calligraphic | Brushed curve transitions, driving serifs, distinctive R leg |
