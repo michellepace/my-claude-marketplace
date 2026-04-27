@@ -29,8 +29,8 @@ Classified from visual examination of ![Roboto Serif 400](specimens/roboto-serif
 
 Curated from:
 
-- <https://fonts.google.com/specimen/Roboto+Serif/about>
-- <https://raw.githubusercontent.com/google/fonts/main/ofl/robotoserif/METADATA.pb>
+- https://fonts.google.com/specimen/Roboto+Serif/about
+- https://raw.githubusercontent.com/google/fonts/main/ofl/robotoserif/METADATA.pb
 
 Classified using:
 

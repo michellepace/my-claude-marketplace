@@ -30,8 +30,8 @@ Classified from visual examination of ![Newsreader 400](specimens/newsreader.jpg
 
 Curated from:
 
-- <https://fonts.google.com/specimen/Newsreader/about>
-- <https://raw.githubusercontent.com/google/fonts/main/ofl/newsreader/METADATA.pb>
+- https://fonts.google.com/specimen/Newsreader/about
+- https://raw.githubusercontent.com/google/fonts/main/ofl/newsreader/METADATA.pb
 
 Classified using:
 

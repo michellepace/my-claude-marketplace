@@ -30,8 +30,8 @@ Classified from visual examination of ![Literata 700](specimens/literata.jpg)
 
 Curated from:
 
-- <https://fonts.google.com/specimen/Literata/about>
-- <https://raw.githubusercontent.com/google/fonts/main/ofl/literata/METADATA.pb>
+- https://fonts.google.com/specimen/Literata/about
+- https://raw.githubusercontent.com/google/fonts/main/ofl/literata/METADATA.pb
 
 Classified using:
 

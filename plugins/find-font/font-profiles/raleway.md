@@ -16,11 +16,23 @@ Elegant sans-serif typeface family. Initially a single thin weight, expanded int
 - **Weights:** 100, 200, 300, 400, 500, 600, 700, 800, 900
 - **Styles:** Normal + Italic at each weight
 
-## Kupferschmid Matrix [TO BE COMPLETED]
+## Kupferschmid Matrix
+
+Classified from visual examination of ![Raleway 400](specimens/raleway.jpg)
+
+| Layer | Classification | Evidence |
+|:---|:---|:---|
+| 1 Skeleton | Quite Geometric | Circular bowls on O/o/b/d/p and vertical stress on O pull Geometric/Rational; closed apertures on a/e/s/c reinforce Rational, but constructed circular shapes dominate |
+| 2 Flesh | Linear Sans | Uniform stroke weight throughout, no serifs |
+| 3 Skin | Elegant geometric display | Tall elegant proportions with long ascenders on b/d/h; round circular O bowls; double-storey a and g with cleanly cut terminals on c/s |
 
 ## References
 
 Curated from:
 
-- <https://fonts.google.com/specimen/Raleway/about>
-- <https://raw.githubusercontent.com/google/fonts/main/ofl/raleway/METADATA.pb>
+- https://fonts.google.com/specimen/Raleway/about
+- https://raw.githubusercontent.com/google/fonts/main/ofl/raleway/METADATA.pb
+
+Classified using:
+
+- [kupferschmid-matrix.md](../references/kupferschmid-matrix.md)

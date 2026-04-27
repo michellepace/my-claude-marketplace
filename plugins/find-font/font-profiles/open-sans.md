@@ -30,8 +30,8 @@ Classified from visual examination of ![Open Sans 300](specimens/open-sans.jpg)
 
 Curated from:
 
-- <https://fonts.google.com/specimen/Open+Sans/about>
-- <https://raw.githubusercontent.com/google/fonts/main/ofl/opensans/METADATA.pb>
+- https://fonts.google.com/specimen/Open+Sans/about
+- https://raw.githubusercontent.com/google/fonts/main/ofl/opensans/METADATA.pb
 
 Classified using:
 

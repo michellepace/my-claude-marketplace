@@ -24,5 +24,5 @@ Low-contrast semi-condensed sans-serif text typeface designed to be pleasant to 
 
 Curated from:
 
-- <https://fonts.google.com/specimen/Merriweather+Sans/about>
-- <https://raw.githubusercontent.com/google/fonts/main/ofl/merriweathersans/METADATA.pb>
+- https://fonts.google.com/specimen/Merriweather+Sans/about
+- https://raw.githubusercontent.com/google/fonts/main/ofl/merriweathersans/METADATA.pb

@@ -22,5 +22,5 @@ Humanist sans serif with calligraphic rhythm. Part of the Alegreya "super family
 
 Curated from:
 
-- <https://fonts.google.com/specimen/Alegreya+Sans/about>
-- <https://raw.githubusercontent.com/google/fonts/main/ofl/alegreyasans/METADATA.pb>
+- https://fonts.google.com/specimen/Alegreya+Sans/about
+- https://raw.githubusercontent.com/google/fonts/main/ofl/alegreyasans/METADATA.pb

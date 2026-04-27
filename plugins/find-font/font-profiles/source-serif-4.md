@@ -30,8 +30,8 @@ Classified from visual examination of ![Source Serif 4 400](specimens/source-ser
 
 Curated from:
 
-- <https://fonts.google.com/specimen/Source+Serif+4/about>
-- <https://raw.githubusercontent.com/google/fonts/main/ofl/sourceserif4/METADATA.pb>
+- https://fonts.google.com/specimen/Source+Serif+4/about
+- https://raw.githubusercontent.com/google/fonts/main/ofl/sourceserif4/METADATA.pb
 
 Classified using:
 

@@ -30,8 +30,8 @@ Classified from visual examination of ![Red Hat Display 400](specimens/red-hat-d
 
 Curated from:
 
-- <https://fonts.google.com/specimen/Red+Hat+Display/about>
-- <https://raw.githubusercontent.com/google/fonts/main/ofl/redhatdisplay/METADATA.pb>
+- https://fonts.google.com/specimen/Red+Hat+Display/about
+- https://raw.githubusercontent.com/google/fonts/main/ofl/redhatdisplay/METADATA.pb
 
 Classified using:
 

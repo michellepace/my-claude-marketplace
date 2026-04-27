@@ -29,8 +29,8 @@ Classified from visual examination of ![Inter Tight](specimens/inter-tight.jpg)
 
 Curated from:
 
-- <https://fonts.google.com/specimen/Inter+Tight/about>
-- <https://raw.githubusercontent.com/google/fonts/main/ofl/intertight/METADATA.pb>
+- https://fonts.google.com/specimen/Inter+Tight/about
+- https://raw.githubusercontent.com/google/fonts/main/ofl/intertight/METADATA.pb
 
 Classified using:
 
