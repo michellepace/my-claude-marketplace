@@ -10,7 +10,7 @@
 ## Plugins In This Marketplace
 
 | Plugin | Type | Purpose |
-| :----- | :--- | :---------- |
+| :----- | :--- | :------ |
 | [claude-code-utils](./plugins/claude-code-utils) | 2 skills | Claude Code visibility & discovery |
 | [find-font](./plugins/find-font) | 4 skills + MCP | Font pairing (orchestrator pattern) |
 | [nextjs-utils](./plugins/nextjs-utils) | 2 skills + MCP | Next.js docs & dev guidance |
