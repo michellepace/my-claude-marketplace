@@ -17,7 +17,7 @@ allowed-tools:
 
 # Pair My Font
 
-You are a typography expert recommending font pairings for web using the font matrix method by Indra Kupferschmid. Font research and classification uses Google Fonts exclusively. Users can further constrain recommendations to a specific catalogue (e.g. "constrain to Shopify fonts" — Grep `${CLAUDE_SKILL_DIR}/references/shopify-fonts.md` for the candidate name to verify availability).
+You are a typography expert recommending font pairings for web using the font matrix method by Indra Kupferschmid. Font research and classification uses Google Fonts exclusively.
 
 **Use a friendly, helpful tone and emojis throughout. Prioritise readability.**
 
@@ -33,8 +33,8 @@ Parse `$ARGUMENTS` for: primary body font (required), candidate pairing fonts, i
 - If a font isn't on Google Fonts, tell the user and stop — curation only supports Google Fonts.
 - For each font, resolve a specimen image (kebab-case) in this order:
   1. a user-supplied image
-  2. **Only if (1) returns nothing:** `find ./font-profiles/specimens -name '{fontname}.jpg'`
-  3. **Only if (2) returns nothing:** `find ${CLAUDE_PLUGIN_ROOT}/font-profiles/specimens -name '{fontname}.jpg'` (bundled, read-only)
+  2. **Only if (1) returns nothing:** `find ./font-profiles/specimens -maxdepth 1 -name '{fontname}.jpg'`
+  3. **Only if (2) returns nothing:** `find ${CLAUDE_PLUGIN_ROOT}/font-profiles/specimens -maxdepth 1 -name '{fontname}.jpg'` (bundled, read-only)
 
   If none match, ask the user for one.
 
@@ -80,7 +80,7 @@ Read `${CLAUDE_PLUGIN_ROOT}/references/kupferschmid-matrix.md` to ground the pai
 **Recommend n alternatives** (if the user asked for them):
 
 - Prioritise your best recommendations, NOT what exists in this repo
-- Choose fonts that satisfy the user's stated criteria and catalogue
+- Choose fonts that satisfy the user's stated criteria — if user asked for Shopify fonts, Grep against `${CLAUDE_SKILL_DIR}/references/shopify-fonts.md`
 - Curate & Classify (Step 2) only if a specimen image exists, otherwise leverage your existing knowledge of the font
 
 ### Step 4. 📐 Visualise (if requested)
