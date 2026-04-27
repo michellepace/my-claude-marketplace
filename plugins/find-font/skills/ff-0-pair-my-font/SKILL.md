@@ -58,7 +58,7 @@ Skills handle skip-if-already-done logic internally — no need to pre-check pro
 
 ### Step 3. ⚖️ Analyse & Recommend
 
-Read `${CLAUDE_PLUGIN_ROOT}/references/kupferschmid-matrix.md` to ground the pairing framework. For each relevant font profile, locate it in this order then `Read` the resolved path:
+Read `${CLAUDE_PLUGIN_ROOT}/references/kupferschmid-matrix.md` to ground the pairing framework. For each relevant font profile, locate it in this order, then `Read` the resolved path:
 
 1. `find ./font-profiles -maxdepth 1 -name '{fontname}.md'`
 2. **Only if (1) returns nothing:** `find ${CLAUDE_PLUGIN_ROOT}/font-profiles -maxdepth 1 -name '{fontname}.md'` (bundled, read-only)

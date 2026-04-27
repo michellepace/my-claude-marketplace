@@ -42,7 +42,7 @@ Locate an existing profile (kebab-case, e.g. `source-serif-4.md`):
 1. `find ./font-profiles -maxdepth 1 -name '{fontname}.md'`
 2. **Only if (1) returns nothing:** `find ${CLAUDE_PLUGIN_ROOT}/font-profiles -maxdepth 1 -name '{fontname}.md'` (bundled, read-only)
 
-If a match is found, read it. When Synopsis, Key Characteristics, and Technical sections are complete: report the date, ask whether to re-curate, and **STOP** unless the user confirms. Otherwise proceed to Step 3.
+If a match is found, read it. When Synopsis, Key Characteristics, and Technical sections are complete: report the date, ask whether to re-curate, and **STOP** unless the user confirms. Otherwise, proceed to Step 3.
 
 ### Step 3. 📥 Fetch & Write
 
