@@ -21,7 +21,7 @@ Variable font family carefully crafted and designed for computer screens. Featur
 Classified from visual examination of ![Inter](specimens/inter.jpg)
 
 | Layer | Classification | Evidence |
-|:---|:---|:---|
+| :---- | :------------- | :------- |
 | 1 Skeleton | Rational | Closed apertures on a/e/s/c, vertical stress on o/O, non-circular bowls on b/d/p |
 | 2 Flesh | Linear Sans | Uniform stroke weight across curves and stems, no serifs |
 | 3 Skin | Tall-x neo-grotesque | Very tall x-height with short ascenders/descenders, flat-cut horizontal terminals on c/s/r/t, double-storey a and g with round tittle |

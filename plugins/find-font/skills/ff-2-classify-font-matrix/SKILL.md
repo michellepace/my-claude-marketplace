@@ -8,6 +8,7 @@ user-invocable: true
 disable-model-invocation: false
 allowed-tools:
   - Bash(cp *)
+  - Bash(find *)
   - Bash(grep *)
   - Bash(mkdir *)
   - Edit
@@ -41,10 +42,10 @@ If either matches → already classified: report it, ask whether to reclassify, 
 
 ## Step 2. 🖼️ Resolve Specimen
 
-Look up the specimen in this order — specimens follow kebab case:
+Locate the specimen (kebab-case):
 
-1. `./font-profiles/specimens/{fontname}.jpg`
-2. `${CLAUDE_PLUGIN_ROOT}/font-profiles/specimens/{fontname}.jpg` (bundled)
+1. `find ./font-profiles/specimens -maxdepth 1 -name '{fontname}.jpg'`
+2. **Only if (1) returns nothing:** `find ${CLAUDE_PLUGIN_ROOT}/font-profiles/specimens -maxdepth 1 -name '{fontname}.jpg'` (bundled, read-only)
 
 - **Existing image + user supplied a new one:** ask to confirm before replacing.
 - **Existing image, no new one supplied:** use it.
@@ -60,7 +61,7 @@ Read `${CLAUDE_PLUGIN_ROOT}/references/kupferschmid-matrix.md` once to ground la
 **Visually examine letterforms** in the specimen image — focus on these diagnostic characters: **R a g s t o n e / m a s c o r b i l / D O B p u d h**. Use primary letters first, then confirmation letters when the signal is ambiguous or weak:
 
 | Signal | Primary letters | Confirmation letters | What to look for |
-|:---|:---|:---|:---|
+| :----- | :-------------- | :------------------- | :--------------- |
 | Aperture | a, e, s | **c** (purest aperture letter) | Open → Dynamic, closed → Rational |
 | Axis / stress | o | **O** (stress angle clearer at uppercase scale) | Diagonal → Dynamic, vertical → Rational |
 | Construction | o, e, g, a, t | **b, d, p** (bowl circularity) | Circular / simple → Geometric |
@@ -76,7 +77,7 @@ Read `${CLAUDE_PLUGIN_ROOT}/references/kupferschmid-matrix.md` once to ground la
 This captures the structural details that distinguish fonts sharing the same matrix cell. **Visually examine the specimen letterforms** for:
 
 | Signal | Letters to examine | Examples of what to note |
-|:---|:---|:---|
+| :----- | :----------------- | :----------------------- |
 | Vertical proportions | **b, d, h, l** (ascenders), **g, p** (descenders) | Ascender/descender length relative to x-height |
 | Terminal / ear shapes | **r, i, c** | Ball, teardrop, flat-cut, tapered |
 | Serif shape variation | **b, d, h, l, p** vs baseline letters | Bracketed, slab, wedge, hairline; do ascender serifs differ from baseline? |

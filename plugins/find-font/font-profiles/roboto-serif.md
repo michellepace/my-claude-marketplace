@@ -20,7 +20,7 @@ Variable typeface family designed to create a comfortable and frictionless readi
 Classified from visual examination of ![Roboto Serif 400](specimens/roboto-serif.jpg)
 
 | Layer | Classification | Evidence |
-|:---|:---|:---|
+| :---- | :------------- | :------- |
 | 1 Skeleton | Quite Rational | Vertical stress on o/O, but moderate (not tightly closed) apertures on a/e/s — stress pulls Rational, apertures resist full Rational |
 | 2 Flesh | Contrast Serif | Moderate thick-thin stroke variation, bracketed serifs |
 | 3 Skin | Functional engineered | Restrained bracketed serifs, double-storey a/g, wide clean proportions for digital clarity |

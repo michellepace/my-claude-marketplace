@@ -21,7 +21,7 @@ Google Sans Flex is the next generation of Google's brand typeface. Designed as 
 Classified from visual examination of ![Google Sans Flex](specimens/google-sans-flex.jpg)
 
 | Layer | Classification | Evidence |
-|:---|:---|:---|
+| :---- | :------------- | :------- |
 | 1 Skeleton | Geometric | Circular bowls on o/O/b/d/p, no visible stress axis, simple constructed t — apertures on a/e/s are mildly open (humanist softening) but construction dominates |
 | 2 Flesh | Linear Sans | Uniform stroke weight across curved letters (a/o/e/g), no serifs |
 | 3 Skin | Rounded humanist geometric | Soft rounded terminals on r/c/e, double-storey a softens pure geometry, evenly circular bowls on o/b/d/p with round tittle on i |

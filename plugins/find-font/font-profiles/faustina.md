@@ -22,7 +22,7 @@ Editorial serif designed by Alfonso Garcia for Omnibus-Type as part of the Press
 Classified from visual examination of ![Faustina 400](specimens/faustina.jpg)
 
 | Layer | Classification | Evidence |
-|:---|:---|:---|
+| :---- | :------------- | :------- |
 | 1 Skeleton | Dynamic | Open apertures on a/e/s/c, diagonal stress on o, calligraphic construction with handwritten movement |
 | 2 Flesh | Contrast Serif | Visible thick-thin variation on curves (a/g/o/e), bracketed serifs |
 | 3 Skin | Editorial sturdy serif | Large x-height with short ascenders/descenders, sturdy bracketed serifs, double-storey a and g, round dot on i |

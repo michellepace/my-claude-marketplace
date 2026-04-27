@@ -21,7 +21,7 @@ Distinct variable serif family for digital text, now in its third version. Origi
 Classified from visual examination of ![Literata 700](specimens/literata.jpg)
 
 | Layer | Classification | Evidence |
-|:---|:---|:---|
+| :---- | :------------- | :------- |
 | 1 Skeleton | Dynamic | Open apertures on a/e/s/c, diagonal stress on o/O, organic calligraphic bowl construction |
 | 2 Flesh | Contrast Serif | Pronounced thick-thin stroke variation in curved strokes; refined bracketed serifs throughout |
 | 3 Skin | Tall-contrast bracketed serif | Tall ascenders relative to x-height (b/d/h); dramatic contrast in a/o/D/O; double-storey a and g with closed bowls, wedge-cut ascender serifs, round teardrop terminals on r |

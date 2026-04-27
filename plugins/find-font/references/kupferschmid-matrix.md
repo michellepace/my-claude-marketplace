@@ -9,7 +9,7 @@ The font matrix is a 3-column by 4-row grid that pairs Layer 1 (skeleton/form mo
 <font_matrix_summary>
 
 | Flesh↓/Skeleton→ | Dynamic (open, diagonal) | Rational (closed, vertical) | Geometric (circular, constructed) |
-|---|---|---|---|
+| :--------------- | :----------------------- | :-------------------------- | :-------------------------------- |
 | **Contrast Sans** (thick-thin, no serifs) | Minerva Modern | Arya | Tenor Sans |
 | **Contrast Serif** (thick-thin, has serifs) | Alegreya | Bodoni Moda | Candida |
 | **Linear Sans** (uniform, no serifs) | Source Sans 3 | Helvetica | Outfit |
