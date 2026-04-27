@@ -1,23 +1,24 @@
 ---
 name: ff-1-curate-font-google
-description: Research and document a Google Font — creates a structured fontname.md profile with characteristics and technical details.
-argument-hint: "fontname, e.g. Montserrat"
+description: Research and document a single Google Font — creates a structured `fontname.md` profile.
+argument-hint: "font name, e.g. Montserrat"
 context: fork
 agent: general-purpose
 user-invocable: true
 disable-model-invocation: false
 allowed-tools:
+  - Bash(find *)
   - Bash(mkdir *)
   - Edit
   - Grep
+  - mcp__Ref__ref_read_url
   - Read
   - Write
-  - mcp__Ref__ref_read_url
 ---
 
 # Curate Font
 
-You are a typography researcher creating structured font profiles from Google Fonts data. This skill supports Google Fonts exclusively using `ref_read_url`.
+You are a typography researcher creating structured font profiles from Google Fonts data. This skill supports Google Fonts exclusively using `mcp__Ref__ref_read_url`.
 
 **Use a friendly, helpful tone and emojis throughout.**
 
@@ -27,29 +28,39 @@ You are a typography researcher creating structured font profiles from Google Fo
 
 ### Step 1. 📋 Parse & Validate
 
-Parse `$ARGUMENTS` for: font name (required).
+The user has requested: $ARGUMENTS
 
-- If a font isn't on Google Fonts, tell the user this skill only supports Google Fonts and stop.
+Extract the font name. Normalise to kebab-case as `{fontname}` (e.g. `Source Serif 4` → `source-serif-4`).
 
-### Step 2. 📚 Fetch Font Information
+- No font name supplied → ask the user and STOP.
+- Font not on Google Fonts → tell the user this skill is Google-Fonts-only and STOP.
 
-1. **Check first** — look up an existing profile in this order, and if the Google Fonts sections (Synopsis, Key Characteristics, Technical) are complete, note the date and **stop** (write nothing):
-   1. `./font-profiles/{fontname}.md`
-   2. `${CLAUDE_PLUGIN_ROOT}/font-profiles/{fontname}.md` (bundled, read-only)
-2. **Fetch sources** via `ref_read_url`:
-   - `https://fonts.google.com/specimen/{Font+Name}/about` e.g. `.../specimen/Red+Hat+Display/about`
-   - `https://raw.githubusercontent.com/google/fonts/main/ofl/{fontname}/METADATA.pb` e.g. `.../ofl/redhatdisplay/METADATA.pb`
-   - ⚠️ **Validate each response:** must mention the font name — `ref_read_url` can silently return unrelated content. Up to 2 retries. If all fail, give the user the failing URL and ask them to supply the data.
-3. **Write profile** to `./font-profiles/{fontname}.md` (kebab-case, e.g. `source-serif-4.md`) using `${CLAUDE_PLUGIN_ROOT}/font-profiles/lora.md` and `${CLAUDE_PLUGIN_ROOT}/font-profiles/open-sans.md` as templates.
+### Step 2. 🔍 Check Existing Profile
 
-Rules to verify:
+Locate an existing profile (kebab-case, e.g. `source-serif-4.md`):
 
-- Every factual claim must come directly from those two sources — do not add additional information or opinion
-- Never edit `## Kupferschmid Matrix` if it exists, else add it as `## Kupferschmid Matrix [TO BE COMPLETED]` (no content)
-- Adoption stats: include current stats from Google Fonts, dated today
-- References section: use a `Curated from:` subheading, list only the sources you used for curation (no intro blurb)
+1. `find ./font-profiles -maxdepth 1 -name '{fontname}.md'`
+2. **Only if (1) returns nothing:** `find ${CLAUDE_PLUGIN_ROOT}/font-profiles -maxdepth 1 -name '{fontname}.md'` (bundled, read-only)
 
-### Step 3. ✅ Report
+If a match is found, read it. When Synopsis, Key Characteristics, and Technical sections are complete: report the date, ask whether to re-curate, and **STOP** unless the user confirms. Otherwise proceed to Step 3.
+
+### Step 3. 📥 Fetch & Write
+
+**Fetch** both sources via `mcp__Ref__ref_read_url`. For each: verify the response mentions the font name; up to 2 retries. On final failure: report the failing URL, ask the user to supply the data, then STOP.
+
+| # | URL pattern | Example |
+|---|---|---|
+| 1 | `https://fonts.google.com/specimen/{Font+Name}/about` | `.../specimen/Red+Hat+Display/about` |
+| 2 | `https://raw.githubusercontent.com/google/fonts/main/ofl/{fontname}/METADATA.pb` | `.../ofl/redhatdisplay/METADATA.pb` |
+
+**Write** profile to `./font-profiles/{fontname}.md` using `${CLAUDE_PLUGIN_ROOT}/font-profiles/lora.md` and `${CLAUDE_PLUGIN_ROOT}/font-profiles/open-sans.md` as templates. Constraints:
+
+- Facts come only from sources 1 and 2 — no opinion, no additions
+- Preserve any existing `## Kupferschmid Matrix`; if absent, add `## Kupferschmid Matrix [TO BE COMPLETED]` (header only)
+- Adoption stats: current Google Fonts numbers, dated today (`Adoption (YYYY-MM-DD):`)
+- `## References` uses a `Curated from:` subheading listing only the sources actually used (no blurb)
+
+### Step 4. ✅ Report
 
 Summarise what was created:
 

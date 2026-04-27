@@ -8,6 +8,7 @@ user-invocable: true
 disable-model-invocation: false
 allowed-tools:
   - Bash(cp *)
+  - Bash(find *)
   - Bash(grep *)
   - Bash(mkdir *)
   - Edit
@@ -41,10 +42,10 @@ If either matches → already classified: report it, ask whether to reclassify, 
 
 ## Step 2. 🖼️ Resolve Specimen
 
-Look up the specimen in this order — specimens follow kebab case:
+Locate the specimen (kebab-case):
 
-1. `./font-profiles/specimens/{fontname}.jpg`
-2. `${CLAUDE_PLUGIN_ROOT}/font-profiles/specimens/{fontname}.jpg` (bundled)
+1. `find ./font-profiles/specimens -maxdepth 1 -name '{fontname}.jpg'`
+2. **Only if (1) returns nothing:** `find ${CLAUDE_PLUGIN_ROOT}/font-profiles/specimens -maxdepth 1 -name '{fontname}.jpg'` (bundled, read-only)
 
 - **Existing image + user supplied a new one:** ask to confirm before replacing.
 - **Existing image, no new one supplied:** use it.

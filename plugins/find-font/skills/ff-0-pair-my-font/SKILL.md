@@ -6,6 +6,7 @@ user-invocable: true
 disable-model-invocation: false
 allowed-tools:
   - Agent
+  - Bash(find *)
   - Glob
   - Grep
   - Read
@@ -30,12 +31,12 @@ Parse `$ARGUMENTS` for: primary body font (required), candidate pairing fonts, i
 
 - If the primary font is missing, ask for one.
 - If a font isn't on Google Fonts, tell the user and stop — curation only supports Google Fonts.
-- For each font, resolve a specimen image in this order:
+- For each font, resolve a specimen image (kebab-case) in this order:
   1. a user-supplied image
-  2. `./font-profiles/specimens/{fontname}.jpg` (kebab case)
-  3. `${CLAUDE_PLUGIN_ROOT}/font-profiles/specimens/{fontname}.jpg` (bundled)
+  2. `find ./font-profiles/specimens -maxdepth 1 -name '{fontname}.jpg'`
+  3. **Only if (2) returns nothing:** `find ${CLAUDE_PLUGIN_ROOT}/font-profiles/specimens -maxdepth 1 -name '{fontname}.jpg'` (bundled, read-only)
 
-  If none exist, ask the user for one.
+  If none match, ask the user for one.
 
 Confirm the brief with the user. Ask whether they want alternative recommendations and if so what criteria matter — give examples (e.g. hierarchy, tone/mood, uniqueness/proven, Shopify catalogue). Ask if they would like the matrix as an SVG visualisation.
 
@@ -57,7 +58,10 @@ Skills handle skip-if-already-done logic internally — no need to pre-check pro
 
 ### Step 3. ⚖️ Analyse & Recommend
 
-Read `${CLAUDE_PLUGIN_ROOT}/references/kupferschmid-matrix.md` to ground the pairing framework, then read each relevant font profile — `./font-profiles/{fontname}.md` first, falling back to `${CLAUDE_PLUGIN_ROOT}/font-profiles/{fontname}.md`.
+Read `${CLAUDE_PLUGIN_ROOT}/references/kupferschmid-matrix.md` to ground the pairing framework. For each relevant font profile, locate it in this order then `Read` the resolved path:
+
+1. `find ./font-profiles -maxdepth 1 -name '{fontname}.md'`
+2. **Only if (1) returns nothing:** `find ${CLAUDE_PLUGIN_ROOT}/font-profiles -maxdepth 1 -name '{fontname}.md'` (bundled, read-only)
 
 **Quick-reference pairing rules** (from `${CLAUDE_PLUGIN_ROOT}/references/kupferschmid-matrix.md`):
 
