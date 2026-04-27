@@ -10,7 +10,6 @@ allowed-tools:
   - Bash(cp *)
   - Bash(rsvg-convert *)
   - Edit
-  - Glob
   - Read
   - Write
 ---
@@ -18,6 +17,8 @@ allowed-tools:
 # Create SVG Matrix
 
 You create SVG visualizations of the Kupferschmid font matrix showing font positions and pairing relationships.
+
+**Path convention:** all `./` paths in this skill resolve to user's CWD, **always** write here.
 
 ## Workflow
 
@@ -31,13 +32,13 @@ Parse `$ARGUMENTS` for:
 
 ### Step 2. 🎨 Build SVG
 
-1. `Glob` for `**/kupferschmid-template.svg`, then `cp` it to `matrix.svg` — then read and edit `matrix.svg` only (avoid reading duplication).
+1. `cp ${CLAUDE_SKILL_DIR}/templates/kupferschmid-template.svg ./matrix.svg`, then read and edit `./matrix.svg` only (avoid reading duplication).
 
 2. Retain `matrix.svg` styling, labels, and legend — edit only the essential:
    - Font cards: reuse existing card elements, remove redundant ones, and add new cards for each font at its correct matrix position
    - Draw solid arrow connectors from the primary font to each candidate, edge-to-edge: vertical for same-column, horizontal for same-row, diagonal for cross-column
 
-3. Visually verify the SVG is well-formed, then render: `rsvg-convert -w 1000 matrix.svg -o matrix.png`
+3. Visually verify the SVG is well-formed, then render: `rsvg-convert -w 1000 ./matrix.svg -o ./matrix.png`
 
 ### Step 3. ✅ Report
 

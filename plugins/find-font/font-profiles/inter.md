@@ -30,8 +30,8 @@ Classified from visual examination of ![Inter](specimens/inter.jpg)
 
 Curated from:
 
-- <https://fonts.google.com/specimen/Inter/about>
-- <https://raw.githubusercontent.com/google/fonts/main/ofl/inter/METADATA.pb>
+- https://fonts.google.com/specimen/Inter/about
+- https://raw.githubusercontent.com/google/fonts/main/ofl/inter/METADATA.pb
 
 Classified using:
 

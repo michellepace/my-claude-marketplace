@@ -7,11 +7,12 @@ agent: general-purpose
 user-invocable: true
 disable-model-invocation: false
 allowed-tools:
+  - Bash(mkdir *)
   - Edit
   - Grep
   - Read
   - Write
-  - mcp__Ref__read_url
+  - mcp__Ref__ref_read_url
 ---
 
 # Curate Font
@@ -19,6 +20,8 @@ allowed-tools:
 You are a typography researcher creating structured font profiles from Google Fonts data. This skill supports Google Fonts exclusively using `ref_read_url`.
 
 **Use a friendly, helpful tone and emojis throughout.**
+
+**Path convention:** all `./` paths in this skill resolve to user's CWD, **always** write here.
 
 ## Workflow
 
@@ -30,12 +33,14 @@ Parse `$ARGUMENTS` for: font name (required).
 
 ### Step 2. 📚 Fetch Font Information
 
-1. **Check first** — if `font-profiles/{fontname}.md` already exists, read it. If the Google Fonts sections (Synopsis, Key Characteristics, Technical) are complete, note the date and **stop**.
+1. **Check first** — look up an existing profile in this order, and if the Google Fonts sections (Synopsis, Key Characteristics, Technical) are complete, note the date and **stop** (write nothing):
+   1. `./font-profiles/{fontname}.md`
+   2. `${CLAUDE_PLUGIN_ROOT}/font-profiles/{fontname}.md` (bundled, read-only)
 2. **Fetch sources** via `ref_read_url`:
    - `https://fonts.google.com/specimen/{Font+Name}/about` e.g. `.../specimen/Red+Hat+Display/about`
    - `https://raw.githubusercontent.com/google/fonts/main/ofl/{fontname}/METADATA.pb` e.g. `.../ofl/redhatdisplay/METADATA.pb`
    - ⚠️ **Validate each response:** must mention the font name — `ref_read_url` can silently return unrelated content. Up to 2 retries. If all fail, give the user the failing URL and ask them to supply the data.
-3. **Update (or create)** `font-profiles/{fontname}.md` using `font-profiles/lora.md` and `font-profiles/open-sans.md` as templates. Use **kebab-case** filename (e.g. `source-serif-4.md`, `red-hat-display.md`).
+3. **Write profile** to `./font-profiles/{fontname}.md` (kebab-case, e.g. `source-serif-4.md`) using `${CLAUDE_PLUGIN_ROOT}/font-profiles/lora.md` and `${CLAUDE_PLUGIN_ROOT}/font-profiles/open-sans.md` as templates.
 
 Rules to verify:
 

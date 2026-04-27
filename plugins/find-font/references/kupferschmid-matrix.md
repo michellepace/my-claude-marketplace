@@ -1,6 +1,6 @@
 # Pairing typefaces using the font matrix
 
-*Original source:* <https://fonts.google.com/knowledge/choosing_type/pairing_typefaces_based_on_their_construction_using_the_font_matrix>
+*Original source:* https://fonts.google.com/knowledge/choosing_type/pairing_typefaces_based_on_their_construction_using_the_font_matrix
 
 The font matrix is a framework by typography professor [Indra Kupferschmid](https://de.wikipedia.org/wiki/Indra_Kupferschmid) for pairing typefaces. The core problem: a secondary typeface needs to be different enough from the primary choice, but not too different. The matrix provides systematic guidelines for where similarities and differences should lie.
 

@@ -30,8 +30,8 @@ Classified from visual examination of ![Lora 400](specimens/lora.jpg)
 
 Curated from:
 
-- <https://fonts.google.com/specimen/Lora/about>
-- <https://raw.githubusercontent.com/google/fonts/main/ofl/lora/METADATA.pb>
+- https://fonts.google.com/specimen/Lora/about
+- https://raw.githubusercontent.com/google/fonts/main/ofl/lora/METADATA.pb
 
 Classified using:
 

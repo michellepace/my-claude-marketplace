@@ -1,8 +1,8 @@
 # Plugin: `find-font`
 
-**Font pairing (orchestrator pattern):** Research, classify, and recommend Google Font pairings using the [Kupferschmid font matrix](https://fonts.google.com/knowledge/choosing_type/pairing_typefaces_based_on_their_construction_using_the_font_matrix) — a three-layer classification system (skeleton, flesh, skin) for choosing typefaces that work together.
+**Font pairing (orchestrator pattern):** Recommend Google Font pairings using the [Kupferschmid font matrix](https://fonts.google.com/knowledge/choosing_type/pairing_typefaces_based_on_their_construction_using_the_font_matrix) — a three-layer classification system (skeleton, flesh, skin) for choosing typefaces that work together.
 
-Give it a primary body font, optional candidates, and a mood or criteria. It fetches font data, classifies each font on the matrix, evaluates pairings, and recommends fonts that match your brief.
+Give it a primary body font, optional candidates, and a mood or criteria. It classifies each font on the matrix, evaluates pairings, and recommends fonts that match your brief.
 
 Add marketplace and install this plugin (project scope):
 
@@ -15,8 +15,8 @@ claude plugin install find-font@my-claude-marketplace --scope project
 ```
 
 <div align="center">
-  <a href="skills/ff-3-create-font-matrix-svg/references/kupferschmid-template.svg" target="_blank">
-    <img src="skills/ff-3-create-font-matrix-svg/references/kupferschmid-template.svg" alt="Kupferschmid font matrix showing Lora as primary with Alegreya Sans and Open Sans as harmonious same-column pairings, Raleway as a contrasting diagonal pairing, and Cormorant Garamond marked as avoid." width="700">
+  <a href="skills/ff-3-create-font-matrix-svg/templates/kupferschmid-template.svg" target="_blank">
+    <img src="skills/ff-3-create-font-matrix-svg/templates/kupferschmid-template.svg" alt="Kupferschmid font matrix showing Lora as primary with Alegreya Sans and Open Sans as harmonious same-column pairings, Raleway as a contrasting diagonal pairing, and Cormorant Garamond marked as avoid." width="700">
   </a>
   <p><em>Example: Lora (primary) with four candidates classified by matrix relationship — green for harmonious (same column), purple for contrasting (diagonal), red for avoid (same row/cell).</em></p>
 </div>
@@ -49,24 +49,23 @@ All four skills are independently invocable.
 
 ## Reference Files
 
-| File | Used By Skill(s) | Purpose / Explanation |
-|---|---|---|
-| [`kupferschmid-matrix.md`](references/kupferschmid-matrix.md) | [ff-0-pair-my-font](skills/ff-0-pair-my-font/SKILL.md), [ff-2-classify-font-matrix](skills/ff-2-classify-font-matrix/SKILL.md) | ***Foundation.*** Kupferschmid matrix framework for classifying and pairing fonts |
-| [`font-profiles/*.md`](font-profiles/) | [ff-0-pair-my-font](skills/ff-0-pair-my-font/SKILL.md), [ff-1-curate-font-google](skills/ff-1-curate-font-google/SKILL.md), [ff-2-classify-font-matrix](skills/ff-2-classify-font-matrix/SKILL.md) | ***Core Data.*** Per-font research (synopsis, characteristics, technical specs) and matrix classification, created by plugin usage |
-| [`specimens/*.jpg`](font-profiles/specimens) | [ff-0-pair-my-font](skills/ff-0-pair-my-font/SKILL.md), [ff-2-classify-font-matrix](skills/ff-2-classify-font-matrix/SKILL.md) | ***Core Data (input to classify).*** User-provided font specimens are copied here, needed for matrix classification |
-| [`shopify-fonts.md`](skills/ff-0-pair-my-font/references/shopify-fonts.md) | [ff-0-pair-my-font](skills/ff-0-pair-my-font/SKILL.md) | ***Optional Constraint.*** Enables Claude to constrain recommendations to Shopify fonts (subset of Google Fonts). |
-| [`example-output.md`](skills/ff-0-pair-my-font/references/example-output.md) | [ff-0-pair-my-font](skills/ff-0-pair-my-font/SKILL.md) | ***Output Formatting.*** Sample recommendation (pairing cards, matrix, comparison table), Claude adapts content to the fonts and stated criteria |
-| [`kupferschmid-template.svg`](skills/ff-3-create-font-matrix-svg/references/kupferschmid-template.svg) | [ff-3-create-font-matrix-svg](skills/ff-3-create-font-matrix-svg/SKILL.md) | ***Output Visualisation.*** Clean SVG template Claude copies and modifies to visualise font matrix positions |
+| File | Purpose / Explanation |
+|---|---|
+| [`kupferschmid-matrix.md`](references/kupferschmid-matrix.md) | ***Foundation.*** Kupferschmid matrix framework for classifying and pairing fonts |
+| [`font-profiles/`](font-profiles/) | ***Core Data (read-only seed/fallback).*** Per-font research (synopsis, characteristics, technical specs) and matrix classification, shipped with the plugin. Includes font specimen images used for visual matrix classification. New profiles and user-supplied specimens always land in `./font-profiles/` in your CWD — never in the bundle. |
+| [`shopify-fonts.md`](skills/ff-0-pair-my-font/references/shopify-fonts.md) | ***Optional Constraint.*** Enables Claude to constrain recommendations to Shopify fonts (subset of Google Fonts). |
+| [`output.md`](skills/ff-0-pair-my-font/examples/output.md) | ***Example Formatting.*** Claude adapts content to the fonts and stated criteria |
+| [`kupferschmid-template.svg`](skills/ff-3-create-font-matrix-svg/templates/kupferschmid-template.svg) | ***Output Visualisation.*** Clean SVG template Claude copies and modifies. |
 
 ## Matrix Visualisation
 
-When requested, the skill copies the SVG template and edits it to place the analysed fonts on the matrix with colour-coded cards and directional arrows showing each pairing relationship. This is the image shown above. If it is not requested, then a terminal text equivalent is presented, as shown in [`example-output.md`](skills/ff-0-pair-my-font/references/example-output.md)
+Ask for an SVG and you get the image shown above. Otherwise, a terminal text equivalent — see [`output.md`](skills/ff-0-pair-my-font/examples/output.md).
 
 ## Dependencies
 
-**Ref MCP (required)** — configured in [`.mcp.json`](.mcp.json). The skill fetches font data from Google Fonts specimen pages and GitHub METADATA.pb files via `ref_read_url`. This is not optional — Google Fonts is a JavaScript-heavy SPA that Claude's built-in `WebFetch` cannot read. Without Ref MCP, font curation will fail.
+**Ref MCP (required)** — configured in [`.mcp.json`](.mcp.json). Used to fetch font data from Google Fonts specimen pages and GitHub METADATA.pb files — Claude's built-in `WebFetch` can't read the Google Fonts SPA.
 
-**Google Fonts only** — font research and classification relies on two dependable, structured sources (specimen page + METADATA.pb) that only exist for Google Fonts. This keeps curation fast and consistent. Supporting other catalogues would require web searching for equivalent data, which is slower and less reliable — but the skills could be extended for this if needed.
+**Google Fonts only** — curation depends on two structured sources only Google Fonts provides (specimen page + METADATA.pb). Other catalogues would need web search — slower and less reliable.
 
 So Claude can render the SVG matrix to PNG, install `rsvg-convert`:
 
@@ -76,5 +75,5 @@ sudo apt install librsvg2-bin
 
 ## Future Improvements
 
-- **Tighten recommendation output** — it's very verbose, adjust [`example-output.md`](skills/ff-0-pair-my-font/references/example-output.md)
+- **Tighten recommendation output** — it's very verbose, adjust [`output.md`](skills/ff-0-pair-my-font/examples/output.md)
 - **Python SVG generator** — a script that takes font card data and plots them onto the SVG template (cards and connectors), replacing manual SVG editing by Claude

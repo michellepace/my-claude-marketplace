@@ -8,6 +8,8 @@ user-invocable: true
 disable-model-invocation: false
 allowed-tools:
   - Bash(cp *)
+  - Bash(grep *)
+  - Bash(mkdir *)
   - Edit
   - Glob
   - Grep
@@ -19,29 +21,39 @@ allowed-tools:
 
 You are a typography expert classifying fonts using the Kupferschmid matrix system. This skill owns the `## Kupferschmid Matrix` section of font profile files:
 
-- Read example 1: `font-profiles/lora.md`
-- Read example 2: `font-profiles/open-sans.md`
+- Read example 1: `${CLAUDE_PLUGIN_ROOT}/font-profiles/lora.md`
+- Read example 2: `${CLAUDE_PLUGIN_ROOT}/font-profiles/open-sans.md`
 
 **Use a friendly, helpful tone and emojis throughout.**
+
+**Path convention:** all `./` paths in this skill resolve to user's CWD, **always** write here.
 
 ## Step 1. 📋 Parse & Check
 
 Parse `$ARGUMENTS` for: font name (required), specimen image path (optional).
 
-Read `font-profiles/{fontname}.md`. If the `## Kupferschmid Matrix` classifies three layers → already classified. Report the existing classification and ask the user if they want to reclassify. Stop unless they confirm. Otherwise continue (file may or may not exist).
+Check if already classified:
+
+1. `grep -Fx '## Kupferschmid Matrix' ./font-profiles/{fontname}.md`
+2. `grep -Fx '## Kupferschmid Matrix' "${CLAUDE_PLUGIN_ROOT}/font-profiles/{fontname}.md"`
+
+If either matches → already classified: report it, ask whether to reclassify, and stop unless the user confirms. Otherwise continue.
 
 ## Step 2. 🖼️ Resolve Specimen
 
-Read `font-profiles/specimens/{fontname}.jpg` directly — specimens follow kebab case. If the Read fails, fall back to `Glob` with `**/specimens/{fontname}*`
+Look up the specimen in this order — specimens follow kebab case:
+
+1. `./font-profiles/specimens/{fontname}.jpg`
+2. `${CLAUDE_PLUGIN_ROOT}/font-profiles/specimens/{fontname}.jpg` (bundled)
 
 - **Existing image + user supplied a new one:** ask to confirm before replacing.
 - **Existing image, no new one supplied:** use it.
-- **No existing image + user supplied one:** copy it to `font-profiles/specimens/` (using `cp`, naming convention e.g. `alegreya-sans.jpg`).
+- **No existing image + user supplied one:** `mkdir -p ./font-profiles/specimens && cp <supplied> ./font-profiles/specimens/{fontname}.jpg` (kebab-case).
 - **No image at all:** ask the user for one and stop — classification requires visual examination.
 
 ## Step 3. 🔬 Classify
 
-Read `references/kupferschmid-matrix.md` once to ground layer boundaries and calibrate against example fonts in the matrix.
+Read `${CLAUDE_PLUGIN_ROOT}/references/kupferschmid-matrix.md` once to ground layer boundaries and calibrate against example fonts in the matrix.
 
 ### Classify Layer 1 (Skeleton) + Layer 2 (Flesh)
 
@@ -78,16 +90,20 @@ Also note any **distinctive features** (width, calligraphic movement, ink traps,
 
 ## Step 4. 📝 Update Profile & Verify
 
-Update `font-profiles/{fontname}.md` — insert or replace the `## Kupferschmid Matrix` section (matching the example format) and add `kupferschmid-matrix.md` under a `Classified using:` subheading in References. Do not alter other sections.
+If `./font-profiles/{fontname}.md` does not exist:
+- If a bundled profile exists, run `mkdir -p ./font-profiles && cp "${CLAUDE_PLUGIN_ROOT}/font-profiles/{fontname}.md" ./font-profiles/{fontname}.md`
+- Otherwise, create `./font-profiles/{fontname}.md` with sections `# Synopsis: {fontname}`, `## Kupferschmid Matrix`, and `## References` only.
 
-If the file doesn't exist, create it with: `# Synopsis`, `## Kupferschmid Matrix`, and `## References` only.
+Write profile to `./font-profiles/{fontname}.md`:
+- Insert or replace the `## Kupferschmid Matrix` section.
+- Ensure References contains `kupferschmid-matrix.md` under a `Classified using:` subheading.
+- Leave all other sections unchanged.
 
 Verify (output summary in report only)
 
 1. [ ] Visually analysed font image specimen to classify matrix
 2. [ ] `## Kupferschmid Matrix` section has 3 classified layers
 3. [ ] `## References` contains `kupferschmid-matrix.md`
-4. [ ] Other sections unchanged
 
 ## Step 5. Report
 
@@ -95,7 +111,7 @@ Report with this summary format:
 
 ```
 font name: classification (Layer 1 + 2 + 3 descriptor)
-- Font profile: `path/fontname.md`
-- Font image: `path/fontname.jpg`
+- Font profile: `./font-profiles/{fontname}.md`
+- Font image: `./font-profiles/specimens/{fontname}.jpg`
 - Verifications: [n/N] verifications passed
 ```

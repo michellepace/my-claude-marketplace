@@ -13,3 +13,4 @@ config:
   MD060: false  # Table column style (compact tables are fine)
   MD031: false  # Fenced code blocks in templates don't need surrounding blank lines
   MD032: false  # Lists in templates don't need surrounding blank lines
+  MD034: false  # Allow bare URLs (chat links, references)

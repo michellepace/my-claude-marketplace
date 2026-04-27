@@ -22,5 +22,5 @@ Free display serif inspired by Claude Garamont's legacy. Ultra-high contrast wit
 
 Curated from:
 
-- <https://fonts.google.com/specimen/Cormorant+Garamond/about>
-- <https://raw.githubusercontent.com/google/fonts/main/ofl/cormorantgaramond/METADATA.pb>
+- https://fonts.google.com/specimen/Cormorant+Garamond/about
+- https://raw.githubusercontent.com/google/fonts/main/ofl/cormorantgaramond/METADATA.pb
