@@ -1,0 +1,25 @@
+
+== Run-wide Peak CTX [5323d196-3d8e-4cee-9a31-844b1b326422] ==
+# max per-turn input window (input_tokens+cache_create_5m+cache_create_1h+cache_read) vs 200k - context-pressure, not cost.
+45788
+
+== Per-subagent rollup [5323d196-3d8e-4cee-9a31-844b1b326422] ==
+# peak = max per-turn; total = sum across turns (deduped); cache_read_% and usd derived from priced per-bucket sums (cost_report.py --price-stdin); usd sums across all models present per file
+# spawn-ts	peak-ctx	total-tokens(deduped)	cache_read_%	usd	description
+2026-05-01T06:16:33.824Z	17594	32996	74.2	0.0815	Create font matrix SVG
+2026-05-01T06:16:41.732Z	28372	206068	90.6	0.2279	(description absent)
+
+== Wall-clock duration [5323d196-3d8e-4cee-9a31-844b1b326422] ==
+# first/last .timestamp across orchestrator + subagents.
+first:    2026-05-01T06:15:07.430Z
+last:     2026-05-01T06:18:44.040Z
+elapsed:  217s
+idle:     0s
+active:   217s
+
+== Orchestrator tool-call counts [5323d196-3d8e-4cee-9a31-844b1b326422] ==
+# tool_use blocks per tool name; NO dedup (parallel-shard rows are distinct tool_use blocks).
+# tool-name	tool_use_count
+Read	6
+Bash	3
+Agent	1

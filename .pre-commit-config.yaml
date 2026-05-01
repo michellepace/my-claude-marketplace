@@ -1,23 +1,35 @@
 repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.15.11
+    rev: v0.15.12
     hooks:
-      - id: ruff-format # Run formatter
-      - id: ruff-check  # Run linter
+      - id: ruff-format # Run formatter (see pyproject.toml)
+      - id: ruff-check  # Run linter (see pyproject.toml)
         args: [--fix, --exit-non-zero-on-fix]
 
   - repo: https://github.com/RobertCraigie/pyright-python
-    rev: v1.1.408
+    rev: v1.1.409
     hooks:
-      - id: pyright   # Typecheck ([tool.pyright] in pyproject.toml)
+      - id: pyright     # Typecheck (see pyproject.toml)
+
+  - repo: https://github.com/scop/pre-commit-shfmt
+    rev: v3.13.1-1
+    hooks:
+      - id: shfmt       # Format shell scripts
+        args: [-w, -i, "2", -ci, -sr]
+
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.11.0.1
+    hooks:
+      - id: shellcheck  # Lint shell scripts
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
-    # Applies to ALL files in repo excluding binaries
+    rev: v6.0.0
     hooks:
+      # Whitespace hygiene — all text files (skip binaries)
       - id: end-of-file-fixer    # Exactly one \n at EOF
       - id: trailing-whitespace  # Strip trailing spaces per line
-      - id: check-yaml           # Validate syntax
-      - id: check-json           # Validate syntax (plugin.json, settings.json)
-        exclude: ^\.vscode/       # .vscode/*.json is JSONC (comments allowed)
-      - id: check-toml           # Validate syntax (pyproject.toml)
+      # Format validators — scoped to their file type
+      - id: check-yaml           # Validate YAML syntax
+      - id: check-json           # Validate JSON syntax
+        exclude: ^\.vscode/      # .vscode/*.json is JSONC (comments allowed)
+      - id: check-toml           # Validate TOML syntax

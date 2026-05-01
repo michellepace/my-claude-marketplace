@@ -42,19 +42,30 @@ Confirm the brief. If only one candidate, ask whether they want an alternative �
 
 ⏸️ Wait for confirmation before proceeding.
 
-### Step 2. 📚 Curate & Classify
+### Step 2. 📚 Triage & Dispatch
 
-**Curate** — for each font, launch a foreground Agent with the prompt:
-> Invoke `/ff-1-curate-font-google {fontname}` using the Skill tool.
+**Pre-check** — for each font, locate its profile in this order, then inspect the resolved file with `grep -Fx`:
 
-Run all curate agents in parallel. Wait for all to complete.
+1. `find ./font-profiles -maxdepth 1 -name '{fontname}.md'`
+2. **Only if (1) returns nothing:** `find ${CLAUDE_PLUGIN_ROOT}/font-profiles -maxdepth 1 -name '{fontname}.md'` (bundled, read-only)
 
-**Classify** — for each font, launch a foreground Agent with the prompt:
-> Invoke `/ff-2-classify-font-matrix {fontname} {image}` using the Skill tool.
+Classify the font into ONE state:
 
-Run all classify agents in parallel. Wait for all to complete.
+| State | Condition |
+| :---- | :-------- |
+| `needs-curate` | No profile found in either location. |
+| `needs-classify` | `grep -Fx '## Kupferschmid Matrix [TO BE COMPLETED]'` matches. |
+| `fully-cached` | `grep -Fx '## Kupferschmid Matrix'` matches. |
+| `unknown` | Anything else — neither matches, or any other anomaly. |
 
-Skills handle skip-if-already-done logic internally — no need to pre-check profile state.
+For any `unknown` font, **HALT as this is unexpected**: explain what was observed, make a helpful suggestion, and WAIT for user confirmation.
+
+When there are NO `unknown` states:
+
+1. **Curate** — for each font in `needs-curate`, use the Agent tool to launch parallel foreground agents with the prompt and **WAIT** for all to complete:
+    > Invoke `/ff-1-curate-font-google {fontname}` using the Skill tool.
+2. **Classify** — for each font in `needs-curate ∪ needs-classify`, use the Agent tool to launch parallel foreground agents with the prompt and **WAIT** for all to complete:
+    > Invoke `/ff-2-classify-font-matrix {fontname} {image}` using the Skill tool.
 
 ### Step 3. ⚖️ Analyse & Recommend
 
@@ -85,8 +96,9 @@ Read `${CLAUDE_PLUGIN_ROOT}/references/kupferschmid-matrix.md` to ground the pai
 
 ### Step 4. 📐 Visualise (if requested)
 
-- **If the user requested an SVG visualisation:** invoke `/ff-3-create-font-matrix-svg {primary font} {candidates/recommendations} {pairing relationships}` using the Skill tool.
-- **Otherwise:** skip this step.
+**Only if the user requested an SVG visualisation:** use the Agent tool to launch a foreground agent with the prompt and **WAIT** for it to complete:
+
+> Invoke `/ff-3-create-font-matrix-svg {primary font} {candidates/recommendations} {pairing relationships}` using the Skill tool.
 
 ### Step 5. 📋 Output
 

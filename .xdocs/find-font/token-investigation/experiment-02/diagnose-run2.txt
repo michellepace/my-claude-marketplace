@@ -1,0 +1,48 @@
+== §1 Per-subagent tool-call counts [5323d196-3d8e-4cee-9a31-844b1b326422] ==
+# tool_use blocks per subagent; what each subagent actually did. NO dedup.
+# agent-id	description	tool-counts(descending)
+agent-a90bd669fa097c798	Create font matrix SVG	1xSkill
+agent-adb27314bbc3cdd08	(description absent)	4xBash 2xRead 2xEdit
+
+== §2 Top-10 largest tool_result payloads, orchestrator + subagents [5323d196-3d8e-4cee-9a31-844b1b326422] ==
+# single tool returns ranked by payload size; next_* columns show which bucket the payload landed in on the immediately following assistant turn (skipping sibling shards of the same message.id) — only next_create_* rows cost real money, next_read is ~free.
+# size_chars	src_file	tool_name	timestamp	next_create_5m	next_create_1h	next_read	next_usd
+22827	5323d196-3d8e-4cee-9a31-844b1b326422.jsonl	Read	2026-05-01T06:15:35.471Z	0	9126	27053	0.109066
+9099	agent-adb27314bbc3cdd08.jsonl	Read	2026-05-01T06:16:50.461Z	4865	0	17386	0.039204
+4050	5323d196-3d8e-4cee-9a31-844b1b326422.jsonl	Read	2026-05-01T06:18:03.304Z	0	1732	44055	0.094853
+2002	5323d196-3d8e-4cee-9a31-844b1b326422.jsonl	Read	2026-05-01T06:15:44.284Z	0	963	38211	0.031266
+1801	5323d196-3d8e-4cee-9a31-844b1b326422.jsonl	Read	2026-05-01T06:15:42.049Z	0	1087	37124	0.031962
+1723	5323d196-3d8e-4cee-9a31-844b1b326422.jsonl	Read	2026-05-01T06:15:39.361Z	0	945	36179	0.030169
+1652	5323d196-3d8e-4cee-9a31-844b1b326422.jsonl	Read	2026-05-01T06:15:46.463Z	0	859	39174	0.113332
+1027	agent-a90bd669fa097c798.jsonl	Skill	2026-05-01T06:17:48.192Z	3053	0	14540	0.034531
+947	5323d196-3d8e-4cee-9a31-844b1b326422.jsonl	Agent	2026-05-01T06:17:57.236Z	0	3822	40033	0.061467
+609	5323d196-3d8e-4cee-9a31-844b1b326422.jsonl	Bash	2026-05-01T06:15:32.492Z	0	923	26130	0.025775
+
+== §3 Orchestrator per-turn output histogram [5323d196-3d8e-4cee-9a31-844b1b326422] ==
+# turns by output_tokens (descending); DEDUPED by message.id (parallel-shard rows collapse to one). Contrast §5 (no dedup).
+# output	timestamp	tools_in_turn
+3406	2026-05-01T06:16:24.758Z	Agent
+2220	2026-05-01T06:18:15.408Z
+637	2026-05-01T06:15:13.201Z	Bash
+597	2026-05-01T06:15:25.974Z	Bash
+216	2026-05-01T06:15:20.763Z
+171	2026-05-01T06:15:38.037Z	Read
+139	2026-05-01T06:15:34.989Z	Read
+129	2026-05-01T06:18:00.011Z	Bash
+128	2026-05-01T06:18:02.589Z	Read
+105	2026-05-01T06:15:42.028Z	Read
+101	2026-05-01T06:15:46.449Z	Read
+101	2026-05-01T06:15:44.275Z	Read
+
+== §4 First user message size per subagent (spawn prompt) [5323d196-3d8e-4cee-9a31-844b1b326422] ==
+# spawn-prompt size; flags front-loaded context.
+# size_chars	agent-id	description
+2482	agent-adb27314bbc3cdd08	(description absent)
+1139	agent-a90bd669fa097c798	Create font matrix SVG
+
+== §5 Orchestrator tool-call counts [5323d196-3d8e-4cee-9a31-844b1b326422] ==
+# tool_use blocks per tool name; NO dedup (parallel-shard rows are distinct tool_use blocks).
+# tool-name	tool_use_count
+Read	6
+Bash	3
+Agent	1

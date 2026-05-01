@@ -1,0 +1,72 @@
+== §1 Per-subagent tool-call counts [d12c0278-ee40-4622-9c7e-4d86750c006d] ==
+# tool_use blocks per subagent; what each subagent actually did. NO dedup.
+# agent-id	description	tool-counts(descending)
+agent-a053b48a59682ed1b	Curate Bodoni Moda font profile	1xSkill
+agent-a148149f8cf5c9341	Curate Lora font profile	1xSkill
+agent-a17d36a9ef35a433a	(description absent)	6xRead 4xBash 1xEdit
+agent-a22e37c9ffb6834ff	(description absent)	2xRead 2xBash 1xEdit
+agent-a306be35bd4407765	Create SVG matrix	1xSkill
+agent-a338f15cbd9ddb151	Classify Bodoni Moda	1xSkill
+agent-a5926209fbc48b5d0	(description absent)	2xmcp__Ref__ref_read_url 2xRead 2xBash 1xWrite 1xToolSearch
+agent-a6d8e176fa91b701b	Classify Montserrat	1xSkill
+agent-a99e4f0d18055c7a2	Classify Spectral	1xSkill
+agent-aac9dc45fd84d32d9	Curate Montserrat font profile	1xSkill
+agent-ac08e8c011886cf5c	(description absent)	3xmcp__Ref__ref_read_url 2xRead 2xBash 1xWrite 1xToolSearch
+agent-ac5b9c4aa0281e003	Curate Spectral font profile	1xSkill
+agent-ad3d50ff9d7a934d1	(description absent)	1xRead 1xBash
+agent-ad9843c539bcfe015	(description absent)	5xRead 4xBash 2xEdit
+agent-ae7793325a9b7e1ed	(description absent)	3xBash 2xmcp__Ref__ref_read_url 2xRead 1xWrite 1xToolSearch
+agent-af8bc052d7599a092	(description absent)	6xRead 4xBash 1xEdit
+
+== §2 Top-10 largest tool_result payloads, orchestrator + subagents [d12c0278-ee40-4622-9c7e-4d86750c006d] ==
+# single tool returns ranked by payload size; next_* columns show which bucket the payload landed in on the immediately following assistant turn (skipping sibling shards of the same message.id) — only next_create_* rows cost real money, next_read is ~free.
+# size_chars	src_file	tool_name	timestamp	next_create_5m	next_create_1h	next_read	next_usd
+22827	d12c0278-ee40-4622-9c7e-4d86750c006d.jsonl	Read	2026-04-29T03:31:21.627Z	0	12512	30291	0.195395
+22827	agent-a17d36a9ef35a433a.jsonl	Read	2026-04-29T03:30:22.803Z	13029	0	16401	0.089687
+22827	agent-ad9843c539bcfe015.jsonl	Read	2026-04-29T03:30:26.986Z	10721	0	20242	0.077157
+22827	agent-af8bc052d7599a092.jsonl	Read	2026-04-29T03:30:14.969Z	11586	0	19473	0.082179
+9099	agent-a22e37c9ffb6834ff.jsonl	Read	2026-04-29T03:32:21.951Z	7003	0	14768	0.051208
+6727	agent-ac08e8c011886cf5c.jsonl	mcp__Ref__ref_read_url	2026-04-29T03:29:16.319Z	3688	0	20224	0.033217
+5914	agent-ae7793325a9b7e1ed.jsonl	mcp__Ref__ref_read_url	2026-04-29T03:28:17.401Z	5137	0	19669	0.042021
+5559	agent-ac08e8c011886cf5c.jsonl	mcp__Ref__ref_read_url	2026-04-29T03:28:19.375Z	2355	0	17869	0.023708
+4511	agent-ae7793325a9b7e1ed.jsonl	mcp__Ref__ref_read_url	2026-04-29T03:28:23.933Z	5137	0	19669	0.042021
+4050	d12c0278-ee40-4622-9c7e-4d86750c006d.jsonl	Read	2026-04-29T03:31:54.169Z	0	3809	42803	0.082296
+
+== §3 Orchestrator per-turn output histogram [d12c0278-ee40-4622-9c7e-4d86750c006d] ==
+# turns by output_tokens (descending); DEDUPED by message.id (parallel-shard rows collapse to one). Contrast §5 (no dedup).
+# output	timestamp	tools_in_turn
+2205	2026-04-29T03:31:52.654Z	Read
+2142	2026-04-29T03:33:00.504Z
+912	2026-04-29T03:32:06.352Z	Agent
+709	2026-04-29T03:29:58.664Z	Agent,Agent,Agent
+681	2026-04-29T03:27:20.577Z	Bash
+657	2026-04-29T03:31:20.386Z	Read,Read,Read,Read,Read
+550	2026-04-29T03:27:53.309Z	Agent,Agent,Agent,Agent
+430	2026-04-29T03:27:27.023Z
+
+== §4 First user message size per subagent (spawn prompt) [d12c0278-ee40-4622-9c7e-4d86750c006d] ==
+# spawn-prompt size; flags front-loaded context.
+# size_chars	agent-id	description
+5893	agent-a17d36a9ef35a433a	(description absent)
+5891	agent-af8bc052d7599a092	(description absent)
+5842	agent-ad9843c539bcfe015	(description absent)
+2639	agent-a5926209fbc48b5d0	(description absent)
+2638	agent-ac08e8c011886cf5c	(description absent)
+2636	agent-ae7793325a9b7e1ed	(description absent)
+2632	agent-ad3d50ff9d7a934d1	(description absent)
+1914	agent-a22e37c9ffb6834ff	(description absent)
+499	agent-a306be35bd4407765	Create SVG matrix
+177	agent-a338f15cbd9ddb151	Classify Bodoni Moda
+175	agent-a6d8e176fa91b701b	Classify Montserrat
+126	agent-a99e4f0d18055c7a2	Classify Spectral
+77	agent-a053b48a59682ed1b	Curate Bodoni Moda font profile
+76	agent-aac9dc45fd84d32d9	Curate Montserrat font profile
+74	agent-ac5b9c4aa0281e003	Curate Spectral font profile
+70	agent-a148149f8cf5c9341	Curate Lora font profile
+
+== §5 Orchestrator tool-call counts [d12c0278-ee40-4622-9c7e-4d86750c006d] ==
+# tool_use blocks per tool name; NO dedup (parallel-shard rows are distinct tool_use blocks).
+# tool-name	tool_use_count
+Agent	8
+Read	6
+Bash	1

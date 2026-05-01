@@ -1,0 +1,45 @@
+
+== Run-wide Peak CTX [546340aa-2220-4d63-92f4-14708950d9c2] ==
+# max per-turn input window (input_tokens+cache_create_5m+cache_create_1h+cache_read) vs 200k - context-pressure, not cost.
+56276
+
+== Per-subagent rollup [546340aa-2220-4d63-92f4-14708950d9c2] ==
+# peak = max per-turn; total = sum across turns (deduped); cache_read_% and usd derived from priced per-bucket sums (cost_report.py --price-stdin); usd sums across all models present per file
+# spawn-ts	peak-ctx	total-tokens(deduped)	cache_read_%	usd	description
+2026-05-01T06:06:57.600Z	16680	31146	45.2	0.1210	Curate Newsreader font profile
+2026-05-01T06:06:58.737Z	16627	31003	45.4	0.1184	Curate Bodoni Moda font profile
+2026-05-01T06:06:59.497Z	17223	48180	84.4	0.0713	Curate Spectral font profile
+2026-05-01T06:06:59.878Z	27053	153987	75.5	0.3013	(description absent)
+2026-05-01T06:07:00.095Z	16607	30955	77.6	0.0605	Curate Faustina font profile
+2026-05-01T06:07:00.891Z	18513	51582	82.7	0.0830	(description absent)
+2026-05-01T06:07:01.765Z	18887	70489	86.8	0.0953	(description absent)
+2026-05-01T06:07:02.640Z	18421	51436	82.9	0.0819	(description absent)
+2026-05-01T06:07:23.860Z	26989	214683	86.6	0.3000	(description absent)
+2026-05-01T06:08:40.972Z	16961	31535	76.3	0.0672	Classify Newsreader on matrix
+2026-05-01T06:08:42.143Z	17047	31539	76.3	0.0655	Classify Bodoni Moda on matrix
+2026-05-01T06:08:43.283Z	16891	31336	76.8	0.0636	Classify Spectral on matrix
+2026-05-01T06:08:44.168Z	17524	32084	75.0	0.0704	Classify Faustina on matrix
+2026-05-01T06:08:44.214Z	33381	206033	87.7	0.2731	(description absent)
+2026-05-01T06:08:44.546Z	20353	56868	80.6	0.1037	(description absent)
+2026-05-01T06:08:47.296Z	31926	88930	74.0	0.1985	(description absent)
+2026-05-01T06:08:47.473Z	20536	57071	80.6	0.1014	(description absent)
+2026-05-01T06:10:59.232Z	17431	49158	83.6	0.0820	Generate SVG matrix visualisation
+2026-05-01T06:11:10.439Z	31902	273500	85.5	0.3789	(description absent)
+
+== Wall-clock duration [546340aa-2220-4d63-92f4-14708950d9c2] ==
+# first/last .timestamp across orchestrator + subagents.
+first:    2026-05-01T06:06:36.742Z
+last:     2026-05-01T06:13:20.139Z
+elapsed:  404s
+idle:     0s
+active:   404s
+
+== Orchestrator tool-call counts [546340aa-2220-4d63-92f4-14708950d9c2] ==
+# tool_use blocks per tool name; NO dedup (parallel-shard rows are distinct tool_use blocks).
+# tool-name	tool_use_count
+Agent	9
+TaskUpdate	7
+Read	6
+TaskCreate	4
+Bash	2
+ToolSearch	1

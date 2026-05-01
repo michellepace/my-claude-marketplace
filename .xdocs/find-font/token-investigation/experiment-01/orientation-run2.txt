@@ -1,0 +1,42 @@
+
+== Run-wide Peak CTX [71791195-a881-4708-b16b-34ed5cc39f0b] ==
+# max per-turn input window (input_tokens+cache_create_5m+cache_create_1h+cache_read) vs 200k - context-pressure, not cost.
+59219
+
+== Per-subagent rollup [71791195-a881-4708-b16b-34ed5cc39f0b] ==
+# peak = max per-turn; total = sum across turns (deduped); cache_read_% and usd derived from priced per-bucket sums (cost_report.py --price-stdin); usd sums across all models present per file
+# spawn-ts	peak-ctx	total-tokens(deduped)	cache_read_%	usd	description
+2026-04-29T03:50:03.394Z	16527	30720	45.5	0.1156	Curate Bodoni Moda profile
+2026-04-29T03:50:03.741Z	16535	30867	45.3	0.1192	Curate Montserrat profile
+2026-04-29T03:50:04.224Z	16664	30742	45.5	0.1136	Curate Spectral profile
+2026-04-29T03:50:05.293Z	23056	117791	72.0	0.2522	(description absent)
+2026-04-29T03:50:05.741Z	26599	130281	78.8	0.2260	(description absent)
+2026-04-29T03:50:06.400Z	27381	157864	78.8	0.2785	(description absent)
+2026-04-29T03:51:14.867Z	16736	31244	77.3	0.0653	Classify Bodoni Moda
+2026-04-29T03:51:15.484Z	16820	31175	77.4	0.0622	Classify Montserrat
+2026-04-29T03:51:16.124Z	16917	31203	77.4	0.0611	Classify Spectral
+2026-04-29T03:51:17.178Z	34309	209024	87.9	0.2719	(description absent)
+2026-04-29T03:51:17.923Z	34717	169639	72.9	0.3589	(description absent)
+2026-04-29T03:51:18.416Z	34798	209633	76.9	0.3981	(description absent)
+2026-04-29T03:53:21.088Z	17229	31801	76.7	0.0638	Generate SVG matrix
+2026-04-29T03:53:28.964Z	30778	240912	90.9	0.2614	(description absent)
+
+== Wall-clock duration [71791195-a881-4708-b16b-34ed5cc39f0b] ==
+# first/last .timestamp across orchestrator + subagents.
+first:    2026-04-29T03:48:45.199Z
+last:     2026-04-29T03:57:03.079Z
+elapsed:  498s
+idle:     59s   (1 gap >50s)
+active:   439s
+-- idle gaps (>50s) --
+59s   2026-04-29T03:56:04.854Z -> 2026-04-29T03:57:03.079Z
+
+== Orchestrator tool-call counts [71791195-a881-4708-b16b-34ed5cc39f0b] ==
+# tool_use blocks per tool name; NO dedup (parallel-shard rows are distinct tool_use blocks).
+# tool-name	tool_use_count
+TaskUpdate	18
+TaskCreate	9
+Bash	9
+Read	7
+Agent	7
+ToolSearch	1

@@ -1,0 +1,41 @@
+
+== Run-wide Peak CTX [d12c0278-ee40-4622-9c7e-4d86750c006d] ==
+# max per-turn input window (input_tokens+cache_create_5m+cache_create_1h+cache_read) vs 200k - context-pressure, not cost.
+48010
+
+== Per-subagent rollup [d12c0278-ee40-4622-9c7e-4d86750c006d] ==
+# peak = max per-turn; total = sum across turns (deduped); cache_read_% and usd derived from priced per-bucket sums (cost_report.py --price-stdin); usd sums across all models present per file
+# spawn-ts	peak-ctx	total-tokens(deduped)	cache_read_%	usd	description
+2026-04-29T03:27:55.285Z	16852	31219	44.8	0.1220	Curate Lora font profile
+2026-04-29T03:27:55.805Z	16687	31010	45.1	0.1197	Curate Bodoni Moda font profile
+2026-04-29T03:27:56.520Z	16685	31183	77.3	0.0660	Curate Montserrat font profile
+2026-04-29T03:27:56.817Z	16513	30772	78.3	0.0589	Curate Spectral font profile
+2026-04-29T03:27:59.153Z	18335	51563	82.8	0.0884	(description absent)
+2026-04-29T03:27:59.455Z	22829	120989	81.1	0.1989	(description absent)
+2026-04-29T03:28:00.329Z	26786	147713	76.6	0.2816	(description absent)
+2026-04-29T03:28:01.291Z	25668	128585	81.6	0.2171	(description absent)
+2026-04-29T03:30:00.184Z	16773	31011	77.9	0.0587	Classify Bodoni Moda
+2026-04-29T03:30:01.304Z	16889	31597	76.4	0.0713	Classify Montserrat
+2026-04-29T03:30:01.872Z	16745	31135	77.5	0.0630	Classify Spectral
+2026-04-29T03:30:04.781Z	33867	167166	84.7	0.2541	(description absent)
+2026-04-29T03:30:05.173Z	33700	206785	87.9	0.2718	(description absent)
+2026-04-29T03:30:12.396Z	33735	174522	86.2	0.2359	(description absent)
+2026-04-29T03:32:10.235Z	16873	31056	78.2	0.0544	Create SVG matrix
+2026-04-29T03:32:15.322Z	24987	126492	86.0	0.1731	(description absent)
+
+== Wall-clock duration [d12c0278-ee40-4622-9c7e-4d86750c006d] ==
+# first/last .timestamp across orchestrator + subagents.
+first:    2026-04-29T03:27:15.621Z
+last:     2026-04-29T03:36:17.188Z
+elapsed:  542s
+idle:     164s   (1 gap >50s)
+active:   378s
+-- idle gaps (>50s) --
+164s   2026-04-29T03:33:33.778Z -> 2026-04-29T03:36:17.188Z
+
+== Orchestrator tool-call counts [d12c0278-ee40-4622-9c7e-4d86750c006d] ==
+# tool_use blocks per tool name; NO dedup (parallel-shard rows are distinct tool_use blocks).
+# tool-name	tool_use_count
+Agent	8
+Read	6
+Bash	1
