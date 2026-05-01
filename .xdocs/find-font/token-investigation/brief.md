@@ -17,15 +17,15 @@ Produce a short, scannable verdict in `brief-results.md` (under the relevant `ex
 
 | Run | Variant | SKILL.md @ commit | Session path (passed to all tools below) |
 |:--|:--|:--|:--|
-| 1 | baseline | `b3fffd5` | `~/.claude/projects/-home-mp-projects-shopify-sparklepop/d12c0278-ee40-4622-9c7e-4d86750c006d` |
-| 2 | refactored | `68721a0` | `~/.claude/projects/-home-mp-projects-shopify-sparklepop/71791195-a881-4708-b16b-34ed5cc39f0b` |
+| 1 | baseline | `b3fffd5` | `~/.claude/projects/-home-mp-projects-shopify-sparklepop/546340aa-2220-4d63-92f4-14708950d9c2.jsonl` |
+| 2 | refactored | `68721a0` | `~/.claude/projects/-home-mp-projects-shopify-sparklepop/SESSION_2` |
 
 Each path fans out to `<path>.jsonl` (orchestrator) + `<path>/subagents/` (subagents) — see [Run Transcript Sources](#run-transcript-sources).
 
 The same instruction was given to Claude Code:
 
 ```text
-/find-font:ff-0-pair-my-font Body font Lora. Pairing candidates are Bodoni Moda, Montserrat, and spectral.jpg. No other pairing candidates needed. I'm aiming for quiet editorial luxury with high readability. Include SVG matrix.
+/find-font:ff-0-pair-my-font Body font Newsreader. Pairing candidates are Bodoni Moda, Spectral, faustina. No other pairing candidates needed. I'm aiming for clean luxary with high readability. Include SVG matrix.
 ```
 
 Each experiment ran in Claude Code terminal with PWD `~/projects/shopify/sparklepop`. Runs were spaced > 5 minutes apart so the 5m cache had expired between them — no cross-run cache leakage. Within a single run the cache *is* shared across the orchestrator and its subagents, which is exactly what the refactor changes.

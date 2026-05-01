@@ -1,0 +1,69 @@
+
+========== Session: 546340aa-2220-4d63-92f4-14708950d9c2 ==========
+
+--- Per-step rollup (fills §2 row 2, §3) ---
+Step                                   Tokens          $
+Orchestrator                          441,388 $   1.0160
+ff-1-curate-font-google               683,461 $   1.2326
+ff-2-classify-font-matrix             535,396 $   0.9434
+ff-3-create-font-matrix-svg           273,500 $   0.3789
+Total (run-wide)                    1,933,745 $   3.5709
+
+--- Orchestrator bucket detail (fills §4) ---
+Token Bucket           Tokens          $
+input_tokens              421 $   0.0021
+cache_create_5m             0 $   0.0000
+cache_create_1h        57,886 $   0.5789
+cache_read            373,143 $   0.1866
+output_tokens           9,938 $   0.2485
+Total                 441,388 $   1.0160
+
+--- Per-skill wrapper/sidechain (fills §5) ---
+Skill                             Calls    WrapTok    SideTok   TotalTok          $
+ff-1-curate-font-google               4    141,284    542,177    683,461 $   1.2326
+ff-2-classify-font-matrix             4    126,494    408,902    535,396 $   0.9434
+ff-3-create-font-matrix-svg           0          0    273,500    273,500 $   0.3789
+
+Models seen (token total per model):
+  claude-opus-4-7                 1,541,515
+
+NOTE: 57,886 cache_create_1h tokens seen (priced at 2.0x base input_tokens).
+
+WARN: 1 subagent file(s) unclassified — counted in NEITHER wrapper NOR sidechain:
+  - agent-ad03f72c746bd1b5a.jsonl  cost=$0.0820  first80='Invoke the Skill tool to run `/find-font:ff-3-create-font-matrix-svg` with these'
+
+========== Session: 5323d196-3d8e-4cee-9a31-844b1b326422 ==========
+
+--- Per-step rollup (fills §2 row 2, §3) ---
+Step                                   Tokens          $
+Orchestrator                          436,551 $   0.7074
+ff-3-create-font-matrix-svg           239,064 $   0.3094
+Total (run-wide)                      675,615 $   1.0168
+
+--- Orchestrator bucket detail (fills §4) ---
+Token Bucket           Tokens          $
+input_tokens               21 $   0.0001
+cache_create_5m             0 $   0.0000
+cache_create_1h        30,971 $   0.3097
+cache_read            397,609 $   0.1988
+output_tokens           7,950 $   0.1988
+Total                 436,551 $   0.7074
+
+--- Per-skill wrapper/sidechain (fills §5) ---
+Skill                             Calls    WrapTok    SideTok   TotalTok          $
+ff-3-create-font-matrix-svg           1     32,996    206,068    239,064 $   0.3094
+
+Models seen (token total per model):
+  claude-opus-4-7                   239,064
+
+NOTE: 30,971 cache_create_1h tokens seen (priced at 2.0x base input_tokens).
+
+========== Comparison: Run 1 vs Run 2 ==========
+
+--- §3 Step-level Δ ---
+Step                                 R1 tok      R1 $     R2 tok      R2 $      Δ tok       Δ $      Δ %
+Orchestrator                        441,388 $  1.0160    436,551 $  0.7074     -4,837 $ -0.3086   -30.4%
+ff-1-curate-font-google             683,461 $  1.2326          0 $  0.0000   -683,461 $ -1.2326  -100.0%
+ff-2-classify-font-matrix           535,396 $  0.9434          0 $  0.0000   -535,396 $ -0.9434  -100.0%
+ff-3-create-font-matrix-svg         273,500 $  0.3789    239,064 $  0.3094    -34,436 $ -0.0695   -18.3%
+Total (run-wide)                  1,933,745 $  3.5709    675,615 $  1.0168 -1,258,130 $ -2.5541   -71.5%
