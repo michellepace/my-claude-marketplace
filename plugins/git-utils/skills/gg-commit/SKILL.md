@@ -1,9 +1,10 @@
 ---
 name: gg-commit
-description: Create git commit message following template
+description: "Create git commit message following template"
 argument-hint: "[additional instructions]"
 user-invocable: true
 disable-model-invocation: true
+model: sonnet
 allowed-tools:
   - Bash(git branch *)
   - Bash(git diff *)

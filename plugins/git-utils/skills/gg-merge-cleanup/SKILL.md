@@ -1,8 +1,9 @@
 ---
 name: gg-merge-cleanup
-description: Post-merge cleanup: switch to main, pull, delete merged branch, prune
+description: "After PR merge: switch to main, delete branch, prune refs"
 user-invocable: true
 disable-model-invocation: true
+model: sonnet
 allowed-tools:
   - Bash(gh pr status)
   - Bash(gh pr view *)

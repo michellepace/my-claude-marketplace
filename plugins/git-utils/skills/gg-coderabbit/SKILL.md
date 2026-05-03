@@ -1,9 +1,10 @@
 ---
 name: gg-coderabbit
-description: Evaluate CodeRabbit comment and recommend whether to action it
+description: "Triage a CodeRabbit PR comment: action, skip, or clarify"
 argument-hint: [GitHub PR comment link of CodeRabbit]
 user-invocable: true
 disable-model-invocation: true
+model: sonnet
 allowed-tools:
   - Bash(gh api graphql *)
   - Bash(gh api repos/*/pulls/*/comments *)
