@@ -16,7 +16,15 @@ Humanist sans serif with calligraphic rhythm. Part of the Alegreya "super family
 - **Weights:** 100, 300, 400, 500, 700, 800, 900
 - **Styles:** Normal + Italic at each weight
 
-## Kupferschmid Matrix [TO BE COMPLETED]
+## Kupferschmid Matrix
+
+Classified from visual examination of ![Alegreya Sans 400](specimens/alegreya-sans.jpg)
+
+| Layer | Classification | Evidence |
+| :---- | :------------- | :------- |
+| 1 Skeleton | Dynamic | Open apertures on a/e/s/c, subtle diagonal stress on o, humanist/calligraphic construction of bowls |
+| 2 Flesh | Linear Sans | Essentially uniform stroke weight (very subtle modulation on curves), no serifs |
+| 3 Skin | Calligraphic humanist | Tall ascenders exceeding cap height, double-storey a and g, smooth humanist arches on n/h/m with tapered pen-like terminals |
 
 ## References
 
@@ -24,3 +32,7 @@ Curated from:
 
 - https://fonts.google.com/specimen/Alegreya+Sans/about
 - https://raw.githubusercontent.com/google/fonts/main/ofl/alegreyasans/METADATA.pb
+
+Classified using:
+
+- [kupferschmid-matrix.md](../references/kupferschmid-matrix.md)

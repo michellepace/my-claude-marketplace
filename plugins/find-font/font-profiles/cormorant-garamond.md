@@ -16,7 +16,15 @@ Free display serif inspired by Claude Garamont's legacy. Ultra-high contrast wit
 - **Weights:** 300, 400, 500, 600, 700
 - **Styles:** Normal + Italic at each weight
 
-## Kupferschmid Matrix [TO BE COMPLETED]
+## Kupferschmid Matrix
+
+Classified from visual examination of ![Cormorant Garamond](specimens/cormorant-garamond.jpg)
+
+| Layer | Classification | Evidence |
+| :---- | :------------- | :------- |
+| 1 Skeleton | Dynamic | Open apertures on a/e/s/c, diagonal stress on o/O, humanist non-circular bowls on b/d/p |
+| 2 Flesh | Contrast Serif | Strong thick-thin contrast on curved strokes (a/o/e/g), hairline bracketed serifs on stems and baselines |
+| 3 Skin | Refined hairline Garaldic | Very long ascenders (b/d/h/l) exceeding cap height and long p descender; hairline cupped serifs with delicate brackets; double-storey a with teardrop terminal on r |
 
 ## References
 
@@ -24,3 +32,7 @@ Curated from:
 
 - https://fonts.google.com/specimen/Cormorant+Garamond/about
 - https://raw.githubusercontent.com/google/fonts/main/ofl/cormorantgaramond/METADATA.pb
+
+Classified using:
+
+- [kupferschmid-matrix.md](../references/kupferschmid-matrix.md)
