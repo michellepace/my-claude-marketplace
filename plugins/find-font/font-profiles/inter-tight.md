@@ -28,10 +28,8 @@ Classified from visual examination of ![Inter Tight](specimens/inter-tight.jpg)
 ## References
 
 Curated from:
-
 - https://fonts.google.com/specimen/Inter+Tight/about
 - https://raw.githubusercontent.com/google/fonts/main/ofl/intertight/METADATA.pb
 
 Classified using:
-
 - [kupferschmid-matrix.md](../references/kupferschmid-matrix.md)

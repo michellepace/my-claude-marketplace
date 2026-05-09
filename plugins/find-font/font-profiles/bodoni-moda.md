@@ -29,10 +29,8 @@ Classified from visual examination of ![Bodoni Moda 400](specimens/bodoni-moda.j
 ## References
 
 Curated from:
-
 - https://fonts.google.com/specimen/Bodoni+Moda/about
 - https://raw.githubusercontent.com/google/fonts/main/ofl/bodonimoda/METADATA.pb
 
 Classified using:
-
 - [kupferschmid-matrix.md](../references/kupferschmid-matrix.md)

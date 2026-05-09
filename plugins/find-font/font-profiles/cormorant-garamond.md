@@ -29,10 +29,8 @@ Classified from visual examination of ![Cormorant Garamond](specimens/cormorant-
 ## References
 
 Curated from:
-
 - https://fonts.google.com/specimen/Cormorant+Garamond/about
 - https://raw.githubusercontent.com/google/fonts/main/ofl/cormorantgaramond/METADATA.pb
 
 Classified using:
-
 - [kupferschmid-matrix.md](../references/kupferschmid-matrix.md)

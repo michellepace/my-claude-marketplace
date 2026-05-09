@@ -29,10 +29,8 @@ Classified from visual examination of ![Open Sans 300](specimens/open-sans.jpg)
 ## References
 
 Curated from:
-
 - https://fonts.google.com/specimen/Open+Sans/about
 - https://raw.githubusercontent.com/google/fonts/main/ofl/opensans/METADATA.pb
 
 Classified using:
-
 - [kupferschmid-matrix.md](../references/kupferschmid-matrix.md)

@@ -29,10 +29,8 @@ Classified from visual examination of ![Instrument Sans](specimens/instrument-sa
 ## References
 
 Curated from:
-
 - https://fonts.google.com/specimen/Instrument+Sans/about
 - https://raw.githubusercontent.com/google/fonts/main/ofl/instrumentsans/METADATA.pb
 
 Classified using:
-
 - [kupferschmid-matrix.md](../references/kupferschmid-matrix.md)

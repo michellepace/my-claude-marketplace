@@ -29,10 +29,11 @@ Classified from visual examination of ![Montserrat 400](specimens/montserrat.jpg
 ## References
 
 Curated from:
-
 - https://fonts.google.com/specimen/Montserrat/about
 - https://raw.githubusercontent.com/google/fonts/main/ofl/montserrat/METADATA.pb
 
 Classified using:
-
 - [kupferschmid-matrix.md](../references/kupferschmid-matrix.md)
+
+Further reading (not used to build this profile):
+- https://pimpmytype.com/montserrat-font-pairs/

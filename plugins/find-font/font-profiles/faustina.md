@@ -30,10 +30,8 @@ Classified from visual examination of ![Faustina 400](specimens/faustina.jpg)
 ## References
 
 Curated from:
-
 - https://fonts.google.com/specimen/Faustina/about
 - https://raw.githubusercontent.com/google/fonts/main/ofl/faustina/METADATA.pb
 
 Classified using:
-
 - [kupferschmid-matrix.md](../references/kupferschmid-matrix.md)

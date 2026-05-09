@@ -29,10 +29,8 @@ Classified from visual examination of ![Fraunces](specimens/fraunces.jpg)
 ## References
 
 Curated from:
-
 - https://fonts.google.com/specimen/Fraunces/about
 - https://raw.githubusercontent.com/google/fonts/main/ofl/fraunces/METADATA.pb
 
 Classified using:
-
 - [kupferschmid-matrix.md](../references/kupferschmid-matrix.md)

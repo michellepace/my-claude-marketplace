@@ -29,10 +29,8 @@ Classified from visual examination of ![Nunito Sans 400](specimens/nunito-sans.j
 ## References
 
 Curated from:
-
 - https://fonts.google.com/specimen/Nunito+Sans/about
 - https://raw.githubusercontent.com/google/fonts/main/ofl/nunitosans/METADATA.pb
 
 Classified using:
-
 - [kupferschmid-matrix.md](../references/kupferschmid-matrix.md)

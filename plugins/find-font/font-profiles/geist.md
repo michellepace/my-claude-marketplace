@@ -29,10 +29,8 @@ Classified from visual examination of ![Geist 400](specimens/geist.jpg)
 ## References
 
 Curated from:
-
 - https://fonts.google.com/specimen/Geist/about
 - https://raw.githubusercontent.com/google/fonts/main/ofl/geist/METADATA.pb
 
 Classified using:
-
 - [kupferschmid-matrix.md](../references/kupferschmid-matrix.md)

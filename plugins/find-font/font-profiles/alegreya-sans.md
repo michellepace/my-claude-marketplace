@@ -29,10 +29,8 @@ Classified from visual examination of ![Alegreya Sans 400](specimens/alegreya-sa
 ## References
 
 Curated from:
-
 - https://fonts.google.com/specimen/Alegreya+Sans/about
 - https://raw.githubusercontent.com/google/fonts/main/ofl/alegreyasans/METADATA.pb
 
 Classified using:
-
 - [kupferschmid-matrix.md](../references/kupferschmid-matrix.md)

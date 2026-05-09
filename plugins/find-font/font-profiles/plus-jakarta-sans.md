@@ -29,10 +29,8 @@ Classified from visual examination of ![Plus Jakarta Sans 400](specimens/plus-ja
 ## References
 
 Curated from:
-
 - https://fonts.google.com/specimen/Plus+Jakarta+Sans/about
 - https://raw.githubusercontent.com/google/fonts/main/ofl/plusjakartasans/METADATA.pb
 
 Classified using:
-
 - [kupferschmid-matrix.md](../references/kupferschmid-matrix.md)

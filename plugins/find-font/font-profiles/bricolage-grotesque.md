@@ -29,10 +29,8 @@ Classified from visual examination of ![Bricolage Grotesque](specimens/bricolage
 ## References
 
 Curated from:
-
 - https://fonts.google.com/specimen/Bricolage+Grotesque/about
 - https://raw.githubusercontent.com/google/fonts/main/ofl/bricolagegrotesque/METADATA.pb
 
 Classified using:
-
 - [kupferschmid-matrix.md](../references/kupferschmid-matrix.md)

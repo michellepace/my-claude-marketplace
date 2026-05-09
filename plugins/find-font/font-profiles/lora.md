@@ -29,10 +29,8 @@ Classified from visual examination of ![Lora 400](specimens/lora.jpg)
 ## References
 
 Curated from:
-
 - https://fonts.google.com/specimen/Lora/about
 - https://raw.githubusercontent.com/google/fonts/main/ofl/lora/METADATA.pb
 
 Classified using:
-
 - [kupferschmid-matrix.md](../references/kupferschmid-matrix.md)

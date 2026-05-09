@@ -29,10 +29,8 @@ Classified from visual examination of ![Raleway 400](specimens/raleway.jpg)
 ## References
 
 Curated from:
-
 - https://fonts.google.com/specimen/Raleway/about
 - https://raw.githubusercontent.com/google/fonts/main/ofl/raleway/METADATA.pb
 
 Classified using:
-
 - [kupferschmid-matrix.md](../references/kupferschmid-matrix.md)

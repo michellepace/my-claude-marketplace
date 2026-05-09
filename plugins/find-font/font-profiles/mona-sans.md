@@ -29,10 +29,8 @@ Classified from visual examination of ![Mona Sans](specimens/mona-sans.jpg)
 ## References
 
 Curated from:
-
 - https://fonts.google.com/specimen/Mona+Sans/about
 - https://raw.githubusercontent.com/google/fonts/main/ofl/monasans/METADATA.pb
 
 Classified using:
-
 - [kupferschmid-matrix.md](../references/kupferschmid-matrix.md)

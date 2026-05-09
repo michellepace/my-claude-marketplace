@@ -29,10 +29,8 @@ Classified from visual examination of ![Atkinson Hyperlegible Next 400](specimen
 ## References
 
 Curated from:
-
 - https://fonts.google.com/specimen/Atkinson+Hyperlegible+Next/about
 - https://raw.githubusercontent.com/google/fonts/main/ofl/atkinsonhyperlegiblenext/METADATA.pb
 
 Classified using:
-
 - [kupferschmid-matrix.md](../references/kupferschmid-matrix.md)

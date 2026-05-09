@@ -29,10 +29,8 @@ Classified from visual examination of ![Roboto Flex 400](specimens/roboto-flex.j
 ## References
 
 Curated from:
-
 - https://fonts.google.com/specimen/Roboto+Flex/about
 - https://raw.githubusercontent.com/google/fonts/main/ofl/robotoflex/METADATA.pb
 
 Classified using:
-
 - [kupferschmid-matrix.md](../references/kupferschmid-matrix.md)

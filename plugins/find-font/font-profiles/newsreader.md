@@ -29,10 +29,8 @@ Classified from visual examination of ![Newsreader 400](specimens/newsreader.jpg
 ## References
 
 Curated from:
-
 - https://fonts.google.com/specimen/Newsreader/about
 - https://raw.githubusercontent.com/google/fonts/main/ofl/newsreader/METADATA.pb
 
 Classified using:
-
 - [kupferschmid-matrix.md](../references/kupferschmid-matrix.md)

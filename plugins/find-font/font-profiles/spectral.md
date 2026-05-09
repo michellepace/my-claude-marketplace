@@ -29,10 +29,8 @@ Classified from visual examination of ![Spectral 400](specimens/spectral.jpg)
 ## References
 
 Curated from:
-
 - https://fonts.google.com/specimen/Spectral/about
 - https://raw.githubusercontent.com/google/fonts/main/ofl/spectral/METADATA.pb
 
 Classified using:
-
 - [kupferschmid-matrix.md](../references/kupferschmid-matrix.md)

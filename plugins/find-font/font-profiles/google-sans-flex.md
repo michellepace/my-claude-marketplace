@@ -29,11 +29,8 @@ Classified from visual examination of ![Google Sans Flex](specimens/google-sans-
 ## References
 
 Curated from:
-
 - https://fonts.google.com/specimen/Google+Sans+Flex/about
-
-Note: `https://raw.githubusercontent.com/google/fonts/main/ofl/googlesansflex/METADATA.pb` is genuinely unavailable — Google Sans Flex is a Google brand typeface, not hosted at the standard OFL path in the open `google/fonts` repository.
+- Note: Google Sans Flex is a Google brand typeface, https://raw.githubusercontent.com/google/fonts/main/ofl/googlesansflex/METADATA.pb is genuinely unavailable.
 
 Classified using:
-
 - [kupferschmid-matrix.md](../references/kupferschmid-matrix.md)
