@@ -24,8 +24,9 @@ Additional user instructions: $ARGUMENTS
 <commit_context>
 - Branch context: `git branch --show-current`
 - Change volume: `git diff --cached --stat`
-- Detailed changes: `git diff --cached`
+- Detailed changes: `git diff --cached --diff-filter=d`
 - Recent commits (style anchor): `git log --oneline -8`
+
 </commit_context>
 
 <template>
@@ -39,6 +40,7 @@ Additional user instructions: $ARGUMENTS
 - [etc.]
 
 [2-3 terse sentences of why / benefit / impact]
+
 </template>
 
 <main_prefix>
@@ -59,6 +61,7 @@ Additional user instructions: $ARGUMENTS
 - `feat:` new feature for users (adds functionality)
 
 Add `(<name>)` scope when a commit targets a single skill, plugin, or rule (e.g. `feat(find-font):`, `fix(gg-commit):`). Omit when changes span multiple.
+
 </main_prefix>
 
 <rules>
@@ -66,4 +69,5 @@ Add `(<name>)` scope when a commit targets a single skill, plugin, or rule (e.g.
 - Use factual tone - no hyperbole or marketing adjectives
 - Scale detail to commit scope (sections not needed for small changes)
 - Wrap text at 80-90 characters (NOT the git convention of 60-65)
+
 </rules>
