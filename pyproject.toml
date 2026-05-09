@@ -16,6 +16,13 @@
 typeCheckingMode = "strict"
 pythonVersion = "3.14"
 
+# Drop the default `**/.*` exclude so .py files under .xdocs/ get type-checked.
+# Pylance's `missingDefaultExcludes` warning on this block is expected.
+exclude = [
+    "**/node_modules",
+    "**/__pycache__",
+]
+
 # Disable Basedpyright rules that duplicate Ruff
 reportUnusedImport = false      # Ruff F401 handles it
 reportUnusedVariable = false    # Ruff F841 handles it

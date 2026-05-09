@@ -42,7 +42,7 @@ ZERO: Bucket = dict.fromkeys(BUCKETS, 0)
 
 
 def _path_arg(s: str) -> Path:
-    """Argparse type: convert string to Path with `~` expanded."""
+    """Argparse type: convert string to Path with `~` expanded.."""
     return Path(s).expanduser()
 
 
@@ -213,7 +213,7 @@ def _price_stdin(rates: RateTable) -> None:
             continue
         rec = json.loads(line)
         mk = _model_key(rec.get("model"))
-        usage = rec.get("usage") or {}
+        usage: dict[str, Any] = rec.get("usage") or {}
         b = _usage_to_buckets(usage)
         print(f"{cost_usd({mk: b}, rates):.6f}")
 

@@ -17,7 +17,7 @@ Produce a short, scannable verdict in `brief-results.md` (under the relevant `ex
 
 | Run | Variant | SKILL.md @ commit | Session path (passed to all tools below) |
 |:--|:--|:--|:--|
-| 1 | baseline | `b3fffd5` | `~/.claude/projects/-home-mp-projects-shopify-sparklepop/546340aa-2220-4d63-92f4-14708950d9c2.jsonl` |
+| 1 | baseline | `b3fffd5` | `~/.claude/projects/-home-mp-projects-shopify-sparklepop/SESSION_1` |
 | 2 | refactored | `68721a0` | `~/.claude/projects/-home-mp-projects-shopify-sparklepop/SESSION_2` |
 
 Each path fans out to `<path>.jsonl` (orchestrator) + `<path>/subagents/` (subagents) — see [Run Transcript Sources](#run-transcript-sources).
