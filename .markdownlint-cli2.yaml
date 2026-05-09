@@ -14,3 +14,4 @@ config:
   MD031: false  # Fenced code blocks in templates don't need surrounding blank lines
   MD032: false  # Lists in templates don't need surrounding blank lines
   MD034: false  # Allow bare URLs (chat links, references)
+  MD046: false  # Allow fenced code blocks (language tags aid AI)

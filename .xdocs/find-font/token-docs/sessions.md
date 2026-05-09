@@ -51,7 +51,7 @@ Both SDKs offer an interface that tracks session state for you across calls, so 
 
 This example runs two queries against the same `client`. The first asks the agent to analyze a module; the second asks it to refactor that module. Because both calls go through the same client instance, the second query has full context from the first without any explicit `resume` or session ID:
 
-```python Python theme={null}
+```python
 import asyncio
 from claude_agent_sdk import (
     ClaudeSDKClient,
@@ -143,31 +143,33 @@ for await (const message of query({
 Resume and fork require a session ID. Read it from the `session_id` field on the result message ([`ResultMessage`](/en/agent-sdk/python#result-message) in Python, [`SDKResultMessage`](/en/agent-sdk/typescript#sdk-result-message) in TypeScript), which is present on every result regardless of success or error. In TypeScript the ID is also available earlier as a direct field on the init `SystemMessage`; in Python it's nested inside `SystemMessage.data`.
 
 <CodeGroup>
-  ```python Python theme={null}
-  import asyncio
-  from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage
+
+```python
+import asyncio
+from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage
 
 
-  async def main():
-      session_id = None
+async def main():
+    session_id = None
 
-      async for message in query(
-          prompt="Analyze the auth module and suggest improvements",
-          options=ClaudeAgentOptions(
-              allowed_tools=["Read", "Glob", "Grep"],
-          ),
-      ):
-          if isinstance(message, ResultMessage):
-              session_id = message.session_id
-              if message.subtype == "success":
-                  print(message.result)
+    async for message in query(
+        prompt="Analyze the auth module and suggest improvements",
+        options=ClaudeAgentOptions(
+            allowed_tools=["Read", "Glob", "Grep"],
+        ),
+    ):
+        if isinstance(message, ResultMessage):
+            session_id = message.session_id
+            if message.subtype == "success":
+                print(message.result)
 
-      print(f"Session ID: {session_id}")
-      return session_id
+    print(f"Session ID: {session_id}")
+    return session_id
 
 
-  session_id = asyncio.run(main())
-  ```
+session_id = asyncio.run(main())
+```
+
 </CodeGroup>
 
 ### Resume by ID
@@ -181,7 +183,7 @@ Pass a session ID to `resume` to return to that specific session. The agent pick
 This example resumes the session from [Capture the session ID](#capture-the-session-id) with a follow-up prompt. Because you're resuming, the agent already has the prior analysis in context:
 
 <CodeGroup>
-  ```python Python theme={null}
+  ```python
   # Earlier session analyzed the code; now build on that analysis
   async for message in query(
       prompt="Now implement the refactoring you suggested",
@@ -212,31 +214,34 @@ Forking creates a new session that starts with a copy of the original's history 
 This example builds on [Capture the session ID](#capture-the-session-id): you've already analyzed an auth module in `session_id` and want to explore OAuth2 without losing the JWT-focused thread. The first block forks the session and captures the fork's ID (`forked_id`); the second block resumes the original `session_id` to continue down the JWT path. You now have two session IDs pointing at two separate histories:
 
 <CodeGroup>
-  ```python Python theme={null}
-  # Fork: branch from session_id into a new session
-  forked_id = None
-  async for message in query(
-      prompt="Instead of JWT, implement OAuth2 for the auth module",
-      options=ClaudeAgentOptions(
-          resume=session_id,
-          fork_session=True,
-      ),
-  ):
-      if isinstance(message, ResultMessage):
-          forked_id = message.session_id  # The fork's ID, distinct from session_id
-          if message.subtype == "success":
-              print(message.result)
 
-  print(f"Forked session: {forked_id}")
+```python
+# Fork: branch from session_id into a new session
+forked_id = None
+async for message in query(
+    prompt="Instead of JWT, implement OAuth2 for the auth module",
+    options=ClaudeAgentOptions(
+        resume=session_id,
+        fork_session=True,
+    ),
+):
+    if isinstance(message, ResultMessage):
+        forked_id = message.session_id  # The fork's ID, distinct from session_id
+        if message.subtype == "success":
+            print(message.result)
 
-  # Original session is untouched; resuming it continues the JWT thread
-  async for message in query(
-      prompt="Continue with the JWT approach",
-      options=ClaudeAgentOptions(resume=session_id),
-  ):
-      if isinstance(message, ResultMessage) and message.subtype == "success":
-          print(message.result)
-  ```
+print(f"Forked session: {forked_id}")
+
+# Original session is untouched; resuming it continues the JWT thread
+
+async for message in query(
+    prompt="Continue with the JWT approach",
+    options=ClaudeAgentOptions(resume=session_id),
+):
+    if isinstance(message, ResultMessage) and message.subtype == "success":
+        print(message.result)
+```
+
 </CodeGroup>
 
 ## Resume across hosts

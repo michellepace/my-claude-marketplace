@@ -22,6 +22,12 @@ repos:
     hooks:
       - id: shellcheck  # Lint shell scripts
 
+  - repo: https://github.com/DavidAnson/markdownlint-cli2
+    rev: v0.22.1
+    hooks:
+      - id: markdownlint-cli2 # Format markdown files
+        args: [--fix]
+
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
     hooks:
@@ -31,5 +37,5 @@ repos:
       # Format validators — scoped to their file type
       - id: check-yaml           # Validate YAML syntax
       - id: check-json           # Validate JSON syntax
-        exclude: ^\.vscode/      # .vscode/*.json is JSONC (comments allowed)
+        exclude: ^\.vscode/      # .vscode/*.json is JSONC
       - id: check-toml           # Validate TOML syntax

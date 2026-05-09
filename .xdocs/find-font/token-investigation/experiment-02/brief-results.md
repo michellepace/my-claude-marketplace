@@ -62,6 +62,7 @@ The orchestrator's $0.31 saving is **87% from `cache_create_1h`** (−$0.2692) a
 ## §5. Subagent drill-down (per skill, wrapper + sidechain)
 
 Run 1 (baseline) — 19 subagent files
+
 | Skill | Calls | Wrapper tok | Sidechain tok | Total tok | Total $ |
 |:--|--:|--:|--:|--:|--:|
 | ff-1 curate | 4 | 141,284 | 542,177 | 683,461 | $1.2326 |
@@ -70,6 +71,7 @@ Run 1 (baseline) — 19 subagent files
 | **Subtotal** | **9** | **316,936** | **1,224,579** | **1,541,515** | **$2.6369** |
 
 Run 2 (refactored) — 2 subagent files
+
 | Skill | Calls | Wrapper tok | Sidechain tok | Total tok | Total $ |
 |:--|--:|--:|--:|--:|--:|
 | ff-1 curate | 0 | 0 | 0 | 0 | $0.0000 |

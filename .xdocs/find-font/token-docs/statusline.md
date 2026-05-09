@@ -26,7 +26,7 @@ This page walks through [setting up a basic status line](#set-up-a-status-line),
 
 ## Set up a status line
 
-Use the [`/statusline` command](#use-the-%2Fstatusline-command) to have Claude Code generate a script for you, or [manually create a script](#manually-configure-a-status-line) and add it to your settings.
+Use the [`/statusline` command](#use-the-statusline-command) to have Claude Code generate a script for you, or [manually create a script](#manually-configure-a-status-line) and add it to your settings.
 
 ### Use the /statusline command
 
@@ -75,7 +75,7 @@ Run `/statusline` and ask it to remove or clear your status line (e.g., `/status
 
 This walkthrough shows what's happening under the hood by manually creating a status line that displays the current model, working directory, and context window usage percentage.
 
-<Note>Running [`/statusline`](#use-the-%2Fstatusline-command) with a description of what you want configures all of this for you automatically.</Note>
+<Note>Running [`/statusline`](#use-the-statusline-command) with a description of what you want configures all of this for you automatically.</Note>
 
 These examples use Bash scripts, which work on macOS and Linux. On Windows, see [Windows configuration](#windows-configuration) for PowerShell and Git Bash examples.
 
@@ -263,18 +263,18 @@ Claude Code sends the following JSON fields to your script via stdin:
 
   **Fields that may be absent** (not present in JSON):
 
-  * `session_name`: appears only when a custom name has been set with `--name` or `/rename`
-  * `workspace.git_worktree`: appears only when the current directory is inside a linked git worktree
-  * `effort`: appears only when the current model supports the reasoning effort parameter
-  * `vim`: appears only when vim mode is enabled
-  * `agent`: appears only when running with the `--agent` flag or agent settings configured
-  * `worktree`: appears only during `--worktree` sessions. When present, `branch` and `original_branch` may also be absent for hook-based worktrees
-  * `rate_limits`: appears only for Claude.ai subscribers (Pro/Max) after the first API response in the session. Each window (`five_hour`, `seven_day`) may be independently absent. Use `jq -r '.rate_limits.five_hour.used_percentage // empty'` to handle absence gracefully.
+* `session_name`: appears only when a custom name has been set with `--name` or `/rename`
+* `workspace.git_worktree`: appears only when the current directory is inside a linked git worktree
+* `effort`: appears only when the current model supports the reasoning effort parameter
+* `vim`: appears only when vim mode is enabled
+* `agent`: appears only when running with the `--agent` flag or agent settings configured
+* `worktree`: appears only during `--worktree` sessions. When present, `branch` and `original_branch` may also be absent for hook-based worktrees
+* `rate_limits`: appears only for Claude.ai subscribers (Pro/Max) after the first API response in the session. Each window (`five_hour`, `seven_day`) may be independently absent. Use `jq -r '.rate_limits.five_hour.used_percentage // empty'` to handle absence gracefully.
 
   **Fields that may be `null`**:
 
-  * `context_window.current_usage`: `null` before the first API call in a session
-  * `context_window.used_percentage`, `context_window.remaining_percentage`: may be `null` early in the session
+* `context_window.current_usage`: `null` before the first API call in a session
+* `context_window.used_percentage`, `context_window.remaining_percentage`: may be `null` early in the session
 
   Handle missing fields with conditional access and null values with fallback defaults in your scripts.
 </Accordion>
@@ -318,62 +318,67 @@ Display the current model and context window usage with a visual progress bar. E
 </Frame>
 
 <CodeGroup>
-  ```bash Bash theme={null}
-  #!/bin/bash
-  # Read all of stdin into a variable
-  input=$(cat)
 
-  # Extract fields with jq, "// 0" provides fallback for null
-  MODEL=$(echo "$input" | jq -r '.model.display_name')
-  PCT=$(echo "$input" | jq -r '.context_window.used_percentage // 0' | cut -d. -f1)
+```bash
+#!/bin/bash
+# Read all of stdin into a variable
+input=$(cat)
 
-  # Build progress bar: printf -v creates a run of spaces, then
-  # ${var// /▓} replaces each space with a block character
-  BAR_WIDTH=10
-  FILLED=$((PCT * BAR_WIDTH / 100))
-  EMPTY=$((BAR_WIDTH - FILLED))
-  BAR=""
-  [ "$FILLED" -gt 0 ] && printf -v FILL "%${FILLED}s" && BAR="${FILL// /▓}"
-  [ "$EMPTY" -gt 0 ] && printf -v PAD "%${EMPTY}s" && BAR="${BAR}${PAD// /░}"
+# Extract fields with jq, "// 0" provides fallback for null
 
-  echo "[$MODEL] $BAR $PCT%"
-  ```
+MODEL=$(echo "$input" | jq -r '.model.display_name')
+PCT=$(echo "$input" | jq -r '.context_window.used_percentage // 0' | cut -d. -f1)
 
-  ```python Python theme={null}
-  #!/usr/bin/env python3
-  import json, sys
+# Build progress bar: printf -v creates a run of spaces, then
 
-  # json.load reads and parses stdin in one step
-  data = json.load(sys.stdin)
-  model = data['model']['display_name']
-  # "or 0" handles null values
-  pct = int(data.get('context_window', {}).get('used_percentage', 0) or 0)
+# ${var// /▓} replaces each space with a block character
 
-  # String multiplication builds the bar
-  filled = pct * 10 // 100
-  bar = '▓' * filled + '░' * (10 - filled)
+BAR_WIDTH=10
+FILLED=$((PCT * BAR_WIDTH / 100))
+EMPTY=$((BAR_WIDTH - FILLED))
+BAR=""
+[ "$FILLED" -gt 0 ] && printf -v FILL "%${FILLED}s" && BAR="${FILL// /▓}"
+[ "$EMPTY" -gt 0 ] && printf -v PAD "%${EMPTY}s" && BAR="${BAR}${PAD// /░}"
 
-  print(f"[{model}] {bar} {pct}%")
-  ```
+echo "[$MODEL] $BAR $PCT%"
+```
 
-  ```javascript Node.js theme={null}
-  #!/usr/bin/env node
-  // Node.js reads stdin asynchronously with events
-  let input = '';
-  process.stdin.on('data', chunk => input += chunk);
-  process.stdin.on('end', () => {
-      const data = JSON.parse(input);
-      const model = data.model.display_name;
-      // Optional chaining (?.) safely handles null fields
-      const pct = Math.floor(data.context_window?.used_percentage || 0);
+```python Python theme={null}
+#!/usr/bin/env python3
+import json, sys
 
-      // String.repeat() builds the bar
-      const filled = Math.floor(pct * 10 / 100);
-      const bar = '▓'.repeat(filled) + '░'.repeat(10 - filled);
+# json.load reads and parses stdin in one step
+data = json.load(sys.stdin)
+model = data['model']['display_name']
+# "or 0" handles null values
+pct = int(data.get('context_window', {}).get('used_percentage', 0) or 0)
 
-      console.log(`[${model}] ${bar} ${pct}%`);
-  });
-  ```
+# String multiplication builds the bar
+filled = pct * 10 // 100
+bar = '▓' * filled + '░' * (10 - filled)
+
+print(f"[{model}] {bar} {pct}%")
+```
+
+```javascript Node.js theme={null}
+#!/usr/bin/env node
+// Node.js reads stdin asynchronously with events
+let input = '';
+process.stdin.on('data', chunk => input += chunk);
+process.stdin.on('end', () => {
+    const data = JSON.parse(input);
+    const model = data.model.display_name;
+    // Optional chaining (?.) safely handles null fields
+    const pct = Math.floor(data.context_window?.used_percentage || 0);
+
+    // String.repeat() builds the bar
+    const filled = Math.floor(pct * 10 / 100);
+    const bar = '▓'.repeat(filled) + '░'.repeat(10 - filled);
+
+    console.log(`[${model}] ${bar} ${pct}%`);
+});
+```
+
 </CodeGroup>
 
 ### Git status with colors
@@ -387,7 +392,7 @@ Show git branch with color-coded indicators for staged and modified files. This 
 Each script checks if the current directory is a git repository, counts staged and modified files, and displays color-coded indicators:
 
 <CodeGroup>
-  ```bash Bash theme={null}
+  ```bash
   #!/bin/bash
   input=$(cat)
 
@@ -481,7 +486,7 @@ Each script formats cost as currency and converts milliseconds to minutes and se
 </Frame>
 
 <CodeGroup>
-  ```bash Bash theme={null}
+  ```bash
   #!/bin/bash
   input=$(cat)
 
@@ -542,7 +547,8 @@ Your script can output multiple lines to create a richer display. Each `echo` st
 This example combines several techniques: threshold-based colors (green under 70%, yellow 70-89%, red 90%+), a progress bar, and git branch info. Each `print` or `echo` statement creates a separate row:
 
 <CodeGroup>
-  ```bash Bash theme={null}
+
+  ```bash
   #!/bin/bash
   input=$(cat)
 
@@ -554,7 +560,8 @@ This example combines several techniques: threshold-based colors (green under 70
 
   CYAN='\033[36m'; GREEN='\033[32m'; YELLOW='\033[33m'; RED='\033[31m'; RESET='\033[0m'
 
-  # Pick bar color based on context usage
+# Pick bar color based on context usage
+
   if [ "$PCT" -ge 90 ]; then BAR_COLOR="$RED"
   elif [ "$PCT" -ge 70 ]; then BAR_COLOR="$YELLOW"
   else BAR_COLOR="$GREEN"; fi
@@ -636,6 +643,7 @@ This example combines several techniques: threshold-based colors (green under 70
       console.log(`${barColor}${bar}${RESET} ${pct}% | ${YELLOW}$${cost.toFixed(2)}${RESET} | ⏱️ ${mins}m ${secs}s`);
   });
   ```
+
 </CodeGroup>
 
 ### Clickable links
@@ -649,73 +657,76 @@ This example creates a clickable link to your GitHub repository. It reads the gi
 Each script gets the git remote URL, converts SSH format to HTTPS, and wraps the repo name in OSC 8 escape codes. The Bash version uses `printf '%b'` which interprets backslash escapes more reliably than `echo -e` across different shells:
 
 <CodeGroup>
-  ```bash Bash theme={null}
-  #!/bin/bash
-  input=$(cat)
 
-  MODEL=$(echo "$input" | jq -r '.model.display_name')
+```bash
+#!/bin/bash
+input=$(cat)
 
-  # Convert git SSH URL to HTTPS
-  REMOTE=$(git remote get-url origin 2>/dev/null | sed 's/git@github.com:/https:\/\/github.com\//' | sed 's/\.git$//')
+MODEL=$(echo "$input" | jq -r '.model.display_name')
 
-  if [ -n "$REMOTE" ]; then
-      REPO_NAME=$(basename "$REMOTE")
-      # OSC 8 format: \e]8;;URL\a then TEXT then \e]8;;\a
-      # printf %b interprets escape sequences reliably across shells
-      printf '%b' "[$MODEL] 🔗 \e]8;;${REMOTE}\a${REPO_NAME}\e]8;;\a\n"
-  else
-      echo "[$MODEL]"
-  fi
-  ```
+# Convert git SSH URL to HTTPS
 
-  ```python Python theme={null}
-  #!/usr/bin/env python3
-  import json, sys, subprocess, re, os
+REMOTE=$(git remote get-url origin 2>/dev/null | sed 's/git@github.com:/https:\/\/github.com\//' | sed 's/\.git$//')
 
-  data = json.load(sys.stdin)
-  model = data['model']['display_name']
+if [ -n "$REMOTE" ]; then
+    REPO_NAME=$(basename "$REMOTE")
+    # OSC 8 format: \e]8;;URL\a then TEXT then \e]8;;\a
+    # printf %b interprets escape sequences reliably across shells
+    printf '%b' "[$MODEL] 🔗 \e]8;;${REMOTE}\a${REPO_NAME}\e]8;;\a\n"
+else
+    echo "[$MODEL]"
+fi
+```
 
-  # Get git remote URL
-  try:
-      remote = subprocess.check_output(
-          ['git', 'remote', 'get-url', 'origin'],
-          stderr=subprocess.DEVNULL, text=True
-      ).strip()
-      # Convert SSH to HTTPS format
-      remote = re.sub(r'^git@github\.com:', 'https://github.com/', remote)
-      remote = re.sub(r'\.git$', '', remote)
-      repo_name = os.path.basename(remote)
-      # OSC 8 escape sequences
-      link = f"\033]8;;{remote}\a{repo_name}\033]8;;\a"
-      print(f"[{model}] 🔗 {link}")
-  except:
-      print(f"[{model}]")
-  ```
+```python Python theme={null}
+#!/usr/bin/env python3
+import json, sys, subprocess, re, os
 
-  ```javascript Node.js theme={null}
-  #!/usr/bin/env node
-  const { execSync } = require('child_process');
-  const path = require('path');
+data = json.load(sys.stdin)
+model = data['model']['display_name']
 
-  let input = '';
-  process.stdin.on('data', chunk => input += chunk);
-  process.stdin.on('end', () => {
-      const data = JSON.parse(input);
-      const model = data.model.display_name;
+# Get git remote URL
+try:
+    remote = subprocess.check_output(
+        ['git', 'remote', 'get-url', 'origin'],
+        stderr=subprocess.DEVNULL, text=True
+    ).strip()
+    # Convert SSH to HTTPS format
+    remote = re.sub(r'^git@github\.com:', 'https://github.com/', remote)
+    remote = re.sub(r'\.git$', '', remote)
+    repo_name = os.path.basename(remote)
+    # OSC 8 escape sequences
+    link = f"\033]8;;{remote}\a{repo_name}\033]8;;\a"
+    print(f"[{model}] 🔗 {link}")
+except:
+    print(f"[{model}]")
+```
 
-      try {
-          let remote = execSync('git remote get-url origin', { encoding: 'utf8', stdio: ['pipe', 'pipe', 'ignore'] }).trim();
-          // Convert SSH to HTTPS format
-          remote = remote.replace(/^git@github\.com:/, 'https://github.com/').replace(/\.git$/, '');
-          const repoName = path.basename(remote);
-          // OSC 8 escape sequences
-          const link = `\x1b]8;;${remote}\x07${repoName}\x1b]8;;\x07`;
-          console.log(`[${model}] 🔗 ${link}`);
-      } catch {
-          console.log(`[${model}]`);
-      }
-  });
-  ```
+```javascript Node.js theme={null}
+#!/usr/bin/env node
+const { execSync } = require('child_process');
+const path = require('path');
+
+let input = '';
+process.stdin.on('data', chunk => input += chunk);
+process.stdin.on('end', () => {
+    const data = JSON.parse(input);
+    const model = data.model.display_name;
+
+    try {
+        let remote = execSync('git remote get-url origin', { encoding: 'utf8', stdio: ['pipe', 'pipe', 'ignore'] }).trim();
+        // Convert SSH to HTTPS format
+        remote = remote.replace(/^git@github\.com:/, 'https://github.com/').replace(/\.git$/, '');
+        const repoName = path.basename(remote);
+        // OSC 8 escape sequences
+        const link = `\x1b]8;;${remote}\x07${repoName}\x1b]8;;\x07`;
+        console.log(`[${model}] 🔗 ${link}`);
+    } catch {
+        console.log(`[${model}]`);
+    }
+});
+```
+
 </CodeGroup>
 
 ### Rate limit usage
@@ -725,63 +736,67 @@ Display Claude.ai subscription rate limit usage in the status line. The `rate_li
 This field is only present for Claude.ai subscribers (Pro/Max) after the first API response. Each script handles the absent field gracefully:
 
 <CodeGroup>
-  ```bash Bash theme={null}
-  #!/bin/bash
-  input=$(cat)
 
-  MODEL=$(echo "$input" | jq -r '.model.display_name')
-  # "// empty" produces no output when rate_limits is absent
-  FIVE_H=$(echo "$input" | jq -r '.rate_limits.five_hour.used_percentage // empty')
-  WEEK=$(echo "$input" | jq -r '.rate_limits.seven_day.used_percentage // empty')
+```bash
+#!/bin/bash
+input=$(cat)
 
-  LIMITS=""
-  [ -n "$FIVE_H" ] && LIMITS="5h: $(printf '%.0f' "$FIVE_H")%"
-  [ -n "$WEEK" ] && LIMITS="${LIMITS:+$LIMITS }7d: $(printf '%.0f' "$WEEK")%"
+MODEL=$(echo "$input" | jq -r '.model.display_name')
 
-  [ -n "$LIMITS" ] && echo "[$MODEL] | $LIMITS" || echo "[$MODEL]"
-  ```
+# "// empty" produces no output when rate_limits is absent
 
-  ```python Python theme={null}
-  #!/usr/bin/env python3
-  import json, sys
+FIVE_H=$(echo "$input" | jq -r '.rate_limits.five_hour.used_percentage // empty')
+WEEK=$(echo "$input" | jq -r '.rate_limits.seven_day.used_percentage // empty')
 
-  data = json.load(sys.stdin)
-  model = data['model']['display_name']
+LIMITS=""
+[ -n "$FIVE_H" ] && LIMITS="5h: $(printf '%.0f' "$FIVE_H")%"
+[ -n "$WEEK" ] && LIMITS="${LIMITS:+$LIMITS }7d: $(printf '%.0f' "$WEEK")%"
 
-  parts = []
-  rate = data.get('rate_limits', {})
-  five_h = rate.get('five_hour', {}).get('used_percentage')
-  week = rate.get('seven_day', {}).get('used_percentage')
+[ -n "$LIMITS" ] && echo "[$MODEL] | $LIMITS" || echo "[$MODEL]"
+```
 
-  if five_h is not None:
-      parts.append(f"5h: {five_h:.0f}%")
-  if week is not None:
-      parts.append(f"7d: {week:.0f}%")
+```python Python theme={null}
+#!/usr/bin/env python3
+import json, sys
 
-  if parts:
-      print(f"[{model}] | {' '.join(parts)}")
-  else:
-      print(f"[{model}]")
-  ```
+data = json.load(sys.stdin)
+model = data['model']['display_name']
 
-  ```javascript Node.js theme={null}
-  #!/usr/bin/env node
-  let input = '';
-  process.stdin.on('data', chunk => input += chunk);
-  process.stdin.on('end', () => {
-      const data = JSON.parse(input);
-      const model = data.model.display_name;
+parts = []
+rate = data.get('rate_limits', {})
+five_h = rate.get('five_hour', {}).get('used_percentage')
+week = rate.get('seven_day', {}).get('used_percentage')
 
-      const parts = [];
-      const fiveH = data.rate_limits?.five_hour?.used_percentage;
-      const week = data.rate_limits?.seven_day?.used_percentage;
+if five_h is not None:
+    parts.append(f"5h: {five_h:.0f}%")
+if week is not None:
+    parts.append(f"7d: {week:.0f}%")
 
-      if (fiveH != null) parts.push(`5h: ${Math.round(fiveH)}%`);
-      if (week != null) parts.push(`7d: ${Math.round(week)}%`);
+if parts:
+    print(f"[{model}] | {' '.join(parts)}")
+else:
+    print(f"[{model}]")
+```
 
-      console.log(parts.length ? `[${model}] | ${parts.join(' ')}` : `[${model}]`);
-  });
-  ```
+```javascript Node.js theme={null}
+#!/usr/bin/env node
+let input = '';
+process.stdin.on('data', chunk => input += chunk);
+process.stdin.on('end', () => {
+    const data = JSON.parse(input);
+    const model = data.model.display_name;
+
+    const parts = [];
+    const fiveH = data.rate_limits?.five_hour?.used_percentage;
+    const week = data.rate_limits?.seven_day?.used_percentage;
+
+    if (fiveH != null) parts.push(`5h: ${Math.round(fiveH)}%`);
+    if (week != null) parts.push(`7d: ${Math.round(week)}%`);
+
+    console.log(parts.length ? `[${model}] | ${parts.join(' ')}` : `[${model}]`);
+});
+```
+
 </CodeGroup>
 
 ### Cache expensive operations
@@ -793,7 +808,7 @@ The cache filename needs to be stable across status line invocations within a se
 Each script checks if the cache file is missing or older than 5 seconds before running git commands:
 
 <CodeGroup>
-  ```bash Bash theme={null}
+  ```bash
   #!/bin/bash
   input=$(cat)
 

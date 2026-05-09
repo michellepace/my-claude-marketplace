@@ -126,21 +126,22 @@ print(response.json())
 ### Count tokens in messages with images
 
 <CodeGroup>
-```bash CLI nocheck
+
+```bash
 IMAGE_URL="https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"
 curl -s "$IMAGE_URL" -o ./ant.jpg
 
 ant messages count-tokens <<'YAML'
 model: claude-opus-4-7
 messages:
-  - role: user
+- role: user
     content:
-      - type: image
+  - type: image
         source:
           type: base64
           media_type: image/jpeg
           data: "@./ant.jpg"
-      - type: text
+  - type: text
         text: Describe this image
 YAML
 ```
@@ -262,7 +263,8 @@ Token counting supports PDFs with the same [limitations](/docs/en/build-with-cla
 </Note>
 
 <CodeGroup>
-```bash CLI nocheck hidelines={1..3}
+
+```bash
 PDF_URL="https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf"
 curl -s "$PDF_URL" -o document.pdf
 
@@ -281,7 +283,7 @@ messages:
 YAML
 ```
 
-```python Python nocheck
+```python
 import base64
 import anthropic
 
@@ -312,6 +314,7 @@ response = client.messages.count_tokens(
 
 print(response.json())
 ```
+
 </CodeGroup>
 
 ```json Output
