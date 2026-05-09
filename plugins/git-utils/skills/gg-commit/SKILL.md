@@ -25,7 +25,7 @@ Additional user instructions: $ARGUMENTS
 - Branch context: `git branch --show-current`
 - Change volume: `git diff --cached --stat`
 - Detailed changes: `git diff --cached`
-- Recent commits: `git log --oneline -5`
+- Recent commits (style anchor): `git log --oneline -8`
 </commit_context>
 
 <template>
@@ -42,7 +42,11 @@ Additional user instructions: $ARGUMENTS
 </template>
 
 <main_prefix>
-- `rules:` claude configuration e.g. `**/CLAUDE.md`, `.claude/**/*`
+
+- `skill(<name>):` Skill changes e.g. `.claude/skills/<name>/**`, `plugins/<plugin>/skills/<name>/**`
+- `plugin(<name>):` Plugin changes outside any single skill e.g. `plugins/<name>/**`, `.claude/plugins/<name>/**`
+- `rule(<name>):` claude rule changes e.g. `.claude/rules/<name>/`
+- `rules:` claude behavior rules e.g. `.claude/CLAUDE.md`, `.claude/settings.json`
 - `test:` adding or updating tests e.g. `tests/**/*`
 - `ci:` CI/CD pipeline changes, automated workflows, deployment automation
 - `build:` build system changes, compilation process, how code gets packaged
@@ -50,11 +54,11 @@ Additional user instructions: $ARGUMENTS
 - `fix:` bug fixes (fixes broken functionality)
 - `refactor:` code changes that neither fix bugs nor add features
 - `style:` code formatting, visual consistency, linting fixes; no functional change
-- `chore:` dev workflow, workspace config, dependency updates, dev tools e.g. `.vscode/**/*`, `pyproject.toml`, `.gitignore`
-- `docs:` documentation changes only e.g. `README.md`, `.xdocs/**/*.md`
+- `chore:` dev workflow, workspace config, dependency updates, dev tools e.g. `.vscode/**`, `pyproject.toml`, `.gitignore`
+- `docs:` documentation changes only e.g. `README.md`, `.xdocs/**`, `docs/**`
 - `feat:` new feature for users (adds functionality)
 
-For `plugins/` changes, add `(<scope>)` to main prefix — scope = skill name if one skill, plugin name otherwise
+Add `(<name>)` scope when a commit targets a single skill, plugin, or rule (e.g. `feat(find-font):`, `fix(gg-commit):`). Omit when changes span multiple.
 </main_prefix>
 
 <rules>
