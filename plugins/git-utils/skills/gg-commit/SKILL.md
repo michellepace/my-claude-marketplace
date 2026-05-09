@@ -26,7 +26,6 @@ Additional user instructions: $ARGUMENTS
 - Change volume: `git diff --cached --stat`
 - Detailed changes: `git diff --cached --diff-filter=d`
 - Recent commits (style anchor): `git log --oneline -8`
-
 </commit_context>
 
 <template>
@@ -40,11 +39,9 @@ Additional user instructions: $ARGUMENTS
 - [etc.]
 
 [2-3 terse sentences of why / benefit / impact]
-
 </template>
 
 <main_prefix>
-
 - `skill(<name>):` Skill changes e.g. `.claude/skills/<name>/**`, `plugins/<plugin>/skills/<name>/**`
 - `plugin(<name>):` Plugin changes outside any single skill e.g. `plugins/<name>/**`, `.claude/plugins/<name>/**`
 - `rule(<name>):` claude rule changes e.g. `.claude/rules/<name>/`
@@ -61,7 +58,6 @@ Additional user instructions: $ARGUMENTS
 - `feat:` new feature for users (adds functionality)
 
 Add `(<name>)` scope when a commit targets a single skill, plugin, or rule (e.g. `feat(find-font):`, `fix(gg-commit):`). Omit when changes span multiple.
-
 </main_prefix>
 
 <rules>
@@ -69,5 +65,4 @@ Add `(<name>)` scope when a commit targets a single skill, plugin, or rule (e.g.
 - Use factual tone - no hyperbole or marketing adjectives
 - Scale detail to commit scope (sections not needed for small changes)
 - Wrap text at 80-90 characters (NOT the git convention of 60-65)
-
 </rules>
