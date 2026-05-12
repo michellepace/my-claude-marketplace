@@ -1,6 +1,6 @@
 # Plugin: `claude-code-utils`
 
-**Claude Code visibility & discovery:** Understand what is new in Claude Code from the changelog. Know which plugins you have installed and where.
+**Claude Code visibility & discovery:** Understand what is new in Claude Code from the changelog. Know which plugins you have installed and where. Analyse peak context-window usage across your recent sessions.
 
 Add marketplace and install this plugin (project scope):
 
@@ -18,6 +18,7 @@ claude plugin install claude-code-utils@my-claude-marketplace --scope project
 |:------|:------------|
 | [`/cc-which-plugins`](skills/cc-which-plugins/SKILL.md) | Show all marketplaces and plugins with their status |
 | [`/cc-whats-new-changelog`](skills/cc-whats-new-changelog/SKILL.md) | Analyse changelog and explain features practically |
+| [`/cc-peak-ctx-analyse`](skills/cc-peak-ctx-analyse/SKILL.md) | Analyse peak context-window usage across recent sessions |
 
 ---
 
@@ -62,3 +63,26 @@ Specify any version within in range and have it explained. The skill then launch
     <img src="images/cc-whats-new-changelog.jpg" alt="Screenshot of the cc-whats-new-changelog skill running in Claude Code. It displays a summary table of the latest 8 Claude Code versions (2.1.88 to 2.1.97) with columns for Version, Released date, Items count, and Changes at a Glance. The skill reports 87 total versions and prompts the user to pick a version, timeframe, or range to explain in detail.">
   </a>
 </div>
+
+---
+
+## 🟣 Skill: cc-peak-ctx-analyse
+
+Scans your local Claude Code session files (`~/.claude/projects/*/*.jsonl`) and computes the peak context-window size reached during each session — the same value `/context` shows — then surfaces patterns across recent work.
+
+Run:
+
+```text
+/cc-peak-ctx-analyse
+
+/cc-peak-ctx-analyse what were my three biggest sessions
+about this week?
+
+/cc-peak-ctx-analyse today. In which session did I spend the
+most time, and is duration correlated with context window size?
+
+/cc-peak-ctx-analyse last 14 days. Am I getting better at
+shorter context windows; any patterns between projects? I have
+been trying very hard these last 3 days to get better at
+managing my context. What are the trends?
+```
