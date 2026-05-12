@@ -7,7 +7,7 @@ disable-model-invocation: true
 allowed-tools:
   - Agent(claude-code-guide)
   - Bash(awk *)
-  - Bash(${CLAUDE_SKILL_DIR}/scripts/fetch-changelog.sh *)
+  - Bash(fetch-changelog.sh *)
   - Bash(claude --version)
   - Bash(echo *)
   - Bash(rm x_cc-changelog-*)
@@ -23,7 +23,7 @@ allowed-tools:
 
 Run the fetch script to gather changelog and npm data, then display summary:
 
-Run: `${CLAUDE_SKILL_DIR}/scripts/fetch-changelog.sh --latest-n 8`
+Run: `fetch-changelog.sh --latest-n 8`
 
 Analyse data in `<latest_version_summary>` tags to populate template (use backticks and emoji "🙂"):
 

@@ -1,5 +1,5 @@
 {
   "name": "claude-code-utils",
-  "description": "What's new in Claude Code (changelog). Which plugins are installed?",
-  "version": "1.0.5"
+  "description": "Claude Code visibility: changelog, installed plugins, peak context usage, and shortcut keys.",
+  "version": "1.0.6"
 }
