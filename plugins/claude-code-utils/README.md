@@ -1,6 +1,6 @@
 # Plugin: `claude-code-utils`
 
-**Claude Code visibility & discovery:** what's new in the changelog, which plugins you have installed, peak context-window usage across recent sessions, and shortcut keys.
+**Claude Code visibility & discovery:** what's new in the changelog, which plugins you have installed, peak context-window usage across recent sessions, shortcut keys, and managing marketplaces and plugins.
 
 Add marketplace and install (project scope):
 
@@ -20,6 +20,7 @@ claude plugin install claude-code-utils@my-claude-marketplace --scope project
 | [`/cc-whats-new-changelog`](skills/cc-whats-new-changelog/SKILL.md) | Analyse changelog and explain features practically |
 | [`/cc-peak-ctx-analyse`](skills/cc-peak-ctx-analyse/SKILL.md) | Analyse peak context-window usage across recent sessions |
 | [`/cc-shortcuts`](skills/cc-shortcuts/SKILL.md) | Recommend Claude Code (and VSCode) shortcut keys |
+| [`/cc-manage-plugins`](skills/cc-manage-plugins/SKILL.md) | Manage marketplaces and plugins |
 
 ---
 
@@ -98,4 +99,18 @@ Run:
 /cc-shortcuts how do I insert a newline without submitting?
 /cc-shortcuts shortcut to rewind the conversation
 /cc-shortcuts switch model without losing my prompt
+```
+
+---
+
+## 🟣 Skill: cc-manage-plugins
+
+Turns a marketplace or plugin request into the right `claude plugin` commands — add/remove marketplaces, install/uninstall/disable/enable plugins, scoped to user, project, or local. Asks for scope when it isn't stated, then offers to run the commands.
+
+Run:
+
+```text
+/cc-manage-plugins https://github.com/anthropics/claude-plugins-official/tree/main/plugins/feature-dev
+/cc-manage-plugins anthropics@claude-plugins-official
+/cc-manage-plugins disable feature-dev at project scope
 ```
