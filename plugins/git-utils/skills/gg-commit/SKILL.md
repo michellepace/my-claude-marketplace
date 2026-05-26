@@ -25,7 +25,7 @@ Additional user instructions: $ARGUMENTS
 - Branch context: `git branch --show-current`
 - Change volume: `git diff --cached --compact-summary`
 - Detailed changes: `git diff --cached --diff-filter=d`
-- Recent commits (style anchor): `git log --oneline -8`
+- Recent commits (style anchor): `git log --oneline -5`
 </commit_context>
 
 <template>
