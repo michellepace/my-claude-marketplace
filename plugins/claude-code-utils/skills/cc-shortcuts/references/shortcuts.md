@@ -26,12 +26,26 @@
 
 | Key | Shortcut | What it does |
 |:---|:---|:---|
-| 🌸 | `Ctrl+S` | Stash current prompt for later |
-| ok | `Ctrl+R` | Search through prompt history interactively |
+| ok | `Ctrl+R` | Search prompt history. **Inside it,** `Ctrl+S` cycles scope (session → project → all) |
+| 🌸 | `Ctrl+Q` | Unfreeze terminal after an accidental `Ctrl+S` (XOFF/XON freeze) |
 | 🌸 | `Ctrl+L` | Redraw terminal window when garbled |
 | 🌸 | `Ctrl+D` | Exit Claude Code |
 | ⚠️ | `Ctrl+J` | ~~Insert newline without submitting~~ |
 | 🪲 | `Ctrl+J`/`Ctrl+B` | VSCode hide **right / left panel** |
+
+## Workflow: park a long prompt, send a quick one first
+
+Typed a big multi-line prompt but need to fire off a short question first? Cut the
+draft to the yank buffer, send the quick prompt, then paste the draft back — no mouse,
+no manual copy.
+
+1. **Cut it** — from the **end** of the input, press `Ctrl+U` repeatedly. Each press cuts from the cursor back to line-start, walking up through every line until the whole prompt is gone (and stored).
+2. **Send your quick prompt** — type it, `Enter`.
+3. **Paste the draft back** — `Ctrl+Y` restores the whole thing. `Alt+Y` cycles older cuts if you stashed more than one.
+
+> `Ctrl+A` `Ctrl+K` does **not** work for this — `Ctrl+K` only kills the single line the cursor is on. Use repeated `Ctrl+U` for multi-line prompts.
+>
+> `Ctrl+E` does not work to take me to the end of big prompt, use arrow keys.
 
 ## Claude Code-specific actions
 

@@ -1,5 +1,5 @@
 {
   "name": "claude-code-utils",
   "description": "Claude Code visibility: changelog, installed plugins, peak context usage, shortcut keys, and managing marketplaces and plugins.",
-  "version": "1.0.7"
+  "version": "1.0.8"
 }
