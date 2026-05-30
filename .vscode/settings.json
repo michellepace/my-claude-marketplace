@@ -3,25 +3,29 @@
     "window.commandCenter": true,   // search box at top of window
     "editor.colorDecorators": true, // show colour pickers in code
 
-
-    // 🐍 Ruff: Python code linting and formatting
-    // HOW IDE behaves (the WHAT to check is in pyproject.toml)
-    // NB: Pyright's WHAT to check is also in pyproject.toml [tool.pyright]
-
-    // Ruff extension settings
-    "ruff.nativeServer": "on",  // Use faster Rust-based server
-
-    // Hide Ruff's cache directory from the file explorer
+    // Hide generated cache dirs from the Explorer
     "files.exclude": {
-        "**/.ruff_cache": true
+        "**/__pycache__": true,
+        "**/.pytest_cache": true,
+        "**/.ruff_cache": true,
+        "**/.venv": true
     },
 
+    // 🐍 UV PYTHON ENVIRONMENT
+    // `uv sync` creates .venv/ → IDE auto-detects the interpreter below.
+    // uv convention: don't activate the venv — run commands via `uv run <cmd>`
+    // "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+    // "python.terminal.activateEnvironment": false, // don't auto-activate; use `uv run`
+
+    // 🐍 Ruff: Python lint & format — editor behaviour only.
+    // The rules themselves live in pyproject.toml; type-checking via Pylance/Pyright.
+    "ruff.nativeServer": "on",  // faster Rust-based language server
     "[python]": {
         "editor.defaultFormatter": "charliermarsh.ruff",
         "editor.formatOnSave": true,
         "editor.codeActionsOnSave": {
-            "source.fixAll": "explicit",
-            "source.organizeImports": "explicit"
+            "source.fixAll.ruff": "explicit",         // apply Ruff autofixes on save
+            "source.organizeImports.ruff": "explicit" // sort & prune imports on save
         }
     },
 
@@ -30,8 +34,5 @@
         "editor.codeActionsOnSave": {
             "source.fixAll.markdownlint": "explicit"
         }
-    }
-
-    // NB: No python.defaultInterpreterPath — this repo has no root .venv.
-    // PEP 723 scripts are run via `uv run <script>` which auto-provisions their env.
+    },
 }

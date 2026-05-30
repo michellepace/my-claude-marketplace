@@ -1,18 +1,22 @@
-# Configuration for markdownlint-cli2 and VSCode/Cursor extension
-# Extension: davidanson.vscode-markdownlint
+globs:
+  - "**/*.md" # All .md files; pruned by ignores below
 
-# Disable only the rules that interfere with practical markdown writing
+ignores:
+  - ".venv/**"
+
+# Disable rules
 config:
-  MD013: false  # Line length (inappropriate for markdown)
-  MD024: false  # Allow duplicate headings ("### Example", "### Example")
-  MD033: false  # Allow inline HTML (<details>, <tags>, etc.)
-  MD036: false  # Allow emphasis (bold/italic) without treating it as heading
-  MD040: false  # Fenced code blocks don't need language specified
-  MD028: false  # Allow blank lines between blockquotes (attributed quotes)
-  MD041: false  # First line doesn't need to be h1
-  MD060: false  # Table column style (compact tables are fine)
-  MD022: false  # Headings in templates don't need surrounding blank lines
-  MD031: false  # Fenced code blocks in templates don't need surrounding blank lines
-  MD032: false  # Lists in templates don't need surrounding blank lines
-  MD034: false  # Allow bare URLs (chat links, references)
-  MD046: false  # Allow fenced code blocks (language tags aid AI)
+  default: true # Enable all rules by default
+  MD013: false  # don't enforce a maximum line length
+  MD022: false  # don't require blank lines around headings
+  MD024: false  # don't forbid duplicate heading content
+  MD028: false  # don't forbid blank lines between blockquotes
+  MD031: false  # don't require blank lines around code blocks
+  MD032: false  # don't require blank lines around lists
+  MD033: false  # don't forbid inline HTML
+  MD034: false  # don't forbid bare URLs
+  MD036: false  # don't forbid emphasis instead of a heading
+  MD040: false  # don't require language on fenced code blocks
+  MD041: false  # don't require first line to be H1 heading
+  MD046: false  # don't enforce consistent code block style
+  MD060: false  # don't require consistent table pipe spacing
