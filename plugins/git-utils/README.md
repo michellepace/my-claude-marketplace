@@ -1,6 +1,6 @@
 # Plugin: `git-utils`
 
-**Git & GitHub workflows:** Commit messages, CodeRabbit reviews, and post-merge cleanup.
+**Git & GitHub workflows:** Commit messages, CodeRabbit reviews, and post-merge cleanup — plus Grill Me (not git).
 
 Add marketplace and install this plugin (project scope):
 
@@ -19,6 +19,7 @@ claude plugin install git-utils@my-claude-marketplace --scope project
 | [`/gg-commit`](skills/gg-commit/SKILL.md) | Create a git commit message following a structured template |
 | [`/gg-coderabbit`](skills/gg-coderabbit/SKILL.md) | Evaluate a CodeRabbit comment and recommend whether to action it |
 | [`/gg-merge-cleanup`](skills/gg-merge-cleanup/SKILL.md) | Post-merge cleanup: switch to main, pull, delete merged branch, prune |
+| [`/grill-me`](skills/gg-grill-me/SKILL.md) | Get relentlessly grilled on your plan or design |
 
 ## Usage Examples
 
@@ -34,6 +35,10 @@ claude plugin install git-utils@my-claude-marketplace --scope project
 **Merge cleanup:**
 
 - `/gg-merge-cleanup`
+
+**Grill me:**
+
+- `/grill-me` "stress-test my caching strategy"
 
 ## Dependencies
 
