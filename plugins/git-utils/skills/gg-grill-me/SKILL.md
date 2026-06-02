@@ -1,5 +1,5 @@
 ---
-name: grill-me
+name: gg-grill-me
 description: Get relentlessly grilled on your plan or design
 argument-hint: [plan or design to stress-test]
 user-invocable: true
