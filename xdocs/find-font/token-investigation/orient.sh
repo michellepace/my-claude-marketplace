@@ -62,10 +62,10 @@ trap 'rm -f "$ROLLUP_TMP" "$PRICE_IN" "$PRICE_FI" "$PRICE_OUT" "$USD_BY_FI" "$TS
 echo ""
 echo "== Run-wide Peak CTX [$SESSION_ID] =="
 echo "# max per-turn input window (input_tokens+cache_create_5m+cache_create_1h+cache_read) vs 200k - context-pressure, not cost."
-cat "$ORCH" "$SUBDIR"/agent-*.jsonl |
-  jq -r 'select(.message.usage) | .message.usage |
-    (.input_tokens + .cache_creation_input_tokens + .cache_read_input_tokens)' |
-  sort -n | tail -1
+cat "$ORCH" "$SUBDIR"/agent-*.jsonl \
+  | jq -r 'select(.message.usage) | .message.usage |
+    (.input_tokens + .cache_creation_input_tokens + .cache_read_input_tokens)' \
+  | sort -n | tail -1
 
 echo ""
 echo "== Per-subagent rollup [$SESSION_ID] =="
@@ -119,10 +119,10 @@ done
 
 # Pass 2: single subprocess prices all (file, model) pairs; preserves order.
 jq -r '.fi' "$PRICE_IN" >"$PRICE_FI"
-jq -c 'del(.fi)' "$PRICE_IN" |
-  uv run "$SCRIPT_DIR/cost_report.py" --price-stdin >"$PRICE_OUT"
-paste "$PRICE_FI" "$PRICE_OUT" |
-  awk -F'\t' '{ sums[$1] += $2 } END { for (k in sums) printf "%s\t%.4f\n", k, sums[k] }' \
+jq -c 'del(.fi)' "$PRICE_IN" \
+  | uv run "$SCRIPT_DIR/cost_report.py" --price-stdin >"$PRICE_OUT"
+paste "$PRICE_FI" "$PRICE_OUT" \
+  | awk -F'\t' '{ sums[$1] += $2 } END { for (k in sums) printf "%s\t%.4f\n", k, sums[k] }' \
     >"$USD_BY_FI"
 
 # Pass 3: substitute __USD_<fi>__ markers with summed $; strip leading fi column; sort by spawn-ts.

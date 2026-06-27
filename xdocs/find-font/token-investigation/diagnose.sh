@@ -69,8 +69,8 @@ printf "# agent-id\tdescription\ttool-counts(descending)\n"
 for f in "$SUBDIR"/agent-*.jsonl; do
   name=$(basename "$f" .jsonl)
   desc=$(jq -r '.description // "(description absent)"' "${f%.jsonl}.meta.json" 2>/dev/null || echo "")
-  counts=$(jq -r 'select(.type=="assistant") | .message.content[]? | select(.type=="tool_use") | .name' "$f" |
-    sort | uniq -c | sort -rn | awk '{printf "%dx%s ", $1, $2}' | sed 's/ $//')
+  counts=$(jq -r 'select(.type=="assistant") | .message.content[]? | select(.type=="tool_use") | .name' "$f" \
+    | sort | uniq -c | sort -rn | awk '{printf "%dx%s ", $1, $2}' | sed 's/ $//')
   printf "%s\t%s\t%s\n" "$name" "$desc" "$counts"
 done
 
@@ -130,8 +130,8 @@ jq -r '
 ' "$TOP" >"$ROWS_TSV"
 
 # Single subprocess pricing for non-null rows; preserves order.
-jq -c 'select(.next_model != null) | {model: .next_model, usage: .next_usage}' "$TOP" |
-  uv run "$SCRIPT_DIR/cost_report.py" --price-stdin >"$PRICE_OUT"
+jq -c 'select(.next_model != null) | {model: .next_model, usage: .next_usage}' "$TOP" \
+  | uv run "$SCRIPT_DIR/cost_report.py" --price-stdin >"$PRICE_OUT"
 
 # Substitute PRICE_TBD sentinels with priced values; PRICE_NULL becomes "-".
 awk -v prices_file="$PRICE_OUT" '

@@ -21,8 +21,8 @@ CHANGELOG_FULL="x_cc-changelog-full.md"
 CHANGELOG_INDEX="x_cc-changelog-index.csv"
 
 # Fetch full changelog (v2.1.0+, 2026+)
-curl -sfS --max-time 10 https://raw.githubusercontent.com/anthropics/claude-code/refs/heads/main/CHANGELOG.md |
-  awk 'BEGIN{p=1} /^## 2\.0\./{p=0} /^## [01]\./{p=0} p' >"$CHANGELOG_FULL"
+curl -sfS --max-time 10 https://raw.githubusercontent.com/anthropics/claude-code/refs/heads/main/CHANGELOG.md \
+  | awk 'BEGIN{p=1} /^## 2\.0\./{p=0} /^## [01]\./{p=0} p' >"$CHANGELOG_FULL"
 if [[ ! -s "$CHANGELOG_FULL" ]]; then
   echo "Error: Failed to fetch changelog or file is empty" >&2
   exit 1
@@ -33,14 +33,14 @@ echo "✅ Full changelog created (v2.1.0+, 2026+): $CHANGELOG_FULL"
 # Build changelog index with item counts (v2.1.0+, 2026+)
 CHANGELOG_COUNTS=$(echo "$CHANGELOG" | awk '/^## /{if(v)print v","c;v=$2;c=0}/^- /{c++}END{print v","c}')
 echo "version,npm_release_date,changelog_items (0=npm-only)" >"$CHANGELOG_INDEX"
-npm view @anthropic-ai/claude-code time |
-  grep -E "^ *'[0-9]+\.[0-9]+\.[0-9]+" |
-  grep -vE "'([01]\.|2\.0\.)" |
-  awk '{a[NR]=$0}END{for(i=NR;i>=1;i--)print a[i]}' |
-  sed "s/T.*Z'//" |
-  tr -d "':," |
-  column -t |
-  while read -r ver date; do
+npm view @anthropic-ai/claude-code time \
+  | grep -E "^ *'[0-9]+\.[0-9]+\.[0-9]+" \
+  | grep -vE "'([01]\.|2\.0\.)" \
+  | awk '{a[NR]=$0}END{for(i=NR;i>=1;i--)print a[i]}' \
+  | sed "s/T.*Z'//" \
+  | tr -d "':," \
+  | column -t \
+  | while read -r ver date; do
     items=$(echo "$CHANGELOG_COUNTS" | grep "^$ver," | cut -d',' -f2 || true)
     echo "$ver,$date,${items:-0}"
   done >>"$CHANGELOG_INDEX"
