@@ -1,56 +1,61 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code when working with code in this repository.
-
-## What This Is
-
 A Claude Code **marketplace** — a monorepo of plugins.
 
 ## Plugins
 
-| Plugin | Type | Purpose |
-|:---|:---|:---|
-| `claude-code-utils` | 5 skills | Claude Code visibility & discovery |
-| `find-font` | 4 skills + MCP | Font pairing (orchestrator pattern) |
-| `nextjs-utils` | 2 skills + MCP | Next.js docs & dev guidance |
-| `git-utils` | 3 skills | Git & GitHub workflows |
+| Plugin | Purpose |
+|:---|:---|
+| `claude-code-utils` | Claude Code visibility & plugin management |
+| `find-font` | Google Font pairing (orchestrator pattern, MCP) |
+| `git-utils` | Git/GitHub workflows + plan grilling |
+| `nextjs-utils` | Next.js docs & shadcn guidance (MCP) |
 
 ## Plugin Anatomy
 
-Every plugin lives under `plugins/<name>/` and follows this layout:
+Only the manifest is required; the rest is optional:
 
-```
+```text
 plugins/<name>/
-├── .claude-plugin/plugin.json   # Required manifest
-├── commands/*.md                # Slash commands (auto-discovered)
-├── agents/*.md                  # Subagent definitions (auto-discovered)
-├── skills/*/SKILL.md            # Skills (auto-discovered)
-├── hooks/hooks.json             # Event handlers (auto-discovered)
-├── .mcp.json                    # MCP server definitions (optional)
-├── scripts/                     # Helper scripts and utilities
-└── README.md
+├── .claude-plugin/plugin.json  # Required manifest
+├── commands/*.md               # Slash commands
+├── agents/*.md                 # Subagents
+├── skills/*/SKILL.md
+├── hooks/hooks.json
+├── .mcp.json
+├── bin/                        # Executables on Bash PATH
+├── scripts/                    # Helpers (via ${CLAUDE_PLUGIN_ROOT})
+├── README.md
+└── ...                         # Freeform dirs, eg references/, examples/
 ```
-
-Only the manifest is required. Plugins may also include freeform folders like `references/`, `examples/`.
 
 ## Testing a Plugin Locally
+
+No install cycle — edit, restart, test:
 
 ```shell
 claude --plugin-dir ~/projects/my-claude-marketplace/plugins/<plugin-name>
 ```
 
-No install/uninstall cycle needed — edit files, restart Claude Code, test.
+## Python scripts
 
-## Python helper scripts
+Live under `plugins/<name>/**/scripts/` are **standalone PEP 723 scripts**:
 
-Some plugins include helpers under `plugins/<name>/**/scripts/`. Conventions:
+```python
+# /// script
+# requires-python = ">=3.14"
+# dependencies = []
+# ///
+```
 
-- Each script is **standalone with PEP 723 inline metadata** at the top, run via `uv run script.py`:
-  ```python
-  # /// script
-  # requires-python = ">=3.14"
-  # dependencies = []
-  # ///
-  ```
-- Use `uvx <tool>` e.g. `uvx ruff format script.py`, `uvx pyright script.py`
-- Lint/type config in `pyproject.toml`. Enforced via `.pre-commit-config.yaml`
+Development commands:
+
+```shell
+uv run script.py    # run (isolated)
+uvx ruff format script.py
+uvx ruff check script.py
+uvx pyright script.py
+
+uvx pre-commit run         # isolated — never `uv run pre-commit`
+uvx pre-commit autoupdate  # bump hook `rev`s to latest
+```
