@@ -7,7 +7,7 @@
 # Trim suppressions and/or imports once script's shape settles.
 #
 # ruff: noqa: F401
-# pyright: reportMissingImports=false, reportUnknownVariableType=false, reportUnknownMemberType=false
+# pyright: reportMissingImports=false
 """Analyse peak-ctx.tsv: <terse description>."""
 
 import csv
