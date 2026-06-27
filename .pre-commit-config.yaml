@@ -15,7 +15,7 @@ repos:
     rev: v3.13.1-1
     hooks:
       - id: shfmt       # Format shell scripts
-        args: [-w, -i, "2", -ci, -sr]
+        args: [-w, -i, "2", -ci]
 
   - repo: https://github.com/shellcheck-py/shellcheck-py
     rev: v0.11.0.1

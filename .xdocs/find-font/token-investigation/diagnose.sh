@@ -9,7 +9,7 @@ set -eu
 
 case "${1:-}" in
   -h | --help)
-    cat << 'EOF'
+    cat <<'EOF'
 diagnose.sh — five behavioural signals to localise where a run blew out.
 Run after cost_report.py flags a regression.
 
@@ -68,7 +68,7 @@ echo "# tool_use blocks per subagent; what each subagent actually did. NO dedup.
 printf "# agent-id\tdescription\ttool-counts(descending)\n"
 for f in "$SUBDIR"/agent-*.jsonl; do
   name=$(basename "$f" .jsonl)
-  desc=$(jq -r '.description // "(description absent)"' "${f%.jsonl}.meta.json" 2> /dev/null || echo "")
+  desc=$(jq -r '.description // "(description absent)"' "${f%.jsonl}.meta.json" 2>/dev/null || echo "")
   counts=$(jq -r 'select(.type=="assistant") | .message.content[]? | select(.type=="tool_use") | .name' "$f" |
     sort | uniq -c | sort -rn | awk '{printf "%dx%s ", $1, $2}' | sed 's/ $//')
   printf "%s\t%s\t%s\n" "$name" "$desc" "$counts"
@@ -83,7 +83,7 @@ printf "# size_chars\tsrc_file\ttool_name\ttimestamp\tnext_create_5m\tnext_creat
 # Forward-scan algorithm (in JSONL order): for each tool_result at row k,
 #   next-turn = first row at position > k with type=="assistant" && message.id != emitter_msg_id.
 # Naive parentUuid matching breaks for parallel-tool turns where N shards share one message.id.
-: > "$ENRICHED"
+: >"$ENRICHED"
 for f in "$ORCH" "$SUBDIR"/agent-*.jsonl; do
   src=$(basename "$f")
   jq -cs --arg src "$src" '
@@ -114,11 +114,11 @@ for f in "$ORCH" "$SUBDIR"/agent-*.jsonl; do
       next_model: ($nxt.message.model // null),
       next_usage: ($nxt.message.usage // null)
     }
-  ' "$f" >> "$ENRICHED"
+  ' "$f" >>"$ENRICHED"
 done
 
 # Sort by payload size, take top 10.
-jq -cs 'sort_by(-.size) | .[0:10][]' "$ENRICHED" > "$TOP"
+jq -cs 'sort_by(-.size) | .[0:10][]' "$ENRICHED" >"$TOP"
 
 # Emit TSV with sentinel for next_usd (PRICE_NULL when no next turn; PRICE_TBD otherwise).
 jq -r '
@@ -127,11 +127,11 @@ jq -r '
   else
     [.size, .src, .tool_name, .ts, .next_5m, .next_1h, .next_read, "PRICE_TBD"] | @tsv
   end
-' "$TOP" > "$ROWS_TSV"
+' "$TOP" >"$ROWS_TSV"
 
 # Single subprocess pricing for non-null rows; preserves order.
 jq -c 'select(.next_model != null) | {model: .next_model, usage: .next_usage}' "$TOP" |
-  uv run "$SCRIPT_DIR/cost_report.py" --price-stdin > "$PRICE_OUT"
+  uv run "$SCRIPT_DIR/cost_report.py" --price-stdin >"$PRICE_OUT"
 
 # Substitute PRICE_TBD sentinels with priced values; PRICE_NULL becomes "-".
 awk -v prices_file="$PRICE_OUT" '
@@ -169,7 +169,7 @@ echo "# spawn-prompt size; flags front-loaded context."
 printf "# size_chars\tagent-id\tdescription\n"
 for f in "$SUBDIR"/agent-*.jsonl; do
   name=$(basename "$f" .jsonl)
-  desc=$(jq -r '.description // "(description absent)"' "${f%.jsonl}.meta.json" 2> /dev/null || echo "")
+  desc=$(jq -r '.description // "(description absent)"' "${f%.jsonl}.meta.json" 2>/dev/null || echo "")
   size=$(jq -s "([.[] | select(.type==\"user\")] | .[0]?) as \$first | \
     ((\$first.message.content // \"\") | $TEXT_OF) | length" "$f")
   printf "%s\t%s\t%s\n" "${size:-0}" "$name" "$desc"
