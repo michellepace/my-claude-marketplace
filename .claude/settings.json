@@ -8,11 +8,11 @@
       "Bash(echo *)",
       "Bash(find *)",
       "Bash(gh run list *)",
-      "Bash(jq *)",
       "Bash(gh run view *)",
       "Bash(git diff *)",
       "Bash(git log *)",
       "Bash(head *)",
+      "Bash(jq *)",
       "Bash(ls *)",
       "Bash(lsof *)",
       "Bash(rsvg-convert *)",
@@ -31,7 +31,8 @@
     "find-font@my-claude-marketplace": false,
     "nextjs-utils@my-claude-marketplace": false,
     "plugin-dev@claude-plugins-official": false,
-    "skill-creator@claude-plugins-official": false
+    "skill-creator@claude-plugins-official": false,
+    "pyright-lsp@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "my-claude-marketplace": {
