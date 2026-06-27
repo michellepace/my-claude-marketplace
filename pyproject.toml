@@ -1,29 +1,18 @@
 # =================================
 # Tool Configuration Only
 # =================================
-# This repo is a Claude Code plugin marketplace, not a Python project.
-# Python helper scripts live in plugins/<name>/**/scripts/ and use PEP 723
-# inline metadata (# /// script ... # ///) to declare Python + deps per-file.
-# This file only exists so ruff and pyright can discover shared lint/type config.
+# Not a Python project: just shared ruff/pyright config.
+# Scripts are standalone PEP 723 files (deps declared per-file).
 
 
 # =================================
 # Pyright Type Checking (strict)
 # =================================
 [tool.pyright]
-# Type Checker is needed as Ruff is only a linter: https://docs.astral.sh/ruff/faq/S
-
 typeCheckingMode = "strict"
 pythonVersion = "3.14"
 
-# Drop the default `**/.*` exclude so .py files under .xdocs/ get type-checked.
-# Pylance's `missingDefaultExcludes` warning on this block is expected.
-exclude = [
-    "**/node_modules",
-    "**/__pycache__",
-]
-
-# Disable Basedpyright rules that duplicate Ruff
+# Disable Pyright rules that duplicate Ruff
 reportUnusedImport = false      # Ruff F401 handles it
 reportUnusedVariable = false    # Ruff F841 handles it
 reportDuplicateImport = false   # Ruff F811 handles it

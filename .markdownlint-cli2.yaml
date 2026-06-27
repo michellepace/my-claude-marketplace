@@ -3,6 +3,7 @@ globs:
 
 ignores:
   - ".venv/**"
+  - "xdocs/anthropic-docs/**"
 
 # Disable rules
 config:
