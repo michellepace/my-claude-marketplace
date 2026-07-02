@@ -4,7 +4,7 @@ set -euo pipefail
 OUTPUT_TSV="peak-ctx.tsv"
 
 usage() {
-  cat << 'EOF'
+  cat <<'EOF'
 Usage: peak-ctx.sh [OPTION]
 
 Scans Claude Code session files (~/.claude/projects/*/*.jsonl) across ALL
@@ -127,8 +127,8 @@ prettify() {
 
 threshold_epoch=""
 if [[ $mode == days ]]; then
-  threshold_epoch=$(date -d "$((days - 1)) days ago 00:00:00" +%s 2> /dev/null ||
-    date -v-$((days - 1))d -v0H -v0M -v0S +%s)
+  threshold_epoch=$(date -d "$((days - 1)) days ago 00:00:00" +%s 2>/dev/null \
+    || date -v-$((days - 1))d -v0H -v0M -v0S +%s)
 fi
 
 # --- find session files ---
@@ -144,8 +144,8 @@ trap cleanup EXIT
 
 if [[ -n $threshold_epoch ]]; then
   ref=$(mktemp)
-  ts=$(date -r "$threshold_epoch" +%Y%m%d%H%M.%S 2> /dev/null ||
-    date -d "@$threshold_epoch" +%Y%m%d%H%M.%S)
+  ts=$(date -r "$threshold_epoch" +%Y%m%d%H%M.%S 2>/dev/null \
+    || date -d "@$threshold_epoch" +%Y%m%d%H%M.%S)
   touch -t "$ts" "$ref"
   mapfile -t files < <(find "$projects_dir" -mindepth 2 -maxdepth 2 -name '*.jsonl' -newer "$ref")
 else
@@ -158,15 +158,15 @@ extract_row() {
   local file=$1
   local epoch last_modified main_session_start peak_ctx title
 
-  epoch=$(stat -c %Y "$file" 2> /dev/null || stat -f %m "$file")
-  last_modified=$(date -d "@$epoch" "+%Y-%m-%dT%H:%M" 2> /dev/null ||
-    date -r "$epoch" "+%Y-%m-%dT%H:%M")
+  epoch=$(stat -c %Y "$file" 2>/dev/null || stat -f %m "$file")
+  last_modified=$(date -d "@$epoch" "+%Y-%m-%dT%H:%M" 2>/dev/null \
+    || date -r "$epoch" "+%Y-%m-%dT%H:%M")
 
   main_session_start=$(jq -rs '[.[] | .timestamp // empty] | min // empty' "$file")
 
   peak_ctx=$(jq -r 'select(.message.usage) | .message.usage |
-    (.input_tokens + .cache_creation_input_tokens + .cache_read_input_tokens)' "$file" |
-    sort -n | tail -1)
+    (.input_tokens + .cache_creation_input_tokens + .cache_read_input_tokens)' "$file" \
+    | sort -n | tail -1)
   [[ -z $peak_ctx ]] && peak_ctx=0
 
   title=$(jq -rs '
@@ -188,13 +188,13 @@ extract_row() {
       [[ -n $f ]] && extract_row "$f"
     done | sort -t "$(printf '\t')" -k1,1r
   fi
-} > "$OUTPUT_TSV"
+} >"$OUTPUT_TSV"
 
 # strip abandoned/empty sessions (peak_ctx == 0 means no usage records)
-awk -F'\t' 'NR == 1 || $3 != "0"' "$OUTPUT_TSV" > "${OUTPUT_TSV}.tmp" &&
-  mv "${OUTPUT_TSV}.tmp" "$OUTPUT_TSV"
+awk -F'\t' 'NR == 1 || $3 != "0"' "$OUTPUT_TSV" >"${OUTPUT_TSV}.tmp" \
+  && mv "${OUTPUT_TSV}.tmp" "$OUTPUT_TSV"
 
-n_rows=$(($(wc -l < "$OUTPUT_TSV") - 1))
+n_rows=$(($(wc -l <"$OUTPUT_TSV") - 1))
 
 if [[ $mode == all ]]; then
   window_label="All sessions"

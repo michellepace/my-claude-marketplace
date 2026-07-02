@@ -116,7 +116,7 @@ Output blocks:
 
 **Rely on analysing the output of these tools coupled with the knowledge in this brief. Perform the initial analysis then analyse deeper.**
 
-**Folder convention:** each experiment lives under `.xdocs/find-font/token-investigation/experiment-NN/`. All tool outputs and the final `brief-results.md` go in that folder.
+**Folder convention:** each experiment lives under `xdocs/find-font/token-investigation/experiment-NN/`. All tool outputs and the final `brief-results.md` go in that folder.
 
 Initial Analysis:
 
@@ -142,7 +142,7 @@ Ad hoc Analysis / Additional Insight:
 
 ## Deliverable
 
-Produce `.xdocs/find-font/token-investigation/experiment-NN/brief-results.md`. Eight sections in order, each one short.
+Produce `xdocs/find-font/token-investigation/experiment-NN/brief-results.md`. Eight sections in order, each one short.
 
 The intent of this layout: each section answers exactly one question, so a reader can scan the report top-to-bottom and pinpoint root causes without re-reading. Don't add prose beyond what's specified — the tables are the report.
 

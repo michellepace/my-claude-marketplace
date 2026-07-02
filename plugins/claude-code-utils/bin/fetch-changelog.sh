@@ -21,8 +21,8 @@ CHANGELOG_FULL="x_cc-changelog-full.md"
 CHANGELOG_INDEX="x_cc-changelog-index.csv"
 
 # Fetch full changelog (v2.1.0+, 2026+)
-curl -sfS --max-time 10 https://raw.githubusercontent.com/anthropics/claude-code/refs/heads/main/CHANGELOG.md |
-  awk 'BEGIN{p=1} /^## 2\.0\./{p=0} /^## [01]\./{p=0} p' > "$CHANGELOG_FULL"
+curl -sfS --max-time 10 https://raw.githubusercontent.com/anthropics/claude-code/refs/heads/main/CHANGELOG.md \
+  | awk 'BEGIN{p=1} /^## 2\.0\./{p=0} /^## [01]\./{p=0} p' >"$CHANGELOG_FULL"
 if [[ ! -s "$CHANGELOG_FULL" ]]; then
   echo "Error: Failed to fetch changelog or file is empty" >&2
   exit 1
@@ -32,18 +32,18 @@ echo "✅ Full changelog created (v2.1.0+, 2026+): $CHANGELOG_FULL"
 
 # Build changelog index with item counts (v2.1.0+, 2026+)
 CHANGELOG_COUNTS=$(echo "$CHANGELOG" | awk '/^## /{if(v)print v","c;v=$2;c=0}/^- /{c++}END{print v","c}')
-echo "version,npm_release_date,changelog_items (0=npm-only)" > "$CHANGELOG_INDEX"
-npm view @anthropic-ai/claude-code time |
-  grep -E "^ *'[0-9]+\.[0-9]+\.[0-9]+" |
-  grep -vE "'([01]\.|2\.0\.)" |
-  awk '{a[NR]=$0}END{for(i=NR;i>=1;i--)print a[i]}' |
-  sed "s/T.*Z'//" |
-  tr -d "':," |
-  column -t |
-  while read -r ver date; do
+echo "version,npm_release_date,changelog_items (0=npm-only)" >"$CHANGELOG_INDEX"
+npm view @anthropic-ai/claude-code time \
+  | grep -E "^ *'[0-9]+\.[0-9]+\.[0-9]+" \
+  | grep -vE "'([01]\.|2\.0\.)" \
+  | awk '{a[NR]=$0}END{for(i=NR;i>=1;i--)print a[i]}' \
+  | sed "s/T.*Z'//" \
+  | tr -d "':," \
+  | column -t \
+  | while read -r ver date; do
     items=$(echo "$CHANGELOG_COUNTS" | grep "^$ver," | cut -d',' -f2 || true)
     echo "$ver,$date,${items:-0}"
-  done >> "$CHANGELOG_INDEX"
+  done >>"$CHANGELOG_INDEX"
 echo "✅ Changelog index created (v2.1.0+, 2026+): $CHANGELOG_INDEX"
 
 # Latest versions (0 changelog items = npm-only)
@@ -52,7 +52,7 @@ echo "<latest_version_summary>"
 echo ""
 echo "=== Version Stats ==="
 echo "<version_stats>"
-echo "total_versions=$(($(wc -l < "$CHANGELOG_INDEX") - 1))"
+echo "total_versions=$(($(wc -l <"$CHANGELOG_INDEX") - 1))"
 echo "latest=$(sed -n '2p' "$CHANGELOG_INDEX" | cut -d',' -f1)"
 echo "earliest=$(tail -1 "$CHANGELOG_INDEX" | cut -d',' -f1)"
 echo "earliest_date=$(tail -1 "$CHANGELOG_INDEX" | cut -d',' -f2 | awk -F- '{split("Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec",m," "); printf "%s %s\n",m[$2+0],$1}')"

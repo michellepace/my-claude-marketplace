@@ -1,41 +1,47 @@
 repos:
-  - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.15.12
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
     hooks:
-      - id: ruff-format # Run formatter (see pyproject.toml)
-      - id: ruff-check  # Run linter (see pyproject.toml)
-        args: [--fix, --exit-non-zero-on-fix]
+      - id: check-merge-conflict    # block on merge markers
+        fail_fast: true
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+        exclude: ^\.vscode/         # .vscode/*.json is JSONC
+      - id: check-toml
 
-  - repo: https://github.com/RobertCraigie/pyright-python
-    rev: v1.1.409
+  - repo: https://github.com/DavidAnson/markdownlint-cli2
+    rev: v0.23.0
     hooks:
-      - id: pyright     # Typecheck (see pyproject.toml)
+      - id: markdownlint-cli2       # lint + autofix markdown
+        args: [--fix]
 
-  - repo: https://github.com/scop/pre-commit-shfmt
-    rev: v3.13.1-1
+  - repo: https://github.com/ComPWA/taplo-pre-commit
+    rev: v0.9.3
     hooks:
-      - id: shfmt       # Format shell scripts
-        args: [-w, -i, "2", -ci, -sr]
+      - id: taplo-format            # format TOML
+        types: [toml]
+
+  - repo: https://github.com/maxwinterstein/shfmt-py
+    rev: v4.0.0
+    hooks:
+      - id: shfmt                   # format shell
+        args: [-w, -i, '2', -ci, -bn]
 
   - repo: https://github.com/shellcheck-py/shellcheck-py
     rev: v0.11.0.1
     hooks:
-      - id: shellcheck  # Lint shell scripts
+      - id: shellcheck              # lint shell (read-only, after shfmt)
 
-  - repo: https://github.com/DavidAnson/markdownlint-cli2
-    rev: v0.22.1
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.15.20
     hooks:
-      - id: markdownlint-cli2 # Format markdown files
-        args: [--fix]
+      - id: ruff-check              # lint + autofix first
+        args: [--fix, --exit-non-zero-on-fix]
+      - id: ruff-format             # format last, so it owns final layout
 
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v6.0.0
+  - repo: https://github.com/RobertCraigie/pyright-python
+    rev: v1.1.411
     hooks:
-      # Whitespace hygiene — all text files (skip binaries)
-      - id: end-of-file-fixer    # Exactly one \n at EOF
-      - id: trailing-whitespace  # Strip trailing spaces per line
-      # Format validators — scoped to their file type
-      - id: check-yaml           # Validate YAML syntax
-      - id: check-json           # Validate JSON syntax
-        exclude: ^\.vscode/      # .vscode/*.json is JSONC
-      - id: check-toml           # Validate TOML syntax
+      - id: pyright                 # ruff lints; pyright type-checks

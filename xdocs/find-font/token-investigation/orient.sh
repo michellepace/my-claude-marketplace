@@ -9,7 +9,7 @@ set -eu
 
 case "${1:-}" in
   -h | --help)
-    cat << 'EOF'
+    cat <<'EOF'
 orient.sh — orientation metrics for one Claude Code session.
 
 Usage: orient.sh <session-path>
@@ -62,10 +62,10 @@ trap 'rm -f "$ROLLUP_TMP" "$PRICE_IN" "$PRICE_FI" "$PRICE_OUT" "$USD_BY_FI" "$TS
 echo ""
 echo "== Run-wide Peak CTX [$SESSION_ID] =="
 echo "# max per-turn input window (input_tokens+cache_create_5m+cache_create_1h+cache_read) vs 200k - context-pressure, not cost."
-cat "$ORCH" "$SUBDIR"/agent-*.jsonl |
-  jq -r 'select(.message.usage) | .message.usage |
-    (.input_tokens + .cache_creation_input_tokens + .cache_read_input_tokens)' |
-  sort -n | tail -1
+cat "$ORCH" "$SUBDIR"/agent-*.jsonl \
+  | jq -r 'select(.message.usage) | .message.usage |
+    (.input_tokens + .cache_creation_input_tokens + .cache_read_input_tokens)' \
+  | sort -n | tail -1
 
 echo ""
 echo "== Per-subagent rollup [$SESSION_ID] =="
@@ -73,8 +73,8 @@ printf "# peak = max per-turn; total = sum across turns (deduped); cache_read_%%
 printf "# spawn-ts\tpeak-ctx\ttotal-tokens(deduped)\tcache_read_%%\tusd\tdescription\n"
 
 # Pass 1: per-file rollup with sentinel for usd; emit per-(file,model) usage to PRICE_IN.
-: > "$ROLLUP_TMP"
-: > "$PRICE_IN"
+: >"$ROLLUP_TMP"
+: >"$PRICE_IN"
 file_idx=0
 for f in "$SUBDIR"/agent-*.jsonl; do
   ts=$(jq -r 'select(.timestamp) | .timestamp' "$f" | sort | head -1)
@@ -105,7 +105,7 @@ for f in "$SUBDIR"/agent-*.jsonl; do
         output_tokens: ([.[] | .message.usage.output_tokens // 0] | add)
       }
     }) | .[]
-  ' "$f" >> "$PRICE_IN"
+  ' "$f" >>"$PRICE_IN"
 
   if [ "${total:-0}" = "0" ] || [ -z "$total" ]; then
     pct="0.0"
@@ -113,17 +113,17 @@ for f in "$SUBDIR"/agent-*.jsonl; do
     pct=$(awk -v c="${cread:-0}" -v t="$total" 'BEGIN { printf "%.1f", (c/t)*100 }')
   fi
 
-  printf "%d\t%s\t%s\t%s\t%s\t__USD_%d__\t%s\n" "$file_idx" "$ts" "$peak" "$total" "$pct" "$file_idx" "$desc" >> "$ROLLUP_TMP"
+  printf "%d\t%s\t%s\t%s\t%s\t__USD_%d__\t%s\n" "$file_idx" "$ts" "$peak" "$total" "$pct" "$file_idx" "$desc" >>"$ROLLUP_TMP"
   file_idx=$((file_idx + 1))
 done
 
 # Pass 2: single subprocess prices all (file, model) pairs; preserves order.
-jq -r '.fi' "$PRICE_IN" > "$PRICE_FI"
-jq -c 'del(.fi)' "$PRICE_IN" |
-  uv run "$SCRIPT_DIR/cost_report.py" --price-stdin > "$PRICE_OUT"
-paste "$PRICE_FI" "$PRICE_OUT" |
-  awk -F'\t' '{ sums[$1] += $2 } END { for (k in sums) printf "%s\t%.4f\n", k, sums[k] }' \
-    > "$USD_BY_FI"
+jq -r '.fi' "$PRICE_IN" >"$PRICE_FI"
+jq -c 'del(.fi)' "$PRICE_IN" \
+  | uv run "$SCRIPT_DIR/cost_report.py" --price-stdin >"$PRICE_OUT"
+paste "$PRICE_FI" "$PRICE_OUT" \
+  | awk -F'\t' '{ sums[$1] += $2 } END { for (k in sums) printf "%s\t%.4f\n", k, sums[k] }' \
+    >"$USD_BY_FI"
 
 # Pass 3: substitute __USD_<fi>__ markers with summed $; strip leading fi column; sort by spawn-ts.
 awk -v usd_file="$USD_BY_FI" '
@@ -151,7 +151,7 @@ echo "# first/last .timestamp across orchestrator + subagents."
   for f in "$SUBDIR"/agent-*.jsonl; do
     jq -r 'select(.timestamp) | .timestamp' "$f"
   done
-} | sort > "$TS_FILE"
+} | sort >"$TS_FILE"
 
 first=$(head -1 "$TS_FILE")
 last=$(tail -1 "$TS_FILE")
