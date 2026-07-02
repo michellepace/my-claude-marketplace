@@ -12,7 +12,7 @@ repos:
       - id: check-toml
 
   - repo: https://github.com/DavidAnson/markdownlint-cli2
-    rev: v0.22.1
+    rev: v0.23.0
     hooks:
       - id: markdownlint-cli2       # lint + autofix markdown
         args: [--fix]
