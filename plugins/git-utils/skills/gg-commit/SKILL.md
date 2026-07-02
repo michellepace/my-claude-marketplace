@@ -1,10 +1,9 @@
 ---
 name: gg-commit
-description: "Create git commit message following template"
+description: "Create git commit message in git-project style"
 argument-hint: "[additional instructions]"
 user-invocable: true
 disable-model-invocation: true
-model: sonnet
 allowed-tools:
   - Bash(git branch *)
   - Bash(git diff *)
@@ -13,56 +12,64 @@ allowed-tools:
   - Read
 ---
 
-# Create a clear Git commit message for **staged** changes
+# Write Git commit message
 
 Additional user instructions: $ARGUMENTS
 
 1. Analyse staged changes with commands in `<commit_context>` tags
-2. Read and adhere to these rules in `<rules>` tags
-3. Apply commit template `<template>` with appropriate `<main_prefix>`
+2. Write per `<style>`, with a subject prefix from `<main_prefix>`,
+   following `<rules>`
+3. Present to user and always await confirmation to commit
 
 <commit_context>
 - Branch context: `git branch --show-current`
 - Change volume: `git diff --cached --compact-summary`
 - Detailed changes: `git diff --cached --diff-filter=d`
-- Recent commits (style anchor): `git log --oneline -5`
+- Recent subjects (prefix consistency): `git log --oneline -4`
 </commit_context>
 
-<template>
+<style>
+Git-project convention (git.git's own history): a prefixed subject plus one or
+two short prose paragraphs of what-and-why — no sections, no bullets.
+
 [main_prefix]: [brief main summary in imperative mood]
 
-[Section heading]:
-- [Significant changes and impact over minor details]
-- [Write for someone reading this git log in 6 months]
+[1-3 sentences: what changed at intent level and why — the problem with the
+code before, or what this enables]
 
-[Additional section (for multi-concern commits)]:
-- [etc.]
+[Optional 1-2 sentences: contrast with previous behaviour, a non-obvious
+consequence, or what was deliberately kept when removal might be assumed]
 
-[2-3 terse sentences of why / benefit / impact]
-</template>
+[5-20 words: concise value/benefit clinch]
+
+The reader has the diff; the message exists so they can decide whether to open
+it. Name the decision, not the edits that implement it.
+
+Exception: a commit bundling genuinely independent concerns (ones a reader
+would care about separately) gets one short paragraph per concern, or a terse
+bullet list per concern if prose turns awkward.
+</style>
 
 <main_prefix>
-- `skill(<name>):` Skill changes e.g. `.claude/skills/<name>/**`, `plugins/<plugin>/skills/<name>/**`
-- `plugin(<name>):` Plugin changes outside any single skill e.g. `plugins/<name>/**`, `.claude/plugins/<name>/**`
-- `rule(<name>):` claude rule changes e.g. `.claude/rules/<name>/`
-- `rules:` claude behavior rules e.g. `.claude/CLAUDE.md`, `.claude/settings.json`
+
+- `rules:` claude behaviour rules e.g. `CLAUDE.md`, `.claude/settings.json`
 - `test:` adding or updating tests e.g. `tests/**/*`
 - `ci:` CI/CD pipeline changes, automated workflows, deployment automation
 - `build:` build system changes, compilation process, how code gets packaged
 - `perf:` performance improvements
 - `fix:` bug fixes (fixes broken functionality)
 - `refactor:` code changes that neither fix bugs nor add features
-- `style:` code formatting, visual consistency, linting fixes; no functional change
-- `chore:` dev workflow, workspace config, dependency updates, dev tools e.g. `.vscode/**`, `pyproject.toml`, `.gitignore`
+- `style:` formatting and linting fixes; no functional change
+- `chore:` dev workflow, workspace config, dependency updates, dev tools
 - `docs:` documentation changes only e.g. `README.md`, `.xdocs/**`, `docs/**`
 - `feat:` new feature for users (adds functionality)
 
-Add `(<name>)` scope when a commit targets a single skill, plugin, or rule (e.g. `feat(find-font):`, `fix(gg-commit):`). Omit when changes span multiple.
+Add `(<name>)` scope when a commit targets a single skill, plugin, or rule.
+Omit when changes span multiple.
 </main_prefix>
 
 <rules>
 - Use British spelling
 - Use factual tone - no hyperbole or marketing adjectives
-- Scale detail to commit scope (sections not needed for small changes)
-- Wrap text at 80-90 characters (NOT the git convention of 60-65)
+- Wrap text at 80 characters (NOT the git convention of 60-65)
 </rules>
