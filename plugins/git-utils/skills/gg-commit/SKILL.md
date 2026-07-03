@@ -52,7 +52,7 @@ bullet list per concern if prose turns awkward.
 
 <main_prefix>
 
-- `rules:` claude behaviour rules e.g. `CLAUDE.md`, `.claude/settings.json`
+- `ai:` drive AI behaviour (`.claude/**`)
 - `test:` adding or updating tests e.g. `tests/**/*`
 - `ci:` CI/CD pipeline changes, automated workflows, deployment automation
 - `build:` build system changes, compilation process, how code gets packaged
@@ -64,8 +64,9 @@ bullet list per concern if prose turns awkward.
 - `docs:` documentation changes only e.g. `README.md`, `.xdocs/**`, `docs/**`
 - `feat:` new feature for users (adds functionality)
 
-Add `(<name>)` scope when a commit targets a single skill, plugin, or rule.
-Omit when changes span multiple.
+`(<name>)` scopes a commit to one target — skill, plugin, agent, command.
+Use judgement; omit when changes span several.
+The behaviour-defining config `CLAUDE.md` and `.claude/settings.json` → `ai(rules):`.
 </main_prefix>
 
 <rules>
