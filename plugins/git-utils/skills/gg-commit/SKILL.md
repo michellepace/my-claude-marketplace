@@ -1,76 +1,61 @@
 ---
 name: gg-commit
-description: "Create git commit message in git-project style"
-argument-hint: "[additional instructions]"
+description: "Create a plain, readable git commit message"
+argument-hint: "optional instructions"
 user-invocable: true
 disable-model-invocation: true
 allowed-tools:
-  - Bash(git branch *)
+  - Bash(echo *)
   - Bash(git diff *)
   - Bash(git log *)
-  - Bash(git status)
-  - Read
+  - Bash(git status *)
 ---
 
 # Write Git commit message
 
-Additional user instructions: $ARGUMENTS
+User instructions: $ARGUMENTS
 
-1. Analyse staged changes with commands in `<commit_context>` tags
-2. Write per `<style>`, with a subject prefix from `<main_prefix>`,
-   following `<rules>`
-3. Present to user and always await confirmation to commit
+Run the `<command>` to analyse files for commit. Craft a commit message; adjust `<style>` to fit the commit, choose a `<prefix>` and follow `<rules>`.
 
-<commit_context>
-- Branch context: `git branch --show-current`
-- Change volume: `git diff --cached --compact-summary`
-- Detailed changes: `git diff --cached --diff-filter=d`
-- Recent subjects (prefix consistency): `git log --oneline -4`
-</commit_context>
+---
+
+<command>
+
+```shell
+echo "===STATUS===" && git status --short \
+&& echo "===STAGED===" && git diff --cached --compact-summary \
+&& echo "===STAGED DETAILED===" && git diff --cached --diff-filter=d \
+&& echo "===LAST COMMITS===" && git log --oneline -3
+```
+</command>
 
 <style>
-Git-project convention (git.git's own history): a prefixed subject plus one or
-two short prose paragraphs of what-and-why — no sections, no bullets.
+[prefix]: [imperative summary of the change]
 
-[main_prefix]: [brief main summary in imperative mood]
+[Body: explaining what and why rather than how. Default to short prose paragraphs; bullets / sections only when the commit bundles independent concerns. I can always read the diff — name the decision, not the edits that implement it]
 
-[1-3 sentences: what changed at intent level and why — the problem with the
-code before, or what this enables]
-
-[Optional 1-2 sentences: contrast with previous behaviour, a non-obvious
-consequence, or what was deliberately kept when removal might be assumed]
-
-[5-20 words: concise value/benefit clinch]
-
-The reader has the diff; the message exists so they can decide whether to open
-it. Name the decision, not the edits that implement it.
-
-Exception: a commit bundling genuinely independent concerns (ones a reader
-would care about separately) gets one short paragraph per concern, or a terse
-bullet list per concern if prose turns awkward.
+[1-2 sentence statement of impact/benefit. If unclear, skip.]
 </style>
 
-<main_prefix>
+<prefix>
 
-- `ai:` drive AI behaviour (`.claude/**`)
-- `test:` adding or updating tests e.g. `tests/**/*`
+- `rules:` sets Claude's behaviour: `CLAUDE.md` (anywhere)
+- `test:` adding or updating tests e.g. `tests/**`
 - `ci:` CI/CD pipeline changes, automated workflows, deployment automation
 - `build:` build system changes, compilation process, how code gets packaged
 - `perf:` performance improvements
 - `fix:` bug fixes (fixes broken functionality)
 - `refactor:` code changes that neither fix bugs nor add features
 - `style:` formatting and linting fixes; no functional change
-- `chore:` dev workflow, workspace config, dependency updates, dev tools
-- `docs:` documentation changes only e.g. `README.md`, `.xdocs/**`, `docs/**`
+- `chore:` dev workflow, config (`settings.json`), dependency updates, dev tools
+- `docs:` e.g. `README.md`, `docs/**`, `xdocs/**` (in code → `docs(code):`)
 - `feat:` new feature for users (adds functionality)
 
-`(<name>)` scopes a commit to one target — skill, plugin, agent, command.
-Use judgement; omit when changes span several.
-The behaviour-defining config `CLAUDE.md` and `.claude/settings.json` → `ai(rules):`.
-</main_prefix>
+For `.claude/<category>/<name>` and `plugins/<plugin>/<category>/<name>`: use `<category>(<name>):` and `<category>:` with discernment. E.g. `skill(pdf-extract):`, `skills:`
+</prefix>
 
 <rules>
-- Use British spelling
-- Use factual tone - no hyperbole or marketing adjectives
-- Wrap text at 80 characters (NOT the git convention of 60-65)
+- Avoid: rewriting the diff and mechanical diff narration
+- Style: clear and concise
+- Tone: factual - no hyperbole or marketing adjectives
 </rules>
