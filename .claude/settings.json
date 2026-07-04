@@ -17,6 +17,7 @@
       "Bash(lsof *)",
       "Bash(rsvg-convert *)",
       "Bash(tree *)",
+      "Bash(uvx pre-commit *)",
       "Bash(wc *)",
       "mcp__ide__getDiagnostics"
     ],
