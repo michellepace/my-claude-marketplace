@@ -1,9 +1,4 @@
-globs:
-  - "**/*.md" # All .md files; pruned by ignores below
-
-ignores:
-  - ".venv/**"
-  - "xdocs/anthropic-docs/**"
+gitignore: true
 
 # Disable rules
 config:
