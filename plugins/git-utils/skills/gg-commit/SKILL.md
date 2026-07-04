@@ -15,15 +15,14 @@ allowed-tools:
 
 User instructions: $ARGUMENTS
 
-Run the `<command>` to analyse files for commit. Craft a commit message; adjust `<style>` to fit the commit, choose a `<prefix>` and follow `<rules>`.
+Run the `<command>` to analyse files for commit. Craft a commit message; adjust `<style>` to fit the commit and choose a `<prefix>`. Do not commit.
 
 ---
 
 <command>
 
 ```shell
-echo "===STATUS===" && git status --short \
-&& echo "===STAGED===" && git diff --cached --compact-summary \
+echo "===STAGED===" && git diff --cached --compact-summary \
 && echo "===STAGED DETAILED===" && git diff --cached --diff-filter=d \
 && echo "===LAST COMMITS===" && git log --oneline -3
 ```
@@ -34,10 +33,12 @@ echo "===STATUS===" && git status --short \
 
 [Body: explaining what and why rather than how. Default to short prose paragraphs; bullets / sections only when the commit bundles independent concerns. I can always read the diff — name the decision, not the edits that implement it]
 
-[1-2 sentence statement of impact/benefit. If unclear, skip.]
+[1 line for impact/benefit (skip if trivial)]
 </style>
 
 <prefix>
+
+For files under `skills/`, `agents/`, `commands/`, `rules/`, or `hooks/` (in `.claude/` or a plugin), prefix with that directory: `<dir>(<name>):` for one, `<dir>:` for several. E.g. `skills(gg-commit):`, `agents:`. Otherwise:
 
 - `rules:` sets Claude's behaviour: `CLAUDE.md` (anywhere)
 - `test:` adding or updating tests e.g. `tests/**`
@@ -50,12 +51,4 @@ echo "===STATUS===" && git status --short \
 - `chore:` dev workflow, config (`settings.json`), dependency updates, dev tools
 - `docs:` e.g. `README.md`, `docs/**`, `xdocs/**` (in code → `docs(code):`)
 - `feat:` new feature for users (adds functionality)
-
-For `.claude/<category>/<name>` and `plugins/<plugin>/<category>/<name>`: use `<category>(<name>):` and `<category>:` with discernment. E.g. `skill(pdf-extract):`, `skills:`
 </prefix>
-
-<rules>
-- Avoid: rewriting the diff and mechanical diff narration
-- Style: clear and concise
-- Tone: factual - no hyperbole or marketing adjectives
-</rules>
