@@ -25,7 +25,7 @@ See [Terminal configuration](/en/terminal-config) for details.
 ### General controls
 
 | Shortcut | Description | Context |
-|:---|:---|:---|
+| :--- | :--- | :--- |
 | `Ctrl+C` | Cancel current input or generation | Standard interrupt |
 | `Ctrl+X Ctrl+K` | Kill all running [background subagents](/en/sub-agents#run-subagents-in-foreground-or-background) in this session. Press twice within 3 seconds to confirm | Subagent control |
 | `Ctrl+D` | Exit Claude Code session | EOF signal |
@@ -47,7 +47,7 @@ See [Terminal configuration](/en/terminal-config) for details.
 ### Text editing
 
 | Shortcut | Description | Context |
-|:---|:---|:---|
+| :--- | :--- | :--- |
 | `Ctrl+A` | Move cursor to start of current line | In multiline input, moves to the start of the current logical line |
 | `Ctrl+E` | Move cursor to end of current line | In multiline input, moves to the end of the current logical line |
 | `Ctrl+K` | Delete to end of line | Stores deleted text for pasting |
@@ -61,13 +61,13 @@ See [Terminal configuration](/en/terminal-config) for details.
 ### Theme and display
 
 | Shortcut | Description | Context |
-|:---|:---|:---|
+| :--- | :--- | :--- |
 | `Ctrl+T` | Toggle syntax highlighting for code blocks | Only works inside the `/theme` picker menu. Controls whether code in Claude's responses uses syntax coloring |
 
 ### Multiline input
 
 | Method | Shortcut | Context |
-|:---|:---|:---|
+| :--- | :--- | :--- |
 | Quick escape | `\` + `Enter` | Works in all terminals |
 | Option key | `Option+Enter` | After enabling [Option as Meta](/en/terminal-config#enable-option-key-shortcuts-on-macos) on macOS |
 | Shift+Enter | `Shift+Enter` | Native in iTerm2, WezTerm, Ghostty, Kitty, Warp, Apple Terminal, Windows Terminal |
@@ -81,7 +81,7 @@ Shift+Enter works without configuration in iTerm2, WezTerm, Ghostty, Kitty, Warp
 ### Quick commands
 
 | Shortcut | Description | Notes |
-|:---|:---|:---|
+| :--- | :--- | :--- |
 | `/` at start | Command or skill | See [commands](#commands) and [skills](/en/skills) |
 | `!` at start | Shell mode | Run commands directly and add execution output to the session |
 | `@` | File path mention | Trigger file path autocomplete |
@@ -91,7 +91,7 @@ Shift+Enter works without configuration in iTerm2, WezTerm, Ghostty, Kitty, Warp
 When the transcript viewer is open (toggled with `Ctrl+O`), these shortcuts are available. `Ctrl+E` can be rebound via [`transcript:toggleShowAll`](/en/keybindings).
 
 | Shortcut | Description |
-|:---|:---|
+| :--- | :--- |
 | `Ctrl+E` | Toggle show all content |
 | `[` | Write the full conversation to your terminal's native scrollback so `Cmd+F`, tmux copy mode, and other native tools can search it. Requires [fullscreen rendering](/en/fullscreen#search-and-review-the-conversation) |
 | `v` | Write the conversation to a temporary file and open it in `$VISUAL` or `$EDITOR`. Requires [fullscreen rendering](/en/fullscreen) |
@@ -100,7 +100,7 @@ When the transcript viewer is open (toggled with `Ctrl+O`), these shortcuts are 
 ### Voice input
 
 | Shortcut | Description | Notes |
-|:---|:---|:---|
+| :--- | :--- | :--- |
 | Hold or tap `Space` | Voice dictation | Requires [voice dictation](/en/voice-dictation) to be enabled. Hold to record, or run `/voice tap` for tap-to-toggle. [Rebindable](/en/voice-dictation#rebind-the-dictation-key) |
 
 ## Commands
@@ -116,7 +116,7 @@ Enable vim-style editing via `/config` → Editor mode.
 ### Mode switching
 
 | Command | Action | From mode |
-|:---|:---|:---|
+| :--- | :--- | :--- |
 | `Esc` | Enter NORMAL mode | INSERT, VISUAL |
 | `i` | Insert before cursor | NORMAL |
 | `I` | Insert at beginning of line | NORMAL |
@@ -130,7 +130,7 @@ Enable vim-style editing via `/config` → Editor mode.
 ### Navigation (NORMAL mode)
 
 | Command | Action |
-|:---|:---|
+| :--- | :--- |
 | `h`/`j`/`k`/`l` | Move left/down/up/right |
 | `Space` | Move right |
 | `w` | Next word |
@@ -155,7 +155,7 @@ In vim normal mode, if the cursor is at the beginning or end of input and cannot
 ### Editing (NORMAL mode)
 
 | Command | Action |
-|:---|:---|
+| :--- | :--- |
 | `x` | Delete character |
 | `dd` | Delete line |
 | `D` | Delete to end of line |
@@ -178,7 +178,7 @@ In vim normal mode, if the cursor is at the beginning or end of input and cannot
 Text objects work with operators like `d`, `c`, and `y`:
 
 | Command | Action |
-|:---|:---|
+| :--- | :--- |
 | `iw`/`aw` | Inner/around word |
 | `iW`/`aW` | Inner/around WORD (whitespace-delimited) |
 | `i"`/`a"` | Inner/around double quotes |
@@ -192,7 +192,7 @@ Text objects work with operators like `d`, `c`, and `y`:
 Press `v` for character-wise selection or `V` for line-wise selection. Motions extend the selection, and operators act on it directly.
 
 | Command | Action |
-|:---|:---|
+| :--- | :--- |
 | `d`/`x` | Delete selection |
 | `y` | Yank selection |
 | `c`/`s` | Change selection |

@@ -16,7 +16,7 @@ Produce a short, scannable verdict in `brief-results.md` (under the relevant `ex
 `/ff-0-pair-my-font` (the orchestrator at `plugins/find-font/skills/ff-0-pair-my-font/SKILL.md`) spawns subagents. An experiment was run with two different versions of this file:
 
 | Run | Variant | SKILL.md @ commit | Session path (passed to all tools below) |
-|:--|:--|:--|:--|
+| :--- | :--- | :--- | :--- |
 | 1 | baseline | `b3fffd5` | `~/.claude/projects/-home-mp-projects-shopify-sparklepop/SESSION_1` |
 | 2 | refactored | `68721a0` | `~/.claude/projects/-home-mp-projects-shopify-sparklepop/SESSION_2` |
 
@@ -74,7 +74,7 @@ Output blocks: **Per-step rollup** → §2 row 2 + §3; **Orchestrator bucket de
 **Per-bucket cost weight** (× the model's base `input_tokens` rate; constant across all models):
 
 | Token Bucket | `message.usage` field | × base input_tokens |
-|:--|:--|--:|
+| :-- | :-- | --: |
 | input_tokens | `input_tokens` | 1.00× |
 | cache_create_5m | `cache_creation.ephemeral_5m_input_tokens` | 1.25× |
 | cache_create_1h | `cache_creation.ephemeral_1h_input_tokens` | 2.00× |

@@ -37,7 +37,7 @@ CodeRabbit AI is not always right.
 Evaluate the comment `x_coderabbit_COMMENT_ID.md` against the context of our codebase and files it references. Assess:
 
 | Criterion | Question |
-|-----------|----------|
+| :--- | :--- |
 | **Contextually valid** | Does it make sense with full codebase context? |
 | **Valuable** | Worth doing? Good practice? Or is it over-engineering? |
 | **Elegant** | Is the suggested fix pragmatic and clean? |

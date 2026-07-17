@@ -12,7 +12,7 @@ The refactor introduced a `fully-cached` short-circuit that lets the orchestrato
 ## §2. Headline comparison
 
 | Metric | Run 1 | Run 2 | Δ | Δ% |
-|:--|--:|--:|--:|--:|
+| :-- | --: | --: | --: | --: |
 | Wall-clock (active) | 6m 44s | 3m 37s | −3m 7s | −46.3% |
 | Run-wide cost ($) | $3.6529 | $1.0168 | −$2.6361 | −72.2% |
 | Run-wide Peak CTX | 56,276 | 45,788 | −10,488 | −18.6% |
@@ -24,7 +24,7 @@ The refactor introduced a `fully-cached` short-circuit that lets the orchestrato
 ## §3. Where the work lived (step-level)
 
 | Step | Run 1 tok | Run 1 $ | Run 2 tok | Run 2 $ | Δ tok | Δ $ |
-|:--|--:|--:|--:|--:|--:|--:|
+| :-- | --: | --: | --: | --: | --: | --: |
 | Orchestrator | 441,388 | $1.0160 | 436,551 | $0.7074 | −4,837 | −$0.3086 |
 | Curate (ff-1) | 683,461 | $1.2326 | 0 | $0.0000 | −683,461 | −$1.2326 |
 | Classify (ff-2) | 535,396 | $0.9434 | 0 | $0.0000 | −535,396 | −$0.9434 |
@@ -38,7 +38,7 @@ The dollar saving is dominated by the two skills that didn't run at all in Run 2
 **Tool calls** — Source: `orient.sh` §Orchestrator tool-call counts.
 
 | Tool | Run 1 | Run 2 | Δ | Note |
-|:--|--:|--:|--:|:--|
+| :-- | --: | --: | --: | :-- |
 | Agent | 9 | 1 | −8 | structural — refactor's `fully-cached` short-circuit skips 4× curate + 4× classify spawns |
 | Read | 6 | 6 | 0 | structural — orchestrator now reads font profiles & references directly |
 | Bash | 2 | 3 | +1 | structural — refactor adds `find` calls to locate cached profiles |
@@ -49,7 +49,7 @@ The dollar saving is dominated by the two skills that didn't run at all in Run 2
 **Token buckets** — Source: `cost_report.py` orchestrator bucket detail.
 
 | Token Bucket | Run 1 tok | Run 2 tok | Δ tok | Δ $ |
-|:--|--:|--:|--:|--:|
+| :-- | --: | --: | --: | --: |
 | input_tokens | 421 | 21 | −400 | −$0.0020 |
 | cache_create_5m | 0 | 0 | 0 | $0.0000 |
 | cache_create_1h | 57,886 | 30,971 | −26,915 | −$0.2692 |
@@ -64,7 +64,7 @@ The orchestrator's $0.31 saving is **87% from `cache_create_1h`** (−$0.2692) a
 Run 1 (baseline) — 19 subagent files
 
 | Skill | Calls | Wrapper tok | Sidechain tok | Total tok | Total $ |
-|:--|--:|--:|--:|--:|--:|
+| :-- | --: | --: | --: | --: | --: |
 | ff-1 curate | 4 | 141,284 | 542,177 | 683,461 | $1.2326 |
 | ff-2 classify | 4 | 126,494 | 408,902 | 535,396 | $0.9434 |
 | ff-3 svg | 1 | 49,158 | 273,500 | 322,658 | $0.4609 |
@@ -73,7 +73,7 @@ Run 1 (baseline) — 19 subagent files
 Run 2 (refactored) — 2 subagent files
 
 | Skill | Calls | Wrapper tok | Sidechain tok | Total tok | Total $ |
-|:--|--:|--:|--:|--:|--:|
+| :-- | --: | --: | --: | --: | --: |
 | ff-1 curate | 0 | 0 | 0 | 0 | $0.0000 |
 | ff-2 classify | 0 | 0 | 0 | 0 | $0.0000 |
 | ff-3 svg | 1 | 32,996 | 206,068 | 239,064 | $0.3094 |

@@ -29,7 +29,7 @@ Inside a Claude Code session, each time the model speaks it's because Claude Cod
 The reply carries a `usage` object describing **what just happened on that one request** [^1]. Four counters, all per-call:
 
 | Field | What it counts |
-|---|---|
+| :--- | :--- |
 | `input_tokens` | new prompt tokens on this call, **after the last cache breakpoint**, that weren't cached |
 | `cache_creation_input_tokens` | prompt tokens on this call that were **written into** the cache (billed at 1.25×) |
 | `cache_read_input_tokens` | prompt tokens on this call that were **read from** an earlier cache write (billed at 0.1×) |
@@ -126,7 +126,7 @@ I deliberately excluded `cache_read` from that sum, because if I'd included it t
 Three different questions, three different numbers:
 
 | Question | Right metric | prompt_1 value |
-|---|---|---:|
+| --- | --- | ---: |
 | How full is the context window right now? | `input + cache_creation + cache_read` on the latest turn | **53,992** ≈ /context's 54k |
 | How much total work did this session cost? | sum across turns of `(input + output + cache_creation)` | 150,603 |
 | How much cache reuse happened in total? | sum across turns of `cache_read` | 1,462,649 |

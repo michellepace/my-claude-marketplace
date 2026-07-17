@@ -328,11 +328,11 @@ print(response.json())
 Token counting is **free to use** but subject to requests per minute rate limits based on your [usage tier](/docs/en/api/rate-limits#rate-limits). If you need higher limits, contact sales through the [Claude Console](/settings/limits).
 
 | Usage tier | Requests per minute (RPM) |
-|------------|---------------------------|
-| 1          | 100                       |
-| 2          | 2,000                     |
-| 3          | 4,000                     |
-| 4          | 8,000                     |
+| ------------ | --------------------------- |
+| 1 | 100 |
+| 2 | 2,000 |
+| 3 | 4,000 |
+| 4 | 8,000 |
 
 <Note>
   Token counting and message creation have separate and independent rate limits. Usage of one does not count against the limits of the other.

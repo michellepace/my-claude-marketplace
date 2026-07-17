@@ -3,7 +3,7 @@
 ## Setup
 
 | Run | Variant | SKILL.md @ commit | Session path |
-|:--|:--|:--|:--|
+| :-- | :-- | :-- | :-- |
 | 1 | baseline | `b3fffd5` | `~/.claude/projects/-home-mp-projects-shopify-sparklepop/546340aa-2220-4d63-92f4-14708950d9c2` |
 | 2 | refactored | `68721a0` | `~/.claude/projects/-home-mp-projects-shopify-sparklepop/5323d196-3d8e-4cee-9a31-844b1b326422` |
 
@@ -16,7 +16,7 @@
 **Cache state at run-time** (what the refactor's pre-check could see):
 
 | Font | Profile | Matrix done? | Pre-check state | Refactor's effect |
-|:--|:--|:--|:--|:--|
+| :-- | :-- | :-- | :-- | :-- |
 | Newsreader | ✅ | ✅ | `fully-cached` | skip ff-1 **and** ff-2 |
 | Bodoni Moda | ✅ | ✅ | `fully-cached` | skip ff-1 **and** ff-2 |
 | Spectral | ✅ | ✅ | `fully-cached` | skip ff-1 **and** ff-2 |
@@ -27,7 +27,7 @@
 All 4 candidates resolved as `fully-cached`, so the refactor skipped 4× ff-1 curate + 4× ff-2 classify — only the ff-3 SVG agent fired in Run 2 (1 Agent call vs 9 in Run 1).
 
 | Metric | Run 1 | Run 2 | Δ | Δ% |
-|:--|--:|--:|--:|--:|
+| :-- | --: | --: | --: | --: |
 | Wall-clock (active) | 6m 44s | 3m 37s | −3m 7s | −46.3% |
 | Run-wide cost ($) | $3.6529 | $1.0168 | −$2.6361 | −72.2% |
 | Run-wide Peak CTX | 56,276 | 45,788 | −10,488 | −18.6% |

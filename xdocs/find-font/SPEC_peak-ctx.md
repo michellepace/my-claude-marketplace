@@ -83,7 +83,7 @@ Every invocation writes `peak-ctx.tsv`. After writing, the script prints:
 - and either the `🎁 Run "peak-ctx.sh --pretty" for a pretty format` hint, **or** (when `--pretty` was passed) the pretty table itself.
 
 | Invocation | Behaviour |
-|:---|:---|
+| :--- | :--- |
 | `peak-ctx.sh` | **default: last 7 days (alias for `--last-days 7`)** |
 | `peak-ctx.sh --all` | all sessions (no filter) |
 | `peak-ctx.sh --today` | alias for `--last-days 1` |

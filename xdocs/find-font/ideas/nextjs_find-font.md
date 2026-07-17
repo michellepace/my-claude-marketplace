@@ -2,13 +2,10 @@
 
 ## Current State
 
-Three reference documents are staged in git (not yet committed):
+Related context:
 
-- `plugin_plugin-dev.md` — documents the plugin-dev plugin
-- `plugin_skill-creator.md` — documents the skill-creator plugin
-- `plugin_strategy_eval.md` — evaluation strategy for find-font
-
-Copies also live in `~/projects/useful/`.
+- Claude Code Official marketplace has `plugin-dev` and `skill-creator` plugins
+- `eval_find-font.md` — evaluation strategy for find-font
 
 ## Your find-font Plugin
 

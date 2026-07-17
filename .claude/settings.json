@@ -15,6 +15,7 @@
       "Bash(jq *)",
       "Bash(ls *)",
       "Bash(lsof *)",
+      "Bash(npx markdownlint-cli2 *)",
       "Bash(rsvg-convert *)",
       "Bash(tree *)",
       "Bash(uvx pre-commit *)",

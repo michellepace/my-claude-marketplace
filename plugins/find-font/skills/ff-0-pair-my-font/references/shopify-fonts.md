@@ -8,7 +8,7 @@ Shopify's font library includes system fonts and a selection of Google Fonts, pr
 ## System Fonts
 
 | Font | Type | Variants |
-|---|---|---|
+| --- | --- | --- |
 | Mono | System | 1 |
 | Sans-serif | System | 4 |
 | Serif | System | 1 |
@@ -25,7 +25,7 @@ Shopify's font library includes system fonts and a selection of Google Fonts, pr
 ## Available Google Fonts
 
 | Font | Variants |
-|---|---|
+| --- | --- |
 | Abel | 1 |
 | Abril Fatface | 1 |
 | Acme | 1 |

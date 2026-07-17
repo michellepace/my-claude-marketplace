@@ -50,7 +50,7 @@ All four skills are independently invocable.
 ## Reference Files
 
 | File | Purpose / Explanation |
-|---|---|
+| :--- | :--- |
 | [`kupferschmid-matrix.md`](references/kupferschmid-matrix.md) | ***Foundation.*** Kupferschmid matrix framework for classifying and pairing fonts |
 | [`font-profiles/`](font-profiles/) | ***Core Data (read-only seed/fallback).*** Per-font research (synopsis, characteristics, technical specs) and matrix classification, shipped with the plugin. Includes font specimen images used for visual matrix classification. New profiles and user-supplied specimens always land in `./font-profiles/` in your CWD — never in the bundle. |
 | [`shopify-fonts.md`](skills/ff-0-pair-my-font/references/shopify-fonts.md) | ***Optional Constraint.*** Enables Claude to constrain recommendations to Shopify fonts (subset of Google Fonts). |
