@@ -1,7 +1,7 @@
 ---
 name: gg-commit
-description: "Create a plain, readable git commit message"
-argument-hint: "optional instructions"
+description: "Draft a plain, readable commit message"
+argument-hint: "[additional instructions]"
 user-invocable: true
 disable-model-invocation: true
 allowed-tools:
@@ -11,44 +11,55 @@ allowed-tools:
   - Bash(git status *)
 ---
 
-# Write Git commit message
+# Draft Git commit message
 
 User instructions: $ARGUMENTS
 
-Run the `<command>` to analyse files for commit. Craft a commit message; adjust `<style>` to fit the commit and choose a `<prefix>`. Do not commit.
+Run `<command>` to analyse the staged changes. Choose a `<prefix>`, draft
+the message per `<format>`, and present it in a fenced code block — do not
+commit. If nothing is staged, say so and stop.
 
 ---
 
 <command>
 
 ```shell
-echo "===STAGED===" && git diff --cached --compact-summary \
-&& echo "===STAGED DETAILED===" && git diff --cached --diff-filter=d \
+echo "===STAGED===" && git diff --staged --compact-summary \
+&& echo "===STAGED DETAILED===" && git diff --staged --diff-filter=d \
 && echo "===LAST COMMITS===" && git log --oneline -3
 ```
 </command>
 
-<style>
-[prefix]: [imperative summary of the change]
+<format>
+Wrap at 72 characters; for a trivial commit, prefix and subject only.
+Write concisely and plainly.
 
-[Body: explaining what and why rather than how. Default to short prose paragraphs; bullets / sections only when the commit bundles independent concerns. I can always read the diff — name the decision, not the edits that implement it]
+```text
+<prefix> <subject — imperative mood>
 
-[1 line for impact/benefit (skip if trivial)]
-</style>
+<body — why over what: if a reader of the diff would learn nothing
+new from a line, it doesn't belong. Short prose paragraph(s),
+bullets when it helps clarity.>
+```
+</format>
 
 <prefix>
+Pick the prefix matching the commit's dominant purpose.
 
-For files under `skills/`, `agents/`, `commands/`, `rules/`, or `hooks/` (in `.claude/` or a plugin), prefix with that directory: `<dir>(<name>):` for one, `<dir>:` for several. E.g. `skills(gg-commit):`, `agents:`. Otherwise:
+In `.claude/` or a plugin, files under `skills/`, `agents/`,
+`commands/`, `rules/`, or `hooks/` take that directory as prefix:
+`<dir>(<name>):` for one item, `<dir>:` for several — e.g.
+`skills(gg-commit):`, `agents:`. Otherwise:
 
 - `rules:` sets Claude's behaviour: `CLAUDE.md` (anywhere)
-- `test:` adding or updating tests e.g. `tests/**`
-- `ci:` CI/CD pipeline changes, automated workflows, deployment automation
-- `build:` build system changes, compilation process, how code gets packaged
-- `perf:` performance improvements
-- `fix:` bug fixes (fixes broken functionality)
-- `refactor:` code changes that neither fix bugs nor add features
-- `style:` formatting and linting fixes; no functional change
-- `chore:` dev workflow, config (`settings.json`), dependency updates, dev tools
-- `docs:` e.g. `README.md`, `docs/**`, `xdocs/**` (in code → `docs(code):`)
-- `feat:` new feature for users (adds functionality)
+- `docs:` `README.md`, any `*docs*/` (docs in code → `docs(code):`)
+- `test:` adding or updating tests, e.g. `tests/**`
+- `ci:` CI/CD pipelines, automated workflows
+- `build:` build system, compilation, packaging
+- `perf:` performance improvement
+- `style:` formatting and linting; no functional change
+- `refactor:` restructuring; neither fixes a bug nor adds a feature
+- `fix:` bug fix
+- `chore:` dev workflow, config (`settings.json`), dependencies, tooling
+- `feat:` new user-facing functionality
 </prefix>
