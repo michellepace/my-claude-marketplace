@@ -9,7 +9,7 @@ The refactor achieved its narrow goal — Lora was correctly skipped on Step 2 (
 ## §2. Headline comparison
 
 | Metric | Run 1 | Run 2 | Δ | Δ% |
-|:--|--:|--:|--:|--:|
+| :-- | --: | --: | --: | --: |
 | Wall-clock (active) | 6m 18s | 7m 19s | +61s | +16.1% |
 | Run-wide cost ($) | $2.9928 | $3.7835 | +$0.7907 | +26.4% |
 | Run-wide Peak CTX | 48,010 | 59,219 | +11,209 | +23.3% |
@@ -21,7 +21,7 @@ The refactor achieved its narrow goal — Lora was correctly skipped on Step 2 (
 ## §3. Where the work lived (step-level)
 
 | Step | Run 1 tok | Run 1 $ | Run 2 tok | Run 2 $ | Δ tok | Δ $ |
-|:--|--:|--:|--:|--:|--:|--:|
+| :-- | --: | --: | --: | --: | --: | --: |
 | Orchestrator | 279,027 | $0.6580 | 507,528 | $1.1357 | +228,501 | +$0.4778 |
 | Curate (ff-1) | 573,034 | $1.1526 | 498,265 | $1.1051 | -74,769 | -$0.0475 |
 | Classify (ff-2) | 642,216 | $0.9548 | 681,918 | $1.2175 | +39,702 | +$0.2627 |
@@ -35,7 +35,7 @@ The single largest dollar regression is the **orchestrator** (+$0.4778, +72.6%) 
 **Tool calls** (source: `orient.sh` §Orchestrator tool-call counts):
 
 | Tool | Run 1 | Run 2 | Δ | Note |
-|:--|--:|--:|--:|:--|
+| :-- | --: | --: | --: | :-- |
 | Agent | 8 | 7 | -1 | structural — one fewer ff-1 spawn (Lora cached) |
 | Read | 6 | 7 | +1 | variance — orchestrator made one extra Read |
 | Bash | 1 | 9 | +8 | variance — Run 2 ran extra status / probe Bash calls |
@@ -46,7 +46,7 @@ The single largest dollar regression is the **orchestrator** (+$0.4778, +72.6%) 
 **Token buckets** (source: `cost_report.py` orchestrator bucket detail; `cache_create_5m` row omitted — both runs zero):
 
 | Token Bucket | Run 1 tok | Run 2 tok | Δ tok | Δ $ |
-|:--|--:|--:|--:|--:|
+| :-- | --: | --: | --: | --: |
 | input_tokens | 32 | 27 | -5 | -$0.0001 |
 | cache_create_1h | 33,188 | 58,363 | +25,175 | +$0.2517 |
 | cache_read | 237,521 | 435,775 | +198,254 | +$0.0991 |
@@ -62,7 +62,7 @@ Run 1 (baseline) — 16 subagent files
 ```
 
 | Skill | Calls | Wrapper tok | Sidechain tok | Total tok | Total $ |
-|:--|--:|--:|--:|--:|--:|
+| :-- | --: | --: | --: | --: | --: |
 | ff-1 curate | 4 | 124,184 | 448,850 | 573,034 | $1.1526 |
 | ff-2 classify | 3 | 93,743 | 548,473 | 642,216 | $0.9548 |
 | ff-3 svg | 1 | 31,056 | 126,492 | 157,548 | $0.2275 |
@@ -73,7 +73,7 @@ Run 2 (refactored) — 14 subagent files
 ```
 
 | Skill | Calls | Wrapper tok | Sidechain tok | Total tok | Total $ |
-|:--|--:|--:|--:|--:|--:|
+| :-- | --: | --: | --: | --: | --: |
 | ff-1 curate | 3 | 92,329 | 405,936 | 498,265 | $1.1051 |
 | ff-2 classify | 3 | 93,622 | 588,296 | 681,918 | $1.2175 |
 | ff-3 svg | 1 | 31,801 | 240,912 | 272,713 | $0.3252 |

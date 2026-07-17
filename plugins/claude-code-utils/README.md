@@ -15,7 +15,7 @@ claude plugin install claude-code-utils@my-claude-marketplace --scope project
 ## 🟣 What's Inside
 
 | Run Skill | Description |
-|:------|:------------|
+| :--- | :--- |
 | [`/cc-which-plugins`](skills/cc-which-plugins/SKILL.md) | Show all marketplaces and plugins with their status |
 | [`/cc-whats-new-changelog`](skills/cc-whats-new-changelog/SKILL.md) | Analyse changelog and explain features practically |
 | [`/cc-peak-ctx-analyse`](skills/cc-peak-ctx-analyse/SKILL.md) | Analyse peak context-window usage across recent sessions |

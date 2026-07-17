@@ -34,7 +34,7 @@ claude plugin install nextjs-utils@my-claude-marketplace --scope project
 ## Reference Files
 
 | File | Used By | Purpose |
-|---|---|---|
+| :--- | :--- | :--- |
 | [`changelog-summary.md`](skills/nextjs-shadcn-ui/references/changelog-summary.md) | nextjs-shadcn-ui | Key shadcn/ui changes from Jun 2025 onwards (beyond Opus 4.6 training data) |
 | [`llms-txt.md`](skills/nextjs-shadcn-ui/references/llms-txt.md) | nextjs-shadcn-ui | Full component index with docs URLs, extracted from ui.shadcn.com/llms.txt |
 | [`strip-nextjs-index.py`](skills/nextjs-docs-get/scripts/strip-nextjs-index.py) | nextjs-docs-get | Python script to remove directory sections from agents-md INDEX.md and verify consistency |

@@ -5,7 +5,7 @@ A Claude Code **marketplace** — a monorepo of plugins.
 ## Plugins
 
 | Plugin | Purpose |
-|:---|:---|
+| :--- | :--- |
 | `claude-code-utils` | Claude Code visibility & plugin management |
 | `find-font` | Google Font pairing (orchestrator pattern, MCP) |
 | `git-utils` | Git/GitHub workflows + plan grilling |

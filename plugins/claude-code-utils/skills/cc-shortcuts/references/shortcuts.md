@@ -5,7 +5,7 @@
 ## Deletion shortcuts
 
 | Key | Shortcut | What it does |
-|:---|:---|:---|
+| :--- | :--- | :--- |
 | 🌸 | `Ctrl+C` | Delete **everything** typed (or stops generation) |
 | 🌸 | `Ctrl+U`/`Ctrl+K` | Delete **before / after** cursor on line |
 | 🌸 | `Ctrl+W`/`Alt+D` | Delete **previous / next** word |
@@ -15,7 +15,7 @@
 ## Cursor movement
 
 | Key | Shortcut | What it does |
-|:---|:---|:---|
+| :--- | :--- | :--- |
 | 🌸 | `Ctrl+A` | Jump to **start** of line |
 | ⚠️ | `Ctrl+E` | ~~Jump to **end** of line~~ |
 | 🪲 | `Ctrl+E` | Search VSCode project by filename |
@@ -25,7 +25,7 @@
 ## General controls
 
 | Key | Shortcut | What it does |
-|:---|:---|:---|
+| :--- | :--- | :--- |
 | ok | `Ctrl+R` | Search prompt history. **Inside it,** `Ctrl+S` cycles scope (session → project → all) |
 | 🌸 | `Ctrl+Q` | Unfreeze terminal after an accidental `Ctrl+S` (XOFF/XON freeze) |
 | 🌸 | `Ctrl+L` | Redraw terminal window when garbled |
@@ -50,7 +50,7 @@ no manual copy.
 ## Claude Code-specific actions
 
 | Key | Shortcut | What it does |
-|:---|:---|:---|
+| :--- | :--- | :--- |
 | 🌸 | `Esc Esc` | Rewind conversation to a previous point |
 | ok | `Alt+P` | Switch model without clearing your prompt |
 | ok | `Alt+T` | Toggle extended thinking mode |
@@ -61,7 +61,7 @@ no manual copy.
 ## My VSCode
 
 | Key | Shortcut | What it does |
-|:---|:---|:---|
+| :--- | :--- | :--- |
 | 🪲 | `Ctrl+Shift+V` | Markdown preview |
 | 🪲 | `Alt + ←` | Exit preview AND "last place" |
 | 🪲 | `Ctrl+Shift+E` | View Exlorer |

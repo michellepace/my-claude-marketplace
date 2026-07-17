@@ -3,7 +3,7 @@
 ## Setup
 
 | Run | Variant | SKILL.md @ commit | Session path |
-|:--|:--|:--|:--|
+| :-- | :-- | :-- | :-- |
 | 1 | baseline | `b3fffd5` | `~/.claude/projects/-home-mp-projects-shopify-sparklepop/d12c0278-ee40-4622-9c7e-4d86750c006d` |
 | 2 | refactored | `68721a0` | `~/.claude/projects/-home-mp-projects-shopify-sparklepop/71791195-a881-4708-b16b-34ed5cc39f0b` |
 
@@ -16,7 +16,7 @@
 **Cache state at run-time** (what the refactor's pre-check could see):
 
 | Font | Profile | Matrix done? | Pre-check state | Refactor's effect |
-|:--|:--|:--|:--|:--|
+| :-- | :-- | :-- | :-- | :-- |
 | Lora | ✅ | ✅ | `fully-cached` | skip ff-1 **and** ff-2 |
 | Bodoni Moda | ❌ | n/a | `needs-curate` | no change vs baseline |
 | Montserrat | ❌ | n/a | `needs-curate` | no change vs baseline |
@@ -27,7 +27,7 @@
 Run 2 introduced unexpected ceremony — 9 TaskCreate + 18 TaskUpdate + 1 ToolSearch + 8 extra Bash calls in the orchestrator — that the baseline did not run and the SKILL.md did not prescribe.
 
 | Metric | Run 1 | Run 2 | Δ | Δ% |
-|:--|--:|--:|--:|--:|
+| :-- | --: | --: | --: | --: |
 | Wall-clock (active) | 6m 18s | 7m 19s | +61s | +16.1% |
 | Run-wide cost ($) | $2.9928 | $3.7835 | +$0.7907 | +26.4% |
 | Run-wide Peak CTX | 48,010 | 59,219 | +11,209 | +23.3% |

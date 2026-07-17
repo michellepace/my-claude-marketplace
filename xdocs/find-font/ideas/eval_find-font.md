@@ -5,7 +5,7 @@
 ### What each plugin actually evaluates
 
 | | **plugin-dev** | **skill-creator** |
-|:--|:--|:--|
+| :-- | :-- | :-- |
 | **Nature** | Static review — checks structure, formatting, best practices | Functional testing — runs the skill and measures whether it works |
 | **Evaluates** | Does the plugin follow conventions? Are skills well-written? | Does the skill produce correct output? Can it be improved? |
 | **Scope** | Whole plugin (manifest, directory structure, all components) + individual skill quality | One skill at a time (test cases, assertions, benchmarking) |
@@ -21,7 +21,7 @@ Neither evaluates whether your overall architecture is sound (e.g., "should this
 ### Which agents and skills to use
 
 | Tool | What to use it for | When |
-|:--|:--|:--|
+| :-- | :-- | :-- |
 | **plugin-dev: plugin-validator** (agent) | Structural check of the whole plugin — manifest, directories, naming, MCP config, security | First. Catches format/config issues before anything else. |
 | **plugin-dev: skill-reviewer** (agent) | Quality review of each SKILL.md — description triggers, writing style, progressive disclosure, content organisation | Second. Reviews each skill individually for best-practice compliance. |
 | **skill-creator** (skill) | Functional testing — run each skill on real prompts, grade outputs, iterate | Third, selectively. Only for skills where you want to verify correctness, not just formatting. |
@@ -59,7 +59,7 @@ Additionally, skills can be invoked standalone by the user (e.g., just curate a 
 ### What to watch for architecturally
 
 | Question | Status |
-|:--|:--|
+| :-- | :-- |
 | Should any skill be an agent? | No — orchestrated workers shouldn't auto-trigger |
 | Is the orchestrator-worker split logical? | Yes — each worker has a single clear responsibility |
 | Are responsibilities cleanly separated? | Check — `ff-1-curate-font-google` and `ff-2-classify-font-matrix` both write to the same font profile files. Verify they don't conflict. |
@@ -110,7 +110,7 @@ Repeat for `ff-2-classify-font-matrix`, `ff-3-create-font-matrix-svg`, and `ff-0
 This is the heaviest step. Use it only for skills where you want to verify *correctness*, not just formatting. The most valuable candidates:
 
 | Skill | Worth functional testing? | Why |
-|:--|:--|:--|
+| :-- | :-- | :-- |
 | **ff-1-curate-font-google** | Yes | It fetches live data via MCP and writes structured profiles. You want to verify output completeness and format. |
 | **ff-2-classify-font-matrix** | Yes | It makes subjective classification judgments. You want to verify the Kupferschmid framework is applied correctly. |
 | **ff-0-pair-my-font** | Maybe | The orchestrator's value depends on its workers. Test the workers first, then test the orchestrator if you want to verify the end-to-end pairing recommendations. |

@@ -70,7 +70,7 @@ There are two ways to enable prompt caching:
 Prompt caching uses the following pricing multipliers relative to base input token rates:
 
 | Cache operation | Multiplier | Duration |
-|:----------------|:-----------|:---------|
+| :--- | :--- | :--- |
 | 5-minute cache write | 1.25x base input price | Cache valid for 5 minutes |
 | 1-hour cache write | 2x base input price | Cache valid for 1 hour |
 | Cache read (hit) | 0.1x base input price | Same duration as the preceding write |
@@ -94,7 +94,7 @@ For more information, see the [data residency documentation](/docs/en/build-with
 [Fast mode](/docs/en/build-with-claude/fast-mode) (beta: research preview) for Claude Opus 4.6 provides significantly faster output at premium pricing (6x standard rates). Fast mode pricing applies across the full context window, including requests over 200k input tokens. Currently supported on Opus 4.6:
 
 | Input | Output |
-|:------|:-------|
+| :--- | :--- |
 | $30 / MTok | $150 / MTok |
 
 Fast mode pricing stacks with other pricing modifiers:
