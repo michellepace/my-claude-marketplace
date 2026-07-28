@@ -16,7 +16,7 @@ reportDuplicateImport = false # Ruff F811
 # LINTING (RUFF)
 # =================================
 [tool.ruff]
-line-length = 90
+line-length = 88
 target-version = "py314"
 
 [tool.ruff.lint]
@@ -29,6 +29,7 @@ ignore = [ # ignore incompatible or overly pedantic rules
   "COM812", # Trailing comma missing (conflicts with formatter)
   "ISC001", # implicit string concatenation (conflicts with formatter)
   "T201",   # Print found (allow print statements)
+  "CPY001", # Missing copyright notice (no licence headers)
 ]
 
 [tool.ruff.lint.per-file-ignores]

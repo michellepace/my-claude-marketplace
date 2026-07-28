@@ -21,14 +21,16 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         prog=sys.argv[0],
         description=(
-            "Strip directory sections from a Next.js agents-md INDEX.md and verify that\n"
+            "Strip directory sections from a Next.js agents-md INDEX.md "
+            "and verify that\n"
             "remaining entries match the docs on disk. "
             "Run after `npx @next/codemod agents-md`\n"
             "to remove documentation this project does not use (e.g. Pages Router).\n"
             "\n"
             "The index is a single pipe-delimited line between HTML comment markers.\n"
             "Each directory entry looks like `prefix:{file.mdx,...}` or\n"
-            "`prefix/sub:{file.mdx,...}`. Requires at least one of --remove or --verify."
+            "`prefix/sub:{file.mdx,...}`. "
+            "Requires at least one of --remove or --verify."
         ),
         epilog=(
             "examples:\n"
@@ -48,7 +50,8 @@ def parse_args() -> argparse.Namespace:
             "  --remove always verifies after stripping — no need to add --verify.\n"
             "  --remove is idempotent — safe to re-run; "
             "already-removed prefixes show 💡.\n"
-            "  index.mdx files are excluded from verification (not tracked in the index)."
+            "  index.mdx files are excluded from verification "
+            "(not tracked in the index)."
         ),
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )

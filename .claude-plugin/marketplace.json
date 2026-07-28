@@ -10,7 +10,7 @@
     {
       "name": "nextjs-utils",
       "source": "./plugins/nextjs-utils",
-      "description": "Next.js development skills: shadcn/ui best practices and official docs management"
+      "description": "Next.js docs & dev guidance, including shadcn/ui best practices"
     },
     {
       "name": "claude-code-utils",
