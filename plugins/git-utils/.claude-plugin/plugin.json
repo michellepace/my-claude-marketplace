@@ -1,5 +1,5 @@
 {
   "name": "git-utils",
-  "description": "commit messages, CodeRabbit reviews, post-merge cleanup + Grill Me (not git)",
-  "version": "1.0.12"
+  "description": "Git & GitHub workflow utilities, plus grilling (not git)",
+  "version": "1.1.0"
 }

@@ -263,7 +263,10 @@ def classify_subagents(
         m = re.search(r"(ff-\d+-[\w-]+)", text)
         skill = m.group(1) if m else "unknown"
 
-        if text.startswith("Invoke `/find-font:") or "using the Skill tool" in text[:200]:
+        if (
+            text.startswith("Invoke `/find-font:")
+            or "using the Skill tool" in text[:200]
+        ):
             per_skill[skill]["w"] = _add(per_skill[skill]["w"], by_model)
             per_skill[skill]["wc"] += 1
         elif text.startswith("Base directory for this skill:"):
@@ -492,7 +495,9 @@ def main() -> None:
         return
 
     if args.session_path_1 is None:
-        parser.error("SESSION is required unless --show-rates or --price-stdin is given")
+        parser.error(
+            "SESSION is required unless --show-rates or --price-stdin is given"
+        )
 
     for label, p in (
         ("SESSION", args.session_path_1),

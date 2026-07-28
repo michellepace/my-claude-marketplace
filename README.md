@@ -2,7 +2,7 @@
 
 <figure align="center">
   <a href="images/marketplace-plugin-sketch.jpeg" target="_blank">
-    <img src="images/marketplace-plugin-sketch.jpeg" alt="Hand-drawn sketch showing the plugin-marketplace relationship. A large rounded rectangle labelled I will package it into a marketplace contains three smaller rounded shapes representing individual plugins. The leftmost plugin labelled Plugin Bag shows its contents: Skills, Agents, Commands, MCPs, and Hooks. Two additional plugins are labelled another plugin and another one. Below the diagram are five checkmarks listing marketplace benefits with a bracket labelled Marketplace Benefits: Source Control, One place for all projects, plugins can be switched on or off, easy to share, and easy to get updates." width="700">
+    <img src="images/marketplace-plugin-sketch.jpeg" alt="Hand-drawn sketch of a marketplace as one container holding several plugins, with one plugin opened to show what it can contain: skills, agents, commands, MCPs and hooks. Marketplace benefits listed below: source control, one place for all projects, plugins can be switched on or off, easy to share, easy to get updates." width="700">
   </a>
   <figcaption><em>A Marketplace is a "Bag of Plugins". A plugin can contain skills, among other things.</em></figcaption>
 </figure>
@@ -11,10 +11,10 @@
 
 | Plugin | Type | Purpose |
 | :----- | :--- | :------ |
-| [claude-code-utils](./plugins/claude-code-utils) | 5 skills | Claude Code visibility & discovery |
+| [claude-code-utils](./plugins/claude-code-utils) | 3 skills | Claude Code know-how + session analysis |
 | [find-font](./plugins/find-font) | 4 skills + MCP | Font pairing (orchestrator pattern) |
 | [nextjs-utils](./plugins/nextjs-utils) | 2 skills + MCP | Next.js docs & dev guidance |
-| [git-utils](./plugins/git-utils) | 4 skills | Git & GitHub workflows + a plan-grilling skill |
+| [git-utils](./plugins/git-utils) | 4 skills | Git & GitHub workflows + a grilling skill |
 
 ## Installation - User Scope
 
