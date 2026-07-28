@@ -15,7 +15,7 @@
     {
       "name": "claude-code-utils",
       "source": "./plugins/claude-code-utils",
-      "description": "Claude Code meta-utilities: release notes and plugin status"
+      "description": "Claude Code visibility & know-how, from installed plugins to shortcut keys"
     },
     {
       "name": "find-font",

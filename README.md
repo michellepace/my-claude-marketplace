@@ -11,7 +11,7 @@
 
 | Plugin | Type | Purpose |
 | :----- | :--- | :------ |
-| [claude-code-utils](./plugins/claude-code-utils) | 5 skills | Claude Code visibility & discovery |
+| [claude-code-utils](./plugins/claude-code-utils) | 4 skills | Claude Code visibility & know-how |
 | [find-font](./plugins/find-font) | 4 skills + MCP | Font pairing (orchestrator pattern) |
 | [nextjs-utils](./plugins/nextjs-utils) | 2 skills + MCP | Next.js docs & dev guidance |
 | [git-utils](./plugins/git-utils) | 4 skills | Git & GitHub workflows + a grilling skill |
