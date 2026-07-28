@@ -25,7 +25,7 @@
     {
       "name": "git-utils",
       "source": "./plugins/git-utils",
-      "description": "Git & GitHub workflow utilities: commit messages, CodeRabbit reviews, and post-merge cleanup"
+      "description": "Git & GitHub workflow utilities, plus grilling (not git)"
     }
   ]
 }

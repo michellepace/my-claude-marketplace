@@ -8,7 +8,7 @@ A Claude Code **marketplace** — a monorepo of plugins.
 | :--- | :--- |
 | `claude-code-utils` | Claude Code visibility & plugin management |
 | `find-font` | Google Font pairing (orchestrator pattern, MCP) |
-| `git-utils` | Git/GitHub workflows + plan grilling |
+| `git-utils` | Git/GitHub workflows + grilling |
 | `nextjs-utils` | Next.js docs & shadcn guidance (MCP) |
 
 ## Plugin Anatomy
