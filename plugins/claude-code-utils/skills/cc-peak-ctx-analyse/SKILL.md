@@ -1,6 +1,6 @@
 ---
 name: cc-peak-ctx-analyse
-description: Analyse peak context-window usage across recent Claude Code sessions to spot interesting patterns.
+description: Analyse recent Claude Code sessions, peak context usage by default
 argument-hint: "[today | last N days | all]. [questions / analysis focus]"
 user-invocable: true
 disable-model-invocation: true

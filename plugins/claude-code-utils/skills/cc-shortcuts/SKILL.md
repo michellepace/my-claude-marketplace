@@ -1,6 +1,6 @@
 ---
 name: cc-shortcuts
-description: Recommend Claude Code (VSCode) shortcut keys.
+description: Find a Claude Code or VSCode shortcut key
 argument-hint: "Is there a shortcut key to...?"
 user-invocable: true
 disable-model-invocation: true
