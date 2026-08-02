@@ -1,6 +1,6 @@
 # Plugin: `git-utils`
 
-**Git & GitHub workflows:** Commit messages, CodeRabbit reviews, and post-merge cleanup — plus Grilling (not git).
+**Git & GitHub workflows:** Commit messages, PR drafts, CodeRabbit reviews, and post-merge cleanup — plus Grilling (not git).
 
 Add marketplace and install this plugin (project scope):
 
@@ -17,6 +17,7 @@ claude plugin install git-utils@my-claude-marketplace --scope project
 | Run Skill | What it does |
 | :-------- | :----------- |
 | [`/gg-commit`](skills/gg-commit/SKILL.md) | Create a git commit message following a structured template |
+| [`/gg-pr`](skills/gg-pr/SKILL.md) | Draft a PR against main into `pr-draft.md` for review |
 | [`/gg-coderabbit`](skills/gg-coderabbit/SKILL.md) | Evaluate a CodeRabbit comment and recommend whether to action it |
 | [`/gg-merge-cleanup`](skills/gg-merge-cleanup/SKILL.md) | Post-merge cleanup: switch to main, pull, delete merged branch, prune |
 | [`/gg-grilling`](skills/gg-grilling/SKILL.md) | Get relentlessly grilled on your plan, decision, or idea |
@@ -27,6 +28,11 @@ claude plugin install git-utils@my-claude-marketplace --scope project
 
 - `/gg-commit`
 - `/gg-commit` "include the migration rationale"
+
+**PR draft:**
+
+- `/gg-pr`
+- `/gg-pr` "flag the breaking config change in the summary"
 
 **CodeRabbit:**
 
@@ -42,4 +48,4 @@ claude plugin install git-utils@my-claude-marketplace --scope project
 
 ## Dependencies
 
-**gh CLI (required by gg-coderabbit and gg-merge-cleanup)** — used for GitHub API calls (fetching PR comments, resolving threads, checking remote status).
+**gh CLI (required by gg-pr, gg-coderabbit and gg-merge-cleanup)** — used for GitHub API calls (fetching PR comments, resolving threads, checking remote status).
