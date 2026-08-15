@@ -14,7 +14,7 @@
 | [claude-code-utils](./plugins/claude-code-utils) | 3 skills | Claude Code know-how + session analysis |
 | [find-font](./plugins/find-font) | 4 skills + MCP | Font pairing (orchestrator pattern) |
 | [nextjs-utils](./plugins/nextjs-utils) | 2 skills + MCP | Next.js docs & dev guidance |
-| [git-utils](./plugins/git-utils) | 5 skills | Git & GitHub workflows + a grilling skill |
+| [git-utils](./plugins/git-utils) | 6 skills | Git & GitHub workflows + a grilling skill |
 
 ## Installation - User Scope
 
