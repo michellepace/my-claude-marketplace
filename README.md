@@ -15,7 +15,7 @@
 | [find-font](./plugins/find-font) | 4 skills + MCP | Font pairing (orchestrator pattern) |
 | [nextjs-utils](./plugins/nextjs-utils) | 2 skills + MCP | Next.js docs & dev guidance |
 | [git-utils](./plugins/git-utils) | 5 skills | Git & GitHub workflows |
-| [my-conventions](./plugins/my-conventions) | 2 skills | Personal conventions: uv scripts, plugin management, grilling |
+| [my-conventions](./plugins/my-conventions) | 3 skills | Personal conventions: uv scripts, plugin management, grilling |
 
 ## Installation - User Scope
 

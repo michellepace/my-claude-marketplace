@@ -16,10 +16,16 @@ claude plugin install my-conventions@my-claude-marketplace --scope project
 
 | Run Skill | What it does |
 | :-------- | :----------- |
+| [`/my-manage-plugins`](skills/my-manage-plugins/SKILL.md) | Manage Claude plugins and marketplaces, always at project scope. Auto-triggers |
 | [`/my-uv-pep723`](skills/my-uv-pep723/SKILL.md) | uv + PEP 723 conventions for standalone Python scripts |
 | [`/my-grilling`](skills/my-grilling/SKILL.md) | Get relentlessly grilled on your plan, decision, or idea |
 
 ## Usage Examples
+
+**Plugins:**
+
+- `/my-manage-plugins` install the receipts plugin from the official marketplace
+- Or just ask: "which plugins are enabled in this project?" (Claude picks the skill up itself)
 
 **Standalone Python script:**
 
