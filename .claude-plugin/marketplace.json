@@ -25,7 +25,7 @@
     {
       "name": "git-utils",
       "source": "./plugins/git-utils",
-      "description": "Git & GitHub workflow utilities, plus grilling (not git)"
+      "description": "Git & GitHub workflow utilities"
     },
     {
       "name": "my-conventions",

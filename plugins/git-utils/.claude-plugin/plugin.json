@@ -1,5 +1,5 @@
 {
   "name": "git-utils",
-  "description": "Git & GitHub workflow utilities, plus grilling (not git)",
-  "version": "1.1.2"
+  "description": "Git & GitHub workflow utilities",
+  "version": "1.2.0"
 }

@@ -1,5 +1,5 @@
 ---
-name: gg-grilling
+name: my-grilling
 description: Grill the user relentlessly about a plan, decision, or idea. Use when the user wants to stress-test their thinking, or uses any 'grill' trigger phrases.
 argument-hint: '[the decision/plan/idea to grill]'
 user-invocable: true

@@ -17,6 +17,7 @@ claude plugin install my-conventions@my-claude-marketplace --scope project
 | Run Skill | What it does |
 | :-------- | :----------- |
 | [`/my-uv-pep723`](skills/my-uv-pep723/SKILL.md) | uv + PEP 723 conventions for standalone Python scripts |
+| [`/my-grilling`](skills/my-grilling/SKILL.md) | Get relentlessly grilled on your plan, decision, or idea |
 
 ## Usage Examples
 
@@ -24,6 +25,10 @@ claude plugin install my-conventions@my-claude-marketplace --scope project
 
 - `/my-uv-pep723` write a script that dedupes lines in a file
 - Or just ask: "make me a throwaway script to plot this CSV" (Claude picks the skill up itself)
+
+**Grilling:**
+
+- `/my-grilling` "stress-test my caching strategy"
 
 ## Why This Plugin Exists
 
