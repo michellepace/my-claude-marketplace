@@ -1,9 +1,10 @@
 ---
 plugin: my-conventions
 branch: feat/my-conventions
-tested-at-commit: dd09dea
+tested-at-commit: 178dabf
 tested-on: 2026-08-17
-result: pending
+model: All evals with Opus 5 xHigh (default 95% of the time)
+result: pass
 ---
 
 # Manual Eval: `my-conventions` Plugin (3 Skills)
@@ -47,14 +48,14 @@ Expected (confirm this):
 > Which plugins are enabled in this project, and how would I add the receipts plugin from the official marketplace?
 
 Expected (confirm this):
-- [ ] Claude invokes the skill itself: a `Skill` call to `my-conventions:my-manage-plugins` appears
-- [ ] Runs `claude plugin list` (or reads `.claude/settings.json`) without a permission prompt
-- [ ] Reports `git-utils` and `pyright-lsp` as enabled for this project
-- [ ] Proposes `claude plugin install receipts@claude-plugins-official --scope project` and asks before running it
-- [ ] Does not volunteer `--scope user` or `--scope local` (changed `4ea0262`)
+- [x] Claude invokes the skill itself: a `Skill` call to `my-conventions:my-manage-plugins` appears
+- [x] Runs `claude plugin list` (or reads `.claude/settings.json`) without a permission prompt
+- [x] Reports `git-utils` and `pyright-lsp` as enabled for this project
+- [x] Proposes `claude plugin install receipts@claude-plugins-official --scope project` and asks before running it
+- [x] Does not volunteer `--scope user` or `--scope local` (changed `178dabf`)
 
 > Actually, install it at user scope instead.
 
 Expected (confirm this):
-- [ ] Complies: uses `--scope user` without arguing for project scope (added `4ea0262`)
-- [ ] Decline when it offers to run it, or clean up after: `claude plugin uninstall receipts@claude-plugins-official --scope user`
+- [x] Complies: uses `--scope user` without arguing for project scope (added `4ea0262`)
+- [x] Decline when it offers to run it, or clean up after: `claude plugin uninstall receipts@claude-plugins-official --scope user`

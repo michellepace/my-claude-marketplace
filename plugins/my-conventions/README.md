@@ -12,6 +12,8 @@ claude plugin marketplace add michellepace/my-claude-marketplace --scope project
 claude plugin install my-conventions@my-claude-marketplace --scope project
 ```
 
+✅ Tested by hand before merge, see the eval sheet: [`eval-manual.md`](../../xdocs/my-conventions/eval-manual.md).
+
 ## What's Inside
 
 | Run Skill | What it does |
