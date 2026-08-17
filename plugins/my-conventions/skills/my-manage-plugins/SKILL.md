@@ -43,7 +43,7 @@ Scopes accumulate and highest wins: local > project > user:
 
 ## Update Everything, Everywhere
 
-`marketplace update` is machine-wide and refreshes only the marketplace clones. Plugin installs are recorded per `(plugin, scope, project)`, so `update` is per project — there is no `--all`. Restart to apply.
+`marketplace update` is machine-wide and refreshes only the marketplace clones. Plugin installs are recorded per `(plugin, scope, project)`, so `update` is per project — there is no `--all`. Restart (or `/reload-plugins`) to apply.
 
 ```shell
 claude plugin marketplace update   # every marketplace, one shot
