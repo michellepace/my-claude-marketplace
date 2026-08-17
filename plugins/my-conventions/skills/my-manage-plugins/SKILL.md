@@ -9,20 +9,22 @@ allowed-tools:
   - Bash(claude plugin list *)
   - Bash(claude plugin marketplace list *)
   - Bash(claude plugin details *)
-  - Bash(jq '{enabledPlugins, extraKnownMarketplaces}' *)
+  - Bash(jq *)
 ---
 
 # Plugins and Marketplaces
 
-Source of truth is `enabledPlugins` and `extraKnownMarketplaces` in a settings file; the CLI just edits it. Scopes (highest wins: local > project > user):
+Source of truth is `enabledPlugins` and `extraKnownMarketplaces` in a settings file; the CLI just edits it.
 
-- **project** `.claude/settings.json` — my default: "this project" means this file, and every write takes `--scope project` (the CLI never defaults to project — usually `user`)
+Scopes accumulate and highest wins: local > project > user:
+
+- **project** `.claude/settings.json` — my default: every write takes `--scope project` (the CLI never defaults to project — usually `user`)
 - **user** `~/.claude/settings.json` — may be a small number of global plugins in here
 - **local** `.claude/settings.local.json` — should never be in play
 
 | To… | Run |
 | :-- | :-- |
-| See this project's plugins (`true` = enabled) and marketplaces | `jq '{enabledPlugins, extraKnownMarketplaces}' <settings.json>` |
+| See this project's plugins (`true` = enabled) and marketplaces | `jq '{file: input_filename, enabledPlugins, extraKnownMarketplaces}' ~/.claude/settings.json .claude/settings.json .claude/settings.local.json` |
 | Find which marketplace offers a plugin | `claude plugin list --json --available \| jq -r '.available[] \| select(.name=="<name>") \| .marketplaceName'` |
 | Inspect an installed plugin | `claude plugin details <name>@<mkt>` |
 | Add a marketplace | `claude plugin marketplace add <owner/repo> --scope project` |
