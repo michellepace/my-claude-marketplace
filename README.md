@@ -14,7 +14,8 @@
 | [claude-code-utils](./plugins/claude-code-utils) | 3 skills | Claude Code know-how + session analysis |
 | [find-font](./plugins/find-font) | 4 skills + MCP | Font pairing (orchestrator pattern) |
 | [nextjs-utils](./plugins/nextjs-utils) | 2 skills + MCP | Next.js docs & dev guidance |
-| [git-utils](./plugins/git-utils) | 6 skills | Git & GitHub workflows + a grilling skill |
+| [git-utils](./plugins/git-utils) | 5 skills | Git & GitHub workflows |
+| [my-conventions](./plugins/my-conventions) | 3 skills | Personal conventions: uv scripts, plugin management, grilling |
 
 ## Installation - User Scope
 
@@ -77,7 +78,7 @@ Both commands write to [.claude/settings.json](.claude/settings.json):
 
 To disable, uninstall, or remove **plugins** at project scope use: Claude Code terminal > `/plugins` > ...
 
-> **Note:** `claude plugin marketplace remove` does not support `--scope`. It removes the marketplace globally and uninstalls all its plugins. To remove a marketplace from project scope only, delete its `extraKnownMarketplaces` entry from `.claude/settings.json` manually. For everything else, stick to `/plugins` interface.
+> **Note:** `claude plugin marketplace remove` accepts `--scope`. Pass `--scope project` to remove the marketplace from this repo only. Omit the flag and it is removed from every scope, along with all its plugins.
 
 ---
 
