@@ -9,37 +9,37 @@ allowed-tools:
   - Bash(claude plugin list *)
   - Bash(claude plugin marketplace list *)
   - Bash(claude plugin details *)
+  - Bash(jq '{enabledPlugins, extraKnownMarketplaces}' *)
 ---
 
-# Plugins and Marketplaces: manage via CLI, project scope by default
+# Plugins and Marketplaces
 
-Use user or local scope only when asked.
+Source of truth is `enabledPlugins` and `extraKnownMarketplaces` in a settings file; the CLI just edits it. Scopes (highest wins: local > project > user):
 
-```shell
-# Discover the full command set
-claude plugin --help
-claude plugin marketplace --help
+- **project** `.claude/settings.json` — my default: "this project" means this file, and every write takes `--scope project` (the CLI never defaults to project — usually `user`)
+- **user** `~/.claude/settings.json` — may be a small number of global plugins in here
+- **local** `.claude/settings.local.json` — should never be in play
 
-# Inspect
-claude plugin marketplace list    # configured marketplaces
-claude plugin list                # installed plugins and enabled state
-claude plugin details <name>      # a plugin's components and token cost
+| To… | Run |
+| :-- | :-- |
+| See this project's plugins (`true` = enabled) and marketplaces | `jq '{enabledPlugins, extraKnownMarketplaces}' <settings.json>` |
+| Find which marketplace offers a plugin | `claude plugin list --json --available \| jq -r '.available[] \| select(.name=="<name>") \| .marketplaceName'` |
+| Inspect an installed plugin | `claude plugin details <name>@<mkt>` |
+| Add a marketplace | `claude plugin marketplace add <owner/repo> --scope project` |
+| Refresh marketplaces from source | `claude plugin marketplace update` |
+| Remove a marketplace from this project only | `claude plugin marketplace remove <mkt> --scope project` |
+| Install / enable / disable / uninstall a plugin | `claude plugin <verb> <name>@<mkt> --scope project` |
+| Anything else | `claude plugin --help`, `claude plugin <cmd> --help` |
 
-# Change, --scope project unless asked otherwise
-claude plugin marketplace add anthropics/claude-plugins-official --scope project
-claude plugin marketplace update  # re-fetch marketplaces from their source
-claude plugin install receipts@claude-plugins-official --scope project
-claude plugin disable receipts@claude-plugins-official --scope project
-claude plugin enable receipts@claude-plugins-official --scope project
-claude plugin uninstall receipts@claude-plugins-official --scope project
-```
+## Replying
 
-`marketplace add` and `install` write to the project's `.claude/settings.json`: `extraKnownMarketplaces` and `enabledPlugins`.
+To the point: a table for plugin state (✅ / ❌), a code block for commands to run, one line of context if needed. No commentary on what wasn't asked.
 
 ## Gotchas
 
-- `claude plugin marketplace remove` has no `--scope`. It is global and uninstalls every plugin from that marketplace. To drop a marketplace from one project only, delete its `extraKnownMarketplaces` entry in `.claude/settings.json` by hand.
-- `claude plugin list` is a machine-wide aggregate across every project, hence duplicates. For a true per-project view, read that project's `.claude/settings.json` and look at `enabledPlugins`.
+- `claude plugin list` and `claude plugin marketplace list` are machine-wide with duplicates — never a per-project answer; read the settings file.
+- `details` only sees installed plugins, and `--available` only works with `--json` — hence the "which marketplace" row.
+- `marketplace remove` without `--scope` hits every scope and uninstalls that marketplace's plugins.
 
 ## Testing a Plugin Locally
 
