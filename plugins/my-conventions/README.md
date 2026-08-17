@@ -1,51 +1,41 @@
 # Plugin: `my-conventions`
 
-**Personal working conventions, installed everywhere:** the defaults I want in every Claude Code session, whatever the project. Standalone Python scripts with uv, plugin management at project scope, and grilling.
+This is more for me than for you. The Skills contain my preferences and conventions. If you use any of these, read through each top to bottom to modify.
 
-Add marketplace and install this plugin (project scope):
+✅ Tested by hand. See the eval sheet: [`eval-manual.md`](../../xdocs/my-conventions/eval-manual.md).
+
+Add and install (user scope):
 
 ```bash
-# 1. Add Marketplace
-claude plugin marketplace add michellepace/my-claude-marketplace --scope project
-
-# 2. Install Plugin "my-conventions"
-claude plugin install my-conventions@my-claude-marketplace --scope project
+claude plugin marketplace add michellepace/my-claude-marketplace --scope user
+claude plugin install my-conventions@my-claude-marketplace       --scope user
 ```
-
-✅ Tested by hand before merge, see the eval sheet: [`eval-manual.md`](../../xdocs/my-conventions/eval-manual.md).
 
 ## What's Inside
 
-| Run Skill | What it does |
-| :-------- | :----------- |
-| [`/my-manage-plugins`](skills/my-manage-plugins/SKILL.md) | Manage Claude plugins and marketplaces, always at project scope. Auto-triggers |
-| [`/my-uv-pep723`](skills/my-uv-pep723/SKILL.md) | uv + PEP 723 conventions for standalone Python scripts |
-| [`/my-grilling`](skills/my-grilling/SKILL.md) | Get relentlessly grilled on your plan, decision, or idea |
+| Run Skill | What it does | Auto-invokes |
+| :-------- | :----------- | :----------- |
+| [`/my-manage-plugins`](skills/my-manage-plugins/SKILL.md) | Manage Claude plugins and marketplaces | Yes |
+| [`/my-uv-pep723`](skills/my-uv-pep723/SKILL.md) | Make standalone uv Python scripts | Yes |
+| [`/my-grilling`](skills/my-grilling/SKILL.md) | Get grilled on an idea to thrash it out | No |
 
 ## Usage Examples
 
-**Plugins:**
+[`/my-manage-plugins`](skills/my-manage-plugins/SKILL.md)
+- *"for my plugins, update everything, everywhere"*
+- *"which plugins are applied to this project?"*
+- *"install matt pocock plugin in claude-plugins-official"*
 
-- `/my-manage-plugins` install the receipts plugin from the official marketplace
-- Or just ask: "which plugins are enabled in this project?" (Claude picks the skill up itself)
+[`/my-uv-pep723`](skills/my-uv-pep723/SKILL.md)
+- *"use python + rich to visualise data.tsv (Edward Tufte: show me the numbers!)"*
+- *"make me a throwaway script to plot this CSV"*
 
-**Standalone Python script:**
-
-- `/my-uv-pep723` write a script that dedupes lines in a file
-- Or just ask: "make me a throwaway script to plot this CSV" (Claude picks the skill up itself)
-
-**Grilling:**
-
-- `/my-grilling` "stress-test my caching strategy"
+[`/my-grilling`](skills/my-grilling/SKILL.md)
+- *"I'm not sure if I need to build an MCP for this..."*
+- (Original first version from Matt Pocock, +formatting)
 
 ## Why This Plugin Exists
 
-`~/.claude/CLAUDE.md` loads into every session, so it has to stay slim. These conventions used to live there. Now they live here, versioned and shareable.
+`~/.claude/CLAUDE.md` loads into every session, so it has to stay slim. These conventions used to live there. Now they live here, versioned and visible. It's one of the two global plugins I have; everything else is at project scope.
 
-A skill costs nothing until it is invoked. The one exception is a skill Claude may trigger on its own: its one-line description sits in context, and its body loads only when needed. Either way, cheaper than a paragraph in CLAUDE.md.
-
-## Dependencies
-
-**uv (required by my-uv-pep723)**: the skill runs `uv init --script`, `uv add --script` and `uv run`.
-
-**Local uv docs (optional, my-uv-pep723)**: for uv questions the skill cannot answer it reads `~/projects/python/docs-for-ai/collections/uv/INDEX.xml`, a local docs collection. Without it, the skill still works from what it knows.
+I am swimming in plugins, `/my-manage-plugins` is wonderfully liberating.
