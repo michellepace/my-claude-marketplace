@@ -11,9 +11,9 @@ allowed-tools:
   - Bash(claude plugin details *)
 ---
 
-# Plugins and Marketplaces
+# Plugins and Marketplaces: manage via CLI, project scope by default
 
-Marketplaces and plugins are always managed at project scope, never user or local.
+Use user or local scope only when asked.
 
 ```shell
 # Discover the full command set
@@ -25,7 +25,7 @@ claude plugin marketplace list    # configured marketplaces
 claude plugin list                # installed plugins and enabled state
 claude plugin details <name>      # a plugin's components and token cost
 
-# Change, always --scope project
+# Change, --scope project unless asked otherwise
 claude plugin marketplace add anthropics/claude-plugins-official --scope project
 claude plugin marketplace update  # re-fetch marketplaces from their source
 claude plugin install receipts@claude-plugins-official --scope project
@@ -34,7 +34,7 @@ claude plugin enable receipts@claude-plugins-official --scope project
 claude plugin uninstall receipts@claude-plugins-official --scope project
 ```
 
-Both commands write to the project's `.claude/settings.json`: `extraKnownMarketplaces` and `enabledPlugins`.
+`marketplace add` and `install` write to the project's `.claude/settings.json`: `extraKnownMarketplaces` and `enabledPlugins`.
 
 ## Gotchas
 
