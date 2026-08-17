@@ -78,7 +78,7 @@ Both commands write to [.claude/settings.json](.claude/settings.json):
 
 To disable, uninstall, or remove **plugins** at project scope use: Claude Code terminal > `/plugins` > ...
 
-> **Note:** `claude plugin marketplace remove` does not support `--scope`. It removes the marketplace globally and uninstalls all its plugins. To remove a marketplace from project scope only, delete its `extraKnownMarketplaces` entry from `.claude/settings.json` manually. For everything else, stick to `/plugins` interface.
+> **Note:** `claude plugin marketplace remove` accepts `--scope`. Pass `--scope project` to remove the marketplace from this repo only. Omit the flag and it is removed from every scope, along with all its plugins.
 
 ---
 
