@@ -11,11 +11,11 @@
 
 | Plugin | Type | Purpose |
 | :----- | :--- | :------ |
-| [claude-code-utils](./plugins/claude-code-utils) | 3 skills | Claude Code know-how + session analysis |
-| [find-font](./plugins/find-font) | 4 skills + MCP | Font pairing (orchestrator pattern) |
-| [nextjs-utils](./plugins/nextjs-utils) | 2 skills + MCP | Next.js docs & dev guidance |
-| [git-utils](./plugins/git-utils) | 5 skills | Git & GitHub workflows |
-| [my-conventions](./plugins/my-conventions) | 3 skills | Personal conventions: uv scripts, plugin management, grilling |
+| [`alwayson-misc`](./plugins/alwayson-misc) | 3 skills | uv scripts, plugin management, grill-me |
+| [`claude-code-utils`](./plugins/claude-code-utils) | 3 skills | Claude Code know-how + session analysis |
+| [`find-font`](./plugins/find-font) | 4 skills + MCP | Font pairing (orchestrator pattern) |
+| [`git-utils`](./plugins/git-utils) | 5 skills | Git & GitHub workflows |
+| [`nextjs-utils`](./plugins/nextjs-utils) | 2 skills + MCP | Next.js docs & dev guidance |
 
 ## Installation - User Scope
 
@@ -31,11 +31,11 @@ Then install a plugin:
 /plugin install {plugin-name}@my-claude-marketplace
 ```
 
-Or browse available plugins, run `/plugin` > Marketplace > Select "my-claude-marketplace" > Browse Plugins > Install...
+Or browse: `/plugin` > Marketplace > "my-claude-marketplace" > Browse Plugins > Install...
 
 ## Installation - Project Scope
 
-Commit plugin configuration to the repo so every collaborator gets the same setup. Register a marketplace and install plugins at project scope:
+Commit the plugin config so every collaborator gets the same setup:
 
 ```bash
 # 1. Add Marketplace (writes "extraKnownMarketplaces")
@@ -76,9 +76,9 @@ Both commands write to [.claude/settings.json](.claude/settings.json):
 }
 ```
 
-To disable, uninstall, or remove **plugins** at project scope use: Claude Code terminal > `/plugins` > ...
+To disable, uninstall, or remove **plugins** at project scope, use `/plugins` in the Claude Code terminal.
 
-> **Note:** `claude plugin marketplace remove` accepts `--scope`. Pass `--scope project` to remove the marketplace from this repo only. Omit the flag and it is removed from every scope, along with all its plugins.
+> **Note:** `claude plugin marketplace remove --scope project` removes the marketplace from this repo only. Omit the flag and it goes from every scope, along with all its plugins.
 
 ---
 
@@ -86,7 +86,7 @@ To disable, uninstall, or remove **plugins** at project scope use: Claude Code t
 
 ### 1. About Plugin Scope
 
-Plugins can be enabled at four scope levels. The override order (highest to lowest) is: managed > local > project > user.
+Plugins can be enabled at four scopes. Highest wins: managed > local > project > user.
 
 | Scope | Settings File | Who it affects | Shared with team? |
 | :---- | :------------ | :------------- | :---------------- |
@@ -97,12 +97,12 @@ Plugins can be enabled at four scope levels. The override order (highest to lowe
 
 ### 2. Developing Plugins
 
-Test a plugin locally without installing:
+Test a plugin without installing it:
 
 ```shell
 claude --plugin-dir ~/projects/my-claude-marketplace/plugins/git-utils
 ```
 
-`--plugin-dir` provides a temporary session override that takes precedence over all scopes (local, project, user) except managed — see table above.
+`--plugin-dir` is a session-only override that beats every scope except managed — see the table above.
 
-Edit your files, run `/reload-plugins` (or restart Claude Code), test. No install/uninstall needed.
+Edit, run `/reload-plugins` (or restart Claude Code), test. No install/uninstall needed.

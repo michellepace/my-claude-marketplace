@@ -1,5 +1,5 @@
 ---
-name: my-manage-plugins
+name: manage-plugins
 description: Manage Claude plugins and marketplaces — use whenever these come up.
 user-invocable: true
 disable-model-invocation: false

@@ -28,9 +28,9 @@
       "description": "Git & GitHub workflow utilities"
     },
     {
-      "name": "my-conventions",
-      "source": "./plugins/my-conventions",
-      "description": "Personal working conventions, installed everywhere: standalone Python via uv, plugin management, and grilling"
+      "name": "alwayson-misc",
+      "source": "./plugins/alwayson-misc",
+      "description": "Standalone Python via uv, plugin management, and grill-me"
     }
   ]
 }
