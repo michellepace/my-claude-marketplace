@@ -1,5 +1,5 @@
 ---
-name: my-uv-pep723
+name: uv-pep723
 description: uv + PEP 723 conventions for standalone Python scripts. Use when creating, editing or running a single-file script, whether outside or within a uv project.
 user-invocable: true
 disable-model-invocation: false

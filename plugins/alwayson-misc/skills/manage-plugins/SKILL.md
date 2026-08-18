@@ -1,5 +1,5 @@
 ---
-name: my-manage-plugins
+name: manage-plugins
 description: Manage Claude plugins and marketplaces — use whenever these come up.
 user-invocable: true
 disable-model-invocation: false
@@ -18,15 +18,15 @@ allowed-tools:
 
 Source of truth is `enabledPlugins` and `extraKnownMarketplaces` in a settings file; the CLI just edits it.
 
-Scopes accumulate and highest wins: local > project > user:
+Plugins from all scopes merge; on conflict the highest wins — local > project > user:
 
-- **project** `.claude/settings.json` — my default: every write takes `--scope project` (the CLI never defaults to project — usually `user`)
-- **user** `~/.claude/settings.json` — may be a small number of global plugins in here
 - **local** `.claude/settings.local.json` — should never be in play
+- **user** `~/.claude/settings.json` — a few always-on plugins live here
+- **project** `.claude/settings.json` — my default: every write takes `--scope project` (the CLI defaults to `user`, never project)
 
 | To… | Run |
 | :-- | :-- |
-| See this project's plugins (`true` = enabled) and marketplaces | `jq '{file: input_filename, enabledPlugins, extraKnownMarketplaces}' ~/.claude/settings.json .claude/settings.json .claude/settings.local.json` |
+| See this project's plugins (`true` = enabled) and marketplaces | `jq '{file: input_filename, enabledPlugins, extraKnownMarketplaces}' .claude/settings.local.json .claude/settings.json ~/.claude/settings.json 2>/dev/null` |
 | Find which marketplace offers a plugin | `claude plugin list --json --available \| jq -r '.available[] \| select(.name=="<name>") \| .marketplaceName'` |
 | Inspect an installed plugin | `claude plugin details <name>@<mkt>` |
 | Add a marketplace | `claude plugin marketplace add <owner/repo> --scope project` |
@@ -37,11 +37,12 @@ Scopes accumulate and highest wins: local > project > user:
 
 ## Gotchas
 
-- `claude plugin list` and `claude plugin marketplace list` are machine-wide with duplicates — never a per-project answer; read the settings file.
+- `claude plugin list` and `claude plugin marketplace list` are machine-wide and contain duplicates — never a per-project answer; read the settings file.
 - `details` only sees installed plugins, and `--available` only works with `--json` — hence the "which marketplace" row.
 - `marketplace remove` without `--scope` hits every scope and uninstalls that marketplace's plugins.
+- The `jq` row lists files highest-precedence first, so the **first** hit wins. A missing file is normal (exits 2; the output is still complete).
 
-## Update Everything, Everywhere
+## Update All Plugins, Everywhere
 
 `marketplace update` is machine-wide and refreshes only the marketplace clones. Plugin installs are recorded per `(plugin, scope, project)`, so `update` is per project — there is no `--all`. Restart (or `/reload-plugins`) to apply.
 
@@ -60,7 +61,9 @@ claude plugin list --json | jq -r '.[] | select(.scope=="project") | "\(.project
   done
 ```
 
-To preview, swap `claude plugin update` for `echo`. Updating leaves the old version's cache dir behind, and `prune` only removes dependencies — list the dangling ones (safe to `rm -rf`) with:
+To preview, swap `claude plugin update` for `echo`.
+
+Updating leaves the old version's cache dir behind, and `prune` only removes dependencies. List the dangling ones (safe to `rm -rf`) with:
 
 ```shell
 comm -13 \
@@ -70,7 +73,7 @@ comm -13 \
 
 ## Testing a Plugin Locally
 
-No install needed. Edit, then `/reload-plugins` or restart:
+No install needed. Edit, then run `/reload-plugins` or restart:
 
 ```shell
 claude --plugin-dir ~/projects/my-claude-marketplace/plugins/<plugin-name>

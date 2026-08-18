@@ -1,53 +1,54 @@
 # CLAUDE.md
 
-A Claude Code **marketplace** — a monorepo of plugins.
+A Claude Code **marketplace** — a monorepo of Plugins.
 
-## Plugins
-
-| Plugin | Purpose |
-| :--- | :--- |
-| `claude-code-utils` | Claude Code know-how + session analysis |
-| `find-font` | Google Font pairing (orchestrator pattern, MCP) |
-| `git-utils` | Git/GitHub workflows |
-| `my-conventions` | Personal conventions: uv scripts, plugin management, grilling |
-| `nextjs-utils` | Next.js docs & shadcn guidance (MCP) |
+Plugins are described in this manifest: `.claude-plugin/marketplace.json`
 
 ## Plugin Anatomy
 
-Only the manifest is required; the rest is optional:
+Everything is optional — these paths are auto-discovered:
 
 ```text
 plugins/<name>/
-├── .claude-plugin/plugin.json  # Required manifest
-├── commands/*.md               # Slash commands
-├── agents/*.md                 # Subagents
-├── skills/*/SKILL.md
-├── hooks/hooks.json
-├── .mcp.json
+├── .claude-plugin/plugin.json  # Manifest — nothing else goes in here
+├── skills/<skill>/SKILL.md     # → /<plugin>:<skill>
+├── agents/<agent>.md           # → @<plugin>:<agent>
+├── hooks/hooks.json            # Exact filename
+├── .mcp.json                   # MCP servers
 ├── bin/                        # Executables on Bash PATH
 ├── scripts/                    # Helpers (via ${CLAUDE_PLUGIN_ROOT})
 ├── README.md
-└── ...                         # Freeform dirs, eg references/, examples/
+└── ...                         # Freeform, eg references/, examples/
 ```
 
-## Testing a Plugin Locally
+Unused here, see README appendix: `workflows/`, `output-styles/`, `themes/`, `monitors/monitors.json`, `.lsp.json`, `settings.json`
 
-No install cycle — edit, restart, test:
+Rules that bite:
+
+- `${CLAUDE_PLUGIN_ROOT}` = absolute path to the plugin dir. Use it for every path to a bundled file in the plugin as relative paths break.
+- **No `../` escapes.** Installed plugins are copied to `~/.claude/plugins/cache`, so paths outside the plugin root break.
+- A `CLAUDE.md` at a plugin root is **not** loaded as context. Ship instructions as a skill.
+- A single-skill plugin can put `SKILL.md` at the plugin root; set frontmatter `name`.
+
+## Testing Plugins
+
+Before committing, check the plugin (manifest, then skills/agents/commands):
 
 ```shell
-claude --plugin-dir ~/projects/my-claude-marketplace/plugins/<plugin-name>
+claude plugin validate ./plugins/git-utils   # see --help for flags
 ```
+
+Test a plugin whilst developing without installing it:
+
+```shell
+claude --plugin-dir ~/projects/my-claude-marketplace/plugins/git-utils
+```
+
+`--plugin-dir` is a session-only override that beats every scope except managed.
 
 ## Python scripts
 
-Live under `plugins/<name>/**/scripts/` are **standalone PEP 723 scripts**:
-
-```python
-# /// script
-# requires-python = ">=3.14"
-# dependencies = []
-# ///
-```
+Live under `plugins/<name>/**/*.py` (uv PEP 723).
 
 Development commands:
 

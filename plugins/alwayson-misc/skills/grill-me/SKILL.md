@@ -1,5 +1,5 @@
 ---
-name: my-grilling
+name: grill-me
 description: Grill the user relentlessly about a plan, decision, or idea. Use when the user wants to stress-test their thinking, or uses any 'grill' trigger phrases.
 argument-hint: '[the decision/plan/idea to grill]'
 user-invocable: true
@@ -15,4 +15,4 @@ If a *fact* can be found by exploring the environment (filesystem, tools, etc.),
 
 Do not act on it until I confirm we have reached a shared understanding.
 
-**Question format & style:** Ask in your normal TUI reply, not the `AskUserQuestion` tool. This makes it easier for me to scroll back. Format that reply however you like e.g. emojis etc. Use short sentences, plainly worded, clear but concise.
+Please don't use the `AskUserQuestion` tool.
