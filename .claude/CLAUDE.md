@@ -32,22 +32,19 @@ Rules that bite:
 
 ## Testing Plugins
 
-Test a plugin without installing it:
+Before committing, check the plugin (manifest, then skills/agents/commands):
+
+```shell
+claude plugin validate ./plugins/git-utils   # see --help for flags
+```
+
+Test a plugin whilst developing without installing it:
 
 ```shell
 claude --plugin-dir ~/projects/my-claude-marketplace/plugins/git-utils
 ```
 
 `--plugin-dir` is a session-only override that beats every scope except managed.
-
-Edit, run `/reload-plugins` (or restart Claude Code), test. `/reload-plugins` picks up
-skills, agents, hooks, and plugin MCP/LSP servers; monitors need a restart.
-
-Check the manifest before publishing:
-
-```shell
-claude plugin validate ./plugins/git-utils --strict   # --strict = warnings are errors
-```
 
 ## Python scripts
 
