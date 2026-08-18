@@ -1,16 +1,8 @@
 # CLAUDE.md
 
-A Claude Code **marketplace** — a monorepo of plugins.
+A Claude Code **marketplace** — a monorepo of Plugins.
 
-## Plugins
-
-| Plugin | Purpose |
-| :--- | :--- |
-| `alwayson-misc` | uv scripts, plugin management, grill-me |
-| `claude-code-utils` | Claude Code know-how + session analysis |
-| `find-font` | Google Font pairing (orchestrator pattern, MCP) |
-| `git-utils` | Git/GitHub workflows |
-| `nextjs-utils` | Next.js docs & shadcn guidance (MCP) |
+Plugins are described in this manifest: `.claude-plugin/marketplace.json`
 
 ## Plugin Anatomy
 
@@ -30,24 +22,21 @@ plugins/<name>/
 └── ...                         # Freeform dirs, eg references/, examples/
 ```
 
-## Testing a Plugin Locally
+## Testing Plugins
 
-No install cycle — edit, restart, test:
+Test a plugin without installing it:
 
 ```shell
-claude --plugin-dir ~/projects/my-claude-marketplace/plugins/<plugin-name>
+claude --plugin-dir ~/projects/my-claude-marketplace/plugins/git-utils
 ```
+
+`--plugin-dir` is a session-only override that beats every scope except managed.
+
+Edit, run `/reload-plugins` (or restart Claude Code), test.
 
 ## Python scripts
 
-Live under `plugins/<name>/**/scripts/` are **standalone PEP 723 scripts**:
-
-```python
-# /// script
-# requires-python = ">=3.14"
-# dependencies = []
-# ///
-```
+Live under `plugins/<name>/**/*.py` (uv PEP 723).
 
 Development commands:
 
