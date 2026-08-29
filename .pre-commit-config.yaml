@@ -2,9 +2,10 @@ repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
     hooks:
-      - id: check-merge-conflict    # block on merge markers
+      - id: check-merge-conflict
         fail_fast: true
       - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
       - id: end-of-file-fixer
       - id: check-yaml
       - id: check-json
@@ -14,7 +15,7 @@ repos:
   - repo: https://github.com/DavidAnson/markdownlint-cli2
     rev: v0.23.2
     hooks:
-      - id: markdownlint-cli2       # lint + autofix markdown
+      - id: markdownlint-cli2       # rules .markdownlint-cli2.yaml
         args: [--fix]
 
   - repo: https://github.com/ComPWA/taplo-pre-commit
@@ -30,12 +31,12 @@ repos:
         args: [-w, -i, '2', -ci, -bn]
 
   - repo: https://github.com/shellcheck-py/shellcheck-py
-    rev: v0.11.0.1
+    rev: v0.11.0.1-1
     hooks:
       - id: shellcheck              # lint shell (read-only, after shfmt)
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.16.0
+    rev: v0.16.5
     hooks:
       - id: ruff-check              # lint + autofix first
         args: [--fix, --exit-non-zero-on-fix]
