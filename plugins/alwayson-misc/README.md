@@ -1,6 +1,6 @@
 # Plugin: `alwayson-misc`
 
-A Plugin with miscellaneous Skills but of which I always have on. They hardcode my own preferences.
+A Plugin of miscellaneous Skills that I always keep on. They hardcode my own preferences.
 
 ✅ Tested by hand, see eval sheet: [`eval-manual.md`](../../xdocs/alwayson-misc/eval-manual.md).
 
@@ -18,7 +18,7 @@ claude plugin install alwayson-misc@my-claude-marketplace        --scope user
 | [`/manage-plugins`](skills/manage-plugins/SKILL.md) | Manage Claude plugins and marketplaces | No |
 | [`/uv-pep723`](skills/uv-pep723/SKILL.md) | Make standalone uv Python scripts | Yes |
 | [`/grill-me`](skills/grill-me/SKILL.md) | Get grilled on an idea to thrash it out | No |
-| [`/vscode-profile`](skills/vscode-profiles/SKILL.md) | Answer VS Code profile questions — my machine only | No |
+| [`/vscode-profile`](skills/vscode-profiles/SKILL.md) | Answer VS Code profile questions | No |
 
 ## Usage Examples
 
