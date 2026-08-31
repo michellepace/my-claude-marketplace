@@ -15,7 +15,7 @@ claude plugin install alwayson-misc@my-claude-marketplace        --scope user
 
 | Run Skill | What it does | Auto-invokes |
 | :-------- | :----------- | :----------- |
-| [`/manage-plugins`](skills/manage-plugins/SKILL.md) | Manage Claude plugins and marketplaces | Yes |
+| [`/manage-plugins`](skills/manage-plugins/SKILL.md) | Manage Claude plugins and marketplaces | No |
 | [`/uv-pep723`](skills/uv-pep723/SKILL.md) | Make standalone uv Python scripts | Yes |
 | [`/grill-me`](skills/grill-me/SKILL.md) | Get grilled on an idea to thrash it out | No |
 | [`/vscode-profile`](skills/vscode-profiles/SKILL.md) | Answer VS Code profile questions — my machine only | No |
