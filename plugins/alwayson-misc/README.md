@@ -18,6 +18,7 @@ claude plugin install alwayson-misc@my-claude-marketplace        --scope user
 | [`/manage-plugins`](skills/manage-plugins/SKILL.md) | Manage Claude plugins and marketplaces | Yes |
 | [`/uv-pep723`](skills/uv-pep723/SKILL.md) | Make standalone uv Python scripts | Yes |
 | [`/grill-me`](skills/grill-me/SKILL.md) | Get grilled on an idea to thrash it out | No |
+| [`/vscode-profile`](skills/vscode-profiles/SKILL.md) | Answer VS Code profile questions — my machine only | No |
 
 ## Usage Examples
 
@@ -33,6 +34,11 @@ claude plugin install alwayson-misc@my-claude-marketplace        --scope user
 [`/grill-me`](skills/grill-me/SKILL.md)
 - *"I'm not sure if I need to build an MCP for this..."*
 - (Original first version from Matt Pocock, +formatting)
+
+[`/vscode-profile`](skills/vscode-profiles/SKILL.md)
+- *"what are in my custom profiles?"*
+- *"which profile is this project in?"*
+- (Hardcodes my Windows/WSL paths and profile hashes — useless on any other machine)
 
 ## Why This Plugin Exists
 

@@ -30,7 +30,7 @@
     {
       "name": "alwayson-misc",
       "source": "./plugins/alwayson-misc",
-      "description": "Standalone Python via uv, plugin management, and grill-me"
+      "description": "Standalone Python via uv, plugin management, grill-me, and my VS Code profiles"
     }
   ]
 }
