@@ -1,8 +1,6 @@
 # Plugin: `alwayson-misc`
 
-A Plugin of miscellaneous Skills that I always keep on. They hardcode my own preferences.
-
-✅ Tested by hand, see eval sheet: [`eval-manual.md`](../../xdocs/alwayson-misc/eval-manual.md).
+A Plugin of miscellaneous Skills that I always keep on. They hardcode my own preferences and machine. Tested, see eval sheet: [`eval-manual.md`](../../xdocs/alwayson-misc/eval-manual.md).
 
 Add and install (user scope):
 
@@ -11,13 +9,15 @@ claude plugin marketplace add michellepace/my-claude-marketplace --scope user
 claude plugin install alwayson-misc@my-claude-marketplace        --scope user
 ```
 
+Context-preserving to install at user scope (global). Only `/uv-pep723` auto-invokes and loads into Claude's context window. Better as a versioned Plugin that keeps `CLAUDE.md` slim.
+
 ## What's Inside
 
 | Run Skill | What it does | Auto-invokes |
 | :-------- | :----------- | :----------- |
-| [`/manage-plugins`](skills/manage-plugins/SKILL.md) | Manage Claude plugins and marketplaces | No |
-| [`/uv-pep723`](skills/uv-pep723/SKILL.md) | Make standalone uv Python scripts | Yes |
 | [`/grill-me`](skills/grill-me/SKILL.md) | Get grilled on an idea to thrash it out | No |
+| [`/manage-plugins`](skills/manage-plugins/SKILL.md) | Manage Claude plugins and marketplaces | No |
+| [`/uv-pep723`](skills/uv-pep723/SKILL.md) | Make standalone uv Python scripts | **YES** |
 | [`/vscode-profile`](skills/vscode-profiles/SKILL.md) | Answer VS Code profile questions | No |
 
 ## Usage Examples
@@ -26,6 +26,7 @@ claude plugin install alwayson-misc@my-claude-marketplace        --scope user
 - *"for my plugins, update everything, everywhere"*
 - *"which plugins are applied to this project?"*
 - *"install matt pocock plugin in claude-plugins-official"*
+- (I am swimming in plugins. This skill is a relief. 👈)
 
 [`/uv-pep723`](skills/uv-pep723/SKILL.md)
 - *"use python + rich to visualise data.tsv (Edward Tufte: show me the numbers!)"*
@@ -36,12 +37,6 @@ claude plugin install alwayson-misc@my-claude-marketplace        --scope user
 - (Original first version from Matt Pocock, +formatting)
 
 [`/vscode-profile`](skills/vscode-profiles/SKILL.md)
-- *"what are in my custom profiles?"*
+- *"What is in my custom profiles?"*
 - *"which profile is this project in?"*
 - (Hardcodes my Windows/WSL paths and profile hashes — useless on any other machine)
-
-## Why This Plugin Exists
-
-`~/.claude/CLAUDE.md` loads into every session, so it has to stay slim. Most of this used to live there; now it lives here, versioned and visible. It is one of my two always-on plugins — everything else is project scope.
-
-I am swimming in plugins; `/manage-plugins` is wonderfully liberating.

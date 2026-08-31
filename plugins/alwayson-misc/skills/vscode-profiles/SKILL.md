@@ -1,7 +1,7 @@
 ---
 name: vscode-profile
 description: Answer VSCode Profile questions on this machine
-argument-hint: '"What are in my custom profiles?"'
+argument-hint: '"What is in my custom profiles?"'
 user-invocable: true
 disable-model-invocation: true
 allowed-tools:
