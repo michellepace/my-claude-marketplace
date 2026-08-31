@@ -18,7 +18,7 @@ Context-preserving to install at user scope (global). Only `/uv-pep723` auto-inv
 | [`/grill-me`](skills/grill-me/SKILL.md) | Get grilled on an idea to thrash it out | No |
 | [`/manage-plugins`](skills/manage-plugins/SKILL.md) | Manage Claude plugins and marketplaces | No |
 | [`/uv-pep723`](skills/uv-pep723/SKILL.md) | Make standalone uv Python scripts | **YES** |
-| [`/vscode-profile`](skills/vscode-profiles/SKILL.md) | Answer VS Code profile questions | No |
+| [`/vscode-profiles`](skills/vscode-profiles/SKILL.md) | Answer VS Code profile questions | No |
 
 ## Usage Examples
 
@@ -36,7 +36,7 @@ Context-preserving to install at user scope (global). Only `/uv-pep723` auto-inv
 - *"I'm not sure if I need to build an MCP for this..."*
 - (Original first version from Matt Pocock, +formatting)
 
-[`/vscode-profile`](skills/vscode-profiles/SKILL.md)
+[`/vscode-profiles`](skills/vscode-profiles/SKILL.md)
 - *"What is in my custom profiles?"*
 - *"which profile is this project in?"*
 - (Hardcodes my Windows/WSL paths and profile hashes — useless on any other machine)

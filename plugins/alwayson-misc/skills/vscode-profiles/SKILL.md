@@ -1,5 +1,5 @@
 ---
-name: vscode-profile
+name: vscode-profiles
 description: Answer VSCode Profile questions on this machine
 argument-hint: '"What is in my custom profiles?"'
 user-invocable: true
@@ -13,7 +13,7 @@ allowed-tools:
 ---
 
 
-# Answer VS Code Profile Qustions
+# Answer VS Code Profile Questions
 
 Question: `$ARGUMENTS`
 
