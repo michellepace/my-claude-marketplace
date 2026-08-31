@@ -31,8 +31,8 @@ Source of truth is `enabledPlugins` and `extraKnownMarketplaces` in a settings f
 
 Plugins from all scopes merge; on conflict the highest wins — local > project > user:
 
-- **local** `.claude/settings.local.json` — should never be in play
-- **user** `~/.claude/settings.json` — a few always-on plugins live here
+- **local** `.claude/settings.local.json` — rarely in play; ask me if I want to migrate strays to project scope
+- **user** `~/.claude/settings.json` — alwayson-misc is okay to be here (it may not be). Anything else is likely my mistake: tell me, and offer `claude plugin uninstall <name>@<mkt> --scope user`.
 - **project** `.claude/settings.json` — my default: every write takes `--scope project` (the CLI defaults to `user`, never project)
 
 | To… | Run |
@@ -41,7 +41,7 @@ Plugins from all scopes merge; on conflict the highest wins — local > project 
 | Find which marketplace offers a plugin | `claude plugin list --json --available \| jq -r '.available[] \| select(.name=="<name>") \| .marketplaceName'` |
 | Inspect an installed plugin | `claude plugin details <name>@<mkt>` |
 | Add a marketplace | `claude plugin marketplace add <owner/repo> --scope project` |
-| Refresh marketplaces from source | `claude plugin marketplace update` |
+| Refresh every marketplace from source | `claude plugin marketplace update` |
 | Remove a marketplace from this project only | `claude plugin marketplace remove <mkt> --scope project` |
 | Install / enable / disable / update / uninstall a plugin | `claude plugin <verb> <name>@<mkt> --scope project` |
 | Anything else | `claude plugin --help`, `claude plugin <cmd> --help` |
@@ -55,32 +55,32 @@ Plugins from all scopes merge; on conflict the highest wins — local > project 
 
 ## Update All Plugins, Everywhere
 
-`marketplace update` is machine-wide and refreshes only the marketplace clones. Plugin installs are recorded per `(plugin, scope, project)`, so `update` is per project — there is no `--all`. Restart (or `/reload-plugins`) to apply.
+`marketplace update` is machine-wide and refreshes only the marketplace clones. Plugin installs are recorded per `(plugin, scope, project)`, so each install record must be updated from its own project — there is no `--all`. Restart (or `/reload-plugins`) to apply.
 
 ```shell
 claude plugin marketplace update   # every marketplace, one shot
 
-# user scope
-claude plugin list --json | jq -r '.[] | select(.scope=="user") | .id' | sort -u \
-| while read -r id; do claude plugin update "$id" --scope user; done
-
-# project scope — must cd into each project
-claude plugin list --json | jq -r '.[] | select(.scope=="project") | "\(.projectPath)\t\(.id)"' | sort -u \
-| while IFS=$'\t' read -r proj id; do
-    [ -d "$proj" ] || { echo "skip (missing): $proj"; continue; }
-    ( cd "$proj" && claude plugin update "$id" --scope project )
+# every install record — user, project, and local scope in one loop
+claude plugin list --json \
+| jq -r '.[] | [.id, .scope, .projectPath // ""] | @tsv' | sort -u \
+| while IFS=$'\t' read -r id scope proj; do
+    if [ -n "$proj" ] && [ ! -d "$proj" ]; then echo "skip (missing): $proj"; continue; fi
+    ( cd "${proj:-.}" && claude plugin update "$id" --scope "$scope" </dev/null )
   done
 ```
 
-To preview, swap `claude plugin update` for `echo`.
+To preview, swap `claude plugin update` for `echo`. The `</dev/null` stops a rare confirmation prompt (marketplace-changed install command) from swallowing the list — if an update fails on it, rerun that one alone.
 
-Updating leaves the old version's cache dir behind, and `prune` only removes dependencies. List the dangling ones (safe to `rm -rf`) with:
+**Never clean the cache by hand** — old version dirs are swept automatically ~14 days after an update. Deleting a dir that `~/.claude/plugins/installed_plugins.json` still references breaks that plugin silently (enabled in settings, files gone).
+
+**Verify health check — must print nothing:**
 
 ```shell
-comm -13 \
-  <(jq -r '.plugins[][].installPath' ~/.claude/plugins/installed_plugins.json | sort -u) \
-  <(find ~/.claude/plugins/cache -mindepth 3 -maxdepth 3 -type d | sort -u)
+jq -r '.plugins[][].installPath' ~/.claude/plugins/installed_plugins.json | sort -u \
+| while read -r p; do [ -d "$p" ] || echo "BROKEN: $p"; done
 ```
+
+A `BROKEN` line means reinstall: `claude plugin update <id> --scope <scope>` from that project.
 
 ## Testing a Plugin Locally
 
