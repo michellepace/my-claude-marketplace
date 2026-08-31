@@ -66,7 +66,7 @@ Expected (confirm this):
 
 ## vscode-profiles
 
-*Tested 2026-08-31 · commit `0467fc6` · Opus 5 xHigh*
+*Tested 2026-08-31 · commit `14c98c8` · Opus 5 xHigh*
 
 > /vscode-profiles "which profile is this project in, and which extensions are in it?"
 
