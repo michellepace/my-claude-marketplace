@@ -1,8 +1,9 @@
 ---
 name: manage-plugins
-description: Manage Claude plugins and marketplaces — use whenever these come up.
+description: Answer Claude plugin and marketplace questions
+argument-hint: '"Which plugins apply to this project?"'
 user-invocable: true
-disable-model-invocation: false
+disable-model-invocation: true
 allowed-tools:
   - Bash(claude plugin --help)
   - Bash(claude plugin * --help)
@@ -14,7 +15,17 @@ allowed-tools:
   - Bash(jq *)
 ---
 
-# Plugins and Marketplaces
+# Answer Claude Plugin & Marketplace Questions
+
+Question: `$ARGUMENTS`
+
+You are to answer a Question about Claude plugins and marketplaces. If the Question is blank or irrelevant to this, show me a friendly helpful message. List 3-4 examples of what I could ask. Keep it short and easy to read.
+
+> 🤔 ...
+
+Otherwise, leverage this information to help answer the question.
+
+## Plugins and Marketplaces — Answer the Question
 
 Source of truth is `enabledPlugins` and `extraKnownMarketplaces` in a settings file; the CLI just edits it.
 

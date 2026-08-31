@@ -1,12 +1,9 @@
 ---
 plugin: alwayson-misc
-tested-at-commit: 178dabf
-tested-on: 2026-08-17
-model: Opus 5 xHigh
 result: pass
 ---
 
-# Manual Eval: `alwayson-misc` Plugin (3 Skills)
+# Manual Eval: `alwayson-misc` Plugin
 
 Location: [`plugins/alwayson-misc`](../../plugins/alwayson-misc)
 
@@ -18,6 +15,8 @@ claude --plugin-dir ~/projects/my-claude-marketplace/plugins/alwayson-misc
 ```
 
 ## grill-me
+
+*Tested 2026-08-17 · commit `178dabf` · Opus 5 xHigh*
 
 > /grill-me "should I move my blog from WordPress to Next.js?"
 
@@ -32,6 +31,8 @@ Expected (confirm this):
 
 ## uv-pep723
 
+*Tested 2026-08-17 · commit `178dabf` · Opus 5 xHigh*
+
 > Write me a throwaway script that lists the 5 largest files under ~/Downloads in a rich table, then run it.
 
 Expected (confirm this):
@@ -43,6 +44,8 @@ Expected (confirm this):
 ---
 
 ## manage-plugins
+
+*Tested 2026-08-17 · commit `178dabf` · Opus 5 xHigh*
 
 > Which plugins are enabled in this project, and how would I add the receipts plugin from the official marketplace?
 
@@ -58,3 +61,22 @@ Expected (confirm this):
 Expected (confirm this):
 - [x] Complies: uses `--scope user` without arguing for project (added `4ea0262`)
 - [x] Decline when it offers to run it, or clean up after with `claude plugin uninstall receipts@claude-plugins-official --scope user`
+
+---
+
+## vscode-profiles
+
+*Tested 2026-08-31 · commit `14c98c8` · Opus 5 xHigh*
+
+> /vscode-profiles "which profile is this project in, and which extensions are in it?"
+
+Expected (confirm this):
+- [x] Reports **Python**, from an exact registry match for this repo's directory
+- [x] Lists all 14 extensions — matches `code --list-extensions` name-for-name
+- [x] Flags `anthropic.claude-code` as app-scoped (active in every profile)
+
+> /vscode-profiles "what is my effective setting for window.commandCenter?"
+
+Expected (confirm this):
+- [x] Answers `true`, citing both the Windows user `settings.json` and this repo's `.vscode/settings.json` (workspace wins)
+- [x] Reads the Windows-side JSONC with no permission prompt (frontmatter `Read` rules)
