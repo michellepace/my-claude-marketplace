@@ -25,7 +25,7 @@ repos:
         types: [toml]
 
   - repo: https://github.com/maxwinterstein/shfmt-py
-    rev: v4.0.0
+    rev: v4.2.0
     hooks:
       - id: shfmt                   # format shell
         args: [-w, -i, '2', -ci, -bn]
@@ -36,13 +36,13 @@ repos:
       - id: shellcheck              # lint shell (read-only, after shfmt)
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.16.5
+    rev: v0.16.6
     hooks:
       - id: ruff-check              # lint + autofix first
         args: [--fix, --exit-non-zero-on-fix]
       - id: ruff-format             # format last, so it owns final layout
 
   - repo: https://github.com/RobertCraigie/pyright-python
-    rev: v1.1.411
+    rev: v1.1.413
     hooks:
       - id: pyright                 # ruff lints; pyright type-checks
