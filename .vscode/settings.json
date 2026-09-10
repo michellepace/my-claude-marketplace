@@ -12,10 +12,11 @@
     },
 
     // 🐍 UV PYTHON ENVIRONMENT
-    // `uv sync` creates .venv/ → IDE auto-detects the interpreter below.
-    // uv convention: don't activate the venv — run commands via `uv run <cmd>`
-    // "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
-    // "python.terminal.activateEnvironment": false, // don't auto-activate; use `uv run`
+    // .venv/ exists only so pyright (Claude Code LSP plugin) has an interpreter —
+    // see venvPath/venv in pyproject.toml. It holds no packages.
+    // uv convention: never activate it — run commands via `uvx` / `uv run <cmd>`.
+    // Without this, ms-python.python sources .venv/bin/activate in every terminal.
+    "python.terminal.activateEnvironment": false,
 
     // 🐍 Ruff: Python lint & format (see pyproject.toml)
     "ruff.nativeServer": "on",  // faster Rust-based language server
