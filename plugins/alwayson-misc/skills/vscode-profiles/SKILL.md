@@ -25,13 +25,13 @@ Otherwise, leverage this information to help answer the question.
 
 ## VSCode Profiles on This Machine — Answer the Question
 
-**The one rule:** this file records *constants and mechanisms*, not inventories. Paths and hashes are stable — trust them. Extension lists, settings values and directory→profile mappings change — run the commands; never answer from this document or memory.
+**The one rule:** this file records *constants and mechanisms*, not inventories. Paths and mechanisms are stable — trust them. Everything else changes — which custom profiles exist and their hashes, extension lists, settings values, directory→profile mappings. Run the commands; never answer from this document or memory.
 
 ### 1. Model
 
 - VSCode runs on Windows; every window is Remote-WSL (Ubuntu). Questions arrive from the integrated terminal of the project's window: `code` is bound to that window, and `$PWD` is the directory VSCode opened or a subdirectory of it.
 - **Windows holds the config** (settings, keybindings, profile registry). **WSL holds the extensions** that run. Everything else on either side is cache.
-- Six profiles: **Default** (built-in, near-empty — only what new windows open in) plus five custom. A project is switched to a custom profile once and remembered.
+- **Default** is built-in and near-empty — only what new windows open in. Everything else is a *custom profile*; when I ask about profiles I mean these. A project is switched to a custom profile once and remembered. Never assume the roster — list it (§2).
 - **Convention:** every custom profile takes *Settings* and *Keyboard Shortcuts* from Default and owns everything else. Net effect: **one `settings.json` and one `keybindings.json` for the whole machine.** One-way — Default never takes anything from a custom profile.
 
 ### 2. Paths
@@ -44,14 +44,12 @@ Otherwise, leverage this information to help answer the question.
 | Custom profile's extensions | `~/.vscode-server/data/User/profiles/<hash>/extensions.json` |
 | Workspace settings (override everything) | `<repo>/.vscode/settings.json` |
 
-| Hash | Profile |
-| :--- | :--- |
-| *(root)* | **Default** |
-| `-6ccbc70e` | Markdown |
-| `-16377d0b` | Python |
-| `-1457654f` | Python + Jupyter |
-| `-216fe8ee` | Nextjs |
-| `330a0ca4` | Shopify |
+**The custom profiles and their hashes** — always list, never recall (deleting a profile in the UI drops it from here, and its `profiles/<hash>/` directory is left behind on both sides, so the registry is authoritative, not the disk):
+
+```shell
+jq -r '.userDataProfiles[] | [.location, .name] | @tsv' \
+  /mnt/c/Users/mp/AppData/Roaming/Code/User/globalStorage/storage.json
+```
 
 ### 3. Mechanisms
 
@@ -75,7 +73,7 @@ jq -r --arg p "$PWD" '(.userDataProfiles | map({(.location): .name}) | add) as $
 | Question | Do |
 | :--- | :--- |
 | Which profile is this project in? | **B** — cross-check with `code --list-extensions` |
-| Which projects use profile X? | **A** `\| grep -P '^<Profile>\t'` (the `\t` matters: `^Python` also matches `Python + Jupyter`) |
+| Which projects use profile X? | **A** `\| grep -P '^<Profile>\t'` (the `\t` matters — one profile name may prefix another) |
 | Which extensions are in this profile? | `code --list-extensions` — complete for this window's profile, app-scoped included |
 | Which extensions are in another profile? | `jq -r '.[].identifier.id' ~/.vscode-server/data/User/profiles/<hash>/extensions.json`, plus the app-scoped ones |
 | What's in Default? | extensions: `jq -r '.[].identifier.id' ~/.vscode-server/extensions/extensions.json`; settings and keybindings: *the* two files in §2 |
