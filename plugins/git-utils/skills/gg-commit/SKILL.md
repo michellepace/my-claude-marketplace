@@ -31,8 +31,10 @@ echo "===STAGED===" && git diff --staged --compact-summary \
 </command>
 
 <format>
-Wrap at 72 characters; for a trivial commit, prefix and subject only.
-Write concisely and plainly.
+Write concisely and plainly. Trivial commit: prefix and subject only.
+
+- Subject line: aim for ~50 characters, prefix included; never over 72.
+- Body: hard-wrap every line at 72 characters, bullets included.
 
 ```text
 <prefix> <subject — imperative mood>
