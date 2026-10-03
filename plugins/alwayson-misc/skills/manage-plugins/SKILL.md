@@ -41,7 +41,7 @@ Plugins from all scopes merge; on conflict the highest wins — local > project 
 | Find which marketplace offers a plugin | `claude plugin list --json --available \| jq -r '.available[] \| select(.name=="<name>") \| .marketplaceName'` |
 | Inspect an installed plugin | `claude plugin details <name>@<mkt>` |
 | Add a marketplace | `claude plugin marketplace add <owner/repo> --scope project` |
-| Refresh every marketplace from source | `claude plugin marketplace update` |
+| Refresh every marketplace from source (plugins not updated; see below) | `claude plugin marketplace update` |
 | Remove a marketplace from this project only | `claude plugin marketplace remove <mkt> --scope project` |
 | Install / enable / disable / update / uninstall a plugin | `claude plugin <verb> <name>@<mkt> --scope project` |
 | Anything else | `claude plugin --help`, `claude plugin <cmd> --help` |
@@ -55,32 +55,45 @@ Plugins from all scopes merge; on conflict the highest wins — local > project 
 
 ## Update All Plugins, Everywhere
 
-`marketplace update` is machine-wide and refreshes only the marketplace clones. Plugin installs are recorded per `(plugin, scope, project)`, so each install record must be updated from its own project — there is no `--all`. Restart (or `/reload-plugins`) to apply.
+Two layers, updated separately:
+
+- **Marketplace copy**: one per machine, shared by every project. `claude plugin marketplace update [<mkt>]` refreshes it from source.
+- **Install record**: one per `(plugin, scope, project)`, pinned to a version. Each is updated from its own project, including via the `/plugin` menu; there is no `--all`.
+
+A record is behind when its version differs from the marketplace copy's. Plugins without `version` in `plugin.json` are versioned by marketplace commit, so every commit makes all of them new; plugins with `version` update only when it's bumped.
 
 ```shell
-claude plugin marketplace update   # every marketplace, one shot
+claude plugin marketplace update   # every marketplace
 
-# every install record — user, project, and local scope in one loop
+# every install record; set m to a marketplace name to limit it
+m=""
 claude plugin list --json \
-| jq -r '.[] | [.id, .scope, .projectPath // ""] | @tsv' | sort -u \
+| jq -r --arg m "$m" '.[] | select($m == "" or (.id | endswith("@" + $m)))
+    | [.id, .scope, .projectPath // ""] | @tsv' | sort -u \
 | while IFS=$'\t' read -r id scope proj; do
     if [ -n "$proj" ] && [ ! -d "$proj" ]; then echo "skip (missing): $proj"; continue; fi
     ( cd "${proj:-.}" && claude plugin update "$id" --scope "$scope" </dev/null )
   done
 ```
 
-To preview, swap `claude plugin update` for `echo`. The `</dev/null` stops a rare confirmation prompt (marketplace-changed install command) from swallowing the list — if an update fails on it, rerun that one alone.
+The loop changes other projects: show me the records it will touch (the `echo` preview) and confirm before running it. To preview, swap `claude plugin update` for `echo`. Sessions already open in a changed project need a restart or `/reload-plugins`.
 
-**Never clean the cache by hand** — old version dirs are swept automatically ~14 days after an update. Deleting a dir that `~/.claude/plugins/installed_plugins.json` still references breaks that plugin silently (enabled in settings, files gone).
+`</dev/null` stops `update` reading the rest of the loop's input. A plugin whose marketplace changed its install command needs a person to confirm it, so it fails here; rerun that one alone in its project.
 
-**Verify health check — must print nothing:**
+**Check, both must hold:**
 
 ```shell
+# after the loop: one line per plugin; listed twice = a record behind
+claude plugin list --json | jq -r '.[] | [.id, .version] | @tsv' | sort | uniq -c
+
+# must print nothing
 jq -r '.plugins[][].installPath' ~/.claude/plugins/installed_plugins.json | sort -u \
 | while read -r p; do [ -d "$p" ] || echo "BROKEN: $p"; done
 ```
 
-A `BROKEN` line means reinstall: `claude plugin update <id> --scope <scope>` from that project.
+A `BROKEN` record still reports the latest version, so `update` won't repair it. From that project: `claude plugin uninstall <id> --scope <scope> && claude plugin install <id> --scope <scope>`.
+
+**Never clean the cache by hand.** Old version dirs are swept automatically some time after an update. Deleting one that `installed_plugins.json` still references breaks that plugin silently (enabled in settings, files gone).
 
 ## Testing a Plugin Locally
 
