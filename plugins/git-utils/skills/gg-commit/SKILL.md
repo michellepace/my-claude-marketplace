@@ -15,11 +15,7 @@ allowed-tools:
 
 User instructions: $ARGUMENTS
 
-Run `<command>` to analyse the staged changes. Choose a `<prefix>`, draft
-the message per `<format>`, and present it in a fenced code block — do not
-commit. If nothing is staged, say so and stop.
-
----
+Run `<command>` to read the staged changes, then draft the message per `<message>` and `<prefix>`. Present it in a fenced code block; don't commit. If nothing is staged, say so and stop.
 
 <command>
 
@@ -30,26 +26,21 @@ echo "===STAGED===" && git diff --staged --compact-summary \
 ```
 </command>
 
-<format>
-Wrap at 72 characters; for a trivial commit, prefix and subject only.
-Write concisely and plainly.
+<message>
+Write for a future reader of `git log`, often Claude, who will have the diff. The diff shows what changed; the message records why.
 
-```text
-<prefix> <subject — imperative mood>
+- Subject: `<prefix> <summary>`, imperative mood. Aim for ~50 characters, prefix included.
+- Body: the motive, usually a sentence or two. Add a detail only when the diff can't show it, such as a constraint or a rejected alternative.
+- Hard-wrap the body at 72 characters, bullets included.
+- Crisp and professional; no filler.
 
-<body — why over what: if a reader of the diff would learn nothing
-new from a line, it doesn't belong. Short prose paragraph(s),
-bullets when it helps clarity.>
-```
-</format>
+Take the motive from this session and the user instructions. If it isn't clear, ask the user before drafting rather than guess.
+</message>
 
 <prefix>
 Pick the prefix matching the commit's dominant purpose.
 
-In `.claude/` or a plugin, files under `skills/`, `agents/`,
-`commands/`, `rules/`, or `hooks/` take that directory as prefix:
-`<dir>(<name>):` for one item, `<dir>:` for several — e.g.
-`skills(gg-commit):`, `agents:`. Otherwise:
+In `.claude/` or a plugin, files under `skills/`, `agents/`, `commands/`, `rules/`, or `hooks/` take that directory as prefix: `<dir>(<name>):` for one item, `<dir>:` for several — e.g. `skills(gg-commit):`, `agents:`. Otherwise:
 
 - `rules:` sets Claude's behaviour: `CLAUDE.md` (anywhere)
 - `docs:` `README.md`, any `*docs*/` (docs in code → `docs(code):`)
