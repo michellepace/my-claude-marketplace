@@ -19,7 +19,7 @@ A standalone script is one file that declares its own dependencies in a PEP 723 
 Create script first, then add dependencies:
 
 ```shell
-uv init --script report.py --python 3.14    # create first
+uv init --script report.py --python 3.15    # create first
 uv add --script report.py requests rich     # add dependencies
 ```
 
@@ -27,7 +27,7 @@ Created header in `report.py` (dependencies self-resolve):
 
 ```python
 # /// script
-# requires-python = ">=3.14"
+# requires-python = ">=3.15"
 # dependencies = [
 #     "requests>=2.34.2",
 #     "rich>=15.0.0",

@@ -1,5 +1,5 @@
 # /// script
-# requires-python = ">=3.14"
+# requires-python = ">=3.15"
 # dependencies = []
 # ///
 """Strip directory sections from a Next.js agents-md INDEX.md.

@@ -5,7 +5,7 @@
 # =================================
 [tool.pyright]
 typeCheckingMode = "standard" # Keep (not strict!)
-pythonVersion = "3.14"
+pythonVersion = "3.15"
 venvPath = "."                # Claude Code Official: LSP plugin
 venv = ".venv"                # Claude Code Official: LSP plugin
 reportUnusedImport = false    # Ruff F401
@@ -17,7 +17,7 @@ reportDuplicateImport = false # Ruff F811
 # =================================
 [tool.ruff]
 line-length = 88
-target-version = "py314"
+target-version = "py315"
 
 [tool.ruff.lint]
 select = ["ALL"]
