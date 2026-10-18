@@ -46,3 +46,12 @@ repos:
     rev: v1.1.413
     hooks:
       - id: pyright                 # ruff lints; pyright type-checks
+
+  - repo: local
+    hooks:
+      - id: validate-plugins        # claude plugin validate, minus version/author
+        name: validate plugins
+        entry: scripts/validate-plugins.sh
+        language: unsupported_script
+        files: ^(\.claude-plugin|plugins|scripts/validate-plugins\.sh)
+        pass_filenames: false
