@@ -13,7 +13,7 @@ repos:
       - id: check-toml
 
   - repo: https://github.com/DavidAnson/markdownlint-cli2
-    rev: v0.23.2
+    rev: v0.23.3
     hooks:
       - id: markdownlint-cli2       # rules .markdownlint-cli2.yaml
         args: [--fix]
@@ -21,7 +21,7 @@ repos:
   - repo: https://github.com/ComPWA/taplo-pre-commit
     rev: v0.9.3
     hooks:
-      - id: taplo-format            # format TOML
+      - id: taplo-format
         types: [toml]
 
   - repo: https://github.com/maxwinterstein/shfmt-py
@@ -36,13 +36,32 @@ repos:
       - id: shellcheck              # lint shell (read-only, after shfmt)
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.16.6
+    rev: v0.17.1
     hooks:
       - id: ruff-check              # lint + autofix first
         args: [--fix, --exit-non-zero-on-fix]
+        types_or: [python, pyproject]
+        pass_filenames: false
       - id: ruff-format             # format last, so it owns final layout
+        types_or: [python, pyproject]
+        pass_filenames: false
 
   - repo: https://github.com/RobertCraigie/pyright-python
-    rev: v1.1.413
+    rev: v1.1.414
     hooks:
       - id: pyright                 # ruff lints; pyright type-checks
+        types_or: [python, pyproject]
+        pass_filenames: false
+
+  - repo: local
+    hooks:
+      - id: validate-plugins        # claude plugin validate, minus version/author
+        name: validate plugins
+        entry: scripts/validate-plugins.sh
+        language: unsupported_script
+        files: ^(\.claude-plugin|plugins|scripts/validate-plugins\.sh)
+        pass_filenames: false
+
+# Notes (non-obvious)
+# 1. `pass_filenames: false` runs hook against the whole project
+# 2. types_or [python, pyproject] fires on *.py + pyproject.toml only

@@ -15,7 +15,7 @@ Well yes you guessed it, plugins.
 | Plugin | Contains | Purpose |
 | :----- | :------- | :------ |
 | [`alwayson-misc`](./plugins/alwayson-misc) | 4 skills | uv scripts, plugin management, grill-me, my VS Code profiles |
-| [`claude-code-utils`](./plugins/claude-code-utils) | 3 skills | Claude Code know-how + session analysis |
+| [`cc-utils`](./plugins/cc-utils) | 3 skills | Claude Code know-how + session analysis |
 | [`find-font`](./plugins/find-font) | 4 skills + MCP | Font pairing (orchestrator pattern) |
 | [`git-utils`](./plugins/git-utils) | 5 skills | Git & GitHub workflows |
 | [`nextjs-utils`](./plugins/nextjs-utils) | 2 skills + MCP | Next.js docs & dev guidance |
@@ -97,9 +97,9 @@ my-plugin/
 Three plugin components worth a closer look:
 
 > *A [subagent](https://code.claude.com/docs/en/sub-agents) is a separate assistant, with its own instructions and context window, that Claude can delegate a task to. See [docs](https://code.claude.com/docs/en/plugins/components#agents).*
-
+>
 > *A monitor is a shell command that runs in the background for the whole session. What it prints reaches Claude as notifications, so Claude can react to a log or a status change without being asked to watch it. See [docs](https://code.claude.com/docs/en/plugins/components#monitors).*
-
+>
 > *Dynamic workflows orchestrate many subagents from a script Claude writes and you can rerun. Use them for codebase audits, large migrations, and cross-checked research. See [docs](https://code.claude.com/docs/en/workflows).*
 
 Docs

@@ -308,7 +308,7 @@ export CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION=false
 
 Use `/btw` to ask a quick question about your current work without adding to the conversation history. This is useful when you want a fast answer but don't want to clutter the main context or derail Claude from a long-running task.
 
-```
+```text
 /btw what was the name of that config file again?
 ```
 

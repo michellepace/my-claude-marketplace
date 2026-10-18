@@ -24,6 +24,7 @@ echo "===STAGED===" && git diff --staged --compact-summary \
 && echo "===STAGED DETAILED===" && git diff --staged --diff-filter=d \
 && echo "===LAST COMMITS===" && git log --oneline -3
 ```
+
 </command>
 
 <message>

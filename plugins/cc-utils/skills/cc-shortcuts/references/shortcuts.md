@@ -105,6 +105,7 @@ VSCode intercepts `Ctrl+K` as the start of a chord shortcut (e.g. `Ctrl+K Ctrl+C
 // integrated terminal so Claude Code can receive them
 "terminal.integrated.allowChords": false,
 ```
+
 ---
 
 ### ♥️ Windows WSL: Copy from Desktop

@@ -13,8 +13,8 @@
       "description": "Next.js docs & dev guidance, including shadcn/ui best practices"
     },
     {
-      "name": "claude-code-utils",
-      "source": "./plugins/claude-code-utils",
+      "name": "cc-utils",
+      "source": "./plugins/cc-utils",
       "description": "Claude Code release notes & shortcut keys, plus analysis of your own sessions"
     },
     {

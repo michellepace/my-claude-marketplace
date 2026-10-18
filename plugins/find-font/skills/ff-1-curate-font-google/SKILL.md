@@ -64,7 +64,7 @@ If a match is found, read it. When Synopsis, Key Characteristics, and Technical 
 
 Summarise what was created:
 
-```
+```text
 File: `file path written`
 Verified: [confirm if all rules were followed]
 ```
