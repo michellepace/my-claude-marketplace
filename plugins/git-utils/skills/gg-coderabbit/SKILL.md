@@ -75,6 +75,7 @@ gh api repos/OWNER/REPO/pulls/PULL_NUMBER/comments \
   -f body="@coderabbitai ..." \
   -F in_reply_to=COMMENT_ID
 ```
+
 </reply>
 
 <resolve>
@@ -100,6 +101,7 @@ gh api graphql -f query='{
   }
 }' --jq '.data.resolveReviewThread.thread.isResolved'
 ```
+
 </resolve>
 
 ## 5. Wrap-up

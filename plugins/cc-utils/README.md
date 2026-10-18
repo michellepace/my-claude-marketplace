@@ -28,7 +28,7 @@ Opens with a summary table of recent releases. Choose any version, series or tim
 
 Run:
 
-```
+```text
 /cc-whats-new-changelog         # Summary table first
 /cc-whats-new-changelog 2.1.2   # Exact version only
 /cc-whats-new-changelog 2.1     # All 2.1.* versions

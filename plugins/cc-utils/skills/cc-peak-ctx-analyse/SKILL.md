@@ -71,16 +71,19 @@ Run `uv run peak-ctx-report.py` one final time. Then distil the key insights bel
 <format_guide>
 
 ## 📊 Re-run
+
 To re-run the analysis report, run: `uv run peak-ctx-report.py`
 
 ---
 
 ## 🎯 Key Insights
+
 [Distilled insights]
 
 ---
 
 ## 🤔 Follow-up Questions?
+
 [suggest 3 useful / relevant questions for the user to ask]
 
 ---

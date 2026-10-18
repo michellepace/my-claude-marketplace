@@ -105,7 +105,7 @@ Steps:
 
 4. List **Fixes:** separately e.g.,
 
-    ```
+    ```markdown
     **Fixes:**
     - [Problem ➜ Resolution]
     - [eg Plan files after /clear ➜ Fresh plan file now used]
