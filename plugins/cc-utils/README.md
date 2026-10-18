@@ -1,4 +1,4 @@
-# Plugin: `claude-code-utils`
+# Plugin: `cc-utils`
 
 **Claude Code release notes & shortcut keys, plus analysis of your own sessions.**
 
@@ -8,8 +8,8 @@ Add marketplace and install (project scope):
 # 1. Add Marketplace
 claude plugin marketplace add michellepace/my-claude-marketplace --scope project
 
-# 2. Install Plugin "claude-code-utils"
-claude plugin install claude-code-utils@my-claude-marketplace --scope project
+# 2. Install Plugin "cc-utils"
+claude plugin install cc-utils@my-claude-marketplace --scope project
 ```
 
 ## 🟣 What's Inside
