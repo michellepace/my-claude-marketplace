@@ -45,6 +45,7 @@ Plugins from all scopes merge; on conflict the highest wins — local > project 
 | Remove a marketplace from this project | `claude plugin uninstall <name>@<mkt> --scope project` for each `*@<mkt>` plugin, then delete `<mkt>` from `extraKnownMarketplaces` in `.claude/settings.json` |
 | Remove a marketplace from every project (uninstalls its plugins everywhere) | `claude plugin marketplace remove <mkt>` |
 | Install / enable / disable / update / uninstall a plugin | `claude plugin <verb> <name>@<mkt> --scope project` |
+| Test a plugin from my marketplace without installing it | Tell me to run `claude --plugin-dir ~/projects/my-claude-marketplace/plugins/<plugin-name>`, then `/reload-plugins` after each edit |
 | Anything else | `claude plugin --help`, `claude plugin <cmd> --help` |
 
 ## Gotchas
@@ -95,14 +96,6 @@ jq -r '.plugins[][].installPath' ~/.claude/plugins/installed_plugins.json | sort
 A `BROKEN` record still reports the latest version, so `update` won't repair it. From that project: `claude plugin uninstall <id> --scope <scope> && claude plugin install <id> --scope <scope>`.
 
 **Never clean the cache by hand.** Old version dirs are swept automatically some time after an update. Deleting one that `installed_plugins.json` still references breaks that plugin silently (enabled in settings, files gone).
-
-## Testing a Plugin Locally
-
-No install needed. Edit, then run `/reload-plugins` or restart:
-
-```shell
-claude --plugin-dir ~/projects/my-claude-marketplace/plugins/<plugin-name>
-```
 
 ## Replying
 
