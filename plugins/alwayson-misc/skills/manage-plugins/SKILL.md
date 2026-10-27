@@ -17,23 +17,17 @@ allowed-tools:
 
 # Answer Claude Plugin & Marketplace Questions
 
-Question: `$ARGUMENTS`
+**Question to answer:** $ARGUMENTS
 
-You are to answer a Question about Claude plugins and marketplaces. If the Question is blank or irrelevant to this, show me a friendly helpful message. List 3-4 examples of what I could ask. Keep it short and easy to read.
+If blank or not about plugins or marketplaces, reply with a short message listing 3 questions as examples. Start with "🤔 ..."
 
-> 🤔 ...
+## Scopes and Commands
 
-Otherwise, leverage this information to help answer the question.
-
-## Plugins and Marketplaces — Answer the Question
-
-Source of truth is `enabledPlugins` and `extraKnownMarketplaces` in a settings file; the CLI just edits it.
-
-Plugins from all scopes merge; on conflict the highest wins — local > project > user:
+What a project uses is `enabledPlugins` and `extraKnownMarketplaces` in its settings files. Plugins from all scopes merge; on conflict the highest wins — local > project > user:
 
 - **local** `.claude/settings.local.json` — rarely in play; ask me if I want to migrate strays to project scope
-- **user** `~/.claude/settings.json` — alwayson-misc is okay to be here (it may not be). Anything else is likely my mistake: tell me, and offer `claude plugin uninstall <name>@<mkt> --scope user`.
-- **project** `.claude/settings.json` — my default: every write takes `--scope project` (the CLI defaults to `user`, never project)
+- **project** `.claude/settings.json` — my default: every write takes `--scope project` (the CLI defaults to `user`)
+- **user** `~/.claude/settings.json` — only alwayson-misc belongs here, if anything. Anything else is likely my mistake: tell me, and offer `claude plugin uninstall <name>@<mkt> --scope user`.
 
 | To… | Run |
 | :-- | :-- |
