@@ -7,7 +7,6 @@ disable-model-invocation: true
 allowed-tools:
   - Bash(gh pr status)
   - Bash(gh pr view *)
-  - Bash(gh repo view *)
   - Bash(git fetch *)
   - Bash(git ls-remote *)
   - Edit(pr-draft.md)
