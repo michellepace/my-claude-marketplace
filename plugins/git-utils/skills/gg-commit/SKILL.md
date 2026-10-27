@@ -1,7 +1,7 @@
 ---
 name: gg-commit
-description: "Draft a plain, readable commit message"
-argument-hint: "[additional instructions]"
+description: "Draft a commit message for the staged changes"
+argument-hint: "[additional guidance]"
 user-invocable: true
 disable-model-invocation: true
 allowed-tools:
@@ -9,8 +9,6 @@ allowed-tools:
 ---
 
 # Draft Git commit message
-
-User instructions: $ARGUMENTS
 
 Run `<command>` to read the staged changes, then draft the message per `<message>` and `<prefix>`. Present it in a fenced code block; don't commit. If nothing is staged, say so and stop.
 
@@ -32,7 +30,7 @@ Write for a future reader of `git log`, often Claude, who will have the diff. Th
 - Hard-wrap the body at 72 characters, bullets included.
 - Crisp and professional; no filler.
 
-Take the motive from this session and the user instructions. If it isn't clear, ask the user before drafting rather than guess.
+Take the motive from this session and the additional guidance. If it isn't clear, ask me before drafting rather than guess.
 </message>
 
 <prefix>
@@ -52,3 +50,5 @@ In `.claude/` or a plugin, files under `skills/`, `agents/`, `commands/`, `rules
 - `chore:` dev workflow, config (`settings.json`), dependencies, tooling
 - `feat:` new user-facing functionality
 </prefix>
+
+Additional guidance for this commit: $ARGUMENTS
