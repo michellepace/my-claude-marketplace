@@ -42,7 +42,8 @@ Plugins from all scopes merge; on conflict the highest wins — local > project 
 | Inspect an installed plugin | `claude plugin details <name>@<mkt>` |
 | Add a marketplace | `claude plugin marketplace add <owner/repo> --scope project` |
 | Refresh every marketplace from source (plugins not updated; see below) | `claude plugin marketplace update` |
-| Remove a marketplace from this project only | `claude plugin marketplace remove <mkt> --scope project` |
+| Remove a marketplace from this project | `claude plugin uninstall <name>@<mkt> --scope project` for each `*@<mkt>` plugin, then delete `<mkt>` from `extraKnownMarketplaces` in `.claude/settings.json` |
+| Remove a marketplace from every project (uninstalls its plugins everywhere) | `claude plugin marketplace remove <mkt>` |
 | Install / enable / disable / update / uninstall a plugin | `claude plugin <verb> <name>@<mkt> --scope project` |
 | Anything else | `claude plugin --help`, `claude plugin <cmd> --help` |
 
@@ -50,7 +51,7 @@ Plugins from all scopes merge; on conflict the highest wins — local > project 
 
 - `claude plugin list` and `claude plugin marketplace list` are machine-wide and contain duplicates — never a per-project answer; read the settings file.
 - `details` only sees installed plugins, and `--available` only works with `--json` — hence the "which marketplace" row.
-- `marketplace remove` without `--scope` hits every scope and uninstalls that marketplace's plugins.
+- `marketplace remove --scope project` only picks which file loses the declaration. Once no settings file seen from here declares the marketplace (usually just this project's), its plugins are uninstalled in every project, even ones that still declare it — hence the two "Remove a marketplace" rows.
 - The `jq` row lists files highest-precedence first, so the **first** hit wins. A missing file is normal (exits 2; the output is still complete).
 
 ## Update All Plugins, Everywhere
