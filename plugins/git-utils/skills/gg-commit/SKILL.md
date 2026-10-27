@@ -5,10 +5,7 @@ argument-hint: "[additional instructions]"
 user-invocable: true
 disable-model-invocation: true
 allowed-tools:
-  - Bash(echo *)
   - Bash(git diff *)
-  - Bash(git log *)
-  - Bash(git status *)
 ---
 
 # Draft Git commit message

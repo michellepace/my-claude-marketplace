@@ -13,7 +13,6 @@ allowed-tools:
   - Bash(git checkout *)
   - Bash(git fetch *)
   - Bash(git pull)
-  - Bash(git status)
 ---
 
 ## Context

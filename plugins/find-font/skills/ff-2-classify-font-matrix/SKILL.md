@@ -8,7 +8,6 @@ user-invocable: true
 disable-model-invocation: false
 allowed-tools:
   - Bash(cp *)
-  - Bash(find *)
   - Bash(grep *)
   - Bash(mkdir *)
   - Edit

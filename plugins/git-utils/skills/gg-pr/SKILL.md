@@ -8,16 +8,8 @@ allowed-tools:
   - Bash(gh pr status)
   - Bash(gh pr view *)
   - Bash(gh repo view *)
-  - Bash(git branch --show-current)
-  - Bash(git branch -vv)
-  - Bash(git diff *)
   - Bash(git fetch *)
-  - Bash(git log *)
   - Bash(git ls-remote *)
-  - Bash(git merge-base *)
-  - Bash(git show *)
-  - Bash(git status *)
-  - Bash(tree *)
   - Edit(pr-draft.md)
 ---
 
