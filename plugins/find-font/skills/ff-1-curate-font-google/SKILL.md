@@ -7,7 +7,6 @@ agent: general-purpose
 user-invocable: true
 disable-model-invocation: false
 allowed-tools:
-  - Bash(find *)
   - Bash(mkdir *)
   - Edit
   - Grep

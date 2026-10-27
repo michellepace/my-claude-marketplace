@@ -6,7 +6,6 @@ user-invocable: true
 disable-model-invocation: false
 allowed-tools:
   - Agent
-  - Bash(find *)
   - Glob
   - Grep
   - Read
