@@ -10,7 +10,6 @@ allowed-tools:
   - Bash(npx @next/codemod*)
   - Bash(rm *)
   - Bash(sed *)
-  - Bash(tree *)
   - Bash(uv run *)
   - Edit
   - Glob
