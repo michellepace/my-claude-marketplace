@@ -23,12 +23,11 @@ echo "===STAGED===" && git diff --staged --compact-summary \
 </command>
 
 <message>
-Write for a future reader of `git log`, often Claude, who will have the diff. The diff shows what changed; the message records why.
+Write for Claude Code, which later reads `git log` to learn why a change was made. The diff shows what changed; the message records why, in just enough words.
 
 - Subject: `<prefix> <summary>`, imperative mood. Aim for ~50 characters, prefix included.
-- Body: the motive, usually a sentence or two. Add a detail only when the diff can't show it, such as a constraint or a rejected alternative.
+- Body: the motive, usually a sentence or two. Don't restate what the diff shows; record what it can't: a constraint, a rejected alternative, or a deliberate choice a later reader might otherwise undo.
 - Hard-wrap the body at 72 characters, bullets included.
-- Crisp and professional; no filler.
 
 Take the motive from this session and the additional guidance. If it isn't clear, ask me before drafting rather than guess.
 </message>
