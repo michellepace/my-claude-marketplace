@@ -18,7 +18,7 @@ claude plugin install git-utils@my-claude-marketplace --scope project
 | :-------- | :----------- |
 | [`/gg-commit`](skills/gg-commit/SKILL.md) | Create a git commit message following a structured template |
 | [`/gg-land-branch`](skills/gg-land-branch/SKILL.md) | Walk through where this branch landed against main, ignoring commit history |
-| [`/gg-pr`](skills/gg-pr/SKILL.md) | Draft a PR against main into `pr-draft.md` for review |
+| [`/gg-pr`](skills/gg-pr/SKILL.md) | Draft a PR against main into `pr-draft.md`, open it once approved |
 | [`/gg-coderabbit`](skills/gg-coderabbit/SKILL.md) | Evaluate a CodeRabbit comment and recommend whether to action it |
 | [`/gg-merge-cleanup`](skills/gg-merge-cleanup/SKILL.md) | Post-merge cleanup: switch to main, pull, delete merged branch, prune |
 
@@ -49,4 +49,4 @@ claude plugin install git-utils@my-claude-marketplace --scope project
 
 ## Dependencies
 
-**gh CLI (required by gg-pr, gg-coderabbit and gg-merge-cleanup)** — used for GitHub API calls (fetching PR comments, resolving threads, checking remote status).
+**gh CLI (required by gg-pr, gg-coderabbit and gg-merge-cleanup)** — used for GitHub API calls (opening PRs, fetching PR comments, resolving threads, checking remote status).
