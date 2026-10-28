@@ -1,6 +1,6 @@
 # Plugin: `alwayson-misc`
 
-A Plugin of miscellaneous Skills that I always keep on. They hardcode my own preferences and machine. Tested, see eval sheet: [`manual-evals.md`](../../evals/manual-evals.md).
+A Plugin of miscellaneous Skills that I always keep on. They hardcode my own preferences and machine.
 
 Add and install (user scope):
 
