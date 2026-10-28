@@ -31,7 +31,7 @@ Take the motive from this session and the additional guidance. If it isn't clear
 </message>
 
 <prefix>
-Use Conventional Commits. The type is the commit's dominant purpose; the scope is the most specific name covering the whole change (e.g. a skill, plugin or module), omitted when nothing narrower fits.
+Use Conventional Commits: `type(scope): summary`. Type is the commit's dominant purpose. Scope is the narrowest skill, plugin or module covering the whole change, never a file.
 
 Skills, agents, commands, hooks and `CLAUDE.md` are instructions Claude follows: type them like code, by their effect on Claude's behaviour.
 
