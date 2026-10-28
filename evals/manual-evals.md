@@ -5,7 +5,7 @@ result: pass
 
 # Manual Evals: `alwayson-misc` Plugin
 
-Location: [`plugins/alwayson-misc`](../../plugins/alwayson-misc)
+Location: [`plugins/alwayson-misc`](../plugins/alwayson-misc)
 
 Test each in a new session:
 
