@@ -1,5 +1,7 @@
 ---
 skill: plugins/alwayson-misc/skills/uv-pep723/SKILL.md
+skill-commit: b4b14c8 (2026-08-17)
+model: Opus 5 xHigh
 result: pass
 ---
 

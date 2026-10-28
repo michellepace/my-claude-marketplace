@@ -1,5 +1,7 @@
 ---
 skill: plugins/alwayson-misc/skills/manage-plugins/SKILL.md
+skill-commit: 90cb187 (2026-08-31)
+model: Opus 5 xHigh
 result: pass
 ---
 

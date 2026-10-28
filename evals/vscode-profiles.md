@@ -1,5 +1,7 @@
 ---
 skill: plugins/alwayson-misc/skills/vscode-profiles/SKILL.md
+skill-commit: 14c98c8 (2026-08-31)
+model: Opus 5 xHigh
 result: pass
 ---
 

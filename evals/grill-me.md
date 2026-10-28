@@ -1,5 +1,7 @@
 ---
 skill: plugins/alwayson-misc/skills/grill-me/SKILL.md
+skill-commit: e7dfdb9 (2026-08-17)
+model: Opus 5 xHigh
 result: pass
 ---
 
