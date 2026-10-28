@@ -16,7 +16,7 @@ claude plugin install git-utils@my-claude-marketplace --scope project
 
 | Run Skill | What it does |
 | :-------- | :----------- |
-| [`/gg-commit`](skills/gg-commit/SKILL.md) | Draft a commit message for the staged changes |
+| [`/gg-commit`](skills/gg-commit/SKILL.md) | Draft commit message for staged changes |
 | [`/gg-land-branch`](skills/gg-land-branch/SKILL.md) | Walk through where this branch landed against main, ignoring commit history |
 | [`/gg-pr`](skills/gg-pr/SKILL.md) | Draft a PR against main into `pr-draft.md`, open it once approved |
 | [`/gg-coderabbit`](skills/gg-coderabbit/SKILL.md) | Evaluate a CodeRabbit comment and recommend whether to action it |

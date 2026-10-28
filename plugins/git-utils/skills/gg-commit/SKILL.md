@@ -1,11 +1,9 @@
 ---
 name: gg-commit
-description: "Draft a commit message for the staged changes"
+description: "Draft commit message for staged changes"
 argument-hint: "[additional guidance]"
 user-invocable: true
 disable-model-invocation: true
-allowed-tools:
-  - Bash(git diff *)
 ---
 
 # Draft Git commit message
