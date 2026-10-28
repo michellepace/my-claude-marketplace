@@ -1,21 +1,14 @@
 ---
+title: grill-me evals
 skill: plugins/alwayson-misc/skills/grill-me/SKILL.md
-skill-commit: e7dfdb9 (2026-08-17)
-model: Opus 5 xHigh
+skill-commit: e7dfdb9
+model: claude-opus-5 xhigh
 result: pass
 ---
 
-# Manual Evals: `grill-me`
-
-Test each in a new session.
-
-## grill-me
-
-*Tested 2026-08-17 · commit `178dabf` · Opus 5 xHigh*
-
 > /grill-me "should I move my blog from WordPress to Next.js?"
 
-Expected (confirm this):
+Criteria:
 - [x] Autocomplete offers `/grill-me`
 - [x] `/gg-grilling` still shows, from installed git-utils 1.1.2 — gone after merge + `marketplace update`
 - [x] Asks one question at a time, each with a recommended answer

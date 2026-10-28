@@ -1,21 +1,16 @@
 ---
+title: manage-plugins evals
 skill: plugins/alwayson-misc/skills/manage-plugins/SKILL.md
-skill-commit: 90cb187 (2026-08-31)
-model: Opus 5 xHigh
+skill-commit: 90cb187
+model: claude-opus-5 xhigh
 result: pass
 ---
 
-# Manual Evals: `manage-plugins`
-
-Test each in a new session.
-
 ## manage-plugins
-
-*Tested 2026-08-17 · commit `178dabf` · Opus 5 xHigh*
 
 > Which plugins are enabled in this project, and how would I add the receipts plugin from the official marketplace?
 
-Expected (confirm this):
+Criteria:
 - [x] Claude invokes the skill itself: a `Skill` call to `alwayson-misc:manage-plugins` appears
 - [x] Runs `claude plugin list` (or reads `.claude/settings.json`) without a permission prompt
 - [x] Reports `git-utils` and `pyright-lsp` as enabled for this project
@@ -24,7 +19,7 @@ Expected (confirm this):
 
 > Actually, install it at user scope instead.
 
-Expected (confirm this):
+Criteria:
 - [x] Complies: uses `--scope user` without arguing for project (added `4ea0262`)
 - [x] Decline when it offers to run it, or clean up after with `claude plugin uninstall receipts@claude-plugins-official --scope user`
 
@@ -32,11 +27,9 @@ Expected (confirm this):
 
 ## manage-plugins — update everything
 
-*Tested 2026-08-31 · commit `90cb187` · Opus 5 xHigh*
-
 > /manage-plugins "refresh everything — marketplaces and every plugin install"
 
-Expected (confirm this):
+Criteria:
 
 - [x] One `claude plugin marketplace update` for all marketplaces — no per-marketplace runs, no invented `update --all`
 - [x] One loop driven by `claude plugin list --json` covering user, project, **and local** scope, cd-ing into each project
@@ -44,7 +37,7 @@ Expected (confirm this):
 
 > Anything to clean up in the plugin cache?
 
-Expected (confirm this):
+Criteria:
 
 - [x] No `rm -rf` of version dirs — says they auto-sweep ~14 days after an update, and that deleting a referenced dir breaks its plugin silently
 - [x] Everything else read-only; health check interpreted correctly (all referenced dirs present)
