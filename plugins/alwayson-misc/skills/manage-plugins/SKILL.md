@@ -36,17 +36,20 @@ What a project uses is `enabledPlugins` and `extraKnownMarketplaces` in its sett
 | Inspect an installed plugin | `claude plugin details <name>@<mkt>` |
 | Add a marketplace | `claude plugin marketplace add <owner/repo> --scope project` |
 | Refresh every marketplace from source (plugins not updated; see below) | `claude plugin marketplace update` |
+| Find which projects use a marketplace | Search `~/projects` for `.claude/settings*.json` files containing `<mkt>` (plus `~/.claude/settings.json`), then read their `enabledPlugins` and `extraKnownMarketplaces` |
 | Remove a marketplace from this project | `claude plugin uninstall <name>@<mkt> --scope project` for each `*@<mkt>` plugin, then delete `<mkt>` from `extraKnownMarketplaces` in `.claude/settings.json` |
-| Remove a marketplace from every project (uninstalls its plugins everywhere) | `claude plugin marketplace remove <mkt>` |
-| Install / enable / disable / update / uninstall a plugin | `claude plugin <verb> <name>@<mkt> --scope project` |
+| Remove a marketplace from every project | `claude plugin marketplace remove <mkt>` (uninstalls its plugins everywhere), then delete what it leaves in the files the "which projects" row finds: `*@<mkt>` in `enabledPlugins`, `<mkt>` in `extraKnownMarketplaces` |
+| Install / enable / disable / update a plugin | `claude plugin <verb> <name>@<mkt> --scope project` |
+| Uninstall a plugin | `claude plugin uninstall <name>@<mkt> --scope project`; if no `*@<mkt>` plugin is left in that file, also delete `<mkt>` from its `extraKnownMarketplaces` |
 | Test a plugin from my marketplace without installing it | Tell me to run `claude --plugin-dir ~/projects/my-claude-marketplace/plugins/<plugin-name>`, then `/reload-plugins` after each edit |
 | Anything else | `claude plugin --help`, `claude plugin <cmd> --help` |
 
 ## Gotchas
 
-- `claude plugin list` and `claude plugin marketplace list` are machine-wide and contain duplicates — never a per-project answer; read the settings file.
+- `claude plugin list` and `claude plugin marketplace list` are machine-wide and contain duplicates — never a per-project answer; read the settings files. In `list --json`, `enabled` and `projectEnabled` reflect only the current directory, even on other projects' records.
 - `details` only sees installed plugins, and `--available` only works with `--json` — hence the "which marketplace" row.
 - `marketplace remove --scope project` only picks which file loses the declaration. Once no settings file seen from here declares the marketplace (usually just this project's), its plugins are uninstalled in every project, even ones that still declare it — hence the two "Remove a marketplace" rows.
+- `enable` / `disable` exit `1` when the plugin is already in that state. That's not a failure (`--json` gives `failureCode: "already_in_goal_state"`).
 - The `jq` row lists files highest-precedence first, so the **first** hit wins. A missing file is normal (exits 2; the output is still complete).
 
 ## Update All Plugins, Everywhere
@@ -72,24 +75,17 @@ claude plugin list --json \
   done
 ```
 
-The loop changes other projects: show me the records it will touch (the `echo` preview) and confirm before running it. To preview, swap `claude plugin update` for `echo`. Sessions already open in a changed project need a restart or `/reload-plugins`.
+The loop changes other projects. First run it with `echo` in place of `claude plugin update`, show me the records, and wait for my go-ahead. Sessions already open in a changed project need a restart or `/reload-plugins`.
 
-`</dev/null` stops `update` reading the rest of the loop's input. A plugin whose marketplace changed its install command needs a person to confirm it, so it fails here; rerun that one alone in its project.
+`</dev/null` stops `update` reading the rest of the loop's input. If an update asks to approve a command, don't approve it yourself: give me `cd <project> && claude plugin update <id> --scope <scope>` to run in my own terminal.
 
-**Check, both must hold:**
+**Check:** one line per plugin; listed twice = a record behind.
 
 ```shell
-# after the loop: one line per plugin; listed twice = a record behind
 claude plugin list --json | jq -r '.[] | [.id, .version] | @tsv' | sort | uniq -c
-
-# must print nothing
-jq -r '.plugins[][].installPath' ~/.claude/plugins/installed_plugins.json | sort -u \
-| while read -r p; do [ -d "$p" ] || echo "BROKEN: $p"; done
 ```
 
-A `BROKEN` record still reports the latest version, so `update` won't repair it. From that project: `claude plugin uninstall <id> --scope <scope> && claude plugin install <id> --scope <scope>`.
-
-**Never clean the cache by hand.** Old version dirs are swept automatically some time after an update. Deleting one that `installed_plugins.json` still references breaks that plugin silently (enabled in settings, files gone).
+**Never clean the cache by hand.** Old versions are swept automatically.
 
 ## Replying
 
