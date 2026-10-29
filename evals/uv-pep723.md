@@ -10,6 +10,6 @@ result: pass
 
 Criteria:
 - [x] Claude invokes the skill itself: a `Skill` call to `alwayson-misc:uv-pep723` appears
-- [x] Creates with `uv init --script … --python 3.14`, then `uv add --script … rich`
-- [x] File starts with a `# /// script` PEP 723 header listing `rich`
+- [x] Creates with `uv init --script`, then `uv add --script … rich`
+- [x] The saved script has a PEP 723 header listing `rich`
 - [x] Runs it with `uv run <file>`; no `pip`, no `uv pip`
