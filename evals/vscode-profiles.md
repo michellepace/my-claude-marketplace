@@ -6,15 +6,16 @@ model: claude-opus-5 xhigh
 result: pass
 ---
 
+**Start directory:** this repo's root, not a fresh one, run from its VS Code terminal. The repo's own profile, extensions and settings are the test data.
+
 > /vscode-profiles which profile is this project in, and which extensions are in it?
 
 Criteria:
-- [x] Reports **Python**, from an exact registry match for this repo's directory
-- [x] Lists all 14 extensions — matches `code --list-extensions` name-for-name
+- [x] Reports the profile `storage.json` records for this repo's directory, as an exact match
+- [x] Lists the same extensions as `code --list-extensions`
 - [x] Flags `anthropic.claude-code` as app-scoped (active in every profile)
 
 > /vscode-profiles what is my effective setting for window.commandCenter?
 
 Criteria:
-- [x] Answers `true`, citing both the Windows user `settings.json` and this repo's `.vscode/settings.json` (workspace wins)
-- [x] Reads the Windows-side JSONC with no permission prompt (frontmatter `Read` rules)
+- [x] Answers from both the Windows user `settings.json` and this repo's `.vscode/settings.json`, with workspace winning
