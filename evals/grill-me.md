@@ -6,7 +6,7 @@ model: claude-opus-5 xhigh
 result: pass
 ---
 
-> /grill-me "should I move my blog from WordPress to Next.js?"
+> /grill-me should I move my blog from WordPress to Next.js?
 
 Criteria:
 - [x] Autocomplete offers `/grill-me`

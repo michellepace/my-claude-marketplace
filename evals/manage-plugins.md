@@ -27,7 +27,7 @@ Criteria:
 
 ## manage-plugins — update everything
 
-> /manage-plugins "refresh everything — marketplaces and every plugin install"
+> /manage-plugins refresh everything — marketplaces and every plugin install
 
 Criteria:
 
