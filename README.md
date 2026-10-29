@@ -18,7 +18,7 @@ Well yes you guessed it, plugins.
 | [`cc-utils`](./plugins/cc-utils) | 3 skills | Claude Code know-how + session analysis |
 | [`find-font`](./plugins/find-font) | 4 skills + MCP | Font pairing (orchestrator pattern) |
 | [`git-utils`](./plugins/git-utils) | 5 skills | Git & GitHub workflows |
-| [`nextjs-utils`](./plugins/nextjs-utils) | 2 skills + MCP | Next.js docs & dev guidance |
+| [`nextjs-utils`](./plugins/nextjs-utils) | 1 skill + MCP | shadcn/ui best practices for Next.js |
 
 For what a plugin can contain, see [Anatomy of a Plugin](#appendix-anatomy-of-a-plugin).
 

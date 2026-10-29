@@ -1,16 +1,12 @@
 ---
 name: gg-commit
-description: "Draft a plain, readable commit message"
-argument-hint: "[additional instructions]"
+description: "Draft commit message for staged changes"
+argument-hint: "[additional guidance]"
 user-invocable: true
 disable-model-invocation: true
-allowed-tools:
-  - Bash(git diff *)
 ---
 
 # Draft Git commit message
-
-User instructions: $ARGUMENTS
 
 Run `<command>` to read the staged changes, then draft the message per `<message>` and `<prefix>`. Present it in a fenced code block; don't commit. If nothing is staged, say so and stop.
 
@@ -25,30 +21,30 @@ echo "===STAGED===" && git diff --staged --compact-summary \
 </command>
 
 <message>
-Write for a future reader of `git log`, often Claude, who will have the diff. The diff shows what changed; the message records why.
+Write for Claude Code, which later reads `git log` to learn why a change was made. The diff shows what changed; the message records why, in just enough words.
 
-- Subject: `<prefix> <summary>`, imperative mood. Aim for ~50 characters, prefix included.
-- Body: the motive, usually a sentence or two. Add a detail only when the diff can't show it, such as a constraint or a rejected alternative.
+- Subject: `<prefix> <summary>`, imperative mood. Aim for ~50 characters, prefix included; go a few over rather than drop a word that carries meaning.
+- Body: the motive, usually a sentence or two. Don't restate what the diff shows; record what it can't: a constraint, a rejected alternative, or a deliberate choice a later reader might otherwise undo.
 - Hard-wrap the body at 72 characters, bullets included.
-- Crisp and professional; no filler.
 
-Take the motive from this session and the user instructions. If it isn't clear, ask the user before drafting rather than guess.
+Take the motive from this session and the additional guidance. If it isn't clear, ask me before drafting rather than guess.
 </message>
 
 <prefix>
-Pick the prefix matching the commit's dominant purpose.
+Use Conventional Commits: `type(scope): summary`. Type is the commit's dominant purpose. Scope is the narrowest skill, plugin or module covering the whole change, never a file.
 
-In `.claude/` or a plugin, files under `skills/`, `agents/`, `commands/`, `rules/`, or `hooks/` take that directory as prefix: `<dir>(<name>):` for one item, `<dir>:` for several — e.g. `skills(gg-commit):`, `agents:`. Otherwise:
+Skills, agents, commands, hooks and `CLAUDE.md` are instructions Claude follows: type them like code, by their effect on Claude's behaviour.
 
-- `rules:` sets Claude's behaviour: `CLAUDE.md` (anywhere)
-- `docs:` `README.md`, any `*docs*/` (docs in code → `docs(code):`)
-- `test:` adding or updating tests, e.g. `tests/**`
-- `ci:` CI/CD pipelines, automated workflows
-- `build:` build system, compilation, packaging
+- `docs:` READMEs, docs, code comments; not instructions Claude follows
+- `test:` adding or updating tests
+- `ci:` CI/CD pipelines
+- `build:` build system, packaging
 - `perf:` performance improvement
 - `style:` formatting and linting; no functional change
-- `refactor:` restructuring; neither fixes a bug nor adds a feature
-- `fix:` bug fix
-- `chore:` dev workflow, config (`settings.json`), dependencies, tooling
-- `feat:` new user-facing functionality
+- `refactor:` restructures or rewords; behaviour unchanged
+- `fix:` corrects wrong behaviour
+- `chore:` config (`settings.json`), dependencies, tooling
+- `feat:` new capability
 </prefix>
+
+Additional guidance for this commit: $ARGUMENTS
