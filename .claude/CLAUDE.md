@@ -32,10 +32,10 @@ Rules that bite:
 
 ## Testing Plugins
 
-Before committing, check the plugin (manifest, then skills/agents/commands):
+Validate with this, not `claude plugin validate`:
 
 ```shell
-claude plugin validate ./plugins/git-utils   # see --help for flags
+uvx pre-commit run validate-plugins --all-files  # incl. untracked
 ```
 
 Test a plugin whilst developing without installing it:
