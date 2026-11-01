@@ -27,7 +27,6 @@ Rules that bite:
 
 - `${CLAUDE_PLUGIN_ROOT}` = absolute path to the plugin dir. Use it for every path to a bundled file in the plugin as relative paths break.
 - **No `../` escapes.** Installed plugins are copied to `~/.claude/plugins/cache`, so paths outside the plugin root break.
-- A `CLAUDE.md` at a plugin root is **not** loaded as context. Ship instructions as a skill.
 - A single-skill plugin can put `SKILL.md` at the plugin root; set frontmatter `name`.
 
 ## Testing Plugins
