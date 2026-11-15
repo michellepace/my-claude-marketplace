@@ -1,6 +1,6 @@
 ---
 name: uv-pep723
-description: uv + PEP 723 conventions. Use to write a self-contained Python script (no associated pyproject.toml) or run inline code.
+description: uv + PEP 723 conventions. Use to write a standalone Python script (no associated pyproject.toml) or run inline code.
 user-invocable: true
 disable-model-invocation: false
 allowed-tools:
@@ -12,7 +12,7 @@ allowed-tools:
 
 # Standalone Python Scripts — uv + PEP 723
 
-A standalone script is one file that declares its own dependencies in a PEP 723 header. The header is what isolates the script: it runs in its own cached environment, ignoring the dependencies of any project it sits in (no `--no-project` needed).
+A standalone script is one file that declares its own dependencies in a PEP 723 header. The header is what isolates the script: it runs in its own cached environment, ignoring the dependencies of any project it sits in.
 
 ## Create
 
@@ -43,7 +43,7 @@ uv run report.py
 
 uv's own options go before the filename; anything after it is passed to the script.
 
-## Make executable (optional)
+## Make executable
 
 For a file on `PATH`, a git hook or a skill script. Add the shebang above the header; `--script` is what parses an extensionless file as PEP 723:
 
@@ -66,7 +66,7 @@ uv run --with rich --no-project python -c 'import rich; rich.print("[bold]hi[/]"
 echo 'import rich; rich.print("[bold]hi[/]")' | uv run --with rich --no-project -
 ```
 
-`--no-project` skips the surrounding project. Anything worth running twice gets a file and a header instead.
+With no header to isolate it, `--no-project` skips the surrounding project. Anything worth running twice gets a file and a header instead.
 
 ## Reference Docs
 
