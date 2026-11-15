@@ -13,7 +13,7 @@ repos:
       - id: check-toml
 
   - repo: https://github.com/DavidAnson/markdownlint-cli2
-    rev: v0.23.3
+    rev: v0.24.0
     hooks:
       - id: markdownlint-cli2       # rules .markdownlint-cli2.yaml
         args: [--fix]
@@ -36,7 +36,7 @@ repos:
       - id: shellcheck              # lint shell (read-only, after shfmt)
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.17.1
+    rev: v0.17.3
     hooks:
       - id: ruff-check              # lint + autofix first
         args: [--fix, --exit-non-zero-on-fix]

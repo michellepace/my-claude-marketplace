@@ -14,13 +14,14 @@ Well yes you guessed it, plugins.
 
 | Plugin | Contains | Purpose |
 | :----- | :------- | :------ |
-| [`alwayson-misc`](./plugins/alwayson-misc) | 4 skills | uv scripts, plugin management, grill-me, my VS Code profiles |
+| [`alwayson-misc`](./plugins/alwayson-misc) | 3 skills | Plugin management, grill-me, my VS Code profiles |
 | [`cc-utils`](./plugins/cc-utils) | 3 skills | Claude Code know-how + session analysis |
 | [`find-font`](./plugins/find-font) | 4 skills + MCP | Font pairing (orchestrator pattern) |
 | [`git-utils`](./plugins/git-utils) | 5 skills | Git & GitHub workflows |
 | [`nextjs-utils`](./plugins/nextjs-utils) | 1 skill + MCP | shadcn/ui best practices for Next.js |
+| [`uv-pep723`](./plugins/uv-pep723) | 1 skill | Standalone uv Python scripts |
 
-For what a plugin can contain, see [Anatomy of a Plugin](#appendix-anatomy-of-a-plugin). Skills I've tested by hand have evals in [`evals/`](./evals/).
+For what a plugin can contain, see [Anatomy of a Plugin](#appendix-1-anatomy-of-a-plugin). Skills I've tested by hand have evals in [`evals/`](./evals/).
 
 ## Usage
 
@@ -49,39 +50,41 @@ Plugins enabled in different scopes add up. If two scopes set the same plugin, t
 
 I install at project scope so source control shows which plugins a project uses. I commit them disabled and enable them only when needed, to keep my context window clean.
 
-## Appendix: Anatomy of a Plugin
+<br>
+
+## Appendix 1: Anatomy of a Plugin
 
 Where a plugin fits, then what each of its files gives you once it loads:
 
 <p>
-  <img src="images/plugins-model-dark.svg" alt="Diagram: a marketplace (catalog) lists a plugin (one directory of skills, agents, hooks, MCP servers) → you install it → Claude Code loads its components." width="600">
+  <img src="images/plugins-model-dark.svg" alt="Diagram: a marketplace (catalog) lists a plugin (one directory of skills, agents, hooks, MCP servers) → you install it → Claude Code loads its components." width="700">
   <br><br>
-  <img src="images/plugin-directory-dark.svg" alt="Diagram: plugin files → what each gives your session. plugin.json → name; skills/review/SKILL.md → /my-plugin:review; agents/reviewer.md → subagent; hooks/hooks.json → lifecycle hooks; .mcp.json → MCP tools." width="600">
+  <img src="images/plugin-directory-dark.svg" alt="Diagram: plugin files → what each gives your session. plugin.json → name; skills/review/SKILL.md → /my-plugin:review; agents/reviewer.md → subagent; hooks/hooks.json → lifecycle hooks; .mcp.json → MCP tools." width="700">
   <br>
-  <sub><em>Both from the <a href="https://code.claude.com/docs/en/plugins/overview">Plugins overview</a> docs</em></sub>
+  <sub><em>From the <a href="https://code.claude.com/docs/en/plugins/overview">Plugins overview</a> doc</em></sub>
 </p>
 
-Every component is optional and auto-discovered from its default location. Other files, such as `scripts/`, aren't loaded automatically; refer to them with `${CLAUDE_PLUGIN_ROOT}` (ask Claude why). The plugins in this repo are far simpler, but here is the full picture:
+Every component is optional and auto-discovered from its default location. Other files, such as `scripts/`, aren't loaded automatically; refer to them with `${CLAUDE_PLUGIN_ROOT}` (ask Claude why). The plugins in this repo are far simpler, but here is one of every kind of component, plus the files that support them:
 
 ```text
 my-plugin/
 ├── .claude-plugin/
-│   └── plugin.json           # Manifest 🟢 (optional; only `name` is required)
+│   └── plugin.json           # Manifest (optional; only `name` is required)
 ├── skills/                   # Skills → /my-plugin:<skill>
 │   └── review/
 │       ├── SKILL.md
 │       └── scripts/          # Supporting files for the skill
-├── agents/                   # Subagents Claude can delegate to
+├── agents/                   # Subagents → @agent-my-plugin:<agent>
 │   └── security-reviewer.md
 ├── hooks/
 │   └── hooks.json            # Hooks that run on lifecycle events (exact filename)
 ├── .mcp.json                 # MCP servers that give Claude tools
-├── .lsp.json                 # Language servers
+├── .lsp.json                 # Language servers → diagnostics and code navigation
 ├── bin/                      # Executables on the Bash tool's PATH
 │   └── hello-plugin
 ├── monitors/
 │   └── monitors.json         # Background commands whose output reaches Claude
-├── workflows/                # Dynamic workflow scripts "subagents at scale"
+├── workflows/                # Dynamic workflows → /my-plugin:<workflow>
 │   └── audit-routes.js
 ├── output-styles/            # Output styles → /output-style
 │   └── terse.md
@@ -92,23 +95,22 @@ my-plugin/
     └── format.sh
 ```
 
-## Appendix: Good Refs
+## Appendix 2: Good References
 
-Three plugin components worth a closer look:
-
-> *A [subagent](https://code.claude.com/docs/en/sub-agents) is a separate assistant, with its own instructions and context window, that Claude can delegate a task to. See [docs](https://code.claude.com/docs/en/plugins/components#agents).*
->
-> *A monitor is a shell command that runs in the background for the whole session. What it prints reaches Claude as notifications, so Claude can react to a log or a status change without being asked to watch it. See [docs](https://code.claude.com/docs/en/plugins/components#monitors).*
->
-> *Dynamic workflows orchestrate many subagents from a script Claude writes and you can rerun. Use them for codebase audits, large migrations, and cross-checked research. See [docs](https://code.claude.com/docs/en/workflows).*
+Append `.md` to all non-GitHub URLs below to fetch them as clean Markdown.
 
 Docs
 - [Plugins overview](https://code.claude.com/docs/en/plugins/overview)
 - [Add components to a plugin](https://code.claude.com/docs/en/plugins/components)
 - [Plugin manifest reference](https://code.claude.com/docs/en/plugins/manifest-reference)
-- [Orchestrate subagents at scale with dynamic workflows](https://code.claude.com/docs/en/workflows)
 
-Plugins for building plugins
-- [Plugin Developer Toolkit](https://claude.com/plugins/plugin-dev) (`plugin-dev@claude-plugins-official`)
-- [Skill Creator](https://github.com/anthropics/claude-plugins-official/tree/main/plugins/skill-creator) (`skill-creator@claude-plugins-official`) — also creates and runs evals
-  - Related reading: [*"Automating eval design and hillclimbing with Claude"*](https://claude.dev/blog/automating-eval-design-and-hillclimbing/)
+Resources for building plugins
+- [Automating eval design and hillclimbing with Claude](https://claude.dev/blog/automating-eval-design-and-hillclimbing)
+- [Plugin Developer Toolkit](https://github.com/anthropics/claude-plugins-official/blob/main/plugins/plugin-dev/README.md) (`plugin-dev@claude-plugins-official`)
+- [Skill Creator](https://github.com/anthropics/claude-plugins-official/blob/main/plugins/skill-creator/README.md) (`skill-creator@claude-plugins-official`) — also creates and runs evals
+
+Three plugin components worth a closer look:
+
+- A [subagent](https://code.claude.com/docs/en/sub-agents) is a separate assistant, with its own instructions and context window, that Claude can delegate a task to. See [Add components to a plugin](https://code.claude.com/docs/en/plugins/components#agents).
+- A monitor is a shell command that runs in the background for the whole session. What it prints reaches Claude as notifications, so Claude can react to a log or a status change without being asked to watch it. See [Add components to a plugin](https://code.claude.com/docs/en/plugins/components#monitors).
+- A [dynamic workflow](https://code.claude.com/docs/en/workflows) is a script that orchestrates many subagents at once, for jobs like codebase audits, large migrations, and cross-checked research. Claude writes it, and you can save and rerun it. See [Distribute a workflow in a plugin](https://code.claude.com/docs/en/workflows#distribute-a-workflow-in-a-plugin).

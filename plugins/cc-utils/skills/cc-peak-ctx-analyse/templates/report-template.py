@@ -1,6 +1,8 @@
 # /// script
 # requires-python = ">=3.15"
-# dependencies = ["rich"]
+# dependencies = [
+#     "rich>=15.0.0",
+# ]
 # ///
 #
 # Report template scaffolding — unused imports intentional.
