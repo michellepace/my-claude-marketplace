@@ -61,7 +61,7 @@ Two layers, updated separately:
 
 A record is behind when its version differs from the marketplace copy's. Plugins without `version` in `plugin.json` are versioned by marketplace commit, so every commit makes all of them new; plugins with `version` update only when it's bumped.
 
-```shell
+```bash
 claude plugin marketplace update   # every marketplace
 
 # every install record; set m to a marketplace name to limit it
@@ -77,12 +77,15 @@ claude plugin list --json \
 
 The loop changes other projects. First run it with `echo` in place of `claude plugin update`, show me the records, and wait for my go-ahead. Sessions already open in a changed project need a restart or `/reload-plugins`.
 
-`</dev/null` stops `update` reading the rest of the loop's input. If an update asks to approve a command, don't approve it yourself: give me `cd <project> && claude plugin update <id> --scope <scope>` to run in my own terminal.
+`</dev/null` stops `update` reading the rest of the loop's input. An update that needs a command approved fails here instead. Don't pass `-y` or `--accept-command` yourself: give me `cd <project> && claude plugin update <id> --scope <scope>` to run in my own terminal.
 
-**Check:** one line per plugin; listed twice = a record behind.
+**Check:** one line per plugin; a plugin on two lines has a record behind. Records of missing projects are left out, as the loop skips them.
 
-```shell
-claude plugin list --json | jq -r '.[] | [.id, .version] | @tsv' | sort | uniq -c
+```bash
+claude plugin list --json \
+| jq -r '.[] | [.id, .version, .projectPath // ""] | @tsv' \
+| while IFS=$'\t' read -r id v p; do [ -z "$p" ] || [ -d "$p" ] && printf '%s\t%s\n' "$id" "$v"; done \
+| sort | uniq -c
 ```
 
 **Never clean the cache by hand.** Old versions are swept automatically.
