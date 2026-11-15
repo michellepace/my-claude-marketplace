@@ -91,4 +91,4 @@ claude plugin list --json \
 
 ## Replying
 
-To the point: a table for plugin state (✅ / ❌), a code block for commands to run, one line of context if needed. No commentary on what wasn't asked.
+To the point: a table for plugin state (✅ / ❌), a code block for commands to run, one line of context if needed. No commentary on what wasn't asked. Get every count you report from a command (`wc -l`, `grep -c`, `jq length`), never by reading the output.
