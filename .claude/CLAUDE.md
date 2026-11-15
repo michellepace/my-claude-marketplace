@@ -1,6 +1,4 @@
-# CLAUDE.md
-
-A Claude Code **marketplace** — a monorepo of Plugins.
+# Claude Code Marketplace — a monorepo of Plugins
 
 Plugins are described in this manifest: `.claude-plugin/marketplace.json`
 
@@ -21,7 +19,7 @@ plugins/<name>/
 └── ...                         # Freeform, eg references/, examples/
 ```
 
-Unused here, see README appendix: `workflows/`, `output-styles/`, `themes/`, `monitors/monitors.json`, `.lsp.json`, `settings.json`
+Other components exist but are unused here (see README § Appendix 1).
 
 Rules that bite:
 
@@ -37,26 +35,21 @@ Validate with this, not `claude plugin validate`:
 uvx pre-commit run validate-plugins --all-files  # incl. untracked
 ```
 
-Test a plugin whilst developing without installing it:
+Test the working copy (beats an installed copy, for that session):
 
 ```shell
 claude --plugin-dir ~/projects/my-claude-marketplace/plugins/git-utils
 ```
 
-`--plugin-dir` is a session-only override that beats every scope except managed.
+## Python
 
-## Python scripts
-
-Live under `plugins/<name>/**/*.py` (uv PEP 723).
+Scripts are standalone (uv PEP 723). The root `pyproject.toml` is ruff/pyright config only, not a project.
 
 Development commands:
 
 ```shell
-uv run script.py    # run (isolated)
-uvx ruff format script.py
-uvx ruff check script.py
-uvx pyright script.py
-
-uvx pre-commit run         # isolated — never `uv run pre-commit`
-uvx pre-commit autoupdate  # bump hook `rev`s to latest
+uv run script.py                      # run (isolated)
+uvx pre-commit run --files script.py  # ruff + pyright
 ```
+
+Always `uvx pre-commit`, never `uv run pre-commit`.
