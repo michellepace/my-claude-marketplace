@@ -36,9 +36,8 @@ What a project uses is `enabledPlugins` and `extraKnownMarketplaces` in its sett
 | Inspect an installed plugin | `claude plugin details <name>@<mkt>` |
 | Add a marketplace | `claude plugin marketplace add <owner/repo> --scope project` |
 | Refresh every marketplace from source (plugins not updated; see below) | `claude plugin marketplace update` |
-| Find which projects use a marketplace | Search `~/projects` for `.claude/settings*.json` files containing `<mkt>` (plus `~/.claude/settings.json`), then read their `enabledPlugins` and `extraKnownMarketplaces` |
-| Remove a marketplace from this project | `claude plugin uninstall <name>@<mkt> --scope project` for each `*@<mkt>` plugin, then delete `<mkt>` from `extraKnownMarketplaces` in `.claude/settings.json` |
-| Remove a marketplace from every project | `claude plugin marketplace remove <mkt>` (uninstalls its plugins everywhere), then delete what it leaves in the files the "which projects" row finds: `*@<mkt>` in `enabledPlugins`, `<mkt>` in `extraKnownMarketplaces` |
+| Find which projects use a marketplace | Search `~/projects` for `.claude/settings*.json` files containing `<mkt>` (plus `~/.claude/settings.json`) |
+| Remove a marketplace | **This project:** `claude plugin uninstall <name>@<mkt> --scope project` for each `*@<mkt>` plugin, then delete `<mkt>` from `extraKnownMarketplaces` in `.claude/settings.json`. **Every project:** `claude plugin marketplace remove <mkt>`, then delete `*@<mkt>` and `<mkt>` from each file the "which projects" row finds |
 | Install / enable / disable / update a plugin | `claude plugin <verb> <name>@<mkt> --scope project` |
 | Uninstall a plugin | `claude plugin uninstall <name>@<mkt> --scope project`; if no `*@<mkt>` plugin is left in that file, also delete `<mkt>` from its `extraKnownMarketplaces` |
 | Test a plugin from my marketplace without installing it | Tell me to run `claude --plugin-dir ~/projects/my-claude-marketplace/plugins/<plugin-name>`, then `/reload-plugins` after each edit |
@@ -46,9 +45,9 @@ What a project uses is `enabledPlugins` and `extraKnownMarketplaces` in its sett
 
 ## Gotchas
 
-- `claude plugin list` and `claude plugin marketplace list` are machine-wide and contain duplicates — never a per-project answer; read the settings files. In `list --json`, `enabled` and `projectEnabled` reflect only the current directory, even on other projects' records.
+- `claude plugin list` and `claude plugin marketplace list` are machine-wide and contain duplicates — never a per-project answer; read the settings files.
 - `details` only sees installed plugins, and `--available` only works with `--json` — hence the "which marketplace" row.
-- `marketplace remove --scope project` only picks which file loses the declaration. Once no settings file seen from here declares the marketplace (usually just this project's), its plugins are uninstalled in every project, even ones that still declare it — hence the two "Remove a marketplace" rows.
+- `marketplace remove` uninstalls its plugins in every project, whatever `--scope` says — hence the "Remove a marketplace" row.
 - `enable` / `disable` exit `1` when the plugin is already in that state. That's not a failure (`--json` gives `failureCode: "already_in_goal_state"`).
 - The `jq` row lists files highest-precedence first, so the **first** hit wins. A missing file is normal (exits 2; the output is still complete).
 
