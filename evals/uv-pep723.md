@@ -1,8 +1,8 @@
 ---
 title: uv-pep723 evals
 skill: plugins/uv-pep723/SKILL.md
-skill-commit: b4b14c8
-model: claude-opus-5 xhigh
+skill-commit: fb7d927
+model: claude-opus-5-5 medium
 result: pass
 ---
 
