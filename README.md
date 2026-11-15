@@ -14,11 +14,12 @@ Well yes you guessed it, plugins.
 
 | Plugin | Contains | Purpose |
 | :----- | :------- | :------ |
-| [`alwayson-misc`](./plugins/alwayson-misc) | 4 skills | uv scripts, plugin management, grill-me, my VS Code profiles |
+| [`alwayson-misc`](./plugins/alwayson-misc) | 3 skills | Plugin management, grill-me, my VS Code profiles |
 | [`cc-utils`](./plugins/cc-utils) | 3 skills | Claude Code know-how + session analysis |
 | [`find-font`](./plugins/find-font) | 4 skills + MCP | Font pairing (orchestrator pattern) |
 | [`git-utils`](./plugins/git-utils) | 5 skills | Git & GitHub workflows |
 | [`nextjs-utils`](./plugins/nextjs-utils) | 1 skill + MCP | shadcn/ui best practices for Next.js |
+| [`uv-pep723`](./plugins/uv-pep723) | 1 skill | Standalone uv Python scripts |
 
 For what a plugin can contain, see [Anatomy of a Plugin](#appendix-1-anatomy-of-a-plugin). Skills I've tested by hand have evals in [`evals/`](./evals/).
 

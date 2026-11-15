@@ -14,7 +14,7 @@ Each eval runs in a new session, except evals under one `##` heading, which shar
 ```markdown
 ---
 title: <skill-name> evals
-skill: plugins/<plugin>/skills/<skill-name>/SKILL.md
+skill: plugins/<plugin>/skills/<skill-name>/SKILL.md  # single-skill plugin: plugins/<plugin>/SKILL.md
 skill-commit: <skill's latest commit at the time of the run>
 model: <model-id> <effort>
 result: <pass if every eval met all its criteria, else fail>

@@ -9,16 +9,17 @@ claude plugin marketplace add michellepace/my-claude-marketplace --scope user
 claude plugin install alwayson-misc@my-claude-marketplace        --scope user
 ```
 
-Context-preserving to install at user scope (global). Only `/uv-pep723` auto-invokes and loads into Claude's context window. Better as a versioned Plugin that keeps `CLAUDE.md` slim.
+Context-preserving to install at user scope (global). No skill auto-invokes, so none loads into Claude's context window until run. Better as a versioned Plugin that keeps `CLAUDE.md` slim.
+
+The auto-invoking uv skill lives in its own plugin, [`uv-pep723`](../uv-pep723), to install only where wanted.
 
 ## What's Inside
 
-| Run Skill | What it does | Auto-invokes |
-| :-------- | :----------- | :----------- |
-| [`/grill-me`](skills/grill-me/SKILL.md) | Get grilled on an idea to thrash it out | No |
-| [`/manage-plugins`](skills/manage-plugins/SKILL.md) | Manage Claude plugins and marketplaces | No |
-| [`/uv-pep723`](skills/uv-pep723/SKILL.md) | Make standalone uv Python scripts | **YES** |
-| [`/vscode-profiles`](skills/vscode-profiles/SKILL.md) | Answer VS Code profile questions | No |
+| Run Skill | What it does |
+| :-------- | :----------- |
+| [`/grill-me`](skills/grill-me/SKILL.md) | Get grilled on an idea to thrash it out |
+| [`/manage-plugins`](skills/manage-plugins/SKILL.md) | Manage Claude plugins and marketplaces |
+| [`/vscode-profiles`](skills/vscode-profiles/SKILL.md) | Answer VS Code profile questions |
 
 ## Usage Examples
 
@@ -27,10 +28,6 @@ Context-preserving to install at user scope (global). Only `/uv-pep723` auto-inv
 - *"which plugins are applied to this project?"*
 - *"install matt pocock plugin in claude-plugins-official"*
 - (I am swimming in plugins. This skill is a relief. 👈)
-
-[`/uv-pep723`](skills/uv-pep723/SKILL.md)
-- *"use python + rich to visualise data.tsv (Edward Tufte: show me the numbers!)"*
-- *"make me a throwaway script to plot this CSV"*
 
 [`/grill-me`](skills/grill-me/SKILL.md)
 - *"I'm not sure if I need to build an MCP for this..."*
