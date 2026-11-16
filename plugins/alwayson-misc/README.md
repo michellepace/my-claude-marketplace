@@ -19,7 +19,7 @@ The auto-invoking uv skill lives in its own plugin, [`uv-pep723`](../uv-pep723),
 | :-------- | :----------- |
 | [`/grill-me`](skills/grill-me/SKILL.md) | Get grilled on an idea to thrash it out |
 | [`/manage-plugins`](skills/manage-plugins/SKILL.md) | Manage Claude plugins and marketplaces |
-| [`/vscode-profiles`](skills/vscode-profiles/SKILL.md) | Answer VS Code profile questions |
+| [`/vscode-config`](skills/vscode-config/SKILL.md) | Answer VS Code config questions |
 
 ## Usage Examples
 
@@ -33,7 +33,8 @@ The auto-invoking uv skill lives in its own plugin, [`uv-pep723`](../uv-pep723),
 - *"I'm not sure if I need to build an MCP for this..."*
 - (Original first version from Matt Pocock, +formatting)
 
-[`/vscode-profiles`](skills/vscode-profiles/SKILL.md)
+[`/vscode-config`](skills/vscode-config/SKILL.md)
 - *"What is in my custom profiles?"*
 - *"which profile is this project in?"*
-- (Hardcodes my Windows/WSL paths and profile hashes — useless on any other machine)
+- *"where are my keybindings?"*
+- (Hardcodes my Windows/WSL paths — useless on any other machine)
