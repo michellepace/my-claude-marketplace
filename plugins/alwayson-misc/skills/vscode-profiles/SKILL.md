@@ -38,7 +38,8 @@ Otherwise, leverage this information to help answer the question.
 
 | What | Path |
 | :--- | :--- |
-| The one `settings.json` / `keybindings.json` | `/mnt/c/Users/mp/AppData/Roaming/Code/User/` — **JSONC**: read as text, `json.load` chokes |
+| User settings | `/mnt/c/Users/mp/AppData/Roaming/Code/User/settings.json` — JSONC, `jq` chokes |
+| Keyboard Shortcuts | `/mnt/c/Users/mp/AppData/Roaming/Code/User/keybindings.json` — JSONC, `jq` chokes |
 | Profile registry (names, hashes, inheritance flags, directory→profile map) | `/mnt/c/Users/mp/AppData/Roaming/Code/User/globalStorage/storage.json` — plain JSON |
 | Default profile's extensions | `~/.vscode-server/extensions/extensions.json` |
 | Custom profile's extensions | `~/.vscode-server/data/User/profiles/<hash>/extensions.json` |
@@ -76,9 +77,9 @@ jq -r --arg p "$PWD" '(.userDataProfiles | map({(.location): .name}) | add) as $
 | Which projects use profile X? | **A** `\| grep -P '^<Profile>\t'` (the `\t` matters — one profile name may prefix another) |
 | Which extensions are in this profile? | `code --list-extensions` — complete for this window's profile, app-scoped included |
 | Which extensions are in another profile? | `jq -r '.[].identifier.id' ~/.vscode-server/data/User/profiles/<hash>/extensions.json`, plus the app-scoped ones |
-| What's in Default? | extensions: `jq -r '.[].identifier.id' ~/.vscode-server/extensions/extensions.json`; settings and keybindings: *the* two files in §2 |
+| What's in Default? | extensions: `jq -r '.[].identifier.id' ~/.vscode-server/extensions/extensions.json`; settings and keybindings: §2 |
 | Does profile X inherit from Default? | `jq -r '.userDataProfiles[] \| "\(.name)\t\(.useDefaultFlags // {} \| keys \| join(","))"' $S` |
-| What is my effective setting for Y? | Windows `settings.json`, then `<repo>/.vscode/settings.json` overrides it |
+| What is my effective setting for Y? | User settings, then Workspace settings override them (§2) |
 
 ### 5. Traps
 
