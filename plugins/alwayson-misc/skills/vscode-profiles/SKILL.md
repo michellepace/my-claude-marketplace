@@ -86,13 +86,10 @@ Things a cold start gets wrong without being told:
 
 - Remote settings (`~/.vscode-server/data/Machine/settings.json`) are unused. User settings reach every window, except `machine`-scoped ones, which a WSL window reads only from Remote settings.
 - `~/.vscode-server/data/User/globalStorage/storage.json` is a stale mirror. Only the Windows one counts.
-- `code --status` is unreliable from this shell (often returns nothing). The registry is the answer, not the window title.
-- `code --profile <name>` is silently ignored. Other profiles are answered from files, not the CLI.
+- `code --profile <name>` is ignored; you get this window's list.
 - Windows-side extension lists (`…/Code/User/profiles/<hash>/extensions.json`, `/mnt/c/Users/mp/.vscode/extensions/`) are not what runs. Ignore.
 - **GitHub Copilot** and **JavaScript Debugger Companion** in the profile UI are VSCode built-ins, not installs.
 - `<repo>/.vscode/extensions.json` is recommendations, not installs.
-- `profileAssociations.emptyWindows` (timestamp → profile) is folderless windows. Not projects; A and B ignore it.
-- `~/.vscode-server/data/User/{History,globalStorage/<ext>,workspaceStorage}` are Local History, extension cache and UI state. Every `snippets/` dir is empty; no tasks/MCP/prompt files exist in any profile.
 
 ## Answer style & format
 
