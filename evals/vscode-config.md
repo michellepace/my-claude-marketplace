@@ -1,21 +1,33 @@
 ---
 title: vscode-config evals
 skill: plugins/alwayson-misc/skills/vscode-config/SKILL.md
-skill-commit: 14c98c8
-model: claude-opus-5 xhigh
+skill-commit: b57713f
+model: claude-opus-5-5 medium
 result: pass
 ---
 
-**Start directory:** this repo's root, not a fresh one, run from its VS Code terminal. The repo's own profile, extensions and settings are the test data.
+**Start directory:** this repo's root, from its VS Code terminal. Check answers against VS Code, not the skill: the window title, and the Extensions view of a window open in that profile (built-ins aside).
 
-> /vscode-config which profile is this project in, and which extensions are in it?
+**Setup:** in this window, Disable one installed extension (profile-wide).
 
-Criteria:
-- [x] Reports the profile `storage.json` records for this repo's directory, as an exact match
-- [x] Lists the same extensions as `code --list-extensions`
-- [x] Flags `anthropic.claude-code` as app-scoped (active in every profile)
-
-> /vscode-config what is my effective setting for window.commandCenter?
+> /vscode-config which profile is this project in, and which extensions are enabled?
 
 Criteria:
-- [x] Answers from both the Windows user `settings.json` and this repo's `.vscode/settings.json`, with workspace winning
+- [x] Names the profile in the window title
+- [x] Lists the enabled extensions in the Extensions view, WSL included
+- [x] Leaves out the disabled one and says it's disabled
+
+> /vscode-config which extensions are in my Default profile?
+
+Criteria:
+- [x] Lists the enabled extensions in a Default window's Extensions view, WSL included
+
+> /vscode-config which extensions are in my Markdown profile?
+
+Criteria:
+- [x] Lists the enabled extensions in a Markdown window's Extensions view, WSL included
+
+> /vscode-config have I got VS Code settings specific to Claude Code, excluding extensions
+
+Criteria:
+- [x] Accurately answers from `/mnt/c/Users/mp/AppData/Roaming/Code/User/settings.json` and `/mnt/c/Users/mp/AppData/Roaming/Code/User/keybindings.json`
