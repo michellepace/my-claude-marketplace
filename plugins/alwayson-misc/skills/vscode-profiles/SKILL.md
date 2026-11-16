@@ -12,12 +12,11 @@ allowed-tools:
   - Read(~/.vscode-server/**)
 ---
 
-
 # Answer VS Code Profile Questions
 
-Question: `$ARGUMENTS`
+User Question: `$ARGUMENTS`
 
-You are to answer a Question regarding the VS Code profiles on this machine. If the Question is blank or irrelevant to this, show me a friendly helpful message. List 3-4 examples of what I could ask. Keep it short and easy to read.
+If the question is blank or irrelevant to this skill, show a friendly helpful message:
 
 > 🤔 ...
 
