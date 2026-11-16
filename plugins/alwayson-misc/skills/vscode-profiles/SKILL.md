@@ -22,13 +22,13 @@ If the question is blank or irrelevant to this skill, show a friendly helpful me
 
 Otherwise, leverage this information to help answer the question.
 
-## VSCode Profiles on This Machine — Answer the Question
+## This Machine: VS Code on Windows, Every Window in WSL (Ubuntu)
 
 **The one rule:** this file records *constants and mechanisms*, not inventories. Paths and mechanisms are stable — trust them. Everything else changes — which custom profiles exist and their hashes, extension lists, settings values, directory→profile mappings. Run the commands; never answer from this document or memory.
 
 ### 1. Model
 
-- VSCode runs on Windows; every window is Remote-WSL (Ubuntu). Questions arrive from the integrated terminal of the project's window: `code` is bound to that window, and `$PWD` is the directory VSCode opened or a subdirectory of it.
+- Questions arrive from the integrated terminal of the project's window: `code` is bound to that window, and `$PWD` is the directory VSCode opened or a subdirectory of it.
 - **Windows holds the config** (settings, keybindings, profile registry). **WSL holds the extensions** that run. Everything else on either side is cache.
 - **Default** is built-in and near-empty — only what new windows open in. Everything else is a *custom profile*; when I ask about profiles I mean these. A project is switched to a custom profile once and remembered. Never assume the roster — list it (§2).
 - **Convention:** every custom profile takes *Settings* and *Keyboard Shortcuts* from Default and owns everything else. Net effect: **one `settings.json` and one `keybindings.json` for the whole machine.** One-way — Default never takes anything from a custom profile.
@@ -84,7 +84,7 @@ jq -r --arg p "$PWD" '(.userDataProfiles | map({(.location): .name}) | add) as $
 
 Things a cold start gets wrong without being told:
 
-- There is **no** `settings.json` or `keybindings.json` under `~/.vscode-server/`. `~/.vscode-server/data/Machine/settings.json` exists but is `{}`.
+- Remote settings (`~/.vscode-server/data/Machine/settings.json`) are unused. User settings reach every window, except `machine`-scoped ones, which a WSL window reads only from Remote settings.
 - `~/.vscode-server/data/User/globalStorage/storage.json` is a stale mirror. Only the Windows one counts.
 - `code --status` is unreliable from this shell (often returns nothing). The registry is the answer, not the window title.
 - `code --profile <name>` is silently ignored. Other profiles are answered from files, not the CLI.
