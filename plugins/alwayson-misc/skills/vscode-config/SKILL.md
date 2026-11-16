@@ -1,6 +1,6 @@
 ---
-name: vscode-profiles
-description: Answer VSCode Profile questions on this machine
+name: vscode-config
+description: Answer VS Code config questions on this machine — profiles, extensions, settings, keybindings
 argument-hint: '"What is in my custom profiles?"'
 user-invocable: true
 disable-model-invocation: true
@@ -13,7 +13,7 @@ allowed-tools:
   - Read(~/.vscode-server/**)
 ---
 
-# Answer VS Code Profile Questions
+# Answer VS Code Config Questions
 
 User Question: `$ARGUMENTS`
 
@@ -29,7 +29,7 @@ Otherwise, leverage this information to help answer the question.
 
 ### 1. Model
 
-- Questions arrive from the integrated terminal of the project's window: `code` is bound to that window, and `$PWD` is the directory VSCode opened or a subdirectory of it.
+- Questions arrive from the integrated terminal of the project's window: `code` is bound to that window, and `$PWD` is the directory the window opened, or a subdirectory of it.
 - **Windows holds the config** (settings, keybindings, profile registry). **WSL holds the extensions** that run. Everything else on either side is cache.
 - **Default** is built-in and near-empty — only what new windows open in. Everything else is a *custom profile*; when I ask about profiles I mean these. A project is switched to a custom profile once and remembered. Never assume the roster — list it (§2).
 - **Convention:** every custom profile takes *Settings* and *Keyboard Shortcuts* from Default and owns everything else. Net effect: **one `settings.json` and one `keybindings.json` for the whole machine.** One-way — Default never takes anything from a custom profile.
@@ -57,7 +57,7 @@ jq -r '.userDataProfiles[] | [.location, .name] | @tsv' \
 - **Inheritance:** `storage.json` → `userDataProfiles[].useDefaultFlags`, one key per resource; `true` = use Default's, absent = own (own files would live in `/mnt/c/Users/mp/AppData/Roaming/Code/User/profiles/<hash>/`). In the profile UI these are the *Contents* toggles: `Default` selected = `true`.
 - **Extensions:** each profile's list is a full set, not a delta. An extension with `metadata.isApplicationScoped: true` (nested, not top-level) is active in *every* profile regardless — currently Claude Code, which is why Default's list isn't empty. The WSL extension also runs in every profile, on the Windows side, so no WSL-side list (including `code --list-extensions`) shows it — add it.
 - **Enabled:** installed lists include disabled extensions. Each profile's and project's Windows-side `state.vscdb` holds them under `extensionsIdentifiers/*` (`sqlite3 -readonly`).
-- **Directory → profile:** `storage.json` → `profileAssociations.workspaces`, keyed by the directory VSCode opened. **Last-write-wins**; entries outlive moved or deleted directories.
+- **Directory → profile:** `storage.json` → `profileAssociations.workspaces`, keyed by the directory each window opened. **Last-write-wins**; entries outlive moved or deleted directories.
 
 ### 4. Answers
 
@@ -90,7 +90,7 @@ Things a cold start gets wrong without being told:
 - `~/.vscode-server/data/User/globalStorage/storage.json` is a stale mirror. Only the Windows one counts.
 - `code --profile <name>` is ignored; you get this window's list.
 - Windows-side extension lists (`…/Code/User/profiles/<hash>/extensions.json`, `/mnt/c/Users/mp/.vscode/extensions/`) are the UI's "Local – Installed". Ignore them, bar WSL (§3).
-- **GitHub Copilot** and **JavaScript Debugger Companion** in the profile UI are VSCode built-ins, not installs.
+- **GitHub Copilot** and **JavaScript Debugger Companion** in the profile UI are built-ins, not installs.
 - `<repo>/.vscode/extensions.json` is recommendations, not installs.
 
 ## Answer style & format
