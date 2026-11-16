@@ -55,6 +55,7 @@ jq -r '.userDataProfiles[] | [.location, .name] | @tsv' \
 
 - **Inheritance:** `storage.json` → `userDataProfiles[].useDefaultFlags`, one key per resource; `true` = use Default's, absent = own (own files would live in `/mnt/c/Users/mp/AppData/Roaming/Code/User/profiles/<hash>/`). In the profile UI these are the *Contents* toggles: `Default` selected = `true`. Currently every custom profile has exactly `settings: true, keybindings: true`.
 - **Extensions:** each profile's list is a full set, not a delta. An extension with `metadata.isApplicationScoped: true` (nested, not top-level) is active in *every* profile regardless — currently Claude Code, which is why Default's list isn't empty. The WSL extension also runs in every profile, on the Windows side, so no WSL-side list (including `code --list-extensions`) shows it — add it.
+- **Enabled:** installed isn't enabled — `code --list-extensions` lists disabled ones too. Each scope's `state.vscdb` (SQLite) under `/mnt/c/Users/mp/AppData/Roaming/Code/User/` holds its `extensionsIdentifiers/disabled` key: `globalStorage/` for Default, `profiles/<hash>/globalStorage/` for a custom profile, `workspaceStorage/<id>/` for one project (which may also hold `…/enabled`).
 - **Directory → profile:** `storage.json` → `profileAssociations.workspaces`, keyed by the directory VSCode opened. **Last-write-wins**; entries outlive moved or deleted directories.
 
 ### 4. Answers
@@ -74,9 +75,9 @@ jq -r --arg p "$PWD" '(.userDataProfiles | map({(.location): .name}) | add) as $
 | :--- | :--- |
 | Which profile is this project in? | **B** — cross-check with `code --list-extensions` |
 | Which projects use profile X? | **A** `\| grep -P '^<Profile>\t'` (the `\t` matters — one profile name may prefix another) |
-| Which extensions are in this profile? | `code --list-extensions` (app-scoped included), plus WSL (§3) |
-| Which extensions are in another profile? | `jq -r '.[].identifier.id' ~/.vscode-server/data/User/profiles/<hash>/extensions.json`, plus the app-scoped ones and WSL (§3) |
-| What's in Default? | extensions: `jq -r '.[].identifier.id' ~/.vscode-server/extensions/extensions.json`, plus WSL (§3); settings and keybindings: §2 |
+| Which extensions are in this profile? | `code --list-extensions` (app-scoped included), plus WSL, minus disabled (§3) |
+| Which extensions are in another profile? | `jq -r '.[].identifier.id' ~/.vscode-server/data/User/profiles/<hash>/extensions.json`, plus the app-scoped ones and WSL, minus disabled (§3) |
+| What's in Default? | extensions: `jq -r '.[].identifier.id' ~/.vscode-server/extensions/extensions.json`, plus WSL, minus disabled (§3); settings and keybindings: §2 |
 | Does profile X inherit from Default? | `jq -r '.userDataProfiles[] \| "\(.name)\t\(.useDefaultFlags // {} \| keys \| join(","))"' $S` |
 | What is my effective setting for Y? | User settings, then Workspace settings override them (§2) |
 
