@@ -7,6 +7,7 @@ disable-model-invocation: true
 allowed-tools:
   - Bash(code --list-extensions)
   - Bash(jq *)
+  - Bash(sqlite3 -readonly *)
   - Bash(grep *)
   - Read(//mnt/c/Users/mp/AppData/Roaming/Code/User/**)
   - Read(~/.vscode-server/**)
@@ -55,7 +56,7 @@ jq -r '.userDataProfiles[] | [.location, .name] | @tsv' \
 
 - **Inheritance:** `storage.json` → `userDataProfiles[].useDefaultFlags`, one key per resource; `true` = use Default's, absent = own (own files would live in `/mnt/c/Users/mp/AppData/Roaming/Code/User/profiles/<hash>/`). In the profile UI these are the *Contents* toggles: `Default` selected = `true`. Currently every custom profile has exactly `settings: true, keybindings: true`.
 - **Extensions:** each profile's list is a full set, not a delta. An extension with `metadata.isApplicationScoped: true` (nested, not top-level) is active in *every* profile regardless — currently Claude Code, which is why Default's list isn't empty. The WSL extension also runs in every profile, on the Windows side, so no WSL-side list (including `code --list-extensions`) shows it — add it.
-- **Enabled:** installed isn't enabled — `code --list-extensions` lists disabled ones too. Each scope's `state.vscdb` (SQLite) under `/mnt/c/Users/mp/AppData/Roaming/Code/User/` holds its `extensionsIdentifiers/disabled` key: `globalStorage/` for Default, `profiles/<hash>/globalStorage/` for a custom profile, `workspaceStorage/<id>/` for one project (which may also hold `…/enabled`).
+- **Enabled:** installed lists include disabled extensions. Each profile's and project's Windows-side `state.vscdb` holds them under `extensionsIdentifiers/*` (`sqlite3 -readonly`).
 - **Directory → profile:** `storage.json` → `profileAssociations.workspaces`, keyed by the directory VSCode opened. **Last-write-wins**; entries outlive moved or deleted directories.
 
 ### 4. Answers
