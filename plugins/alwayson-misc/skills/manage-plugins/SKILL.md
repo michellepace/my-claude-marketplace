@@ -47,7 +47,9 @@ What a project uses is `enabledPlugins` and `extraKnownMarketplaces` in its sett
 
 - `claude plugin list` and `claude plugin marketplace list` are machine-wide and contain duplicates — never a per-project answer; read the settings files.
 - `details` only sees installed plugins, and `--available` only works with `--json` — hence the "which marketplace" row.
-- `marketplace remove` uninstalls its plugins in every project, whatever `--scope` says — hence the "Remove a marketplace" row.
+- `marketplace remove` does one of two things, depending on whether it removes the last scope that declares `<mkt>` from this directory. Hence the "Remove a marketplace" row.
+  - **Last scope** (no `--scope`, or the only declaring one): uninstalls its plugins in every project, and deletes `*@<mkt>` and `<mkt>` from this directory's files only. Other projects keep both, and `remove` and `uninstall` there now fail with `not found`. A leftover `extraKnownMarketplaces` entry re-clones the marketplace at the next session start.
+  - **Any other scope**: deletes only that scope's `<mkt>` declaration. `*@<mkt>` and installs stay.
 - `enable` / `disable` exit `1` when the plugin is already in that state. That's not a failure (`--json` gives `failureCode: "already_in_goal_state"`).
 - The `jq` row lists files highest-precedence first, so the **first** hit wins. A missing file is normal (exits 2; the output is still complete).
 
