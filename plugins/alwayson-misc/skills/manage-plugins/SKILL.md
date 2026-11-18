@@ -31,7 +31,7 @@ A project uses the `enabledPlugins` and `extraKnownMarketplaces` keys in its set
 
 | To… | Run |
 | :-- | :-- |
-| See this project's plugins (`true` = enabled) and marketplaces | `jq '{file: input_filename, enabledPlugins, extraKnownMarketplaces}' .claude/settings.local.json .claude/settings.json ~/.claude/settings.json 2>/dev/null` |
+| See this project's plugins (`true` = enabled) and marketplaces | `jq -n 'inputs \| {file: input_filename, enabledPlugins, extraKnownMarketplaces}' .claude/settings.local.json .claude/settings.json ~/.claude/settings.json 2>/dev/null` |
 | Find which marketplace offers a plugin | `claude plugin list --json --available \| jq -r '.available[] \| select(.name=="<name>") \| .marketplaceName'` |
 | Inspect an installed plugin | `claude plugin details <name>@<mkt>` |
 | Add a marketplace | `claude plugin marketplace add <owner/repo> --scope project` |
@@ -51,7 +51,7 @@ A project uses the `enabledPlugins` and `extraKnownMarketplaces` keys in its set
   - **Last scope** (no `--scope`, or the only declaring one): uninstalls its plugins in every project, and deletes `*@<mkt>` and `<mkt>` from this directory's files only. Other projects keep both, and `remove` and `uninstall` there now fail with `not found`. A leftover `extraKnownMarketplaces` entry re-clones the marketplace at the next session start.
   - **Any other scope**: deletes only that scope's `<mkt>` declaration. `*@<mkt>` and installs stay.
 - `enable` / `disable` exit `1` when the plugin is already in that state. That's not a failure (`--json` gives `failureCode: "already_in_goal_state"`).
-- The `jq` row lists files highest-precedence first, so the **first** hit wins. A missing file is normal (exits 2; the output is still complete).
+- The `jq` row exits `2` when a file is missing. That's not a failure.
 
 ## Update All Plugins, Everywhere
 
