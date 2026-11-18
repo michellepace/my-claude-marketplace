@@ -30,8 +30,8 @@ Plugins and marketplaces come from the `enabledPlugins` and `extraKnownMarketpla
 - **project** `.claude/settings.json` — my default scope
 - **user** `~/.claude/settings.json` — CLI default
 
-| To… | Run |
-| :-- | :-- |
+| Task | How |
+| :--- | :-- |
 | See this project's plugins (`true` = enabled) and marketplaces | `jq -n 'inputs \| {file: input_filename, enabledPlugins, extraKnownMarketplaces}' .claude/settings.local.json .claude/settings.json ~/.claude/settings.json 2>/dev/null` |
 | Find which marketplace offers a plugin | `claude plugin list --json --available \| jq -r '.available[] \| select(.name=="<name>") \| .marketplaceName'` |
 | Inspect an installed plugin | `claude plugin details <name>@<mkt>` |
@@ -62,13 +62,14 @@ Examples of questions I am likely to ask you.
 
 ### 1. What plugins apply to this project?
 
-Show an easy to understand table: one row per plugin, sorted by marketplace. Scope is the one that wins. Flag 🚩 any scope that isn't project. For example:
+One row per plugin, sorted State (✅ first) → Scope. Show the winning scope; flag 🚩 any that isn't project:
 
-| Marketplace | Plugin | State | Scope |
-| :-- | :-- | :-- | :-- |
-| claude-plugins-official | pyright-lsp | ✅ | project |
-| my-claude-marketplace | alwayson-misc | ✅ | user 🚩 |
-| my-claude-marketplace | git-utils | ❌ | local 🚩 (overrides project ✅) |
+| State | Plugin@Marketplace | Scope |
+| :---- | :----------------- | :---- |
+| ✅ | alwayson-misc@my-claude-marketplace | --plugin-dir 🧪 (overrides project ❌) |
+| ✅ | pyright-lsp@claude-plugins-official | project |
+| ✅ | hive-health@honeybellblue-farm-bees | user 🚩 |
+| ❌ | git-utils@my-claude-marketplace | local 🚩 (overrides project ✅) |
 
 ### 2. How do I install this plugin?
 
