@@ -2,7 +2,7 @@
 title: manage-plugins evals
 skill: plugins/alwayson-misc/skills/manage-plugins/SKILL.md
 skill-commit: 781b0e6
-model: claude-opus-5-5 high
+flags: --model claude-opus-5-5 --effort high --permission-mode auto
 result: fail
 ---
 

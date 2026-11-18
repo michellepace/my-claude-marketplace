@@ -2,7 +2,7 @@
 title: grill-me evals
 skill: plugins/alwayson-misc/skills/grill-me/SKILL.md
 skill-commit: e7dfdb9
-model: claude-opus-5 xhigh
+flags: --model claude-opus-5 --effort xhigh --permission-mode auto
 result: pass
 ---
 

@@ -2,7 +2,7 @@
 title: vscode-config evals
 skill: plugins/alwayson-misc/skills/vscode-config/SKILL.md
 skill-commit: b57713f
-model: claude-opus-5-5 medium
+flags: --model claude-opus-5-5 --effort medium --permission-mode auto
 result: pass
 ---
 

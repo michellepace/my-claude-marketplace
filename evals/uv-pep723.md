@@ -2,7 +2,7 @@
 title: uv-pep723 evals
 skill: plugins/uv-pep723/SKILL.md
 skill-commit: fb7d927
-model: claude-opus-5-5 medium
+flags: --model claude-opus-5-5 --effort medium --permission-mode auto
 result: pass
 ---
 
