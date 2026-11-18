@@ -23,7 +23,7 @@ If blank or not about plugins or marketplaces, reply with a short message listin
 
 ## Scopes and Commands
 
-What a project uses is `enabledPlugins` and `extraKnownMarketplaces` in its settings files. Plugins from all scopes merge; on conflict the highest wins — local > project > user:
+A project uses the `enabledPlugins` and `extraKnownMarketplaces` keys in its settings files. The settings from the three scopes merge. If two scopes set the same entry, local wins over project, and project wins over user:
 
 - **local** `.claude/settings.local.json` — rarely in play; ask me if I want to migrate strays to project scope
 - **project** `.claude/settings.json` — my default: every write takes `--scope project` (the CLI defaults to `user`)
