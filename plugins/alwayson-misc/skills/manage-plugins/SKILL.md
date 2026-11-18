@@ -25,9 +25,9 @@ If blank or not about plugins or marketplaces, reply with a short message listin
 
 Plugins and marketplaces come from the `enabledPlugins` and `extraKnownMarketplaces` keys in three settings files, one per scope. They merge, and if two scopes set the same entry, local wins over project, and project wins over user:
 
-- **local** `.claude/settings.local.json` — rarely in play; ask me if I want to migrate strays to project scope
-- **project** `.claude/settings.json` — my default: every write takes `--scope project` (the CLI defaults to `user`)
-- **user** `~/.claude/settings.json` — only alwayson-misc belongs here, if anything. Anything else is likely my mistake: tell me, and offer `claude plugin uninstall <name>@<mkt> --scope user`.
+- **local** `.claude/settings.local.json`
+- **project** `.claude/settings.json` — my default scope
+- **user** `~/.claude/settings.json` — CLI default
 
 | To… | Run |
 | :-- | :-- |
@@ -93,4 +93,4 @@ claude plugin list --json \
 
 ## Replying
 
-To the point: a table for plugin state (✅ / ❌), a code block for commands to run, one line of context if needed. No commentary on what wasn't asked. Get every count you report from a command (`wc -l`, `grep -c`, `jq length`), never by reading the output.
+Tight and easy to scan: a code block for commands to run, a table for plugin state (✅ / ❌), flag any scope that's not project, except alwayson-misc at user (🚩). Get every count you report from a command (`wc -l`, `grep -c`, `jq length`), never by reading the output.
