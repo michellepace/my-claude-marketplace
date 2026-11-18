@@ -93,4 +93,12 @@ claude plugin list --json \
 
 ## Replying
 
-Tight and easy to scan: a code block for commands to run, a table for plugin state (✅ / ❌), flag any scope that's not project, except alwayson-misc at user (🚩). Get every count you report from a command (`wc -l`, `grep -c`, `jq length`), never by reading the output.
+Tight and easy to scan. Put commands in a code block. Show plugin state in a table, one row per plugin, sorted by marketplace. Scope is the one that wins. Flag 🚩 any scope that isn't project, except alwayson-misc at user:
+
+| Marketplace | Plugin | State | Scope |
+| :-- | :-- | :-- | :-- |
+| claude-plugins-official | pyright-lsp | ✅ | project |
+| my-claude-marketplace | alwayson-misc | ✅ | user |
+| my-claude-marketplace | git-utils | ❌ | local 🚩 (overrides project ✅) |
+
+Get every count you report from a command (`wc -l`, `grep -c`, `jq length`), never by counting the output by eye.
