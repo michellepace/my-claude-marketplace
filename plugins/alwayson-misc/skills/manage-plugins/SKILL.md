@@ -41,18 +41,20 @@ Plugins and marketplaces come from the `enabledPlugins` and `extraKnownMarketpla
 | Remove a marketplace | **This project:** `claude plugin uninstall <name>@<mkt> --scope project` for each `*@<mkt>` plugin, then delete `<mkt>` from `extraKnownMarketplaces` in `.claude/settings.json`. **Every project:** `claude plugin marketplace remove <mkt>`, then delete `*@<mkt>` and `<mkt>` from each file the "which projects" row finds |
 | Install / enable / disable / update a plugin | `claude plugin <verb> <name>@<mkt> --scope project` |
 | Uninstall a plugin | `claude plugin uninstall <name>@<mkt> --scope project`; if no `*@<mkt>` plugin is left in that file, also delete `<mkt>` from its `extraKnownMarketplaces` |
-| Test a plugin from my marketplace without installing it | Tell me to run `claude --plugin-dir ~/projects/my-claude-marketplace/plugins/<plugin-name>`, then `/reload-plugins` after each edit |
+| Test a plugin from my marketplace without installing it | Tell me to run `claude --plugin-dir ~/path/to/<marketplace>/plugins/<plugin-name>`, then `/reload-plugins` after each edit |
 | Anything else | `claude plugin --help`, `claude plugin <cmd> --help` |
 
 ## Gotchas
 
 - `claude plugin list` and `claude plugin marketplace list` are machine-wide and contain duplicates — never a per-project answer; read the settings files.
+- A plugin loaded with `--plugin-dir` runs for that session whatever the settings files say. Its skills' base directory is my working copy, not under `~/.claude/plugins/cache`.
 - `details` only sees installed plugins, and `--available` only works with `--json` — hence the "which marketplace" row.
 - `marketplace remove` does one of two things, depending on whether it removes the last scope that declares `<mkt>` from this directory. Hence the "Remove a marketplace" row.
   - **Last scope** (no `--scope`, or the only declaring one): uninstalls its plugins in every project, and deletes `*@<mkt>` and `<mkt>` from this directory's files only. Other projects keep both, and `remove` and `uninstall` there now fail with `not found`. A leftover `extraKnownMarketplaces` entry re-clones the marketplace at the next session start.
   - **Any other scope**: deletes only that scope's `<mkt>` declaration. `*@<mkt>` and installs stay.
-- `enable` / `disable` exit `1` when the plugin is already in that state. That's not a failure (`--json` gives `failureCode: "already_in_goal_state"`).
-- The "See this project's plugins" row exits `2` when a file is missing. That's not a failure.
+- Non-zero exits that aren't failures:
+  - `enable` / `disable` exit `1` when the plugin is already in that state (`--json` gives `failureCode: "already_in_goal_state"`).
+  - `jq` exits `2` when a settings file is missing, but still reads the others.
 
 ## Examples
 
@@ -60,12 +62,12 @@ Examples of questions I am likely to ask you.
 
 ### 1. What plugins apply to this project?
 
-Show an easy to understand table: one row per plugin, sorted by marketplace. Scope is the one that wins. Flag 🚩 any scope that isn't project, except alwayson-misc at user. For example:
+Show an easy to understand table: one row per plugin, sorted by marketplace. Scope is the one that wins. Flag 🚩 any scope that isn't project. For example:
 
 | Marketplace | Plugin | State | Scope |
 | :-- | :-- | :-- | :-- |
 | claude-plugins-official | pyright-lsp | ✅ | project |
-| my-claude-marketplace | alwayson-misc | ✅ | user |
+| my-claude-marketplace | alwayson-misc | ✅ | user 🚩 |
 | my-claude-marketplace | git-utils | ❌ | local 🚩 (overrides project ✅) |
 
 ### 2. How do I install this plugin?
