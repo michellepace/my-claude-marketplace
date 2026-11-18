@@ -5,13 +5,14 @@ argument-hint: '"Which plugins apply to this project?"'
 user-invocable: true
 disable-model-invocation: true
 allowed-tools:
-  - Bash(claude plugin --help)
   - Bash(claude plugin * --help)
+  - Bash(claude plugin --help)
+  - Bash(claude plugin details *)
   - Bash(claude plugin list *)
   - Bash(claude plugin marketplace list *)
   - Bash(claude plugin marketplace update *)
   - Bash(claude plugin update *)
-  - Bash(claude plugin details *)
+  - Bash(curl -fsSL https://raw.githubusercontent.com/*)
   - Bash(jq *)
 ---
 
@@ -34,7 +35,7 @@ Plugins and marketplaces come from the `enabledPlugins` and `extraKnownMarketpla
 | See this project's plugins (`true` = enabled) and marketplaces | `jq -n 'inputs \| {file: input_filename, enabledPlugins, extraKnownMarketplaces}' .claude/settings.local.json .claude/settings.json ~/.claude/settings.json 2>/dev/null` |
 | Find which marketplace offers a plugin | `claude plugin list --json --available \| jq -r '.available[] \| select(.name=="<name>") \| .marketplaceName'` |
 | Inspect an installed plugin | `claude plugin details <name>@<mkt>` |
-| Add a marketplace | `claude plugin marketplace add <owner/repo> --scope project` |
+| Add a marketplace | `claude plugin marketplace add <owner/repo, URL or path> --scope project` |
 | Refresh every marketplace from source (plugins not updated; see below) | `claude plugin marketplace update` |
 | Find which projects use a marketplace | Search `~/projects` for `.claude/settings*.json` files containing `<mkt>` (plus `~/.claude/settings.json`) |
 | Remove a marketplace | **This project:** `claude plugin uninstall <name>@<mkt> --scope project` for each `*@<mkt>` plugin, then delete `<mkt>` from `extraKnownMarketplaces` in `.claude/settings.json`. **Every project:** `claude plugin marketplace remove <mkt>`, then delete `*@<mkt>` and `<mkt>` from each file the "which projects" row finds |
@@ -51,9 +52,41 @@ Plugins and marketplaces come from the `enabledPlugins` and `extraKnownMarketpla
   - **Last scope** (no `--scope`, or the only declaring one): uninstalls its plugins in every project, and deletes `*@<mkt>` and `<mkt>` from this directory's files only. Other projects keep both, and `remove` and `uninstall` there now fail with `not found`. A leftover `extraKnownMarketplaces` entry re-clones the marketplace at the next session start.
   - **Any other scope**: deletes only that scope's `<mkt>` declaration. `*@<mkt>` and installs stay.
 - `enable` / `disable` exit `1` when the plugin is already in that state. That's not a failure (`--json` gives `failureCode: "already_in_goal_state"`).
-- The `jq` row exits `2` when a file is missing. That's not a failure.
+- The "See this project's plugins" row exits `2` when a file is missing. That's not a failure.
 
-## Update All Plugins, Everywhere
+## Examples
+
+Examples of questions I am likely to ask you.
+
+### 1. What plugins apply to this project?
+
+Show an easy to understand table: one row per plugin, sorted by marketplace. Scope is the one that wins. Flag 🚩 any scope that isn't project, except alwayson-misc at user. For example:
+
+| Marketplace | Plugin | State | Scope |
+| :-- | :-- | :-- | :-- |
+| claude-plugins-official | pyright-lsp | ✅ | project |
+| my-claude-marketplace | alwayson-misc | ✅ | user |
+| my-claude-marketplace | git-utils | ❌ | local 🚩 (overrides project ✅) |
+
+### 2. How do I install this plugin?
+
+> How do I install this plugin https://github.com/anthropics/claude-plugins-community for my project?
+
+Read its manifest; don't add the marketplace:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/<owner>/<repo>/HEAD/.claude-plugin/marketplace.json \
+| jq -r '"\(.name): \(.plugins | length) plugins", (.plugins[] | "- \(.name): \(.description // "")")'
+```
+
+List its plugins and ask which I want. Over 20? Ask what I'm after and show matches. Once I pick, give me:
+
+```bash
+claude plugin marketplace add <owner/repo> --scope project
+claude plugin install <name>@<mkt> --scope project
+```
+
+### 3. Update All Plugins, Everywhere
 
 Two layers, updated separately:
 
@@ -78,7 +111,7 @@ claude plugin list --json \
 
 The loop changes other projects. First run it with `echo` in place of `claude plugin update`, show me the records, and wait for my go-ahead. Sessions already open in a changed project need a restart or `/reload-plugins`.
 
-`</dev/null` stops `update` reading the rest of the loop's input. An update that needs a command approved fails here instead. Don't pass `-y` or `--accept-command` yourself: give me `cd <project> && claude plugin update <id> --scope <scope>` to run in my own terminal.
+`</dev/null` stops `update` reading the rest of the loop's input. An update that needs a command approved fails here instead of asking for approval. Don't pass `-y` or `--accept-command` yourself: give me `cd <project> && claude plugin update <id> --scope <scope>` to run in my own terminal.
 
 **Check:** one line per plugin; a plugin on two lines has a record behind. Records of missing projects are left out, as the loop skips them.
 
@@ -91,14 +124,10 @@ claude plugin list --json \
 
 **Never clean the cache by hand.** Old versions are swept automatically.
 
-## Replying
+## Deliverable
 
-Tight and easy to scan. Put commands in a code block. Show plugin state in a table, one row per plugin, sorted by marketplace. Scope is the one that wins. Flag 🚩 any scope that isn't project, except alwayson-misc at user:
+Answer the question in a format that is simple, tight, and easy to scan. I am trying to understand and get things done, don't leave me with a wall of undue complexity. Include emojis strategically.
 
-| Marketplace | Plugin | State | Scope |
-| :-- | :-- | :-- | :-- |
-| claude-plugins-official | pyright-lsp | ✅ | project |
-| my-claude-marketplace | alwayson-misc | ✅ | user |
-| my-claude-marketplace | git-utils | ❌ | local 🚩 (overrides project ✅) |
-
-Get every count you report from a command (`wc -l`, `grep -c`, `jq length`), never by counting the output by eye.
+Rules
+- If you are unsure about my question or anything else, ask me
+- Get every count you report from a command (`wc -l`, `grep -c`, `jq length`), never by counting the output by eye
