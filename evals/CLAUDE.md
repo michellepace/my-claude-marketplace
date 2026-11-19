@@ -1,10 +1,10 @@
 # Manual Skill Evals
 
-An eval tests a skill with one prompt and its criteria. A skill's evals live in one eval file, `<skill-name>.md`.
+An eval tests a skill with one prompt and its criteria (`- [ ]` checkboxes). A skill's evals live in one eval file, `<skill-name>.md`.
 
 ```shell
 # Skills with eval files and their last run
-grep -H -E '^(skill|skill-commit|model|result):' --exclude=CLAUDE.md evals/*.md
+grep -H -E '^(skill|skill-commit|flags|result):' --exclude=CLAUDE.md evals/*.md
 ```
 
 ## Eval file format
@@ -16,13 +16,12 @@ Each eval runs in a new session, except evals under one `##` heading, which shar
 title: <skill-name> evals
 skill: plugins/<plugin>/skills/<skill-name>/SKILL.md  # single-skill plugin: plugins/<plugin>/SKILL.md
 skill-commit: <skill's latest commit at the time of the run>
-model: <model-id> <effort>
+flags: --model <model-id> --effort <effort> --permission-mode auto  # auto: evals test behaviour, not permissions
 result: <pass if every eval met all its criteria, else fail>
 ---
 
 > <prompt>
 
-Criteria:
 - [ ] <criterion: concise, direct; checks behaviour, not exact wording>
 ```
 
@@ -38,12 +37,12 @@ Later prompts in a session can be plain, but they don't get the skill's `allowed
 
 If a user asks how to run an eval themselves:
 
-1. `claude --plugin-dir ~/projects/my-claude-marketplace/plugins/<plugin>`
+1. `claude --plugin-dir ~/projects/my-claude-marketplace/plugins/<plugin> <flags>`
 2. Paste each eval's prompt, starting a new session unless the evals share a `##`.
 
 ### By Claude
 
-If asked to run an eval yourself, run each eval non-interactively (`-p`). Ask which model and effort before running an eval file (default `claude-opus-5-5` `xhigh`).
+If asked to run an eval yourself, run each eval non-interactively (`-p`).
 
 1. **Start directory:** a fresh directory in your scratchpad, one per session, unless the eval file names one.
 2. **Run the first prompt,** copied verbatim from its `>` line:
@@ -51,8 +50,7 @@ If asked to run an eval yourself, run each eval non-interactively (`-p`). Ask wh
    ```shell
    cd <start-dir> && claude -p "<prompt>" \
      --plugin-dir ~/projects/my-claude-marketplace/plugins/<plugin> \
-     --model claude-opus-5-5 --effort xhigh \
-     --permission-mode auto --allowedTools "Skill" \
+     <flags> --allowedTools "Skill" \
      --output-format stream-json --verbose \
      < /dev/null > transcript.jsonl 2> stderr.txt
    ```
@@ -60,8 +58,7 @@ If asked to run an eval yourself, run each eval non-interactively (`-p`). Ask wh
    | Flag | Why | When to deviate |
    | :--- | :--- | :--- |
    | `--plugin-dir` | Loads the plugin from this working copy, not the installed cache | Never |
-   | `--model`, `--effort` | Recorded in the eval file's `model:` | Always ask |
-   | `--permission-mode auto` | Evals test behaviour, not permissions | `manual`, only when asked |
+   | `<flags>` | The eval file's `flags:`, exactly; if empty, ask | When asked |
    | `--allowedTools "Skill"` | Required for plain requests, harmless for `/name` | Never |
    | `--output-format stream-json --verbose` | Tool calls land in the transcript, for step 3 | Never |
    | `< /dev/null` | Skips the 3s wait for stdin | Never |
@@ -78,8 +75,8 @@ If asked to run an eval yourself, run each eval non-interactively (`-p`). Ask wh
 
    Claude can recover from `permission_denials`, sometimes it's better to fix the skill.
 
-4. **Follow-up prompts** in the same `##` session: `claude -p --resume <session_id> "<next prompt>"` from the same start directory, with `session_id` from the `result` line. Pass every flag again, but append the output (`>> transcript.jsonl 2>> stderr.txt`); mode, effort and plugin dir don't carry over.
-5. **Report** pass or fail per criterion, with evidence from the transcript. Ask before ticking criteria or updating the frontmatter: `skill-commit` is `git log -1 --format=%h -- <skill dir>`.
+4. **Follow-up prompts** in the same `##` session: rerun step 2's command with `--resume <session_id>` (from the `result` line) and the next prompt, using `>>` and `2>>` so the new turn is added to the transcript instead of replacing it.
+5. **Report** pass or fail per criterion, with evidence from the transcript, ending with `🧪 Ran with: <flags>`. Ask before ticking criteria or updating the frontmatter: `skill-commit` is `git log -1 --format=%h -- <skill dir>`.
 
 References:
 - [Non-interactive mode](https://code.claude.com/docs/en/headless.md) — fetch with `curl`

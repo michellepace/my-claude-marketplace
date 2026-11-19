@@ -2,7 +2,7 @@
 title: vscode-config evals
 skill: plugins/alwayson-misc/skills/vscode-config/SKILL.md
 skill-commit: b57713f
-model: claude-opus-5-5 medium
+flags: --model claude-opus-5-5 --effort medium --permission-mode auto
 result: pass
 ---
 
@@ -12,22 +12,18 @@ result: pass
 
 > /vscode-config which profile is this project in, and which extensions are enabled?
 
-Criteria:
 - [x] Names the profile in the window title
 - [x] Lists the enabled extensions in the Extensions view, WSL included
 - [x] Leaves out the disabled one and says it's disabled
 
 > /vscode-config which extensions are in my Default profile?
 
-Criteria:
 - [x] Lists the enabled extensions in a Default window's Extensions view, WSL included
 
 > /vscode-config which extensions are in my Markdown profile?
 
-Criteria:
 - [x] Lists the enabled extensions in a Markdown window's Extensions view, WSL included
 
 > /vscode-config have I got VS Code settings specific to Claude Code, excluding extensions
 
-Criteria:
 - [x] Accurately answers from `/mnt/c/Users/mp/AppData/Roaming/Code/User/settings.json` and `/mnt/c/Users/mp/AppData/Roaming/Code/User/keybindings.json`
