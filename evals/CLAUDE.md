@@ -1,6 +1,6 @@
 # Manual Skill Evals
 
-An eval tests a skill with one prompt and its criteria. A skill's evals live in one eval file, `<skill-name>.md`.
+An eval tests a skill with one prompt and its criteria (`- [ ]` checkboxes). A skill's evals live in one eval file, `<skill-name>.md`.
 
 ```shell
 # Skills with eval files and their last run
@@ -22,7 +22,6 @@ result: <pass if every eval met all its criteria, else fail>
 
 > <prompt>
 
-Criteria:
 - [ ] <criterion: concise, direct; checks behaviour, not exact wording>
 ```
 
