@@ -93,37 +93,37 @@ claude plugin install <name>@<mkt> --scope project
 
 Two layers, updated separately:
 
-- **Marketplace copy**: one per machine, shared by every project. `claude plugin marketplace update [<mkt>]` refreshes it from source.
-- **Install record**: one per `(plugin, scope, project)`, pinned to a version. Each is updated from its own project, including via the `/plugin` menu; there is no `--all`.
+- **Marketplace copy**: one per machine, shared by every project.
+- **Install record**: one per `(plugin, scope, project)`. Each is updated from its own project; there is no `--all`.
 
-A record is behind when its version differs from the marketplace copy's. Plugins without `version` in `plugin.json` are versioned by marketplace commit, so every commit makes all of them new; plugins with `version` update only when it's bumped.
+**1. Refresh every marketplace copy.** Run it straight away; it changes no project.
 
 ```bash
-claude plugin marketplace update   # every marketplace
+claude plugin marketplace update
+```
 
-# every install record; set m to a marketplace name to limit it
+**2. Dry run.** Run the loop with `echo` in place of `claude plugin update`. It lists all install records, also current ones. Count with code. Report the totals and the marketplace count from step 1. Give detail only for problems. Wait for my go-ahead.
+
+```bash
+# set m to a marketplace name to limit it
 m=""
 claude plugin list --json \
 | jq -r --arg m "$m" '.[] | select($m == "" or (.id | endswith("@" + $m)))
     | [.id, .scope, .projectPath // ""] | @tsv' | sort -u \
 | while IFS=$'\t' read -r id scope proj; do
-    if [ -n "$proj" ] && [ ! -d "$proj" ]; then echo "skip (missing): $proj"; continue; fi
-    ( cd "${proj:-.}" && claude plugin update "$id" --scope "$scope" </dev/null )
-  done
+    if [ -n "$proj" ] && [ ! -d "$proj" ]; then echo "skip (missing): $id  $proj"; continue; fi
+    echo "== $id  ${proj:-.}"
+    ( cd "${proj:-.}" && claude plugin update "$id" --scope "$scope" </dev/null ) || echo "FAILED"
+  done 2>&1 | tee /tmp/plugin-update.log
 ```
 
-The loop changes other projects. First run it with `echo` in place of `claude plugin update`, show me the records, and wait for my go-ahead. Sessions already open in a changed project need a restart or `/reload-plugins`.
+**3. Update for real.** Run the loop as written, then from the log report:
 
-`</dev/null` stops `update` reading the rest of the loop's input. An update that needs a command approved fails here instead of asking for approval. Don't pass `-y` or `--accept-command` yourself: give me `cd <project> && claude plugin update <id> --scope <scope>` to run in my own terminal.
+- The tally
+- What moved: plugin, project, old → new version
+- Any failure or skip. An update that needs a command approved fails here: don't pass `-y` or `--accept-command`; give me `cd <project> && claude plugin update <id> --scope <scope>` to run myself
 
-**Check:** one line per plugin; a plugin on two lines has a record behind. Records of missing projects are left out, as the loop skips them.
-
-```bash
-claude plugin list --json \
-| jq -r '.[] | [.id, .version, .projectPath // ""] | @tsv' \
-| while IFS=$'\t' read -r id v p; do [ -z "$p" ] || [ -d "$p" ] && printf '%s\t%s\n' "$id" "$v"; done \
-| sort | uniq -c
-```
+Open sessions need `/reload-plugins`.
 
 **Never clean the cache by hand.** Old versions are swept automatically.
 
