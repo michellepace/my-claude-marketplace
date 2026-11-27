@@ -8,9 +8,9 @@
   },
   "plugins": [
     {
-      "name": "nextjs-utils",
-      "source": "./plugins/nextjs-utils",
-      "description": "shadcn/ui best practices for Next.js"
+      "name": "alwayson-misc",
+      "source": "./plugins/alwayson-misc",
+      "description": "Skills: grill-me, plugins-anthropics, plugins-manage-mine, vscode-config"
     },
     {
       "name": "cc-utils",
@@ -28,9 +28,14 @@
       "description": "Git & GitHub workflow utilities"
     },
     {
-      "name": "alwayson-misc",
-      "source": "./plugins/alwayson-misc",
-      "description": "Plugin management, Anthropic's marketplaces, grill-me, and my VS Code config"
+      "name": "nextjs-utils",
+      "source": "./plugins/nextjs-utils",
+      "description": "shadcn/ui best practices for Next.js"
+    },
+    {
+      "name": "pdf-reader",
+      "source": "./plugins/pdf-reader",
+      "description": "Read, inspect and extract content from PDFs"
     },
     {
       "name": "uv-pep723",

@@ -1,5 +1,5 @@
 ---
-name: anthropics-plugins
+name: plugins-anthropics
 description: Browse `anthropics` GitHub marketplaces and plugins
 argument-hint: '"What marketplaces exist?" | "Plugins to build & test MCPs?"'
 user-invocable: true

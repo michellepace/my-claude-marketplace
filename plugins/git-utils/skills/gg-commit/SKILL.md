@@ -8,7 +8,7 @@ disable-model-invocation: true
 
 # Draft Git commit message
 
-Run `<command>` to read the staged changes, then draft the message per `<message>` and `<prefix>`. Present it in a fenced code block; don't commit. If nothing is staged, say so and stop.
+Run `<command>` to read the staged changes, then draft the message per `<message>` and `<type>`. Present it in a fenced code block; don't commit. If nothing is staged, say so and stop.
 
 <command>
 
@@ -21,19 +21,18 @@ echo "===STAGED===" && git diff --staged --compact-summary \
 </command>
 
 <message>
-Write for Claude Code, which later reads `git log` to learn why a change was made. The diff shows what changed; the message records why, in just enough words.
+Write for Claude Code reading `git log` a month from now, trying to understand why this commit was made. Keep it tight and professional.
 
-- Subject: `<prefix> <summary>`, imperative mood. Aim for ~50 characters, prefix included; go a few over rather than drop a word that carries meaning.
-- Body: the motive, usually a sentence or two. Don't restate what the diff shows; record what it can't: a constraint, a rejected alternative, or a deliberate choice a later reader might otherwise undo.
-- Hard-wrap the body at 72 characters, bullets included.
+- Subject: `type: summary` (max. 55 chars). Imperative mood; name what changed, specific enough to stand alone in `git log --oneline`.
+- Body: why the change was made, not a narration of the diff. Add only what the diff can't show: a constraint, a rejected alternative, or a deliberate choice a later reader might otherwise undo. Skip the body if the subject says it all.
+- Hard-wrap the body at 72, bullets included.
 
-Take the motive from this session and the additional guidance. If it isn't clear, ask me before drafting rather than guess.
+Take the motive from this session and the additional guidance. If it isn't clear, ask before drafting.
 </message>
 
-<prefix>
-Use Conventional Commits: `type(scope): summary`. Type is the commit's dominant purpose. Scope is the narrowest skill, plugin or module covering the whole change, never a file.
+<type>
 
-Skills, agents, commands, hooks and `CLAUDE.md` are instructions Claude follows: type them like code, by their effect on Claude's behaviour.
+Pick the commit's dominant purpose. Files Claude reads as instructions (`CLAUDE.md`, skills, agents, hooks) are typed like code, by their effect on Claude's behaviour.
 
 - `docs:` READMEs, docs, code comments; not instructions Claude follows
 - `test:` adding or updating tests
@@ -45,6 +44,7 @@ Skills, agents, commands, hooks and `CLAUDE.md` are instructions Claude follows:
 - `fix:` corrects wrong behaviour
 - `chore:` config (`settings.json`), dependencies, tooling
 - `feat:` new capability
-</prefix>
+
+</type>
 
 Additional guidance for this commit: $ARGUMENTS
