@@ -14,7 +14,7 @@ Well yes you guessed it, plugins.
 
 | Plugin | Contains | Purpose |
 | :----- | :------- | :------ |
-| [`alwayson-misc`](./plugins/alwayson-misc) | 3 skills | Plugin management, grill-me, my VS Code config |
+| [`alwayson-misc`](./plugins/alwayson-misc) | 4 skills | Plugin management, Anthropic's marketplaces, grill-me, my VS Code config |
 | [`cc-utils`](./plugins/cc-utils) | 3 skills | Claude Code know-how + session analysis |
 | [`find-font`](./plugins/find-font) | 4 skills + MCP | Font pairing (orchestrator pattern) |
 | [`git-utils`](./plugins/git-utils) | 5 skills | Git & GitHub workflows |
