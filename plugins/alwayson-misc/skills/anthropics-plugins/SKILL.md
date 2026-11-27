@@ -1,7 +1,7 @@
 ---
 name: anthropics-plugins
 description: Browse `anthropics` GitHub marketplaces and plugins
-argument-hint: '"What marketplaces are there?"'
+argument-hint: '"What marketplaces exist?" | "Plugins to build & test MCPs?"'
 user-invocable: true
 disable-model-invocation: true
 ---
