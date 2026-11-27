@@ -36,6 +36,11 @@
       "name": "uv-pep723",
       "source": "./plugins/uv-pep723",
       "description": "Standalone Python scripts via uv + PEP 723"
+    },
+    {
+      "name": "pdf-reader",
+      "source": "./plugins/pdf-reader",
+      "description": "Read, inspect and extract content from PDFs"
     }
   ]
 }
