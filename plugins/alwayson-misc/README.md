@@ -20,7 +20,7 @@ The auto-invoking uv skill lives in its own plugin, [`uv-pep723`](../uv-pep723),
 | :-------- | :----------- |
 | [`/anthropics-plugins`](skills/anthropics-plugins/SKILL.md) | Browse Anthropic's GitHub marketplaces and plugins |
 | [`/grill-me`](skills/grill-me/SKILL.md) | Get grilled on an idea to thrash it out |
-| [`/manage-plugins`](skills/manage-plugins/SKILL.md) | Manage Claude plugins and marketplaces |
+| [`/plugins-manage-mine`](skills/plugins-manage-mine/SKILL.md) | Manage my plugins and marketplaces |
 | [`/vscode-config`](skills/vscode-config/SKILL.md) | Answer VS Code config questions |
 
 ## Usage Examples
@@ -31,7 +31,7 @@ The auto-invoking uv skill lives in its own plugin, [`uv-pep723`](../uv-pep723),
 - *"what's inside the skill-creator plugin?"*
 - (Fetches each marketplace.json once, then answers follow-ups from local files)
 
-[`/manage-plugins`](skills/manage-plugins/SKILL.md)
+[`/plugins-manage-mine`](skills/plugins-manage-mine/SKILL.md)
 - *"for my plugins, update everything, everywhere"*
 - *"which plugins are applied to this project?"*
 - *"install matt pocock plugin in claude-plugins-official"*

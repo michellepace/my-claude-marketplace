@@ -1,6 +1,6 @@
 ---
-name: manage-plugins
-description: Answer Claude plugin and marketplace questions
+name: plugins-manage-mine
+description: Ask Q's on managing my Claude plugins & marketplaces
 argument-hint: '"Which plugins apply to this project?"'
 user-invocable: true
 disable-model-invocation: true
@@ -31,7 +31,7 @@ Plugins and marketplaces come from the `enabledPlugins` and `extraKnownMarketpla
 - **user** `~/.claude/settings.json` — CLI default
 
 | Task | How |
-| :--- | :-- |
+| :--- | :--- |
 | See this project's plugins (`true` = enabled) and marketplaces | `jq -n 'inputs \| {file: input_filename, enabledPlugins, extraKnownMarketplaces}' .claude/settings.local.json .claude/settings.json ~/.claude/settings.json 2>/dev/null` |
 | Find which marketplace offers a plugin | `claude plugin list --json --available \| jq -r '.available[] \| select(.name=="<name>") \| .marketplaceName'` |
 | Inspect an installed plugin | `claude plugin details <name>@<mkt>` |
