@@ -30,7 +30,7 @@
     {
       "name": "alwayson-misc",
       "source": "./plugins/alwayson-misc",
-      "description": "Plugin management, grill-me, and my VS Code config"
+      "description": "Plugin management, Anthropic's marketplaces, grill-me, and my VS Code config"
     },
     {
       "name": "uv-pep723",

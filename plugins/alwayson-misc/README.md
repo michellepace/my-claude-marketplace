@@ -2,14 +2,15 @@
 
 A Plugin of miscellaneous Skills that I always keep on. They hardcode my own preferences and machine.
 
-Add and install (user scope):
+Add marketplace and install (user scope):
 
 ```bash
+# 1. Add Marketplace
 claude plugin marketplace add michellepace/my-claude-marketplace --scope user
-claude plugin install alwayson-misc@my-claude-marketplace        --scope user
-```
 
-Context-preserving to install at user scope (global). No skill auto-invokes, so none loads into Claude's context window until run. Better as a versioned Plugin that keeps `CLAUDE.md` slim.
+# 2. Install Plugin "alwayson-misc"
+claude plugin install alwayson-misc@my-claude-marketplace --scope user
+```
 
 The auto-invoking uv skill lives in its own plugin, [`uv-pep723`](../uv-pep723), to install only where wanted.
 
@@ -17,11 +18,18 @@ The auto-invoking uv skill lives in its own plugin, [`uv-pep723`](../uv-pep723),
 
 | Run Skill | What it does |
 | :-------- | :----------- |
+| [`/anthropics-plugins`](skills/anthropics-plugins/SKILL.md) | Browse Anthropic's GitHub marketplaces and plugins |
 | [`/grill-me`](skills/grill-me/SKILL.md) | Get grilled on an idea to thrash it out |
 | [`/manage-plugins`](skills/manage-plugins/SKILL.md) | Manage Claude plugins and marketplaces |
 | [`/vscode-config`](skills/vscode-config/SKILL.md) | Answer VS Code config questions |
 
 ## Usage Examples
+
+[`/anthropics-plugins`](skills/anthropics-plugins/SKILL.md)
+- *"What marketplaces are there?"*
+- *"are there plugins that can help me design/create/test mcps?"*
+- *"what's inside the skill-creator plugin?"*
+- (Fetches each marketplace.json once, then answers follow-ups from local files)
 
 [`/manage-plugins`](skills/manage-plugins/SKILL.md)
 - *"for my plugins, update everything, everywhere"*
