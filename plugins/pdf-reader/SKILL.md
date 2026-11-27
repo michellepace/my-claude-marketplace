@@ -1,6 +1,6 @@
 ---
 name: pdf-reader
-description: "Use this skill when you need to read, inspect, or extract content from PDF files — especially when file content is NOT in your context and you need to read it from disk. Covers content inventory, text extraction, page rasterization for visual inspection, embedded image/attachment/table/form-field extraction, and choosing the right reading strategy for different document types (text-heavy, scanned, slide-decks, forms, data-heavy). Do NOT use this skill for PDF creation, form filling, merging, splitting, watermarking, or encryption — use the pdf skill instead."
+description: "Use to read, inspect or extract content from PDFs: text, tables, images, attachments, form fields, charts and scanned pages."
 argument-hint: '"Extract the tables from report.pdf"'
 user-invocable: true
 disable-model-invocation: false
